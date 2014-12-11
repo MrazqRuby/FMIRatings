@@ -37,3 +37,4 @@ E:\Dev\FMIRatingsAPI\FMIRatingsAPI\bin\EntityFramework.SqlServer.dll
 E:\Dev\FMIRatingsAPI\FMIRatingsAPI\bin\EntityFramework.SqlServer.xml
 E:\Dev\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.RemoveCompositeKeyAddUniqueIndex.resources
 E:\Dev\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.AddUniqueNames.resources
+E:\Dev\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csprojResolveAssemblyReference.cache
