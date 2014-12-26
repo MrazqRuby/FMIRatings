@@ -32,3 +32,15 @@ body {
 #start-page-carousel-div .carousel-control.left, .carousel-control.right {
     background-image: none
 }
+
+.rating-table{
+    width: 20%;
+}
+
+.rating-table>tbody>tr>th, .rating-table>tbody>tr>td {
+    border-top: none;
+}
+
+.progress-label-td{
+    width: 30%;
+}
