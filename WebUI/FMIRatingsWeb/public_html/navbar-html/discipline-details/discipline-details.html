@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class = "container-fluid inner-container">
+    <!--discipline info-->
     <div class = "jumbotron">
         <div class=" container">
             <div class="pull-left">
@@ -15,35 +16,45 @@ and open the template in the editor.
                 <span>5</span>
                 <span class="label label-info">Type:</span>
                 <span>OKN</span>               
-                
+
             </div>
 
             <table class="pull-right table rating-table table-condensed">
-                <th>
-                   Rating    
-                </th>
+                <!--                <th>
+                                   Rating    
+                                </th>-->
                 <tr>
-                    <td class="progress-label-td">Helpfulness</td>
+                    <td class="progress-label-td">Полезност</td>
                     <td>
-                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                <span class="sr-only">100% Complete (success)</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="progress-label-td">Леснота</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
                                 <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="progress-label-td">Easiness</td>
+                    <td class="progress-label-td">Интерес</td>
                     <td>
-                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
                                 <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="progress-label-td">Interest</td>
+                    <td class="progress-label-td">Натовареност</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
@@ -53,10 +64,10 @@ and open the template in the editor.
                     </td>
                 </tr>
                 <tr>
-                    <td class="progress-label-td">Занимавка</td>
+                    <td class="progress-label-td">Яснота</td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
                                 <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
@@ -66,4 +77,18 @@ and open the template in the editor.
 
         </div>
     </div>
+
+    <!--discipline details-->
+    <ul class="nav nav-tabs" id="discipline-tabs-nav">
+        <li role="presentation" class="active"><a href="#discipline-details-tab">Подробна информация</a></li>
+        <li role="presentation"><a href="#discipline-ratings-tab">Оценка</a></li>
+        <li role="presentation"><a href="#discipline-materials-tab">Материали</a></li>
+    </ul>
+    
+    <div class = "container-fluid inner-container" id="discipline-choosen-tab-container">
+        
+    </div>
+
 </div>
+
+<script src="js/navigation/disciplines.js"></script>
