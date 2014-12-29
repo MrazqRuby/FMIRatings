@@ -14,7 +14,7 @@ namespace FMIRatingsAPI.Controllers
 {
     public class CoursesController : ApiController
     {
-        private FMIRatingsContext db = new FMIRatingsContext();
+        private FMIRatingsContext db = new FMIRatingsContext(); 
 
         // GET api/Courses
         public IQueryable<Course> GetCourses()
