@@ -73,8 +73,8 @@ D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.Razor.xml
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.xml
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.Deployment.xml
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.Razor.xml
-D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csprojResolveAssemblyReference.cache
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.dll
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.pdb
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.Initial.resources
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csproj.GenerateResource.Cache
+D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csprojResolveAssemblyReference.cache

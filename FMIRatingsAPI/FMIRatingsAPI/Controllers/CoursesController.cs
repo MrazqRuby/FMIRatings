@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
@@ -14,7 +15,7 @@ namespace FMIRatingsAPI.Controllers
 {
     public class CoursesController : ApiController
     {
-        private FMIRatingsContext db = new FMIRatingsContext(); 
+        private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/Courses
         public IQueryable<Course> GetCourses()
@@ -24,9 +25,9 @@ namespace FMIRatingsAPI.Controllers
 
         // GET api/Courses/5
         [ResponseType(typeof(Course))]
-        public IHttpActionResult GetCourse(int id)
+        public async Task<IHttpActionResult> GetCourse(int id)
         {
-            Course course = db.Courses.Find(id);
+            Course course = await db.Courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -36,7 +37,7 @@ namespace FMIRatingsAPI.Controllers
         }
 
         // PUT api/Courses/5
-        public IHttpActionResult PutCourse(int id, Course course)
+        public async Task<IHttpActionResult> PutCourse(int id, Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +53,7 @@ namespace FMIRatingsAPI.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,7 +72,7 @@ namespace FMIRatingsAPI.Controllers
 
         // POST api/Courses
         [ResponseType(typeof(Course))]
-        public IHttpActionResult PostCourse(Course course)
+        public async Task<IHttpActionResult> PostCourse(Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -79,23 +80,23 @@ namespace FMIRatingsAPI.Controllers
             }
 
             db.Courses.Add(course);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = course.Id }, course);
         }
 
         // DELETE api/Courses/5
         [ResponseType(typeof(Course))]
-        public IHttpActionResult DeleteCourse(int id)
+        public async Task<IHttpActionResult> DeleteCourse(int id)
         {
-            Course course = db.Courses.Find(id);
+            Course course = await db.Courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
             }
 
             db.Courses.Remove(course);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(course);
         }

@@ -1,16 +1,17 @@
 namespace FMIRatingsAPI.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+	using System;
+	using System.Collections.Generic;
+	using System.Data.Entity;
+	using System.Data.Entity.Migrations;
+	using System.Linq;
 	using FMIRatingsAPI.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.Models.FMIRatingsContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(FMIRatingsContext context)
@@ -27,6 +28,23 @@ namespace FMIRatingsAPI.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+			var courses = new List<Course>() 
+			{
+				new Course() 
+				{
+					Name = "Data mining",
+					Description = "Description Data Mining"
+				},
+				new Course() 
+				{
+					Name = "Intro to programming",
+					Description = "Description Intro to programming"
+				}
+			};
+
+			courses.ForEach(course => context.Courses.AddOrUpdate(course));
+			context.SaveChanges();
         }
     }
 }
