@@ -9,7 +9,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models;
+using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Controllers
 {
@@ -18,101 +20,128 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/Courses
-        public IQueryable<Course> GetCourses()
+        public List<CourseDTO> GetCourses()
         {
-            return db.Courses;
+			//var courses = db.Courses
+			//	.Include(c => c.Teachers.Where(t => t.CourseId == c.Id)
+			//		.SelectMany(t => t.Teacher.Name)).ToList();
+
+			var courses = db.Courses.Select(c => 
+				new CourseDTO()
+				{
+					Name = c.Name,
+					Description = c.Description,
+					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()
+				}).ToList();
+			return courses;
+
+
+
+			//return db.Courses.Include(c => c.Teachers).Select(
+				
+				
+				
+				
+				
+			//	c =>
+			//	new CourseDTO()
+			//	{
+			//		Name = c.Name,
+			//		Description = c.Description,
+			//		Teachers = c.Teachers.Where(t => t.CourseId == c.Id).
+			//	});
         }
 
-        // GET api/Courses/5
-        [ResponseType(typeof(Course))]
-        public async Task<IHttpActionResult> GetCourse(int id)
-        {
-            Course course = await db.Courses.FindAsync(id);
-            if (course == null)
-            {
-                return NotFound();
-            }
+		// GET api/Courses/5
+		[ResponseType(typeof(Course))]
+		public async Task<IHttpActionResult> GetCourse(int id)
+		{
+			Course course = await db.Courses.FindAsync(id);
+			if (course == null)
+			{
+				return NotFound();
+			}
 
-            return Ok(course);
-        }
+			return Ok(course);
+		}
 
-        // PUT api/Courses/5
-        public async Task<IHttpActionResult> PutCourse(int id, Course course)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+		//// PUT api/Courses/5
+		//public async Task<IHttpActionResult> PutCourse(int id, Course course)
+		//{
+		//	if (!ModelState.IsValid)
+		//	{
+		//		return BadRequest(ModelState);
+		//	}
 
-            if (id != course.Id)
-            {
-                return BadRequest();
-            }
+		//	if (id != course.Id)
+		//	{
+		//		return BadRequest();
+		//	}
 
-            db.Entry(course).State = EntityState.Modified;
+		//	db.Entry(course).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+		//	try
+		//	{
+		//		await db.SaveChangesAsync();
+		//	}
+		//	catch (DbUpdateConcurrencyException)
+		//	{
+		//		if (!CourseExists(id))
+		//		{
+		//			return NotFound();
+		//		}
+		//		else
+		//		{
+		//			throw;
+		//		}
+		//	}
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+		//	return StatusCode(HttpStatusCode.NoContent);
+		//}
 
-        // POST api/Courses
-        [ResponseType(typeof(Course))]
-        public async Task<IHttpActionResult> PostCourse(Course course)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+		//// POST api/Courses
+		//[ResponseType(typeof(Course))]
+		//public async Task<IHttpActionResult> PostCourse(Course course)
+		//{
+		//	if (!ModelState.IsValid)
+		//	{
+		//		return BadRequest(ModelState);
+		//	}
 
-            db.Courses.Add(course);
-            await db.SaveChangesAsync();
+		//	db.Courses.Add(course);
+		//	await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = course.Id }, course);
-        }
+		//	return CreatedAtRoute("DefaultApi", new { id = course.Id }, course);
+		//}
 
-        // DELETE api/Courses/5
-        [ResponseType(typeof(Course))]
-        public async Task<IHttpActionResult> DeleteCourse(int id)
-        {
-            Course course = await db.Courses.FindAsync(id);
-            if (course == null)
-            {
-                return NotFound();
-            }
+		//// DELETE api/Courses/5
+		//[ResponseType(typeof(Course))]
+		//public async Task<IHttpActionResult> DeleteCourse(int id)
+		//{
+		//	Course course = await db.Courses.FindAsync(id);
+		//	if (course == null)
+		//	{
+		//		return NotFound();
+		//	}
 
-            db.Courses.Remove(course);
-            await db.SaveChangesAsync();
+		//	db.Courses.Remove(course);
+		//	await db.SaveChangesAsync();
 
-            return Ok(course);
-        }
+		//	return Ok(course);
+		//}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		//protected override void Dispose(bool disposing)
+		//{
+		//	if (disposing)
+		//	{
+		//		db.Dispose();
+		//	}
+		//	base.Dispose(disposing);
+		//}
 
-        private bool CourseExists(int id)
-        {
-            return db.Courses.Count(e => e.Id == id) > 0;
-        }
+		//private bool CourseExists(int id)
+		//{
+		//	return db.Courses.Count(e => e.Id == id) > 0;
+		//}
     }
 }

@@ -17,15 +17,15 @@ namespace FMIRatingsAPI.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Discipline> Disciplines { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
+		//public DbSet<User> Users { get; set; }
+		//public DbSet<Discipline> Disciplines { get; set; }
+		//public DbSet<Teacher> Teachers { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Discipline>().HasMany(d => d.Tutors).WithMany(t => t.CoursesTaught);
-        }
+		//protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		//{
+		//	base.OnModelCreating(modelBuilder);
+		//	modelBuilder.Entity<Discipline>().HasMany(d => d.Tutors).WithMany(t => t.CoursesTaught);
+		//}
 
     }
 }

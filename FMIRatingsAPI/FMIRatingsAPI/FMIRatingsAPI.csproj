@@ -140,19 +140,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\FMIRatingsContextInitializer.cs" />
-    <Compile Include="Migrations\201412290905184_Initial.cs" />
-    <Compile Include="Migrations\201412290905184_Initial.Designer.cs">
-      <DependentUpon>201412290905184_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201412301544593_Initial.cs" />
+    <Compile Include="Migrations\201412301544593_Initial.Designer.cs">
+      <DependentUpon>201412301544593_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\DatabaseModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
-    <Compile Include="Models\FMIRatingsContext.cs" />
+    <Compile Include="DAL\FMIRatingsContext.cs" />
+    <Compile Include="Models\DTO\CourseDTO.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TeacherInCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FMIRatingsContext-20141229132326.mdf" />
+    <Content Include="App_Data\FMIRatingsContext-20141229132326_log.ldf" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -234,15 +238,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412290905184_Initial.resx">
-      <DependentUpon>201412290905184_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412301544593_Initial.resx">
+      <DependentUpon>201412301544593_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

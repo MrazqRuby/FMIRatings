@@ -16,106 +16,106 @@ namespace FMIRatingsAPI.Controllers
     [RoutePrefix("api")]
     public class WebApiController : ApiController
     {
-		private DatabaseContext db = new DatabaseContext();
+		//private DatabaseContext db = new DatabaseContext();
 
-		// GET api/Account
-		[Route("Account")]
-		public IEnumerable<User> GetUsers()
-		{
-			return db.Users.AsEnumerable();
-		}
+		//// GET api/Account
+		//[Route("Account")]
+		//public IEnumerable<User> GetUsers()
+		//{
+		//	return db.Users.AsEnumerable();
+		//}
 
-		// GET api/Account/5
-		[Route("Account/{id}")]
-		public User GetUser(int id)
-		{
-			User user = db.Users.Find(id);
-			if (user == null)
-			{
-				throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-			}
+		//// GET api/Account/5
+		//[Route("Account/{id}")]
+		//public User GetUser(int id)
+		//{
+		//	User user = db.Users.Find(id);
+		//	if (user == null)
+		//	{
+		//		throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+		//	}
 
-			return user;
-		}
+		//	return user;
+		//}
 
-		// PUT api/Account/5
-		[Route("Account/{id}")]
-		public HttpResponseMessage PutUser(int id, User user)
-		{
-			if (ModelState.IsValid && id == user.Id)
-			{
-				db.Entry(user).State = EntityState.Modified;
+		//// PUT api/Account/5
+		//[Route("Account/{id}")]
+		//public HttpResponseMessage PutUser(int id, User user)
+		//{
+		//	if (ModelState.IsValid && id == user.Id)
+		//	{
+		//		db.Entry(user).State = EntityState.Modified;
 
-				try
-				{
-					db.SaveChanges();
-				}
-				catch (DbUpdateConcurrencyException)
-				{
-					return Request.CreateResponse(HttpStatusCode.NotFound);
-				}
+		//		try
+		//		{
+		//			db.SaveChanges();
+		//		}
+		//		catch (DbUpdateConcurrencyException)
+		//		{
+		//			return Request.CreateResponse(HttpStatusCode.NotFound);
+		//		}
 
-				return Request.CreateResponse(HttpStatusCode.OK);
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.BadRequest);
-			}
-		}
+		//		return Request.CreateResponse(HttpStatusCode.OK);
+		//	}
+		//	else
+		//	{
+		//		return Request.CreateResponse(HttpStatusCode.BadRequest);
+		//	}
+		//}
 
-		// POST api/Account
-		[Route("Account")]
-		public HttpResponseMessage PostUser(User user)
-		{
-			if (ModelState.IsValid)
-			{
-				db.Users.Add(user);
-				db.SaveChanges();
+		//// POST api/Account
+		//[Route("Account")]
+		//public HttpResponseMessage PostUser(User user)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		db.Users.Add(user);
+		//		db.SaveChanges();
 
-				HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
-				return response;
-			}
-			else
-			{
-				return Request.CreateResponse(HttpStatusCode.BadRequest);
-			}
-		}
+		//		HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
+		//		return response;
+		//	}
+		//	else
+		//	{
+		//		return Request.CreateResponse(HttpStatusCode.BadRequest);
+		//	}
+		//}
 
-		// DELETE api/Account/5
-		[Route("Account/{id}")]
-		public HttpResponseMessage DeleteUser(int id)
-		{
-			User user = db.Users.Find(id);
-			if (user == null)
-			{
-				return Request.CreateResponse(HttpStatusCode.NotFound);
-			}
+		//// DELETE api/Account/5
+		//[Route("Account/{id}")]
+		//public HttpResponseMessage DeleteUser(int id)
+		//{
+		//	User user = db.Users.Find(id);
+		//	if (user == null)
+		//	{
+		//		return Request.CreateResponse(HttpStatusCode.NotFound);
+		//	}
 
-			db.Users.Remove(user);
+		//	db.Users.Remove(user);
 
-			try
-			{
-				db.SaveChanges();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				return Request.CreateResponse(HttpStatusCode.NotFound);
-			}
+		//	try
+		//	{
+		//		db.SaveChanges();
+		//	}
+		//	catch (DbUpdateConcurrencyException)
+		//	{
+		//		return Request.CreateResponse(HttpStatusCode.NotFound);
+		//	}
 
-			return Request.CreateResponse(HttpStatusCode.OK, user);
-		}
+		//	return Request.CreateResponse(HttpStatusCode.OK, user);
+		//}
 
-		[Route("Disciplines")]
-		public IHttpActionResult GetDisciplines()
-		{
-			var disciplines = FMIRatingsAPI.WebApiModels.ModelFactory.GetDisciplines();
-			return Ok(disciplines);
-		}
+		//[Route("Disciplines")]
+		//public IHttpActionResult GetDisciplines()
+		//{
+		//	var disciplines = FMIRatingsAPI.WebApiModels.ModelFactory.GetDisciplines();
+		//	return Ok(disciplines);
+		//}
 
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
-		}
+		//protected override void Dispose(bool disposing)
+		//{
+		//	db.Dispose();
+		//	base.Dispose(disposing);
+		//}
     }
 }

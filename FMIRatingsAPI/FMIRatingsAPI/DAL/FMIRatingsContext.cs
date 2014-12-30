@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using FMIRatingsAPI.Models;
 
-namespace FMIRatingsAPI.Models
+namespace FMIRatingsAPI.DAL
 {
     public class FMIRatingsContext : DbContext
     {
@@ -17,9 +19,12 @@ namespace FMIRatingsAPI.Models
     
         public FMIRatingsContext() : base("name=FMIRatingsContext")
         {
+			this.Database.Log = s => Debug.WriteLine(s);
         }
 
-		public System.Data.Entity.DbSet<FMIRatingsAPI.Models.Course> Courses { get; set; }
+		public DbSet<Course> Courses { get; set; }
+		public DbSet<Teacher> Teachers { get; set; }
+		public DbSet<TeacherInCourse> TeachersInCourses { get; set; }
     
     }
 }

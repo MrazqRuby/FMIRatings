@@ -8,6 +8,23 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a href="~/">FMI Ratings</a>
+                </p>
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
