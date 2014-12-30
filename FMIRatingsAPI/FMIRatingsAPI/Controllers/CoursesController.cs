@@ -22,10 +22,6 @@ namespace FMIRatingsAPI.Controllers
         // GET api/Courses
         public List<CourseDTO> GetCourses()
         {
-			//var courses = db.Courses
-			//	.Include(c => c.Teachers.Where(t => t.CourseId == c.Id)
-			//		.SelectMany(t => t.Teacher.Name)).ToList();
-
 			var courses = db.Courses.Select(c => 
 				new CourseDTO()
 				{
@@ -33,30 +29,23 @@ namespace FMIRatingsAPI.Controllers
 					Description = c.Description,
 					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()
 				}).ToList();
-			return courses;
-
-
-
-			//return db.Courses.Include(c => c.Teachers).Select(
-				
-				
-				
-				
-				
-			//	c =>
-			//	new CourseDTO()
-			//	{
-			//		Name = c.Name,
-			//		Description = c.Description,
-			//		Teachers = c.Teachers.Where(t => t.CourseId == c.Id).
-			//	});
+			 
+			return courses;;
         }
 
 		// GET api/Courses/5
-		[ResponseType(typeof(Course))]
+		[ResponseType(typeof(CourseDTO))]
 		public async Task<IHttpActionResult> GetCourse(int id)
 		{
-			Course course = await db.Courses.FindAsync(id);
+			CourseDTO course = await db.Courses
+				.Where(c => c.Id == id)
+				.Select(c => new CourseDTO()
+				{
+					Name = c.Name,
+					Description = c.Description,
+					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()
+				}).SingleOrDefaultAsync();
+
 			if (course == null)
 			{
 				return NotFound();
