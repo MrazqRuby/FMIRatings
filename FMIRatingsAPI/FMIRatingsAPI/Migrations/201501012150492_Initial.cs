@@ -11,7 +11,7 @@ namespace FMIRatingsAPI.Migrations
                 "dbo.CommentForTeachers",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         TeacherId = c.Int(nullable: false),
                         AuthorId = c.Int(),
                         Text = c.String(),

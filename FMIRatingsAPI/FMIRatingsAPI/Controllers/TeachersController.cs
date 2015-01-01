@@ -30,7 +30,7 @@ namespace FMIRatingsAPI.Controllers
 					Courses = teacher.Courses.Select(course => new CourseDTO()
 					{
 						Id = course.Course.Id,
-						Name = course.Course.Name,						
+						Name = course.Course.Name,
 						
 					}).ToList<CourseDTO>(),
 					Comments = teacher.Comments.Select(comment =>
@@ -56,11 +56,10 @@ namespace FMIRatingsAPI.Controllers
 					Id = t.Id,
 					Name = t.Name,
 					Courses = t.Courses.Select(course => new CourseDTO()
-					{
-						Id = course.Course.Id,
-						Name = course.Course.Name,
-
-					}).ToList<CourseDTO>(),
+						{
+							Id = course.Course.Id,
+							Name = course.Course.Name,
+						}).ToList<CourseDTO>(),
 					Comments = t.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{

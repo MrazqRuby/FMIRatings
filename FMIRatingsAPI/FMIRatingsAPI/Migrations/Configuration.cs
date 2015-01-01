@@ -8,12 +8,12 @@ namespace FMIRatingsAPI.Migrations
 	using FMIRatingsAPI.DAL;
 	using FMIRatingsAPI.Models;
 
-	internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
-	{
-		public Configuration()
-		{
-			AutomaticMigrationsEnabled = false;
-		}
+    internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
 
 		protected override void Seed(FMIRatingsContext dbContext)
 		{
@@ -96,21 +96,18 @@ namespace FMIRatingsAPI.Migrations
 			{
 				new CommentForTeacher()
 				{
-					Id = 1,
 					Text = "comment for a teacher",
 					TeacherId = teachers[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Id = 2,
 					Text = "another comment for a teacher",
 					TeacherId = teachers[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Id = 3,
 					Text = "a very good teacher",
 					TeacherId = teachers[1].Id,
 					DateCreated = DateTime.Now,
@@ -122,4 +119,5 @@ namespace FMIRatingsAPI.Migrations
 			dbContext.SaveChanges();
 		}
 	}
+    
 }

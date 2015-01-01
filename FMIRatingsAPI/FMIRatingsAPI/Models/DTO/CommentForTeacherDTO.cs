@@ -7,7 +7,7 @@ namespace FMIRatingsAPI.Models.DTO
 {
 	public class CommentForTeacherDTO
 	{
-		//public int Id { get; set; }
+		public int Id { get; set; }
 
 		private string _author;
 		//TODO: Update info when Users are available
@@ -28,5 +28,6 @@ namespace FMIRatingsAPI.Models.DTO
 		}
 		public string Text { get; set; }
 		public DateTime DateCreated { get; set; }
+		public int TeacherId { get; set; }
 	}
 }

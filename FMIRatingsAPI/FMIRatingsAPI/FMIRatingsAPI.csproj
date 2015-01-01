@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\TeacherCommentsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\WebApi.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -169,9 +170,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501011935357_Initial.cs" />
-    <Compile Include="Migrations\201501011935357_Initial.Designer.cs">
-      <DependentUpon>201501011935357_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201501012150492_Initial.cs" />
+    <Compile Include="Migrations\201501012150492_Initial.Designer.cs">
+      <DependentUpon>201501012150492_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CommentForTeacher.cs" />
@@ -296,8 +297,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501011935357_Initial.resx">
-      <DependentUpon>201501011935357_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501012150492_Initial.resx">
+      <DependentUpon>201501012150492_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
