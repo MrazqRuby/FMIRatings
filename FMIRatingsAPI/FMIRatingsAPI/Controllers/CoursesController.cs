@@ -22,12 +22,13 @@ namespace FMIRatingsAPI.Controllers
         // GET api/Courses
         public List<CourseDTO> GetCourses()
         {
-			var courses = db.Courses.Select(c => 
+			var courses = db.Courses.Select(course => 
 				new CourseDTO()
 				{
-					Name = c.Name,
-					Description = c.Description,
-					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()
+					Name = course.Name,
+					Description = course.Description,
+					Teachers = course.Teachers.Select(teacher => 
+						teacher.Teacher.Name).ToList<string>()
 				}).ToList();
 			 
 			return courses;;

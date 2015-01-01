@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\WebApi.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebApiModels.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="DAL\FMIRatingsContext.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
+    <Compile Include="Models\DTO\TeacherDTO.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\TeacherInCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
