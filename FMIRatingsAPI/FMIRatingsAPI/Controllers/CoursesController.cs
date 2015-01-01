@@ -25,6 +25,7 @@ namespace FMIRatingsAPI.Controllers
 			var courses = db.Courses.Select(course => 
 				new CourseDTO()
 				{
+					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
 					Teachers = course.Teachers.Select(teacher => 
@@ -42,6 +43,7 @@ namespace FMIRatingsAPI.Controllers
 				.Where(c => c.Id == id)
 				.Select(c => new CourseDTO()
 				{
+					Id = c.Id,
 					Name = c.Name,
 					Description = c.Description,
 					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()

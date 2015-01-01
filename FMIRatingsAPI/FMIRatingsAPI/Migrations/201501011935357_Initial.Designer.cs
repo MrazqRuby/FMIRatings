@@ -13,7 +13,7 @@ namespace FMIRatingsAPI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201412301544593_Initial"; }
+            get { return "201501011935357_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -25,9 +25,17 @@ namespace FMIRatingsAPI.Controllers
 			var teachers = db.Teachers.Select(teacher =>
 				new TeacherDTO()
 				{
+					Id = teacher.Id,
 					Name = teacher.Name,
 					Courses = teacher.Courses.Select(course => 
-						course.Course.Name).ToList<string>()
+						course.Course.Name).ToList<string>(),
+					Comments = teacher.Comments.Select(comment =>
+					new CommentForTeacherDTO()
+					{
+						Text = comment.Text,
+						DateCreated = comment.DateCreated,
+						Author = "Stamo"
+					}).ToList<CommentForTeacherDTO>()
 				}).ToList();
 
 			return teachers;
@@ -41,9 +49,17 @@ namespace FMIRatingsAPI.Controllers
 				.Where(t => t.Id == id)
 				.Select(t => new TeacherDTO()
 				{
+					Id = t.Id,
 					Name = t.Name,
 					Courses = t.Courses.Select(course =>
-						course.Course.Name).ToList<string>()
+						course.Course.Name).ToList<string>(),
+					Comments = t.Comments.Select(comment =>
+						new CommentForTeacherDTO()
+						{
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = "Stamo"
+						}).ToList <CommentForTeacherDTO>()
 				}).SingleOrDefaultAsync();
 
 			if (teacher == null)

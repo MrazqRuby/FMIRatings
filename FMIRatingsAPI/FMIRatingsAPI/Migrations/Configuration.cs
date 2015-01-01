@@ -8,11 +8,11 @@ namespace FMIRatingsAPI.Migrations
 	using FMIRatingsAPI.DAL;
 	using FMIRatingsAPI.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsContext>
-    {
+	internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
+	{
 		public Configuration()
 		{
-			AutomaticMigrationsEnabled = true;
+			AutomaticMigrationsEnabled = false;
 		}
 
 		protected override void Seed(FMIRatingsContext dbContext)
@@ -41,14 +41,12 @@ namespace FMIRatingsAPI.Migrations
 				new Teacher()
 				{
 					Id = 1,
-					Name = "John Williams",
-					//Courses = courses
+					Name = "John Williams"
 				},
 				new Teacher()
 				{
 					Id = 2,
-					Name = "Kent Beck",
-					//Courses = courses
+					Name = "Kent Beck"
 				}
 			};
 			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Name, t));
@@ -77,9 +75,51 @@ namespace FMIRatingsAPI.Migrations
 					TeacherId = teachers[1].Id,
 				},
 			};
-			teachersInCourses.ForEach(t => dbContext.TeachersInCourses.AddOrUpdate(t));
+
+			foreach (TeacherInCourse teacherInCourse in teachersInCourses)
+			{
+				var teacherInCourseInDb = dbContext.TeachersInCourses
+					.Where(t =>
+						 t.Teacher.Id == teacherInCourse.TeacherId &&
+						 t.Course.Id == teacherInCourse.CourseId)
+					.SingleOrDefault();
+
+				if (teacherInCourseInDb == null)
+				{
+					dbContext.TeachersInCourses.Add(teacherInCourse);
+				}
+			}
+
 			dbContext.SaveChanges();
-			
-        }
-    }
+
+			var commentsForTeachers = new List<CommentForTeacher>()
+			{
+				new CommentForTeacher()
+				{
+					Id = 1,
+					Text = "comment for a teacher",
+					TeacherId = teachers[0].Id,
+					DateCreated = DateTime.Now,
+				},
+				new CommentForTeacher()
+				{
+					Id = 2,
+					Text = "another comment for a teacher",
+					TeacherId = teachers[0].Id,
+					DateCreated = DateTime.Now,
+				},
+				new CommentForTeacher()
+				{
+					Id = 3,
+					Text = "a very good teacher",
+					TeacherId = teachers[1].Id,
+					DateCreated = DateTime.Now,
+				},
+			};
+
+			commentsForTeachers.ForEach(c =>
+				dbContext.CommentsForTeachers.AddOrUpdate(c));
+			dbContext.SaveChanges();
+		}
+	}
 }
