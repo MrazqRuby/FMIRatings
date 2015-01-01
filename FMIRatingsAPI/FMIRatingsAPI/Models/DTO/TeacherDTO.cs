@@ -10,12 +10,12 @@ namespace FMIRatingsAPI.Models.DTO
 		public int Id { get; set; }
 		public string Name { get; set; }
 
-		public List<string> Courses { get; set; }
+		public List<CourseDTO> Courses { get; set; }
 
 		public List<CommentForTeacherDTO> Comments { get; set; }
 		public TeacherDTO()
 		{
-			this.Courses = new List<string>();
+			this.Courses = new List<CourseDTO>();
 			this.Comments = new List<CommentForTeacherDTO>();
 		}
 	}

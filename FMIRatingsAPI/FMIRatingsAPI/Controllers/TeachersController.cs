@@ -27,15 +27,19 @@ namespace FMIRatingsAPI.Controllers
 				{
 					Id = teacher.Id,
 					Name = teacher.Name,
-					Courses = teacher.Courses.Select(course => 
-						course.Course.Name).ToList<string>(),
-					Comments = teacher.Comments.Select(comment =>
-					new CommentForTeacherDTO()
+					Courses = teacher.Courses.Select(course => new CourseDTO()
 					{
-						Text = comment.Text,
-						DateCreated = comment.DateCreated,
-						Author = "Stamo"
-					}).ToList<CommentForTeacherDTO>()
+						Id = course.Course.Id,
+						Name = course.Course.Name,						
+						
+					}).ToList<CourseDTO>(),
+					Comments = teacher.Comments.Select(comment =>
+						new CommentForTeacherDTO()
+						{
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = "Stamo"
+						}).ToList<CommentForTeacherDTO>()
 				}).ToList();
 
 			return teachers;
@@ -51,15 +55,19 @@ namespace FMIRatingsAPI.Controllers
 				{
 					Id = t.Id,
 					Name = t.Name,
-					Courses = t.Courses.Select(course =>
-						course.Course.Name).ToList<string>(),
+					Courses = t.Courses.Select(course => new CourseDTO()
+					{
+						Id = course.Course.Id,
+						Name = course.Course.Name,
+
+					}).ToList<CourseDTO>(),
 					Comments = t.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"
-						}).ToList <CommentForTeacherDTO>()
+						}).ToList<CommentForTeacherDTO>()
 				}).SingleOrDefaultAsync();
 
 			if (teacher == null)
