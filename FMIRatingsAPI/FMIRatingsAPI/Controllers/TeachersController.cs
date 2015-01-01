@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using FMIRatingsAPI.DAL;
@@ -32,18 +33,26 @@ namespace FMIRatingsAPI.Controllers
 			return teachers;
         }
 
-		//// GET api/Teachers/5
-		//[ResponseType(typeof(Teacher))]
-		//public IHttpActionResult GetTeacher(int id)
-		//{
-		//	Teacher teacher = db.Teachers.Find(id);
-		//	if (teacher == null)
-		//	{
-		//		return NotFound();
-		//	}
+		// GET api/Teachers/5
+		[ResponseType(typeof(TeacherDTO))]
+		public async Task<IHttpActionResult> GetTeacher(int id)
+		{
+			TeacherDTO teacher = await db.Teachers
+				.Where(t => t.Id == id)
+				.Select(t => new TeacherDTO()
+				{
+					Name = t.Name,
+					Courses = t.Courses.Select(course =>
+						course.Course.Name).ToList<string>()
+				}).SingleOrDefaultAsync();
 
-		//	return Ok(teacher);
-		//}
+			if (teacher == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(teacher);
+		}
 
 		//// PUT api/Teachers/5
 		//public IHttpActionResult PutTeacher(int id, Teacher teacher)
