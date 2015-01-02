@@ -5,7 +5,7 @@
 2. Взима се последна версия на master branch-a
     - най сигурният начин за това е локално да се изтрие всичко свързано с проекта в  master branch-a и да се изтегли наново
 3. Проектът се отваря във Visual Studio 2013 и се build-ва.
-4. От мгорната лента с менюта във Visual Studio се избира View->Other Windows->Package Manager Console
+4. От горната лента с менюта във Visual Studio се избира View->Other Windows->Package Manager Console
 5. Въвежда се команда за създаването на локална база и ициализирането й с тестови данни
 
 >update-database
