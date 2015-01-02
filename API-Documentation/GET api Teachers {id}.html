@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://localhost:1871/Help/Api/GET-api-Teachers-id -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>GET api/Teachers/{id}</title>
+    
+</head>
+<body>
+    
+
+<link type="text/css" href="./GET api Teachers {id}_files/HelpPage.css" rel="stylesheet">
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <p>
+                <a href="http://localhost:1871/Help">Help Page Home</a>
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        
+<h1>GET api/Teachers/{id}</h1>
+<div>
+    <p></p>
+
+    <h2>Request Information</h2>
+
+    <h3>URI Parameters</h3>
+        <table class="help-page-table">
+        <thead>
+            <tr><th>Name</th><th>Description</th><th>Type</th><th>Additional information</th></tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td class="parameter-name">id</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                        integer
+                    </td>
+                    <td class="parameter-annotations">
+                                <p>Required</p>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+
+
+    <h3>Body Parameters</h3>
+
+    <p></p>
+
+        <p>None.</p>
+
+
+    <h2>Response Information</h2>
+
+    <h3>Resource Description</h3>
+
+    <p></p>
+
+<a href="http://localhost:1871/Help/ResourceModel?modelName=TeacherDTO">TeacherDTO</a>    <table class="help-page-table">
+        <thead>
+            <tr><th>Name</th><th>Description</th><th>Type</th><th>Additional information</th></tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td class="parameter-name">Id</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                        integer
+                    </td>
+                    <td class="parameter-annotations">
+                            <p>None.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter-name">Name</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                        string
+                    </td>
+                    <td class="parameter-annotations">
+                            <p>None.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter-name">Courses</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                                Collection of <a href="http://localhost:1871/Help/ResourceModel?modelName=CourseDTO">CourseDTO</a>
+
+                    </td>
+                    <td class="parameter-annotations">
+                            <p>None.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter-name">Comments</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                                Collection of <a href="http://localhost:1871/Help/ResourceModel?modelName=CommentForTeacherDTO">CommentForTeacherDTO</a>
+
+                    </td>
+                    <td class="parameter-annotations">
+                            <p>None.</p>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+
+        <h3>Response Formats</h3>
+
+<div>
+        <h4 class="sample-header">application/json, text/json</h4>
+        <div class="sample-content">
+            <span><b>Sample:</b></span>
+<pre class="wrapped">{
+  "id": 1,
+  "name": "sample string 2",
+  "courses": [
+    {
+      "id": 1,
+      "name": "sample string 2",
+      "description": "sample string 3",
+      "teachers": [
+        "sample string 1",
+        "sample string 2"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "sample string 2",
+      "description": "sample string 3",
+      "teachers": [
+        "sample string 1",
+        "sample string 2"
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "author": "Stamo",
+      "text": "sample string 3",
+      "dateCreated": "2015-01-02T21:12:28.0404715+02:00",
+      "teacherId": 5
+    },
+    {
+      "id": 1,
+      "author": "Stamo",
+      "text": "sample string 3",
+      "dateCreated": "2015-01-02T21:12:28.0404715+02:00",
+      "teacherId": 5
+    }
+  ]
+}
+</pre>
+        </div>
+</div>
+</div>
+    </section>
+</div>
+
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Chrome","requestId":"4f54c9dcbf31472b99dd8c6d5985c3a4"}
+</script>
+<script type="text/javascript" src="./GET api Teachers {id}_files/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+
+</body></html>
