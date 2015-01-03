@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/app_padding"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/label_name"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/user_name" />
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_name"
+        android:hint="@string/user_name"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/label_email"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/email" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_email"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/label_password"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/password" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_password"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/label_confirm_password"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/confirm_password" />
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_confirm_password"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/label_course"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_password"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/course" />
+
+    <EditText
+        android:id="@+id/course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_password"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_course"
+        android:hint="@string/course" />
+
+    <TextView
+        android:id="@+id/label_specialty"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/specialty" />
+
+    <EditText
+        android:id="@+id/specialty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/course"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_specialty"
+        android:hint="@string/specialty" />
+    
+       <TextView
+        android:id="@+id/label_group"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/specialty"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/group" />
+
+    <EditText
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/specialty"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_group"
+        android:hint="@string/group" />
+    
+    
+         <TextView
+        android:id="@+id/label_graduation_date"
+        android:layout_width="@dimen/login_labels_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/group"
+        android:layout_marginRight="@dimen/app_margin_small"
+        android:layout_marginTop="@dimen/app_margin_small"
+        android:text="@string/graduation_date" />
+
+    <EditText
+        android:id="@+id/graduation_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/group"
+        android:layout_marginBottom="@dimen/app_margin_small"
+        android:layout_toRightOf="@id/label_graduation_date"
+        android:hint="@string/graduation_date" 
+        android:inputType="date"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/register" />
+
+</RelativeLayout>

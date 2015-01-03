@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FMIRAtings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string-array name="drawer_items">
+        <item>Начало</item>
+        <item>Курсове</item>
+        <item>Преподаватели</item>
+    </string-array>
+
+    <!-- Login/Register -->
+    <string name="email">Имейл</string>
+    <string name="password">Парола</string>
+    <string name="login">Вход</string>
+    <string name="register">Регистрация</string>
+    <string name="confirm_password">Потвърдете пролата</string>
+    <string name="name">Име</string>
+    <string name="user_name">Потребителско име</string>
+    <string name="course">Курс</string>
+    <string name="specialty">Специалност</string>
+    <string name="group">Група</string>
+    <string name="graduation_date">Дата на завършване</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+</resources>
