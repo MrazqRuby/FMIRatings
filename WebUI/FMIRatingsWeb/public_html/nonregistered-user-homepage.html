@@ -75,42 +75,60 @@ and open the template in the editor.
                                     <form role="form">
                                         <div class="form-group">
                                             <label for="username">Потребителско име</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Потребителско име" required>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <input type="text" class="form-control" id="username" placeholder="Потребителско име" required>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email адрес</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                            </div>
                                         </div>
 
                                         <!--TODO: pass validation-->
                                         <div class="form-group">
                                             <label for="pass">Парола</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Парола" required>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <input type="password" class="form-control" id="password" placeholder="Парола" required>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="pass">Повтори парола</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Повтори парола" required>
+                                        <div class="form-group">                                            
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <label for="pass">Повтори парола</label>
+                                                <input type="password" class="form-control" id="password" placeholder="Повтори парола" required>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="course">Курс</label>
-                                            <select class="form-control" id="course"required >
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                            </select>         
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <select class="form-control" id="course"required >
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                </select>        
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="specialty">Специалност</label>
-                                            <select class="form-control" id="specialty" required>
-                                                <option>Спец.1</option>
-                                                <option>Спец.1</option>
-                                                <option>Спец.1</option>
-                                                <option>Спец.1</option>
-                                            </select>         
+                                            <div class="input-group">
+                                                <div class="input-group-addon">*</div>
+                                                <select class="form-control" id="specialty" required>
+                                                    <option>Спец.1</option>
+                                                    <option>Спец.1</option>
+                                                    <option>Спец.1</option>
+                                                    <option>Спец.1</option>
+                                                </select>    
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
