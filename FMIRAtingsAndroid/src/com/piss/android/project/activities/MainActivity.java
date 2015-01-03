@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.fmiratings.fragments.BaseFragment;
+import com.piss.android.project.fragments.BaseFragment;
 
 public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;

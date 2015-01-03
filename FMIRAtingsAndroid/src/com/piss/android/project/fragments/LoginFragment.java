@@ -1,4 +1,4 @@
-package com.piss.android.project.fmiratings.fragments;
+package com.piss.android.project.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,9 +31,18 @@ public class LoginFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
+				
+				//Check if pass and name is empty
+				if(email.getText().equals("")){
+					email.setError("Въведете имейл!");
+					return;
+				}
+				if(password.getText().equals("")){
+					password.setError("Въведете парола!");
+					return;
+				}
+				
 				// TODO: execute login task
-				//TODO: check if pass and name is empty
-				// TODO:check if password = confirm passowrd
 				
 			}
 		});
