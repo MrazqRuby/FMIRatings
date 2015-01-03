@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 //        NAVBAR PAGE LOADING
     $('.nav a').click(function () {
-        
+
         $(this).parent().parent().find("li").removeClass("active");
         $(this).parent().addClass("active");
 
@@ -42,7 +42,4 @@ $(document).ready(function () {
             }
         });
     });
-
-
-
 });
