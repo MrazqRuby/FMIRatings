@@ -20,6 +20,7 @@ $(document).ready(function () {
         if (divParent.attr("id")) {
             $("#body-wrapper").load("navbar-html/discipline-details/discipline-details.html", function () {
                 $("#discipline-title").text(divParent.attr("id"));
+                $("#discipline-choosen-tab-container").load("navbar-html/discipline-details/discipline-details-tab.html");
             });
         }
 
