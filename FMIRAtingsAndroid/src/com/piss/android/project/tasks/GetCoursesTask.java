@@ -34,6 +34,8 @@ public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 			String jsonResponse = EntityUtils.toString(response.getEntity());
 			JSONArray json = new JSONArray(jsonResponse);
 
+			//TODO:get status code from header
+
 			mList = Course.parseFromJSON(json);
 
 		} catch (ClientProtocolException e) {
