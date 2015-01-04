@@ -32,7 +32,7 @@ namespace FMIRatingsAPI.Controllers
 						teacher.Teacher.Name).ToList<string>()
 				}).ToList();
 			 
-			return courses;;
+			return courses;
         }
 
 		// GET api/Courses/5
