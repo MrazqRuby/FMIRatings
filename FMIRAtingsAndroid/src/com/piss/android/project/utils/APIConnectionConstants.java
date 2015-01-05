@@ -5,6 +5,14 @@ public class APIConnectionConstants {
 	public final static String STATUS = "status";
 	public final static String CODE = "code";
 	
+	/* API URL */
+	public final static String API= "http://95.111.16.46:6420/api/";
+	
+	/* API PARAMETERS */
+	public final static String API_TEACHERS = "Teachers";
+	public final static String API_COURSES = "Courses";
+	public final static String API_TEACHERS_COMMENTS="TeacherComments";
+	
 	
 	/* API RESPONSE CONSTANTS */
 	public final static String ID = "id";

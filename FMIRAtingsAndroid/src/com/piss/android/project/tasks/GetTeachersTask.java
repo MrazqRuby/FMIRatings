@@ -12,25 +12,26 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.piss.android.project.models.Course;
-import com.piss.android.project.utils.APIConnectionConstants;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
+import com.piss.android.project.models.Course;
+import com.piss.android.project.models.Teacher;
+import com.piss.android.project.utils.APIConnectionConstants;
+
+public class GetTeachersTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
 
 	@Override
-	protected ArrayList<Course> doInBackground(Void... params) {
+	protected ArrayList<Teacher> doInBackground(Void... params) {
 		String request = APIConnectionConstants.API
-				+ APIConnectionConstants.API_COURSES;
+				+ APIConnectionConstants.API_TEACHERS;
 
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
 
 		HttpResponse response;
-		ArrayList<Course> mList;
+		ArrayList<Teacher> mList;
 		try {
 			response = client.execute(get);
 
@@ -44,7 +45,7 @@ public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 			JSONArray json = new JSONArray(jsonResponse);
 
 			//Parse json response
-			mList = Course.parseFromJSON(json);
+			mList = Teacher.parseFromJSON(json);
 
 		} catch (ClientProtocolException e) {
 
