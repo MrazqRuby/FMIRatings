@@ -1,0 +1,16 @@
+{
+  "name": "WebUI",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MrazqRuby/FMIRatings",
+  "authors": [
+    "mimikrmvrr <mimi_9204@abv.bg>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

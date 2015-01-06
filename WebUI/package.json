@@ -1,0 +1,13 @@
+{
+  "name": "WebUI",
+  "version": "0.0.0",
+  "description": "This is the branch for the Web UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.txt"
+}
