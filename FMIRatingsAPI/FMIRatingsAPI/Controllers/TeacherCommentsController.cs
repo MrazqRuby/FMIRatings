@@ -32,18 +32,23 @@ namespace FMIRatingsAPI.Controllers
 			});
 		}
 
-		//// GET api/TeacherComments/5
-		//[ResponseType(typeof(CommentForTeacher))]
-		//public async Task<IHttpActionResult> GetCommentForTeacher(int id)
-		//{
-		//	CommentForTeacher commentforteacher = await db.CommentsForTeachers.FindAsync(id);
-		//	if (commentforteacher == null)
-		//	{
-		//		return NotFound();
-		//	}
+		// GET api/TeacherComments/5
+		[ResponseType(typeof(List<CommentForTeacherDTO>))]
+		public List<CommentForTeacherDTO> GetCommentsForTeacher(int id)
+		{
+			List<CommentForTeacherDTO> commentsForTeacher = db.CommentsForTeachers
+				.Where(comment => comment.TeacherId == id)
+				.Select(comment => new CommentForTeacherDTO()
+				{
+					Id = comment.Id,
+					Author = "Stamo",
+					TeacherId = comment.Id,
+					DateCreated = comment.DateCreated,
+					Text = comment.Text
+				}).ToList();
 
-		//	return Ok(commentforteacher);
-		//}
+			return commentsForTeacher;
+		}
 
 		//// PUT api/TeacherComments/5
 		//public async Task<IHttpActionResult> PutCommentForTeacher(int id, CommentForTeacher commentforteacher)
