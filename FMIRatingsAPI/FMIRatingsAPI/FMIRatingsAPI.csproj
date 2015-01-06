@@ -174,12 +174,20 @@
     <Compile Include="Migrations\201501012150492_Initial.Designer.cs">
       <DependentUpon>201501012150492_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501061952244_comments.cs" />
+    <Compile Include="Migrations\201501061952244_comments.Designer.cs">
+      <DependentUpon>201501061952244_comments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentForCourse.cs" />
     <Compile Include="Models\CommentForTeacher.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\DatabaseModels.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="DAL\FMIRatingsContext.cs" />
+    <Compile Include="Models\DTO\CommentDTO.cs" />
+    <Compile Include="Models\DTO\CommentForCourseDTO.cs" />
     <Compile Include="Models\DTO\CommentForTeacherDTO.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
     <Compile Include="Models\DTO\TeacherDTO.cs" />
@@ -300,6 +308,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501012150492_Initial.resx">
       <DependentUpon>201501012150492_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501061952244_comments.resx">
+      <DependentUpon>201501061952244_comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

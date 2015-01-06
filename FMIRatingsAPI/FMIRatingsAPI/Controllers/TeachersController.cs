@@ -36,6 +36,8 @@ namespace FMIRatingsAPI.Controllers
 					Comments = teacher.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
+							Id = comment.Id,
+							TeacherId = comment.TeacherId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"
@@ -63,6 +65,8 @@ namespace FMIRatingsAPI.Controllers
 					Comments = t.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
+							Id = comment.Id,
+							TeacherId = comment.TeacherId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"

@@ -5,8 +5,8 @@ using System.Web;
 
 namespace FMIRatingsAPI.Models.DTO
 {
-	public class CommentForTeacherDTO : CommentDTO
+	public class CommentForCourseDTO : CommentDTO
 	{
-		public int TeacherId { get; set; }
+		public int CourseId { get; set; }
 	}
 }

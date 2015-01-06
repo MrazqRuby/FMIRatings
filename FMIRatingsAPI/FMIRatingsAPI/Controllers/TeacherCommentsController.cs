@@ -20,9 +20,16 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/TeacherComments
-		public IQueryable<CommentForTeacher> GetCommentsForTeachers()
+		public IQueryable<CommentForTeacherDTO> GetCommentsForTeachers()
 		{
-			return db.CommentsForTeachers;
+			return db.CommentsForTeachers.Select(comment => new CommentForTeacherDTO()
+			{
+				Id = comment.Id,
+				Author = "Stamo",
+				TeacherId = comment.TeacherId,
+				DateCreated = comment.DateCreated,
+				Text = comment.Text
+			});
 		}
 
 		//// GET api/TeacherComments/5

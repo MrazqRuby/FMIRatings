@@ -114,8 +114,32 @@ namespace FMIRatingsAPI.Migrations
 				},
 			};
 
-			commentsForTeachers.ForEach(c =>
-				dbContext.CommentsForTeachers.AddOrUpdate(c));
+			commentsForTeachers.ForEach(c => dbContext.CommentsForTeachers.AddOrUpdate(c));
+			dbContext.SaveChanges();
+
+			var commentsForCourses = new List<CommentForCourse>()
+			{
+				new CommentForCourse()
+				{
+					Text = "comment for a course",
+					CourseId = courses[0].Id,
+					DateCreated = DateTime.Now,
+				},
+				new CommentForCourse()
+				{
+					Text = "another comment for a course",
+					CourseId = courses[1].Id,
+					DateCreated = DateTime.Now,
+				},
+				new CommentForCourse()
+				{
+					Text = "a very good course",
+					CourseId = courses[1].Id,
+					DateCreated = DateTime.Now,
+				},
+			};
+
+			commentsForCourses.ForEach(c => dbContext.CommentsForCourses.AddOrUpdate(c));
 			dbContext.SaveChanges();
 		}
 	}

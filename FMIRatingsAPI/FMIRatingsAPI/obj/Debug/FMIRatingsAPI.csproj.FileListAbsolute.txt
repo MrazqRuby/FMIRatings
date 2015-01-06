@@ -117,3 +117,4 @@ E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migra
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csproj.GenerateResource.Cache
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.dll
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.pdb
+D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.comments.resources
