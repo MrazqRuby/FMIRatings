@@ -35,7 +35,7 @@ public class LoginTask extends AsyncTask<Void, Void, Boolean> {
 		try {
 			httpPost = new HttpPost(url);
 			nameValuePairs.clear();
-//			
+			//TODO:add parameters to NameValuePair
 
 
 			try {
