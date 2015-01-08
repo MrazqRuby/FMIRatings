@@ -17,7 +17,6 @@ namespace FMIRatingsAPI
     {
         protected void Application_Start()
         {
-			//Database.SetInitializer(new FMIRatingsContextInitializer());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

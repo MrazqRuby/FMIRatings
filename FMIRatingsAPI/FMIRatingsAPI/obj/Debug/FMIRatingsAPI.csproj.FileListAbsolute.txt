@@ -112,9 +112,14 @@ E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.Razor.xml
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.xml
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.Deployment.xml
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\bin\System.Web.WebPages.Razor.xml
-E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csprojResolveAssemblyReference.cache
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.Initial.resources
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csproj.GenerateResource.Cache
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.dll
 E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.pdb
 D:\GitHub\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.comments.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.comments.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.Creatingusers.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.Fixes.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.ReconcileDatabase.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.Migrations.Usersv01.resources
+E:\Dev\Repo\FMIRatings\FMIRatingsAPI\FMIRatingsAPI\obj\Debug\FMIRatingsAPI.csprojResolveAssemblyReference.cache

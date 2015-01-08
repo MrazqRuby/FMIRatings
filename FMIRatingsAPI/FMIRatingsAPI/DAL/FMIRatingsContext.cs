@@ -27,6 +27,6 @@ namespace FMIRatingsAPI.DAL
 		public DbSet<TeacherInCourse> TeachersInCourses { get; set; }
 		public DbSet<CommentForTeacher> CommentsForTeachers { get; set; }
 		public DbSet<CommentForCourse> CommentsForCourses { get; set; }
-
+        public DbSet<User> Users { get; set; }
 	}
 }

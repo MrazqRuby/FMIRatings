@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BA27AE5B-0EA1-4923-A0DF-D6F559729436}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FMIRatingsAPI</RootNamespace>
@@ -161,9 +161,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Authentication\AuthenticationFilter.cs" />
+    <Compile Include="Authentication\UserManager.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\TeacherCommentsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebApi.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebApiModels.cs" />
@@ -178,6 +181,22 @@
     <Compile Include="Migrations\201501061952244_comments.Designer.cs">
       <DependentUpon>201501061952244_comments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501081245561_Creating users.cs" />
+    <Compile Include="Migrations\201501081245561_Creating users.Designer.cs">
+      <DependentUpon>201501081245561_Creating users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501081306482_Fixes.cs" />
+    <Compile Include="Migrations\201501081306482_Fixes.Designer.cs">
+      <DependentUpon>201501081306482_Fixes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501081316168_Reconcile Database.cs" />
+    <Compile Include="Migrations\201501081316168_Reconcile Database.Designer.cs">
+      <DependentUpon>201501081316168_Reconcile Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501081328250_Users v0.1.cs" />
+    <Compile Include="Migrations\201501081328250_Users v0.1.Designer.cs">
+      <DependentUpon>201501081328250_Users v0.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -191,6 +210,8 @@
     <Compile Include="Models\DTO\CommentForTeacherDTO.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
     <Compile Include="Models\DTO\TeacherDTO.cs" />
+    <Compile Include="Models\DTO\UserDTO.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\TeacherInCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,6 +332,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501061952244_comments.resx">
       <DependentUpon>201501061952244_comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081245561_Creating users.resx">
+      <DependentUpon>201501081245561_Creating users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081306482_Fixes.resx">
+      <DependentUpon>201501081306482_Fixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081316168_Reconcile Database.resx">
+      <DependentUpon>201501081316168_Reconcile Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081328250_Users v0.1.resx">
+      <DependentUpon>201501081328250_Users v0.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

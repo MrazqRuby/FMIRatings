@@ -52,6 +52,26 @@ namespace FMIRatingsAPI.Migrations
 			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Name, t));
 			dbContext.SaveChanges();
 
+            var users = new List<User>()
+			{
+				new User()
+				{
+					Id = 1,
+					Name = "admin",
+                    Password = "admin",
+                    Admin = true
+				},
+				new User()
+				{
+					Id = 2,
+					Name = "user",
+                    Password = "user",
+                    Admin = false
+				}
+			};
+            users.ForEach(u => dbContext.Users.AddOrUpdate(user => user.Name, u));
+            dbContext.SaveChanges();
+
 			var teachersInCourses = new List<TeacherInCourse>()
 			{
 				new TeacherInCourse()
@@ -98,18 +118,21 @@ namespace FMIRatingsAPI.Migrations
 				{
 					Text = "comment for a teacher",
 					TeacherId = teachers[0].Id,
+                    UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
 					Text = "another comment for a teacher",
 					TeacherId = teachers[0].Id,
+                    UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
 					Text = "a very good teacher",
 					TeacherId = teachers[1].Id,
+                    UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 			};
@@ -123,18 +146,21 @@ namespace FMIRatingsAPI.Migrations
 				{
 					Text = "comment for a course",
 					CourseId = courses[0].Id,
+                    UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
 					Text = "another comment for a course",
 					CourseId = courses[1].Id,
+                    UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
 					Text = "a very good course",
 					CourseId = courses[1].Id,
+                    UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 			};

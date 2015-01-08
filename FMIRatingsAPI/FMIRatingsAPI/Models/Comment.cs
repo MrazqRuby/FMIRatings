@@ -12,8 +12,10 @@ namespace FMIRatingsAPI.Models
 		public int Id { get; set; }
 
 		//TODO: add a reference to the User
-		public int? AuthorId { get; set; }
+		public int UserId { get; set; }
 		public string Text { get; set; }
 		public DateTime DateCreated { get; set; }
+
+        public User User { get; set; }
 	}
 }
