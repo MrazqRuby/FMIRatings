@@ -105,25 +105,29 @@ namespace FMIRatingsAPI.Controllers
 						Text =  commentForTeacher.Text,
 						DateCreated = DateTime.Now,
 					});
+
+				try
+				{
+					await db.SaveChangesAsync();
+				}
+				catch (DbUpdateException)
+				{
+					if (CommentForTeacherExists(commentForTeacher.Id))
+					{
+						return Conflict();
+					}
+					else
+					{
+						throw;
+					}
+				}
+
+				return CreatedAtRoute("DefaultApi", new { id = commentForTeacher.Id }, commentForTeacher);
 			}
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (CommentForTeacherExists(commentForTeacher.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = commentForTeacher.Id }, commentForTeacher);
+			else
+			{
+				return NotFound();
+			}
         }
 
 		//// DELETE api/TeacherComments/5

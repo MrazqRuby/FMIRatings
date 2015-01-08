@@ -50,39 +50,54 @@ namespace FMIRatingsAPI.Controllers
 			return commentsForCourse;
         }
 
-		//// PUT api/CourseComments/5
-		//public async Task<IHttpActionResult> PutCommentForCourse(int id, CommentForCourse commentforcourse)
-		//{
-		//	if (!ModelState.IsValid)
-		//	{
-		//		return BadRequest(ModelState);
-		//	}
 
-		//	if (id != commentforcourse.Id)
-		//	{
-		//		return BadRequest();
-		//	}
+		// POST api/CourseComments
+		[ResponseType(typeof(CommentForCourseDTO))]
+		public async Task<IHttpActionResult> PostCommentForTeacher([FromBody]CommentForCourseDTO commentForCourse)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
 
-		//	db.Entry(commentforcourse).State = EntityState.Modified;
+			var course = db.Courses
+				.Where(c => c.Id == commentForCourse.CourseId)
+				.SingleOrDefaultAsync();
 
-		//	try
-		//	{
-		//		await db.SaveChangesAsync();
-		//	}
-		//	catch (DbUpdateConcurrencyException)
-		//	{
-		//		if (!CommentForCourseExists(id))
-		//		{
-		//			return NotFound();
-		//		}
-		//		else
-		//		{
-		//			throw;
-		//		}
-		//	}
+			if (course != null)
+			{
+				db.CommentsForCourses.Add(new CommentForCourse()
+				{
+					CourseId = commentForCourse.CourseId,
+					Text = commentForCourse.Text,
+					DateCreated = DateTime.Now,
+				});
 
-		//	return StatusCode(HttpStatusCode.NoContent);
-		//}
+				try
+				{
+					await db.SaveChangesAsync();
+				}
+				catch (DbUpdateException)
+				{
+					if (CommentForCourseExists(commentForCourse.Id))
+					{
+						return Conflict();
+					}
+					else
+					{
+						throw;
+					}
+				}
+
+				return CreatedAtRoute("DefaultApi", new { id = commentForCourse.Id }, commentForCourse);
+			}
+			else
+			{
+				return NotFound();
+			}
+
+			
+		}
 
 		//// POST api/CourseComments
 		//[ResponseType(typeof(CommentForCourse))]
@@ -124,9 +139,9 @@ namespace FMIRatingsAPI.Controllers
 		//	base.Dispose(disposing);
 		//}
 
-		//private bool CommentForCourseExists(int id)
-		//{
-		//	return db.CommentsForCourses.Count(e => e.Id == id) > 0;
-		//}
+		private bool CommentForCourseExists(int id)
+		{
+			return db.CommentsForCourses.Count(e => e.Id == id) > 0;
+		}
     }
 }
