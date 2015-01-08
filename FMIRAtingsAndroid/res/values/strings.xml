@@ -14,6 +14,8 @@
         <item>Преподаватели</item>
     </string-array>
 
+    <string name="add_commnet">Добави коментар</string>
+    
     <!-- Login/Register -->
     <string name="email">Имейл</string>
     <string name="password">Парола</string>
@@ -28,4 +30,6 @@
     <string name="graduation_date">Дата на завършване</string>
     <string name="title_activity_login">LoginActivity</string>
 
+    
+    <!-- Teachers -->
 </resources>

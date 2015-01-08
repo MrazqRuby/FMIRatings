@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RatingBar
+        android:id="@+id/ratePlace"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:numStars="5"
+        android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+    <LinearLayout
+        android:id="@+id/layout_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/editComment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="@string/add_commnet"
+            android:imeOptions="actionSend"
+            android:inputType="textAutoCorrect"
+            android:lines="1"
+            android:textColor="#999999"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/commentArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:contentDescription="@drawable/comment_arrow"
+            android:paddingLeft="10dp"
+            android:src="@drawable/comment_arrow" />
+    </LinearLayout>
+
+</RelativeLayout>
