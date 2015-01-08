@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.fragments.BaseFragment;
+import com.piss.android.project.fragments.CoursesListFragment;
 
 public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
@@ -127,7 +127,7 @@ public class MainActivity extends ActionBarActivity {
 	private void selectItem(int position) {
 		// Create a new fragment and specify the planet to show based on
 		// position
-		Fragment fragment = new BaseFragment();
+		Fragment fragment = new CoursesListFragment();
 
 		addFragment(fragment);
 		

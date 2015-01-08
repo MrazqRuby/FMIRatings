@@ -26,5 +26,7 @@ public class APIConnectionConstants {
 	public final static String DATE_CREATED = "dateCreated";
 	public final static String TEACHER_ID = "teacherId";
 	
+	public final static String COMMENT_TEXT = "text";
+	
 	
 }

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.piss.android.project.adapters.ListAdapter;
 
-public class BaseFragment extends Fragment{
+public class CoursesListFragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -22,7 +22,6 @@ public class BaseFragment extends Fragment{
 		
 		RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		
 		
 		ListAdapter adapter = new ListAdapter(null);
 		

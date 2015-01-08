@@ -14,7 +14,9 @@
         <item>Преподаватели</item>
     </string-array>
 
+    <!-- Comments -->
     <string name="add_commnet">Добави коментар</string>
+    <string name="add_rating">Вашият кометар и оценка са много важни за нас. така се следи кой курсове са най-полезни и посещавани.</string>
     
     <!-- Login/Register -->
     <string name="email">Имейл</string>
