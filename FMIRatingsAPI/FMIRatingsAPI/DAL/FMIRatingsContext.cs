@@ -20,12 +20,17 @@ namespace FMIRatingsAPI.DAL
 		public FMIRatingsContext()
 			: base("name=FMIRatingsContext")
 		{
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 		}
 
 		public DbSet<Course> Courses { get; set; }
 		public DbSet<Teacher> Teachers { get; set; }
 		public DbSet<TeacherInCourse> TeachersInCourses { get; set; }
 		public DbSet<CommentForTeacher> CommentsForTeachers { get; set; }
+        public DbSet<CriterionForCourse> CriteriaForCourses { get; set; }
+        public DbSet<CriterionForTeacher> CriteriaForTeachers { get; set; }
+        public DbSet<VoteForCourse> VotesForCourses { get; set; }
+        public DbSet<VoteForTeacher> VotesForTeachers { get; set; }
 		
 
 	}
