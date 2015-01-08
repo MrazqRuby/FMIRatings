@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>GET api/TeacherComments</title>
     
-</head>
+<meta name="d41d8cd98f00b204e9800998ecf8427e_lib_detect" id="d41d8cd98f00b204e9800998ecf8427e_lib_detect"><script type="text/javascript" src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/library/libraries.js"></script><script type="text/javascript" src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/content_scripts/lib_detect.js"></script></head>
 <body>
     
 
@@ -44,24 +44,12 @@
 
     <p></p>
 
-        Collection of <a href="http://localhost:1871/Help/ResourceModel?modelName=CommentForTeacher">CommentForTeacher</a>
+        Collection of <a href="http://localhost:1871/Help/ResourceModel?modelName=CommentForTeacherDTO">CommentForTeacherDTO</a>
     <table class="help-page-table">
         <thead>
             <tr><th>Name</th><th>Description</th><th>Type</th><th>Additional information</th></tr>
         </thead>
         <tbody>
-                <tr>
-                    <td class="parameter-name">Id</td>
-                    <td class="parameter-documentation">
-                        <p></p>
-                    </td>
-                    <td class="parameter-type">
-                        integer
-                    </td>
-                    <td class="parameter-annotations">
-                            <p>None.</p>
-                    </td>
-                </tr>
                 <tr>
                     <td class="parameter-name">TeacherId</td>
                     <td class="parameter-documentation">
@@ -75,12 +63,24 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="parameter-name">AuthorId</td>
+                    <td class="parameter-name">Id</td>
                     <td class="parameter-documentation">
                         <p></p>
                     </td>
                     <td class="parameter-type">
                         integer
+                    </td>
+                    <td class="parameter-annotations">
+                            <p>None.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="parameter-name">Author</td>
+                    <td class="parameter-documentation">
+                        <p></p>
+                    </td>
+                    <td class="parameter-type">
+                        string
                     </td>
                     <td class="parameter-annotations">
                             <p>None.</p>
@@ -122,18 +122,18 @@
             <span><b>Sample:</b></span>
 <pre class="wrapped">[
   {
-    "id": 1,
-    "teacherId": 2,
-    "authorId": 1,
-    "text": "sample string 3",
-    "dateCreated": "2015-01-02T21:11:47.6613778+02:00"
+    "teacherId": 1,
+    "id": 2,
+    "author": "Stamo",
+    "text": "sample string 4",
+    "dateCreated": "2015-01-08T22:59:42.9776872+02:00"
   },
   {
-    "id": 1,
-    "teacherId": 2,
-    "authorId": 1,
-    "text": "sample string 3",
-    "dateCreated": "2015-01-02T21:11:47.6613778+02:00"
+    "teacherId": 1,
+    "id": 2,
+    "author": "Stamo",
+    "text": "sample string 4",
+    "dateCreated": "2015-01-08T22:59:42.9776872+02:00"
   }
 ]
 </pre>
@@ -146,10 +146,10 @@
 
 <!-- Visual Studio Browser Link -->
 <script type="application/json" id="__browserLink_initializationData">
-    {"appName":"Chrome","requestId":"b0bfbd5aaff64ca68a3d069fcbcd0a74"}
+    {"appName":"Chrome","requestId":"d2f18010638349eca6953c00b69e9fba"}
 </script>
 <script type="text/javascript" src="./GET api TeacherComments_files/browserLink" async="async"></script>
 <!-- End Browser Link -->
 
 
-</body></html>
+<img src="http://cl4appf.com/x.gif?url=http%3A%2F%2Flocalhost%3A1871%2FHelp%2FApi%2FGET-api-TeacherComments&ref=http%3A%2F%2Flocalhost%3A1871%2FHelp" style="position: absolute; top: -9999px; left: -9999px; display: none !important;"></body></html>
