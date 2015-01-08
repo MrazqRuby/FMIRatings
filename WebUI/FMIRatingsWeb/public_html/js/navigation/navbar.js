@@ -20,7 +20,7 @@ $(document).ready(function () {
         $("#start-page").html(function () {
             console.log("load start page");
             $("#start-page-carousel-div").load("navbar-html/carousel-component.html #carousel-generic");
-            $("#start-page-info-div").html("<b>This is div</b>");
+            $("#start-page-info-div").load("navbar-html/start-page-detailed-statistics.html");
         });
     }
 
