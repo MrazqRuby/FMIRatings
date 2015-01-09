@@ -42,7 +42,8 @@ namespace FMIRatingsAPI.Controllers
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = comment.User.Name
-                        }).ToList<CommentForTeacherDTO>()
+                        }).ToList<CommentForTeacherDTO>(),
+					Department = teacher.Department.Name
 				}).ToList();
 
 			return teachers;
@@ -74,7 +75,8 @@ namespace FMIRatingsAPI.Controllers
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"
-						}).ToList<CommentForTeacherDTO>()
+						}).ToList<CommentForTeacherDTO>(),
+					Department = t.Department.Name
 				}).SingleOrDefault();
 
 				return Ok(teacher);

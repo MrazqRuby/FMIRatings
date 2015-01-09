@@ -10,6 +10,8 @@ namespace FMIRatingsAPI.Models.DTO
 		public int Id { get; set; }
 		public string Name { get; set; }
 
+		public string Department { get; set; }
+
 		public List<CourseDTO> Courses { get; set; }
 
 		public List<CommentForTeacherDTO> Comments { get; set; }

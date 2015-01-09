@@ -61,17 +61,42 @@ namespace FMIRatingsAPI.Migrations
 			courses.ForEach(c => dbContext.Courses.AddOrUpdate(course => course.Id, c));
 			dbContext.SaveChanges();
 
+			var teacherDepartments = new List<TeacherDepartment>()
+	        {
+		        new TeacherDepartment()
+		        {
+			        Id = 1,
+			        Name = "Вероятности и статистика"
+		        },
+		        new TeacherDepartment()
+		        {
+			        Id = 2,
+			        Name = "Анализ"
+		        },
+				new TeacherDepartment()
+		        {
+			        Id = 3,
+			        Name = "Софтуерни технологии"
+		        },
+	        };
+
+			teacherDepartments.ForEach(d => dbContext.TeacherDepartments.AddOrUpdate(department => department.Id, d));
+			dbContext.SaveChanges();
+
 			var teachers = new List<Teacher>()
 			{
 				new Teacher()
 				{
 					Id = 1,
-					Name = "Тодор Стоянов"
+					Name = "Тодор Стоянов",
+					Department = teacherDepartments[0]
+					
 				},
 				new Teacher()
 				{
 					Id = 2,
-					Name = "Владимир Николов"
+					Name = "Владимир Николов",
+					Department = teacherDepartments[2]
 				}
 			};
 			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Id, t));

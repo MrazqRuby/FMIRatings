@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201501091934303_CourseCategoryMigration.Designer.cs">
       <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.cs" />
+    <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.Designer.cs">
+      <DependentUpon>201501092000184_TeacherDepartmentMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -219,6 +223,7 @@
     <Compile Include="Models\DTO\UserDTO.cs" />
     <Compile Include="Models\DTO\VoteForCourseDTO.cs" />
     <Compile Include="Models\DTO\VoteForTeacherDTO.cs" />
+    <Compile Include="Models\TeacherDepartment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\TeacherInCourse.cs" />
@@ -351,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501091934303_CourseCategoryMigration.resx">
       <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501092000184_TeacherDepartmentMigration.resx">
+      <DependentUpon>201501092000184_TeacherDepartmentMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
