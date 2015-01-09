@@ -15,6 +15,8 @@ namespace FMIRatingsAPI.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+		public virtual CourseCategory Category{ get; set; }
+
 		public virtual ICollection<TeacherInCourse> Teachers { get; set; }
 		public virtual ICollection<CommentForCourse> Comments { get; set; }
 	}
