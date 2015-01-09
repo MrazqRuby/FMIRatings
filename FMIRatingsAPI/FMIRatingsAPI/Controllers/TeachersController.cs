@@ -15,7 +15,7 @@ using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Controllers
 {
-    [FMIRatingsAPI.Authentication.AuthenticationFilter]
+	//[FMIRatingsAPI.Authentication.AuthenticationFilter]
     public class TeachersController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();
@@ -50,19 +50,22 @@ namespace FMIRatingsAPI.Controllers
 
 		// GET api/Teachers/5
 		[ResponseType(typeof(TeacherDTO))]
-		public async Task<IHttpActionResult> GetTeacher(int id)
+		public IHttpActionResult GetTeacher(int id)
 		{
-			TeacherDTO teacher = await db.Teachers
+			var teacherInDb = db.Teachers.SingleOrDefault(t => t.Id == id);
+			if (teacherInDb != null)
+			{
+				TeacherDTO teacher = db.Teachers
 				.Where(t => t.Id == id)
 				.Select(t => new TeacherDTO()
 				{
 					Id = t.Id,
 					Name = t.Name,
 					Courses = t.Courses.Select(course => new CourseDTO()
-						{
-							Id = course.Course.Id,
-							Name = course.Course.Name,
-						}).ToList<CourseDTO>(),
+					{
+						Id = course.Course.Id,
+						Name = course.Course.Name,
+					}).ToList<CourseDTO>(),
 					Comments = t.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
@@ -72,14 +75,17 @@ namespace FMIRatingsAPI.Controllers
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"
 						}).ToList<CommentForTeacherDTO>()
-				}).SingleOrDefaultAsync();
+				}).SingleOrDefault();
 
-			if (teacher == null)
+				return Ok(teacher);
+			}
+			else
 			{
 				return NotFound();
 			}
+			
 
-			return Ok(teacher);
+
 		}
 
 		//// PUT api/Teachers/5
