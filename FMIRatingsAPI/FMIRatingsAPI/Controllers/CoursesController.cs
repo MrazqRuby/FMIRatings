@@ -15,25 +15,33 @@ using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Controllers
 {
-    public class CoursesController : ApiController
-    {
-        private FMIRatingsContext db = new FMIRatingsContext();
+	public class CoursesController : ApiController
+	{
+		private FMIRatingsContext db = new FMIRatingsContext();
 
-        // GET api/Courses
-        public List<CourseDTO> GetCourses()
-        {
-			var courses = db.Courses.Select(course => 
+		// GET api/Courses
+		public List<CourseDTO> GetCourses()
+		{
+			var courses = db.Courses.Select(course =>
 				new CourseDTO()
 				{
 					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
-					Teachers = course.Teachers.Select(teacher => 
-						teacher.Teacher.Name).ToList<string>()
+					Teachers = course.Teachers.Select(teacher =>
+						teacher.Teacher.Name).ToList<string>(),
+					Comments = course.Comments.Select(comment =>
+						new CommentForCourseDTO()
+						{
+							Id = comment.Id,
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = "Stamo"
+						}).ToList<CommentForCourseDTO>()
 				}).ToList();
-			 
+
 			return courses;
-        }
+		}
 
 		// GET api/Courses/5
 		[ResponseType(typeof(CourseDTO))]
@@ -46,7 +54,16 @@ namespace FMIRatingsAPI.Controllers
 					Id = c.Id,
 					Name = c.Name,
 					Description = c.Description,
-					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>()
+					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>(),
+					Comments = c.Comments.Select(comment =>
+						new CommentForCourseDTO()
+						{
+							Id = comment.Id,
+							CourseId = comment.CourseId,
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = "Stamo"
+						}).ToList<CommentForCourseDTO>()
 				}).SingleOrDefaultAsync();
 
 			if (course == null)
@@ -135,5 +152,5 @@ namespace FMIRatingsAPI.Controllers
 		//{
 		//	return db.Courses.Count(e => e.Id == id) > 0;
 		//}
-    }
+	}
 }

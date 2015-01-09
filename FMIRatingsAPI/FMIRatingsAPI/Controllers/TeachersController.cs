@@ -15,6 +15,7 @@ using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Controllers
 {
+    [FMIRatingsAPI.Authentication.AuthenticationFilter]
     public class TeachersController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();
@@ -36,10 +37,12 @@ namespace FMIRatingsAPI.Controllers
 					Comments = teacher.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
+							Id = comment.Id,
+							TeacherId = comment.TeacherId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
-							Author = "Stamo"
-						}).ToList<CommentForTeacherDTO>()
+							Author = comment.User.Name
+                        }).ToList<CommentForTeacherDTO>()
 				}).ToList();
 
 			return teachers;
@@ -63,6 +66,8 @@ namespace FMIRatingsAPI.Controllers
 					Comments = t.Comments.Select(comment =>
 						new CommentForTeacherDTO()
 						{
+							Id = comment.Id,
+							TeacherId = comment.TeacherId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = "Stamo"

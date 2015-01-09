@@ -20,23 +20,35 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/TeacherComments
-		public IQueryable<CommentForTeacher> GetCommentsForTeachers()
+		public IQueryable<CommentForTeacherDTO> GetCommentsForTeachers()
 		{
-			return db.CommentsForTeachers;
+			return db.CommentsForTeachers.Select(comment => new CommentForTeacherDTO()
+			{
+				Id = comment.Id,
+				Author = "Stamo",
+				TeacherId = comment.TeacherId,
+				DateCreated = comment.DateCreated,
+				Text = comment.Text
+			});
 		}
 
-		//// GET api/TeacherComments/5
-		//[ResponseType(typeof(CommentForTeacher))]
-		//public async Task<IHttpActionResult> GetCommentForTeacher(int id)
-		//{
-		//	CommentForTeacher commentforteacher = await db.CommentsForTeachers.FindAsync(id);
-		//	if (commentforteacher == null)
-		//	{
-		//		return NotFound();
-		//	}
+		// GET api/TeacherComments/5
+		[ResponseType(typeof(List<CommentForTeacherDTO>))]
+		public List<CommentForTeacherDTO> GetCommentsForTeacher(int id)
+		{
+			List<CommentForTeacherDTO> commentsForTeacher = db.CommentsForTeachers
+				.Where(comment => comment.TeacherId == id)
+				.Select(comment => new CommentForTeacherDTO()
+				{
+					Id = comment.Id,
+					Author = "Stamo",
+					TeacherId = comment.Id,
+					DateCreated = comment.DateCreated,
+					Text = comment.Text
+				}).ToList();
 
-		//	return Ok(commentforteacher);
-		//}
+			return commentsForTeacher;
+		}
 
 		//// PUT api/TeacherComments/5
 		//public async Task<IHttpActionResult> PutCommentForTeacher(int id, CommentForTeacher commentforteacher)
@@ -93,25 +105,29 @@ namespace FMIRatingsAPI.Controllers
 						Text =  commentForTeacher.Text,
 						DateCreated = DateTime.Now,
 					});
+
+				try
+				{
+					await db.SaveChangesAsync();
+				}
+				catch (DbUpdateException)
+				{
+					if (CommentForTeacherExists(commentForTeacher.Id))
+					{
+						return Conflict();
+					}
+					else
+					{
+						throw;
+					}
+				}
+
+				return CreatedAtRoute("DefaultApi", new { id = commentForTeacher.Id }, commentForTeacher);
 			}
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (CommentForTeacherExists(commentForTeacher.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = commentForTeacher.Id }, commentForTeacher);
+			else
+			{
+				return NotFound();
+			}
         }
 
 		//// DELETE api/TeacherComments/5

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Models
 {
@@ -15,5 +16,6 @@ namespace FMIRatingsAPI.Models
         public string Description { get; set; }
 
 		public virtual ICollection<TeacherInCourse> Teachers { get; set; }
+		public virtual ICollection<CommentForCourse> Comments { get; set; }
 	}
 }
