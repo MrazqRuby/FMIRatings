@@ -20,5 +20,6 @@ fmiRatingsApp.controller('CourcesCtrl', function ($scope) {
 	      "sample string 2"
 	    ]
 	  }
-	];
+	]
+    ];
 });
