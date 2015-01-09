@@ -14,9 +14,9 @@ namespace FMIRatingsAPI.Models
         public int UserId { get; set; }
         public int TeacherId { get; set; }
         public int CriterionId { get; set; }
-        public Assessment Assesment { get; set; }
+        public int Assessment { get; set; }
 
-        public Teacher Teacher { get; set; }
-        public CriterionForTeacher Criterion { get; set; }
+        public virtual Teacher Teacher { get; set; }
+        public virtual CriterionForTeacher Criterion { get; set; }
     }
 }

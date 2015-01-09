@@ -7,12 +7,8 @@ namespace FMIRatingsAPI.Models.DTO
 {
     public class VoteForTeacherDTO
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
         public int TeacherId { get; set; }
         public string TeacherName { get; set; }
-        public int CriterionId { get; set; }
-        public Assessment Assessment { get; set; }
 
         public List<AvarageDTO> Votes { get; set; }
 
@@ -20,5 +16,17 @@ namespace FMIRatingsAPI.Models.DTO
         {
             this.Votes = new List<AvarageDTO>();
         }
+    }
+
+    public class BrowserVoteForTeacherDTO
+    {
+        public int TeacherId { get; set; }
+        public int UserId { get; set; }
+        public Assessment Clarity { get; set; }
+        public Assessment Enthusiasm { get; set; }
+        public Assessment Evaluation { get; set; }
+        public Assessment Speed { get; set; }
+        public Assessment Scope { get; set; }
+        public string Comment { get; set; }
     }
 }

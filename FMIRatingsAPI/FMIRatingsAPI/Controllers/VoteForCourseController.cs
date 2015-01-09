@@ -125,35 +125,35 @@ namespace FMIRatingsAPI.Controllers
                         UserId = 1,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = ClarityID,
-                        Assessment = voteForCourse.Clarity,
+                        Assessment = (int)voteForCourse.Clarity,
                     },
                     new VoteForCourse() 
                     { 
                         UserId = 1,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = WorkloadID,
-                        Assessment = voteForCourse.Workload,
+                        Assessment = (int)voteForCourse.Workload,
                     },
                     new VoteForCourse() 
                     { 
                         UserId = 1,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = UsefulnessID,
-                        Assessment = voteForCourse.Usefulness,
+                        Assessment = (int)voteForCourse.Usefulness,
                     },
                     new VoteForCourse() 
                     { 
                         UserId = 1,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = SimplicityID,
-                        Assessment = voteForCourse.Simplicity,
+                        Assessment = (int)voteForCourse.Simplicity,
                     },
                     new VoteForCourse() 
                     { 
                         UserId = 1,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = InterestID,
-                        Assessment = voteForCourse.Interest,
+                        Assessment = (int)voteForCourse.Interest,
                     },
                 });
                 db.CommentsForCourses.Add(

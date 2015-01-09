@@ -19,13 +19,4 @@ namespace FMIRatingsAPI.Models
         public virtual Course Course { get; set; }
         public virtual CriterionForCourse Criterion { get; set; }
     }
-
-    public enum Assessment
-    {
-        One = 1,
-        Two = 2,
-        Three = 3,
-        Four = 4,
-        Five = 5
-    };
 }

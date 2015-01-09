@@ -7,6 +7,7 @@ namespace FMIRatingsAPI.Migrations
     using System.Linq;
     using FMIRatingsAPI.DAL;
     using FMIRatingsAPI.Models;
+    using FMIRatingsAPI.Models.DTO;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
     {
@@ -319,6 +320,7 @@ namespace FMIRatingsAPI.Migrations
             {
                 var voteForCourseInDb = dbContext.VotesForCourses
                     .Where(t =>
+                         t.UserId == voteForCourse.UserId &&
                          t.Course.Id == voteForCourse.CourseId &&
                          t.Criterion.Id == voteForCourse.CriterionId)
                     .SingleOrDefault();
@@ -337,57 +339,66 @@ namespace FMIRatingsAPI.Migrations
             {
                 new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[0].Id,
                     CriterionId = criteriaForTeachers[0].Id,
-                    Assesment = Assessment.Three  
+                    Assessment = (int)Assessment.Three  
                 },
                 new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[0].Id,
                     CriterionId = criteriaForTeachers[1].Id,
-                    Assesment = Assessment.Four  
+                    Assessment = (int)Assessment.Four  
                 },
                 new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[0].Id,
                     CriterionId = criteriaForTeachers[4].Id,
-                    Assesment = Assessment.Five  
+                    Assessment = (int)Assessment.Five  
                 },
                 new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[1].Id,
-                    Assesment = Assessment.One  
+                    Assessment = (int)Assessment.One  
                 },
                  new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[1].Id,
-                    Assesment = Assessment.Two  
+                    Assessment = (int)Assessment.Two  
                 },
                  new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[1].Id,
-                    Assesment = Assessment.Five  
+                    Assessment = (int)Assessment.Five  
                 },
                  new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[2].Id,
-                    Assesment = Assessment.Two  
+                    Assessment = (int)Assessment.Two  
                 },
                  new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[3].Id,
-                    Assesment = Assessment.Four  
+                    Assessment = (int)Assessment.Four  
                 },
                  new VoteForTeacher()
                 {
+                    UserId = 1,
                     TeacherId = teachers[1].Id,
                     CriterionId = criteriaForTeachers[4].Id,
-                    Assesment = Assessment.One  
+                    Assessment = (int)Assessment.One  
                 },
             };
 
@@ -395,6 +406,7 @@ namespace FMIRatingsAPI.Migrations
             {
                 var voteForTeacherInDb = dbContext.VotesForTeachers
                     .Where(t =>
+                         t.UserId == voteForTeacher.UserId &&
                          t.Teacher.Id == voteForTeacher.TeacherId &&
                          t.Criterion.Id == voteForTeacher.CriterionId)
                     .SingleOrDefault();
