@@ -22,6 +22,12 @@ namespace FMIRatingsAPI.Authentication
             return DbContext.Users.SingleOrDefault(u => u.Name == username);
         }
 
+        public static User GetCurrentUser()
+        {
+            
+            throw new NotImplementedException();
+        }
+
         public static UserDTO CreateUser(UserWithPasswordDTO user)
         {
             User newUser = new User

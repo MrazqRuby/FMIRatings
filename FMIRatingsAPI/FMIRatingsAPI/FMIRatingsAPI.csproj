@@ -177,33 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501012150492_Initial.cs" />
-    <Compile Include="Migrations\201501012150492_Initial.Designer.cs">
-      <DependentUpon>201501012150492_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501061952244_comments.cs" />
-    <Compile Include="Migrations\201501061952244_comments.Designer.cs">
-      <DependentUpon>201501061952244_comments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501062216334_Initial1.cs" />
-    <Compile Include="Migrations\201501062216334_Initial1.Designer.cs">
-      <DependentUpon>201501062216334_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501081245561_Creating users.cs" />
-    <Compile Include="Migrations\201501081245561_Creating users.Designer.cs">
-      <DependentUpon>201501081245561_Creating users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501081306482_Fixes.cs" />
-    <Compile Include="Migrations\201501081306482_Fixes.Designer.cs">
-      <DependentUpon>201501081306482_Fixes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501081316168_Reconcile Database.cs" />
-    <Compile Include="Migrations\201501081316168_Reconcile Database.Designer.cs">
-      <DependentUpon>201501081316168_Reconcile Database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501081328250_Users v0.1.cs" />
-    <Compile Include="Migrations\201501081328250_Users v0.1.Designer.cs">
-      <DependentUpon>201501081328250_Users v0.1.cs</DependentUpon>
+    <Compile Include="Migrations\201501091141394_Initial.cs" />
+    <Compile Include="Migrations\201501091141394_Initial.Designer.cs">
+      <DependentUpon>201501091141394_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -342,26 +318,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501012150492_Initial.resx">
-      <DependentUpon>201501012150492_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501061952244_comments.resx">
-      <DependentUpon>201501061952244_comments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501062216334_Initial1.resx">
-      <DependentUpon>201501062216334_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501081245561_Creating users.resx">
-      <DependentUpon>201501081245561_Creating users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501081306482_Fixes.resx">
-      <DependentUpon>201501081306482_Fixes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501081316168_Reconcile Database.resx">
-      <DependentUpon>201501081316168_Reconcile Database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501081328250_Users v0.1.resx">
-      <DependentUpon>201501081328250_Users v0.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501091141394_Initial.resx">
+      <DependentUpon>201501091141394_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

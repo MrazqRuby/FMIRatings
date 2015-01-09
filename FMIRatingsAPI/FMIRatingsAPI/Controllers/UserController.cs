@@ -12,7 +12,7 @@ namespace FMIRatingsAPI.Controllers
 {
     public class UsersController : ApiController
     {
-        [ResponseType(typeof(TeacherDTO))]
+        [ResponseType(typeof(UserDTO))]
         public IHttpActionResult PostUser([FromBody]UserWithPasswordDTO user)
         {
             UserDTO createdUser = UserManager.CreateUser(user);

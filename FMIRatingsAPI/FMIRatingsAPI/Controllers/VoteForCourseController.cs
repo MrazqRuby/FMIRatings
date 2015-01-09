@@ -92,42 +92,82 @@ namespace FMIRatingsAPI.Controllers
 
 
         // POST api/VoteForCourse
-        [ResponseType(typeof(VoteForCourseDTO))]
-        public async Task<IHttpActionResult> PostVoteForCourse([FromBody] VoteForCourseDTO voteForCourse)
+        public IHttpActionResult PostVoteForCourse([FromBody] BrowserVoteForCourseDTO voteForCourse)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
-            VoteForCourse course = db.VotesForCourses.Where(c => c.Course.Id == voteForCourse.CourseId).FirstOrDefault();
+            Course course = db.Courses.Where(c => c.Id == voteForCourse.CourseId).FirstOrDefault();
+
+            // Запазваме ID на критериите
+            int ClarityID = db.CriteriaForCourses.First(c => c.Name == "Clarity").Id;
+            int WorkloadID = db.CriteriaForCourses.First(c => c.Name == "Workload").Id;
+            int UsefulnessID = db.CriteriaForCourses.First(c => c.Name == "Usefulness").Id;
+            int SimplicityID = db.CriteriaForCourses.First(c => c.Name == "Simplicity").Id;
+            int InterestID = db.CriteriaForCourses.First(c => c.Name == "Interest").Id;
+
+            //Дали потребителя е гласувал за този курс по параметър
+            if (VoteForCourseExists(voteForCourse.CourseId, ClarityID, voteForCourse.UserId) ||
+                VoteForCourseExists(voteForCourse.CourseId, WorkloadID, voteForCourse.UserId) ||
+                VoteForCourseExists(voteForCourse.CourseId, UsefulnessID, voteForCourse.UserId) ||
+                VoteForCourseExists(voteForCourse.CourseId, SimplicityID, voteForCourse.UserId) ||
+                VoteForCourseExists(voteForCourse.CourseId, InterestID, voteForCourse.UserId))
+            {
+                return Conflict();
+            }
+
             if (course != null)
             {
-                db.VotesForCourses.Add(new VoteForCourse() {
-                    UserId = 88,
-                    CourseId = voteForCourse.CourseId,
-                    CriterionId = voteForCourse.CriterionId,
-                    Assessment = (int)voteForCourse.Assessment,
+                db.VotesForCourses.AddRange(new VoteForCourse[] {
+                    new VoteForCourse() 
+                    { 
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        CriterionId = ClarityID,
+                        Assessment = voteForCourse.Clarity,
+                    },
+                    new VoteForCourse() 
+                    { 
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        CriterionId = WorkloadID,
+                        Assessment = voteForCourse.Workload,
+                    },
+                    new VoteForCourse() 
+                    { 
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        CriterionId = UsefulnessID,
+                        Assessment = voteForCourse.Usefulness,
+                    },
+                    new VoteForCourse() 
+                    { 
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        CriterionId = SimplicityID,
+                        Assessment = voteForCourse.Simplicity,
+                    },
+                    new VoteForCourse() 
+                    { 
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        CriterionId = InterestID,
+                        Assessment = voteForCourse.Interest,
+                    },
                 });
+                db.CommentsForCourses.Add(
+                    new CommentForCourse()
+                    {
+                        UserId = 1,
+                        CourseId = voteForCourse.CourseId,
+                        Text = voteForCourse.Comment,
+                        DateCreated = DateTime.Now,
+                    });
             }
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                //Дали потребителя е гласувал за този курс по параметър
-                if (VoteForCourseExists(voteForCourse.CourseId, voteForCourse.CriterionId, voteForCourse.UserId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = voteForCourse.Id }, voteForCourse);
+            db.SaveChanges();
+            
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
