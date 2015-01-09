@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201501091517091_New1.Designer.cs">
       <DependentUpon>201501091517091_New1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501091653468_Fix.cs" />
+    <Compile Include="Migrations\201501091653468_Fix.Designer.cs">
+      <DependentUpon>201501091653468_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501091517091_New1.resx">
       <DependentUpon>201501091517091_New1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501091653468_Fix.resx">
+      <DependentUpon>201501091653468_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
