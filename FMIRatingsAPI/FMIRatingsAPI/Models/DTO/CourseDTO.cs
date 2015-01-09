@@ -13,6 +13,8 @@ namespace FMIRatingsAPI.Models.DTO
 		public List<string> Teachers { get; set; }
 		public List<CommentForCourseDTO> Comments { get; set; }
 
+		public string Category { get; set; }
+
 		public CourseDTO()
 		{
 			this.Teachers = new List<string>();

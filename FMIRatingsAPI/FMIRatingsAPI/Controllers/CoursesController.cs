@@ -36,8 +36,9 @@ namespace FMIRatingsAPI.Controllers
 							Id = comment.Id,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
-							Author = "Stamo"
-						}).ToList<CommentForCourseDTO>()
+							Author = comment.User.Name
+						}).ToList<CommentForCourseDTO>(),
+					Category = course.Category.Name
 				}).ToList();
 
 			return courses;
@@ -45,9 +46,12 @@ namespace FMIRatingsAPI.Controllers
 
 		// GET api/Courses/5
 		[ResponseType(typeof(CourseDTO))]
-		public async Task<IHttpActionResult> GetCourse(int id)
+		public IHttpActionResult GetCourse(int id)
 		{
-			CourseDTO course = await db.Courses
+			var courseInDb = db.Courses.SingleOrDefault(c => c.Id == id);
+			if (courseInDb != null)
+			{
+				CourseDTO course = db.Courses
 				.Where(c => c.Id == id)
 				.Select(c => new CourseDTO()
 				{
@@ -62,16 +66,15 @@ namespace FMIRatingsAPI.Controllers
 							CourseId = comment.CourseId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
-							Author = "Stamo"
-						}).ToList<CommentForCourseDTO>()
-				}).SingleOrDefaultAsync();
+							Author = comment.User.Name
+						}).ToList<CommentForCourseDTO>(),
+					Category = c.Category.Name
+				}).SingleOrDefault();
 
-			if (course == null)
-			{
-				return NotFound();
+				return Ok(course);
 			}
-
-			return Ok(course);
+			
+			return NotFound();
 		}
 
 		//// PUT api/Courses/5

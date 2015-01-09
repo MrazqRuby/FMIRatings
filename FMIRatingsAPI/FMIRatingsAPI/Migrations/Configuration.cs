@@ -18,40 +18,89 @@ namespace FMIRatingsAPI.Migrations
 
         protected override void Seed(FMIRatingsContext dbContext)
         {
-            var courses = new List<Course>() 
+			var courseCategories = new List<CourseCategory>()
+	        {
+		        new CourseCategory()
+		        {
+			        Id = 1,
+			        Name = "Ядро на компютърни науки"
+		        },
+		        new CourseCategory()
+		        {
+			        Id = 2,
+			        Name = "Основи на компютърни науки"
+		        },
+				new CourseCategory()
+		        {
+			        Id = 3,
+			        Name = "Математика"
+		        },
+	        };
+
+			courseCategories.ForEach(c => dbContext.CourseCategories.AddOrUpdate(category => category.Id, c));
+			dbContext.SaveChanges();
+
+			var courses = new List<Course>() 
 			{
 				new Course() 
 				{
 					Id = 1,
-					Name = "Data mining",
-					Description = "Description Data Mining"
+					Name = "Програмиране с .NET и C#",
+					Description = "Курс за Програмиране с .NET и C#",
+					Category = courseCategories[0]
 				},
 				new Course() 
 				{
 					Id = 2,
-					Name = "Intro to programming",
-					Description = "Description Intro to programming"
+					Name = "Увод в програмирането",
+					Description = "Курс за въведение в програмирането",
+					Category = courseCategories[1]
 				}
 			};
 
-            courses.ForEach(c => dbContext.Courses.AddOrUpdate(course => course.Name, c));
-            dbContext.SaveChanges();
+			courses.ForEach(c => dbContext.Courses.AddOrUpdate(course => course.Id, c));
+			dbContext.SaveChanges();
 
-            var teachers = new List<Teacher>()
+			var teacherDepartments = new List<TeacherDepartment>()
+	        {
+		        new TeacherDepartment()
+		        {
+			        Id = 1,
+			        Name = "Вероятности и статистика"
+		        },
+		        new TeacherDepartment()
+		        {
+			        Id = 2,
+			        Name = "Анализ"
+		        },
+				new TeacherDepartment()
+		        {
+			        Id = 3,
+			        Name = "Софтуерни технологии"
+		        },
+	        };
+
+			teacherDepartments.ForEach(d => dbContext.TeacherDepartments.AddOrUpdate(department => department.Id, d));
+			dbContext.SaveChanges();
+
+			var teachers = new List<Teacher>()
 			{
 				new Teacher()
 				{
 					Id = 1,
-					Name = "John Williams"
+					Name = "Тодор Стоянов",
+					Department = teacherDepartments[0]
+					
 				},
 				new Teacher()
 				{
 					Id = 2,
-					Name = "Kent Beck"
+					Name = "Владимир Николов",
+					Department = teacherDepartments[2]
 				}
 			};
-            teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Name, t));
-            dbContext.SaveChanges();
+			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Id, t));
+			dbContext.SaveChanges();
 
             var users = new List<User>()
 			{
@@ -113,53 +162,53 @@ namespace FMIRatingsAPI.Migrations
 
             dbContext.SaveChanges();
 
-            var commentsForTeachers = new List<CommentForTeacher>()
+			var commentsForTeachers = new List<CommentForTeacher>()
 			{
 				new CommentForTeacher()
 				{
-					Text = "comment for a teacher",
+					Text = "Много добър преподавател.",
 					TeacherId = teachers[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Text = "another comment for a teacher",
+					Text = "Преподава доста добре.",
 					TeacherId = teachers[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Text = "a very good teacher",
+					Text = "Истински професионалист.",
 					TeacherId = teachers[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 			};
 
-            commentsForTeachers.ForEach(c => dbContext.CommentsForTeachers.AddOrUpdate(c));
-            dbContext.SaveChanges();
+			commentsForTeachers.ForEach(c => dbContext.CommentsForTeachers.AddOrUpdate(c));
+			dbContext.SaveChanges();
 
-            var commentsForCourses = new List<CommentForCourse>()
+			var commentsForCourses = new List<CommentForCourse>()
 			{
 				new CommentForCourse()
 				{
-					Text = "comment for a course",
+					Text = "Курсът е много интересен.",
 					CourseId = courses[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
-					Text = "another comment for a course",
+					Text = "Много добър курс.",
 					CourseId = courses[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
-					Text = "a very good course",
+					Text = "Курсът е много полезен",
 					CourseId = courses[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
