@@ -22,6 +22,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/VoteForCourse
+        /// <summary>
+        /// Get all votes and statistics for the avarage assessment per criterion for teachers
+        /// </summary>
+        /// <returns>List of votes for all teachers</returns>
         public List<VoteForTeacherDTO> GetVotesForTeachers()
         {
             var allTeachers = db.Teachers.Select(x => x).Distinct();
@@ -56,6 +60,11 @@ namespace FMIRatingsAPI.Controllers
 
         // GET api/VoteForCourse/5
         //return all votes for current course
+        /// <summary>
+        /// Get all votes and statistics for avarage assessment per criterion for a current teacher
+        /// </summary>
+        /// <param name="id">id of the teacher</param>
+        /// <returns>Vote for current teacher</returns>
         [ResponseType(typeof(VoteForTeacherDTO))]
         public async Task<IHttpActionResult> GetVotesForTeacher(int id)
         {
@@ -94,6 +103,11 @@ namespace FMIRatingsAPI.Controllers
 
 
         // POST api/VoteForCourse
+        /// <summary>
+        /// Post a vote for current teacher
+        /// </summary>
+        /// <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Enthusiasm, Speed, Scope and Evaluation</param>
+        /// <returns>Status Code 200 if succeed</returns>
         public IHttpActionResult PostVoteForTeacher([FromBody] BrowserVoteForTeacherDTO voteForTeacher)
         {
             if (!ModelState.IsValid)

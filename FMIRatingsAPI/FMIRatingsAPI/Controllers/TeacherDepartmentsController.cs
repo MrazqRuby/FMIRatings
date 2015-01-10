@@ -20,6 +20,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/TeacherDepartments
+        /// <summary>
+        /// Get courses' categories
+        /// </summary>
+        /// <returns>List of courses' categories</returns>
 		[ResponseType(typeof(List<TeacherDepartmentDTO>))]
 		public List<TeacherDepartmentDTO> GetCourseCategories()
 		{

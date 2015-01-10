@@ -481,6 +481,72 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeacherDepartmentsController.GetCourseCategories">
+            <summary>
+            Get courses' categories
+            </summary>
+            <returns>List of courses' categories</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForTeacherController.GetVotesForTeachers">
+            <summary>
+            Get all votes and statistics for the avarage assessment per criterion for teachers
+            </summary>
+            <returns>List of votes for all teachers</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForTeacherController.GetVotesForTeacher(System.Int32)">
+            <summary>
+            Get all votes and statistics for avarage assessment per criterion for a current teacher
+            </summary>
+            <param name="id">id of the teacher</param>
+            <returns>Vote for current teacher</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForTeacherController.PostVoteForTeacher(FMIRatingsAPI.Models.DTO.BrowserVoteForTeacherDTO)">
+            <summary>
+            Post a vote for current teacher
+            </summary>
+            <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Enthusiasm, Speed, Scope and Evaluation</param>
+            <returns>Status Code 200 if succeed</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeacherCommentsController.GetCommentsForTeachers">
+            <summary>
+            Get comments for all teachers
+            </summary>
+            <returns>List of comments for every teacher</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeacherCommentsController.GetCommentsForTeacher(System.Int32)">
+            <summary>
+            Get comments for current teacher
+            </summary>
+            <param name="id">id of the teacher</param>
+            <returns>List of comments for the teacher</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeacherCommentsController.PostCommentForTeacher(FMIRatingsAPI.Models.DTO.CommentForTeacherDTO)">
+            <summary>
+            Post a comment for a teacher
+            </summary>
+            <param name="commentForTeacher">object witch contains teacherId, Text of the comment </param>
+            <returns>Conflict if there is a comment for this teacher by the user, Not Fount if the teacher not exist and the data if succeed</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeachersController.GetTeachers">
+            <summary>
+            Get all teachers
+            </summary>
+            <returns>List of teachers</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeachersController.GetTeacher(System.Int32)">
+            <summary>
+            Get a teacher by id
+            </summary>
+            <param name="id">id of the teacher</param>
+            <returns>The teacher</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.TeachersController.Search(System.String)">
+            <summary>
+            Search a teacher by name
+            </summary>
+            <param name="name">Name of the teacher</param>
+            <returns>List of the teachers with the current name</returns>
+        </member>
         <member name="M:FMIRatingsAPI.Controllers.UsersController.PostUser(FMIRatingsAPI.Models.DTO.UserWithPasswordDTO)">
             <summary>
             This method creates a user with the supplied credentials on the server,
@@ -488,6 +554,33 @@
             </summary>
             <param name="user">The credentials of the user</param>
             <returns></returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.UsersController.GetAuthToken(FMIRatingsAPI.Models.DTO.UserWithPasswordDTO)">
+            <summary>
+            Method for making authentication token, which authorize the user by Base64Encode
+            </summary>
+            <param name="user">User's data</param>
+            <returns>The token</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForCourseController.GetVotesForCourses">
+            <summary>
+            Get all votes and statistics for the avarage assessment per criterion for courses
+            </summary>
+            <returns>List of votes for all courses</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForCourseController.GetVotesForCourse(System.Int32)">
+            <summary>
+            Get all votes and statistics for avarage assessment per criterion for a current course
+            </summary>
+            <param name="id">id of the course</param>
+            <returns>Vote for current course</returns>
+        </member>
+        <member name="M:FMIRatingsAPI.Controllers.VoteForCourseController.PostVoteForCourse(FMIRatingsAPI.Models.DTO.BrowserVoteForCourseDTO)">
+            <summary>
+            Post a vote for current course
+            </summary>
+            <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Workload, Interest, Simplicity and Usefulness</param>
+            <returns>Status Code 200 if succeed</returns>
         </member>
     </members>
 </doc>

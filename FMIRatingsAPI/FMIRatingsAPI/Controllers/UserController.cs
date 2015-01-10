@@ -40,6 +40,11 @@ namespace FMIRatingsAPI.Controllers
             return Ok(new UserDTO(createdUser));
         }
 
+        /// <summary>
+        /// Method for making authentication token, which authorize the user by Base64Encode
+        /// </summary>
+        /// <param name="user">User's data</param>
+        /// <returns>The token</returns>
         [HttpPost]
         [Route("getauthtoken")]
         [ResponseType(typeof(string))]

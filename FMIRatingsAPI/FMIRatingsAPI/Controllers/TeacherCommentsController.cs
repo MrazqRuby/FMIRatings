@@ -20,6 +20,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/TeacherComments
+        /// <summary>
+        /// Get comments for all teachers
+        /// </summary>
+        /// <returns>List of comments for every teacher</returns>
 		public IQueryable<CommentForTeacherDTO> GetCommentsForTeachers()
 		{
 			return db.CommentsForTeachers.Select(comment => new CommentForTeacherDTO()
@@ -33,6 +37,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/TeacherComments/5
+        /// <summary>
+        /// Get comments for current teacher
+        /// </summary>
+        /// <param name="id">id of the teacher</param>
+        /// <returns>List of comments for the teacher</returns>
 		[ResponseType(typeof(List<CommentForTeacherDTO>))]
 		public List<CommentForTeacherDTO> GetCommentsForTeacher(int id)
 		{
@@ -85,6 +94,11 @@ namespace FMIRatingsAPI.Controllers
 		//}
 
         // POST api/TeacherComments
+        /// <summary>
+        /// Post a comment for a teacher
+        /// </summary>
+        /// <param name="commentForTeacher">object witch contains teacherId, Text of the comment </param>
+        /// <returns>Conflict if there is a comment for this teacher by the user, Not Fount if the teacher not exist and the data if succeed</returns>
         [ResponseType(typeof(CommentForTeacherDTO))]
 		public async Task<IHttpActionResult> PostCommentForTeacher([FromBody]CommentForTeacherDTO commentForTeacher)
         {
