@@ -181,20 +181,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201501091141394_Initial.cs" />
-    <Compile Include="Migrations\201501091141394_Initial.Designer.cs">
-      <DependentUpon>201501091141394_Initial.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201501091141394_Initial.Designer.cs" />
     <Compile Include="Migrations\201501091449427_New.cs" />
-    <Compile Include="Migrations\201501091449427_New.Designer.cs">
-      <DependentUpon>201501091449427_New.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201501091449427_New.Designer.cs" />
     <Compile Include="Migrations\201501091517091_New1.cs" />
-    <Compile Include="Migrations\201501091517091_New1.Designer.cs">
-      <DependentUpon>201501091517091_New1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\201501091517091_New1.Designer.cs" />
     <Compile Include="Migrations\201501091919578_Test.cs" />
     <Compile Include="Migrations\201501091919578_Test.Designer.cs">
       <DependentUpon>201501091919578_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.cs" />
+    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.Designer.cs">
+      <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201501091653468_Fix.cs" />
     <Compile Include="Migrations\201501091653468_Fix.Designer.cs">
@@ -205,8 +203,10 @@
       <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.cs" />
-    <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.Designer.cs">
-      <DependentUpon>201501092000184_TeacherDepartmentMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.Designer.cs" />
+    <Compile Include="Migrations\201501101100132_CourseCategoryRelationMigration.cs" />
+    <Compile Include="Migrations\201501101100132_CourseCategoryRelationMigration.Designer.cs">
+      <DependentUpon>201501101100132_CourseCategoryRelationMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -223,6 +223,7 @@
     <Compile Include="Models\DTO\CommentDTO.cs" />
     <Compile Include="Models\DTO\CommentForCourseDTO.cs" />
     <Compile Include="Models\DTO\CommentForTeacherDTO.cs" />
+    <Compile Include="Models\DTO\CourseCategoryDTO.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
     <Compile Include="Models\DTO\TeacherDTO.cs" />
     <Compile Include="Models\DTO\UserDTO.cs" />
@@ -347,23 +348,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501091141394_Initial.resx">
-      <DependentUpon>201501091141394_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501091449427_New.resx">
-      <DependentUpon>201501091449427_New.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501091517091_New1.resx">
-      <DependentUpon>201501091517091_New1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501091919578_Test.resx">
-      <DependentUpon>201501091919578_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501091934303_CourseCategoryMigration.resx">
-      <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501092000184_TeacherDepartmentMigration.resx">
-      <DependentUpon>201501092000184_TeacherDepartmentMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501091141394_Initial.resx" />
+    <EmbeddedResource Include="Migrations\201501091449427_New.resx" />
+    <EmbeddedResource Include="Migrations\201501091517091_New1.resx" />
+    <EmbeddedResource Include="Migrations\201501091919578_Test.resx" />
+    <EmbeddedResource Include="Migrations\201501092000184_TeacherDepartmentMigration.resx" />
+    <EmbeddedResource Include="Migrations\201501101100132_CourseCategoryRelationMigration.resx">
+      <DependentUpon>201501101100132_CourseCategoryRelationMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501091653468_Fix.resx">
       <DependentUpon>201501091653468_Fix.cs</DependentUpon>

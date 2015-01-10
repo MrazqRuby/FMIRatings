@@ -29,7 +29,7 @@ namespace FMIRatingsAPI.DAL
 		public DbSet<CommentForCourse> CommentsForCourses { get; set; }
 
 		public DbSet<CourseCategory> CourseCategories { get; set; }
-
+		
 		public DbSet<TeacherDepartment> TeacherDepartments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CriterionForCourse> CriteriaForCourses { get; set; }

@@ -7,13 +7,13 @@ namespace FMIRatingsAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class CourseCategoryMigration : IMigrationMetadata
+    public sealed partial class CourseCategoryRelationMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CourseCategoryMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CourseCategoryRelationMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501091934303_CourseCategoryMigration"; }
+            get { return "201501101100132_CourseCategoryRelationMigration"; }
         }
         
         string IMigrationMetadata.Source

@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
+using FMIRatingsAPI.Models.DTO;
 
 namespace FMIRatingsAPI.Controllers
 {
@@ -18,11 +19,25 @@ namespace FMIRatingsAPI.Controllers
     {
         private FMIRatingsContext db = new FMIRatingsContext();
 
-        // GET api/CourseCategories
-        public IQueryable<CourseCategory> GetCourseCategories()
-        {
-            return db.CourseCategories;
-        }
+		// GET api/CourseCategories
+		[ResponseType(typeof(List<CourseCategoryDTO>))]
+		public List<CourseCategoryDTO> GetCourseCategories()
+		{
+			var courseCategories = db.CourseCategories.Select(category =>
+				new CourseCategoryDTO()
+				{
+					Id = category.CategoryId,
+					Name = category.Name,
+					Courses = category.Courses.Select(c => new CourseDTO()
+					{
+						Id = c.Id,
+						Name = c.Name,
+						Description = c.Description
+					}).ToList()
+				}).ToList<CourseCategoryDTO>();
+
+			return courseCategories;
+		}
 
 		//// GET api/CourseCategories/5
 		//[ResponseType(typeof(CourseCategory))]

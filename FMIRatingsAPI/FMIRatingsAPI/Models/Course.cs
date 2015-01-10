@@ -15,6 +15,9 @@ namespace FMIRatingsAPI.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+		public int? CategoryId { get; set; }
+
+		[ForeignKey("CategoryId")]
 		public virtual CourseCategory Category{ get; set; }
 
 		public virtual ICollection<TeacherInCourse> Teachers { get; set; }

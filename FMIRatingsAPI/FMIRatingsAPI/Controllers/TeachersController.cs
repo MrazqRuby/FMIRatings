@@ -21,6 +21,7 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/Teachers
+		[ResponseType(typeof(List<TeacherDTO>))]
         public List<TeacherDTO> GetTeachers()
         {
 			var teachers = db.Teachers.Select(teacher =>
@@ -85,9 +86,39 @@ namespace FMIRatingsAPI.Controllers
 			{
 				return NotFound();
 			}
-			
+		}
 
+		// GET api/Teachers
+		[HttpGet]
+		[ResponseType(typeof(List<TeacherDTO>))]
+		public List<TeacherDTO> Search(string name)
+		{
+			var teachers = db.Teachers
+				.Where(t => t.Name.Contains(name))
+				.Select(teacher =>
+				new TeacherDTO()
+				{
+					Id = teacher.Id,
+					Name = teacher.Name,
+					Courses = teacher.Courses.Select(course => new CourseDTO()
+					{
+						Id = course.Course.Id,
+						Name = course.Course.Name,
 
+					}).ToList<CourseDTO>(),
+					Comments = teacher.Comments.Select(comment =>
+						new CommentForTeacherDTO()
+						{
+							Id = comment.Id,
+							TeacherId = comment.TeacherId,
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = comment.User.Name
+						}).ToList<CommentForTeacherDTO>(),
+					Department = teacher.Department.Name
+				}).ToList();
+
+			return teachers;
 		}
 
 		//// PUT api/Teachers/5
