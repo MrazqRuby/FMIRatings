@@ -7,5 +7,5 @@
     <item
         android:id="@android:id/progress"
         android:drawable="@drawable/star_full" />
-
+<item android:icon="@drawable/ic_launcher" ></item>
 </layer-list>

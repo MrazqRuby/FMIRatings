@@ -16,7 +16,16 @@ public class APIConnectionConstants {
 	public final static String API_TEACHERS_COMMENTS="TeacherComments";
 	public final static String API_REGISTRATION = "Users/PostUser";
 	public final static String API_LOGIN = "Users";
+	public final static String COURSE_ID = "CourseId";
+	public final static String USER_ID = "UserId";
+	public final static String CLARITY = "Clarity";
+	public final static String WORKLOAD = "Workload";
+	public final static String INTEREST = "Interest";
+	public final static String SIMPLICITY = "Simplicity";
+	public final static String USEFULNESS = "Usefulness";
+	public final static String COMMENT = "Comment";
 	
+	public final static String API_VOTE_FOR_TEACHER = "VoteForTeacher";
 	
 	/* API RESPONSE CONSTANTS */
 	public final static String ID = "id";
@@ -32,5 +41,9 @@ public class APIConnectionConstants {
 	
 	public final static String COMMENT_TEXT = "text";
 	
+	public final static String ENTHUSUASM = "enthusiasm";
+	public final static String EVALUATION = "evaluation";
+	public final static String SPEED = "speed";
+	public final static String SCOPE = "scope";
 	
 }
