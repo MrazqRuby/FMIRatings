@@ -27,7 +27,7 @@ namespace FMIRatingsAPI
 			var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
 			jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:8383", "*", "*");
             config.EnableCors(cors);
             
 			GlobalConfiguration.Configuration.Formatters.Clear();
