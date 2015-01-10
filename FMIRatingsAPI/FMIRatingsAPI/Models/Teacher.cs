@@ -13,6 +13,10 @@ namespace FMIRatingsAPI.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 
+		public int DepartmentId { get; set; }
+		
+		[ForeignKey("DepartmentId")]
+
 		public virtual TeacherDepartment Department { get; set; }
 
 		public virtual ICollection<TeacherInCourse> Courses { get; set; }

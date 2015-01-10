@@ -3,7 +3,7 @@ namespace FMIRatingsAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -51,14 +51,26 @@ namespace FMIRatingsAPI.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.CourseCategories",
+                c => new
+                    {
+                        CategoryId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.CategoryId);
+            
+            CreateTable(
                 "dbo.Courses",
                 c => new
                     {
                         Id = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
+                        CategoryId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CourseCategories", t => t.CategoryId)
+                .Index(t => t.CategoryId);
             
             CreateTable(
                 "dbo.TeacherInCourses",
@@ -80,8 +92,20 @@ namespace FMIRatingsAPI.Migrations
                     {
                         Id = c.Int(nullable: false),
                         Name = c.String(),
+                        DepartmentId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.TeacherDepartments", t => t.DepartmentId, cascadeDelete: true)
+                .Index(t => t.DepartmentId);
+            
+            CreateTable(
+                "dbo.TeacherDepartments",
+                c => new
+                    {
+                        DepartmentId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.DepartmentId);
             
             CreateTable(
                 "dbo.CriterionForCourses",
@@ -127,7 +151,7 @@ namespace FMIRatingsAPI.Migrations
                         UserId = c.Int(nullable: false),
                         TeacherId = c.Int(nullable: false),
                         CriterionId = c.Int(nullable: false),
-                        Assesment = c.Int(nullable: false),
+                        Assessment = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CriterionForTeachers", t => t.CriterionId, cascadeDelete: true)
@@ -143,18 +167,22 @@ namespace FMIRatingsAPI.Migrations
             DropForeignKey("dbo.VoteForTeachers", "CriterionId", "dbo.CriterionForTeachers");
             DropForeignKey("dbo.VoteForCourses", "CriterionId", "dbo.CriterionForCourses");
             DropForeignKey("dbo.VoteForCourses", "CourseId", "dbo.Courses");
+            DropForeignKey("dbo.Teachers", "DepartmentId", "dbo.TeacherDepartments");
             DropForeignKey("dbo.TeacherInCourses", "TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.CommentForTeachers", "TeacherId", "dbo.Teachers");
             DropForeignKey("dbo.TeacherInCourses", "CourseId", "dbo.Courses");
             DropForeignKey("dbo.CommentForCourses", "CourseId", "dbo.Courses");
+            DropForeignKey("dbo.Courses", "CategoryId", "dbo.CourseCategories");
             DropForeignKey("dbo.CommentForTeachers", "UserId", "dbo.Users");
             DropForeignKey("dbo.CommentForCourses", "UserId", "dbo.Users");
             DropIndex("dbo.VoteForTeachers", new[] { "CriterionId" });
             DropIndex("dbo.VoteForTeachers", new[] { "TeacherId" });
             DropIndex("dbo.VoteForCourses", new[] { "CriterionId" });
             DropIndex("dbo.VoteForCourses", new[] { "CourseId" });
+            DropIndex("dbo.Teachers", new[] { "DepartmentId" });
             DropIndex("dbo.TeacherInCourses", new[] { "CourseId" });
             DropIndex("dbo.TeacherInCourses", new[] { "TeacherId" });
+            DropIndex("dbo.Courses", new[] { "CategoryId" });
             DropIndex("dbo.CommentForTeachers", new[] { "UserId" });
             DropIndex("dbo.CommentForTeachers", new[] { "TeacherId" });
             DropIndex("dbo.CommentForCourses", new[] { "UserId" });
@@ -163,9 +191,11 @@ namespace FMIRatingsAPI.Migrations
             DropTable("dbo.VoteForCourses");
             DropTable("dbo.CriterionForTeachers");
             DropTable("dbo.CriterionForCourses");
+            DropTable("dbo.TeacherDepartments");
             DropTable("dbo.Teachers");
             DropTable("dbo.TeacherInCourses");
             DropTable("dbo.Courses");
+            DropTable("dbo.CourseCategories");
             DropTable("dbo.CommentForTeachers");
             DropTable("dbo.Users");
             DropTable("dbo.CommentForCourses");

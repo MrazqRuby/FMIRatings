@@ -1,23 +1,23 @@
 namespace FMIRatingsAPI.Migrations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using FMIRatingsAPI.DAL;
-    using FMIRatingsAPI.Models;
-    using FMIRatingsAPI.Models.DTO;
+	using System;
+	using System.Collections.Generic;
+	using System.Data.Entity;
+	using System.Data.Entity.Migrations;
+	using System.Linq;
+	using FMIRatingsAPI.DAL;
+	using FMIRatingsAPI.Models;
+	using FMIRatingsAPI.Models.DTO;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
-        }
+	internal sealed class Configuration : DbMigrationsConfiguration<FMIRatingsAPI.DAL.FMIRatingsContext>
+	{
+		public Configuration()
+		{
+			AutomaticMigrationsEnabled = false;
+		}
 
-        protected override void Seed(FMIRatingsContext dbContext)
-        {
+		protected override void Seed(FMIRatingsContext dbContext)
+		{
 			var courseCategories = new List<CourseCategory>()
 	        {
 		        new CourseCategory()
@@ -65,22 +65,22 @@ namespace FMIRatingsAPI.Migrations
 	        {
 		        new TeacherDepartment()
 		        {
-			        Id = 1,
+			        DepartmentId = 1,
 			        Name = "Вероятности и статистика"
 		        },
 		        new TeacherDepartment()
 		        {
-			        Id = 2,
+			        DepartmentId = 2,
 			        Name = "Анализ"
 		        },
 				new TeacherDepartment()
 		        {
-			        Id = 3,
+			        DepartmentId = 3,
 			        Name = "Софтуерни технологии"
 		        },
 	        };
 
-			teacherDepartments.ForEach(d => dbContext.TeacherDepartments.AddOrUpdate(department => department.Id, d));
+			teacherDepartments.ForEach(d => dbContext.TeacherDepartments.AddOrUpdate(department => department.DepartmentId, d));
 			dbContext.SaveChanges();
 
 			var teachers = new List<Teacher>()
@@ -101,7 +101,7 @@ namespace FMIRatingsAPI.Migrations
 			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Id, t));
 			dbContext.SaveChanges();
 
-            var users = new List<User>()
+			var users = new List<User>()
 			{
 				new User()
 				{
@@ -118,10 +118,10 @@ namespace FMIRatingsAPI.Migrations
                     Admin = false
 				}
 			};
-            users.ForEach(u => dbContext.Users.AddOrUpdate(user => user.Name, u));
-            dbContext.SaveChanges();
+			users.ForEach(u => dbContext.Users.AddOrUpdate(user => user.Name, u));
+			dbContext.SaveChanges();
 
-            var teachersInCourses = new List<TeacherInCourse>()
+			var teachersInCourses = new List<TeacherInCourse>()
 			{
 				new TeacherInCourse()
 				{
@@ -145,21 +145,21 @@ namespace FMIRatingsAPI.Migrations
 				},
 			};
 
-            foreach (TeacherInCourse teacherInCourse in teachersInCourses)
-            {
-                var teacherInCourseInDb = dbContext.TeachersInCourses
-                    .Where(t =>
-                         t.Teacher.Id == teacherInCourse.TeacherId &&
-                         t.Course.Id == teacherInCourse.CourseId)
-                    .SingleOrDefault();
+			foreach (TeacherInCourse teacherInCourse in teachersInCourses)
+			{
+				var teacherInCourseInDb = dbContext.TeachersInCourses
+					.Where(t =>
+						 t.Teacher.Id == teacherInCourse.TeacherId &&
+						 t.Course.Id == teacherInCourse.CourseId)
+					.SingleOrDefault();
 
-                if (teacherInCourseInDb == null)
-                {
-                    dbContext.TeachersInCourses.Add(teacherInCourse);
-                }
-            }
+				if (teacherInCourseInDb == null)
+				{
+					dbContext.TeachersInCourses.Add(teacherInCourse);
+				}
+			}
 
-            dbContext.SaveChanges();
+			dbContext.SaveChanges();
 
 			var commentsForTeachers = new List<CommentForTeacher>()
 			{
@@ -214,11 +214,11 @@ namespace FMIRatingsAPI.Migrations
 				},
 			};
 
-            commentsForCourses.ForEach(c => dbContext.CommentsForCourses.AddOrUpdate(c));
-            dbContext.SaveChanges();
+			commentsForCourses.ForEach(c => dbContext.CommentsForCourses.AddOrUpdate(c));
+			dbContext.SaveChanges();
 
-            #region CriteriaForCourses
-            var criteriaForCourses = new List<CriterionForCourse> {
+			#region CriteriaForCourses
+			var criteriaForCourses = new List<CriterionForCourse> {
                 new CriterionForCourse()
                 {
                     Id = 1,
@@ -251,13 +251,13 @@ namespace FMIRatingsAPI.Migrations
                 }
             };
 
-            criteriaForCourses.ForEach(c =>
-                dbContext.CriteriaForCourses.AddOrUpdate(c));
-            dbContext.SaveChanges();
-            #endregion
+			criteriaForCourses.ForEach(c =>
+				dbContext.CriteriaForCourses.AddOrUpdate(c));
+			dbContext.SaveChanges();
+			#endregion
 
-            #region CriteriaForTeachers
-            var criteriaForTeachers = new List<CriterionForTeacher> {
+			#region CriteriaForTeachers
+			var criteriaForTeachers = new List<CriterionForTeacher> {
                 new CriterionForTeacher()
                 {
                     Id = 1,
@@ -290,13 +290,13 @@ namespace FMIRatingsAPI.Migrations
                 }
             };
 
-            criteriaForTeachers.ForEach(c =>
-                dbContext.CriteriaForTeachers.AddOrUpdate(c));
-            dbContext.SaveChanges();
-            #endregion
+			criteriaForTeachers.ForEach(c =>
+				dbContext.CriteriaForTeachers.AddOrUpdate(c));
+			dbContext.SaveChanges();
+			#endregion
 
-            #region VotesForCourses
-            var votesForCourses = new List<VoteForCourse>()
+			#region VotesForCourses
+			var votesForCourses = new List<VoteForCourse>()
             {
                 new VoteForCourse()
                 {
@@ -364,26 +364,26 @@ namespace FMIRatingsAPI.Migrations
                 },
             };
 
-            foreach (VoteForCourse voteForCourse in votesForCourses)
-            {
-                var voteForCourseInDb = dbContext.VotesForCourses
-                    .Where(t =>
-                         t.UserId == voteForCourse.UserId &&
-                         t.Course.Id == voteForCourse.CourseId &&
-                         t.Criterion.Id == voteForCourse.CriterionId)
-                    .SingleOrDefault();
+			foreach (VoteForCourse voteForCourse in votesForCourses)
+			{
+				var voteForCourseInDb = dbContext.VotesForCourses
+					.Where(t =>
+						 t.UserId == voteForCourse.UserId &&
+						 t.Course.Id == voteForCourse.CourseId &&
+						 t.Criterion.Id == voteForCourse.CriterionId)
+					.SingleOrDefault();
 
-                if (voteForCourseInDb == null)
-                {
-                    dbContext.VotesForCourses.Add(voteForCourse);
-                }
-            }
+				if (voteForCourseInDb == null)
+				{
+					dbContext.VotesForCourses.Add(voteForCourse);
+				}
+			}
 
-            dbContext.SaveChanges();
-            #endregion
+			dbContext.SaveChanges();
+			#endregion
 
-            #region VotesForTeachers
-            var votesForTeachers = new List<VoteForTeacher>()
+			#region VotesForTeachers
+			var votesForTeachers = new List<VoteForTeacher>()
             {
                 new VoteForTeacher()
                 {
@@ -450,24 +450,24 @@ namespace FMIRatingsAPI.Migrations
                 },
             };
 
-            foreach (VoteForTeacher voteForTeacher in votesForTeachers)
-            {
-                var voteForTeacherInDb = dbContext.VotesForTeachers
-                    .Where(t =>
-                         t.UserId == voteForTeacher.UserId &&
-                         t.Teacher.Id == voteForTeacher.TeacherId &&
-                         t.Criterion.Id == voteForTeacher.CriterionId)
-                    .SingleOrDefault();
+			foreach (VoteForTeacher voteForTeacher in votesForTeachers)
+			{
+				var voteForTeacherInDb = dbContext.VotesForTeachers
+					.Where(t =>
+						 t.UserId == voteForTeacher.UserId &&
+						 t.Teacher.Id == voteForTeacher.TeacherId &&
+						 t.Criterion.Id == voteForTeacher.CriterionId)
+					.SingleOrDefault();
 
-                if (voteForTeacherInDb == null)
-                {
-                    dbContext.VotesForTeachers.Add(voteForTeacher);
-                }
-            }
+				if (voteForTeacherInDb == null)
+				{
+					dbContext.VotesForTeachers.Add(voteForTeacher);
+				}
+			}
 
-            dbContext.SaveChanges();
-            #endregion
-        }
-    }
+			dbContext.SaveChanges();
+			#endregion
+		}
+	}
 
 }
