@@ -14,45 +14,41 @@ var DISCIPLINE_RATE_TABLE = "discipline-rate-table";
 
 //$(document).ready(function () {
 
-    var serviceUrl = 'http://95.111.16.46:6420/api/coursecategories';
+//    var serviceUrl = 'http://95.111.16.46:6420/api/coursecategories';
+//
+//    $.ajax({
+//        type: "get",
+//        url: serviceUrl,
+//        xhrFields: {
+//            withCredentials: true
+//        }
+//    }).done(function (data) {
+//
+//
+//        var disciplineHtml = "";
+//        debugger;
+////        var app = angular.module("Disciplines", []);
+////        app.controller("DisciplineCtrl", [$scope, function ($scope) {
+//////                debugger;
+////                $scope.disciplines = data;
+////                
+////            }]);
+//
+//
+//        // $("#discipline-type-accordion").html(disciplineHtml);
+//    }).error(function (jqXHR, textStatus, errorThrown) {
+////                        debugger;
+//        $('#value1').text(jqXHR.responseText || textStatus);
+//    });
+//$(document).ready(function () {
 
-    $.ajax({
-        type: "get",
-        url: serviceUrl,
-        xhrFields: {
-            withCredentials: true
-        }
-    }).done(function (data) {
-
-
-        var disciplineHtml = "";
-        debugger;
-//        var app = angular.module("Disciplines", []);
-//        app.controller("DisciplineCtrl", [$scope, function ($scope) {
-////                debugger;
-//                $scope.disciplines = data;
-//                
-//            }]);
-
-
-        // $("#discipline-type-accordion").html(disciplineHtml);
-    }).error(function (jqXHR, textStatus, errorThrown) {
-//                        debugger;
-        $('#value1').text(jqXHR.responseText || textStatus);
-    });
-$(document).ready(function () {
     console.log("show panel");
-    $(".discipline-open").click(function () {
+    
+    $(document).on("click", ".discipline-open", function () {
         console.log("in funcion");
         var divParent = $(this).parent().parent().parent();
-        console.log(divParent.attr("id"));
-        if (divParent.attr("id")) {
-            $("#body-wrapper").load("navbar-html/discipline-details/discipline-details.html", function () {
-                $("#discipline-title").text(divParent.attr("id"));
-                $("#discipline-choosen-tab-container").load("navbar-html/discipline-details/discipline-details-tab.html");
-            });
-        }
 
+            $("#body-wrapper").load("navbar-html/discipline-details/discipline-details.html"); 
     });
 
     $('#discipline-tabs-nav a').click(function () {
@@ -77,4 +73,4 @@ $(document).ready(function () {
 
 
 
-});
+//});
