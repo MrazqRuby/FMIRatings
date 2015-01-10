@@ -1,24 +1,37 @@
+
 var fmiRatingsApp = angular.module('fmiRatingsApp', []);
 
-fmiRatingsApp.controller('CourcesCtrl', function ($scope) {
-  $scope.cources = [[
-	  {
-	    "id": 1,
-	    "name": "sample string 2",
-	    "description": "sample string 3",
-	    "teachers": [
-	      "sample string 1",
-	      "sample string 2"
-	    ]
-	  },
-	  {
-	    "id": 1,
-	    "name": "sample string 2",
-	    "description": "sample string 3",
-	    "teachers": [
-	      "sample string 1",
-	      "sample string 2"
-	    ]
-	  }
-	];
-});
+fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $http) {            
+            $http({
+                    url: 'http://95.111.16.46:6420/api/coursecategories',
+                    method: "GET",
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                    
+                }).success(function (data) {
+                    $scope.data = data;
+
+                }).error(function (data) {
+                    $scope.status = status;
+                });
+
+}]);
+
+fmiRatingsApp.controller('TeachersCtrl', ["$scope", "$http", function ($scope, $http) {            
+            $http({
+                    url: 'http://95.111.16.46:6420/api/teacherdepartments',
+                    method: "GET",
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                    
+                }).success(function (data) {
+                    $scope.departments = data;
+
+                }).error(function (data) {
+                    $scope.status = status;
+                });
+
+}]);
+
