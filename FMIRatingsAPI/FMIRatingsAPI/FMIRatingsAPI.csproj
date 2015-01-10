@@ -218,6 +218,7 @@
     <Compile Include="Models\DTO\CommentDTO.cs" />
     <Compile Include="Models\DTO\CommentForCourseDTO.cs" />
     <Compile Include="Models\DTO\CommentForTeacherDTO.cs" />
+    <Compile Include="Models\DTO\CourseCategoryDTO.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
     <Compile Include="Models\DTO\TeacherDTO.cs" />
     <Compile Include="Models\DTO\UserDTO.cs" />

@@ -20,6 +20,7 @@ namespace FMIRatingsAPI.Controllers
 		private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/Courses
+		[ResponseType(typeof(List<CourseDTO>))]
 		public List<CourseDTO> GetCourses()
 		{
 			var courses = db.Courses.Select(course =>
