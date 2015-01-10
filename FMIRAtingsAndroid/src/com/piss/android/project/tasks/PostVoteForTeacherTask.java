@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import com.piss.android.project.utils.APIConnectionConstants;
 
 
-public class PostVoteForTeacher extends AsyncTask<Void, Void, Boolean> {
+public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 	
 	private int teacherId;
 	private int userId;
@@ -33,7 +33,7 @@ public class PostVoteForTeacher extends AsyncTask<Void, Void, Boolean> {
 	private int scope;
 	private String comment;
 	
-	public PostVoteForTeacher(int teacherId, int userId, int clarity, int enthusiasm, int evaluation, int speed, 
+	public PostVoteForTeacherTask(int teacherId, int userId, int clarity, int enthusiasm, int evaluation, int speed, 
 			int scope, String comment){
 		this.teacherId = teacherId;
 		this.userId = userId;
