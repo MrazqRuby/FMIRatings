@@ -26,6 +26,7 @@ public class APIConnectionConstants {
 	public final static String COMMENT = "Comment";
 	
 	public final static String API_VOTE_FOR_TEACHER = "VoteForTeacher";
+	public final static String API_COURSE_COMMENTS = "CourseComments";
 	
 	/* API RESPONSE CONSTANTS */
 	public final static String ID = "id";
