@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.net.ParseException;
+import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -17,36 +19,62 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.net.ParseException;
-import android.os.AsyncTask;
-
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 
-	private String email;
-	private String password;
-	public RegisterTask(String email, String password){
-		this.email= email;
-		this.password = password;
+public class PostVoteForTeacher extends AsyncTask<Void, Void, Boolean> {
+	
+	private int teacherId;
+	private int userId;
+	private int clarity;
+	private int enthusiasm;
+	private int evaluation;
+	private int speed;
+	private int scope;
+	private String comment;
+	
+	public PostVoteForTeacher(int teacherId, int userId, int clarity, int enthusiasm, int evaluation, int speed, 
+			int scope, String comment){
+		this.teacherId = teacherId;
+		this.userId = userId;
+		this.clarity = clarity;
+		this.comment = comment;
+		this.enthusiasm = enthusiasm;
+		this.evaluation = evaluation;
+		this.scope = scope;
+		this.comment = comment;
 	}
 	
 	@Override
 	protected Boolean doInBackground(Void... params) {
+		
 		HttpClient client = new DefaultHttpClient();
-		String url = APIConnectionConstants.API + APIConnectionConstants.API_REGISTRATION;
+		String url = APIConnectionConstants.API + APIConnectionConstants.API_VOTE_FOR_TEACHER;
 		
 		HttpResponse response = null;
-
 		HttpPost httpPost;
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		try {
 			httpPost = new HttpPost(url);
 			nameValuePairs.clear();
-			//TODO:add parameters to NameValuePair
+			
 			nameValuePairs.add(new BasicNameValuePair(
-					APIConnectionConstants.NAME, email));
-
+					APIConnectionConstants.TEACHER_ID, String.valueOf(teacherId)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.USER_ID, String.valueOf(userId)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.ENTHUSUASM, String.valueOf(enthusiasm)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.CLARITY, String.valueOf(clarity)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.EVALUATION, String.valueOf(evaluation)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.SCOPE, String.valueOf(scope)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.SPEED, String.valueOf(speed)));
+			nameValuePairs.add(new BasicNameValuePair(
+					APIConnectionConstants.COMMENT, comment));
+			
 			try {
 				httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -95,7 +123,6 @@ public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 			return false;
 		}
 		return true;
-
 	}
-}
 
+}
