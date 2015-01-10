@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.piss.android.project.adapters.CoursesAdapter.ViewItemHolder;
 import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.models.Course;
 import com.piss.android.project.models.Teacher;
 
 public class TeachersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -57,12 +55,13 @@ public class TeachersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	@Override
 	public void onBindViewHolder(final RecyclerView.ViewHolder holder,
 			final int position) {
-
+		Log.i("DEBUG", " onBindViewHolder" );
 		if (holder instanceof ViewItemHolder) {
 			// cast holder to ViewItemHolder and set data
 			// mDataset items begin from index 0 and so we decrement position
 			// because we have header on position 0
 			final Teacher item = mDataset.get(position );
+			Log.i("DEBUG", "Course name: " + item.getName());
 			if (item != null) {
 
 				/* Populate item information */
@@ -115,6 +114,7 @@ public class TeachersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		public ViewItemHolder(View v) {
 			super(v);
 			recycleViewItem = v;
+			folderName = (TextView) v.findViewById(R.id.item_name);
 
 		}
 

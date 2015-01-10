@@ -45,8 +45,8 @@ public class GetTeachersTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
 		HttpGet get = new HttpGet(request);
 
 		/* Set Authentication token in header */
-		get.addHeader(APIConnectionConstants.AUTHENTICATION,
-				APIConnectionConstants.BASIC + " " + auth);
+//		get.addHeader(APIConnectionConstants.AUTHENTICATION,
+//				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
 		ArrayList<Teacher> mList;

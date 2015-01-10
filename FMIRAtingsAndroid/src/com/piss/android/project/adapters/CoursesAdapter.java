@@ -19,8 +19,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 	// Provide a suitable constructor (depends on the kind of dataset)
 	public CoursesAdapter(ArrayList<Course> result) {
-
+		
 		this.mDataset = result;
+		Log.i("DEBUG", "CoursesAdapter constructor mDataset: " + mDataset.size());
 
 	}
 
@@ -62,6 +63,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 			// mDataset items begin from index 0 and so we decrement position
 			// because we have header on position 0
 			final Course item = mDataset.get(position );
+			Log.i("DEBUG", "Course name: " + item.getName());
 			if (item != null) {
 
 				/* Populate item information */
@@ -114,6 +116,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 		public ViewItemHolder(View v) {
 			super(v);
 			recycleViewItem = v;
+			folderName = (TextView) v.findViewById(R.id.item_name);
 
 		}
 
