@@ -2,6 +2,7 @@
 var fmiRatingsApp = angular.module('fmiRatingsApp', []);
 
 fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $http) {            
+
             $http({
                     url: 'http://95.111.16.46:6420/api/coursecategories',
                     method: "GET",
