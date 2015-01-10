@@ -186,10 +186,6 @@
     <Compile Include="Migrations\201501091449427_New.Designer.cs" />
     <Compile Include="Migrations\201501091517091_New1.cs" />
     <Compile Include="Migrations\201501091517091_New1.Designer.cs" />
-    <Compile Include="Migrations\201501091919578_Test.cs" />
-    <Compile Include="Migrations\201501091919578_Test.Designer.cs">
-      <DependentUpon>201501091919578_Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201501091653468_Fix.cs" />
     <Compile Include="Migrations\201501091653468_Fix.Designer.cs">
       <DependentUpon>201501091653468_Fix.cs</DependentUpon>

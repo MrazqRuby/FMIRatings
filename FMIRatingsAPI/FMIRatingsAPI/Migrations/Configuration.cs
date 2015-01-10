@@ -45,13 +45,13 @@ namespace FMIRatingsAPI.Migrations
 				new Course() 
 				{
 					Id = 1,
-					Name = "Програмиране с .NET и C#",
-					Description = "Курс за Програмиране с .NET и C#",
+					Name = "Обектно-ориентирано програмиране",
+					Description = "Курс по Обектно-ориентирано програмиране",
 					CategoryId = courseCategories[0].CategoryId
 				},
 				new Course() 
 				{
-					Id = 1,
+					Id = 2,
 					Name = "Увод в програмирането",
 					Description = "Курс за въведение в програмирането",
 					CategoryId = courseCategories[1].CategoryId
