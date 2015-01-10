@@ -12,6 +12,22 @@ var DISCIPLINE_RATE_TABLE = "discipline-rate-table";
 
 $(document).ready(function () {
 
+var serviceUrl = 'http://95.111.16.46:6420/api/Courses';
+
+  $.ajax({
+            type: "get",
+            url: serviceUrl,
+            xhrFields: {
+                withCredentials: true
+            }        
+        }).done(function (data) {
+            debugger;
+            $('#value1').text(data);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+                        debugger;
+            $('#value1').text(jqXHR.responseText || textStatus);
+        });
+        
     console.log("show panel");
     $(".discipline-open").click(function () {
         console.log("in funcion");

@@ -9,8 +9,48 @@ var TEACHER_RATE_TABLE = "teacher-rate-table";
 var TEACHER_COMMENT_TEMPLATE = "teacher-comment-template";
 
 $(document).ready(function () {
+    var headers = {
+        'Access-Control-Allow-Origin': '*'};
+//'Access-Control-Allow-Headers': 'X-PINGOTHER',
+//'Access-Control-Max-Age': '1728000'};
+/*
+    $.ajax({
+        method: "GET",
+        url: "http://95.111.16.46:6420/api/Teachers",
+//        dataType: 'text json',
+//contentType: 'application/json; charset=utf-8',
+        //headers: headers,
+        success: function (msg) {
+            console.log("success");
+            alert($('Result', JSON.stringify(msg)));
+        },
+        error: function (msg) {
+            
+            console.log(JSON.stringify(msg));
+            alert(JSON.stringify(msg));
+        }
+    });
+    */
+    var serviceUrl = 'http://95.111.16.46:6420/api/Teachers'; 
+
+
+        $.ajax({
+            type: "get",
+            url: serviceUrl,
+            xhrFields: {
+                withCredentials: true
+            }        
+        }).done(function (data) {
+            debugger;
+            $('#value1').text(data);
+        }).error(function (jqXHR, textStatus, errorThrown) {
+                        debugger;
+            $('#value1').text(jqXHR.responseText || textStatus);
+        });
     
- $(".teacher-open").click(function () {
+
+
+    $(".teacher-open").click(function () {
         console.log("in funcion");
         var divParent = $(this).parent().parent().parent();
         console.log(divParent.attr("id"));
@@ -22,7 +62,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     $('#teacher-tabs-nav a').click(function () {
 
         $(this).parent().parent().find("li").removeClass("active");

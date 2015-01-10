@@ -73,7 +73,7 @@ and open the template in the editor.
                                     <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" ng-controller="RegistrationCtrl">
+                                    <form role="form" ng-controller="RegistrationCtrl" id="register-form">
                                         <div class="form-group">
                                             <label for="username">Потребителско име</label>
                                             <div class="input-group">
@@ -147,7 +147,7 @@ and open the template in the editor.
                                             <input type="text" class="form-control" id="graduation-year" ng-model="formInfo.GraduationYear" placeholder="Година на завършване">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary" ng-click="saveData()">Регистрация</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="saveData()" id = "registerButton">Регистрация</button>
 
                                         <span>{{formInfo}}</span>
                                     </form>
@@ -161,7 +161,8 @@ and open the template in the editor.
             </div>
         </div>
         <script src="js/registration-controller.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     </body>
 </html>
 
