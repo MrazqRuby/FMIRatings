@@ -9,10 +9,12 @@ $(document).ready(function () {
 
     fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scope, $http) {
             $scope.formInfo = {};
-            var parameters = $scope.formInfo.Name + $scope.formInfo.Passwod;
+            
 //            var parameters = {'name': 'aaa', 'password': 'aaa'};
-            console.log(parameters);
+           
             $scope.saveData = function () {
+                var parameters = {"name" : $scope.formInfo.Name ,"password" : $scope.formInfo.Password};
+                 console.log(JSON.stringify(parameters));
 //                fmiRatingsApp.factory(function(){
                 var headers = {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
@@ -21,7 +23,7 @@ $(document).ready(function () {
                 $http({
                     url: 'http://95.111.16.46:6420/api/users/postuser',
                     method: "POST",
-                    data: parameters,
+                    data: JSON.stringify(parameters),
                     headers: headers
                 }).success(function (data, status, headers, config) {
                     $scope.data = data;
