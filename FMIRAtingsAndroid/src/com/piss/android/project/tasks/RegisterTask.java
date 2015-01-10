@@ -45,7 +45,7 @@ public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 			nameValuePairs.clear();
 			//TODO:add parameters to NameValuePair
 			nameValuePairs.add(new BasicNameValuePair(
-					APIConnectionConstants.NAME, text));
+					APIConnectionConstants.NAME, email));
 
 			try {
 				httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,6 @@ import android.widget.ListView;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.fragments.CoursesListFragment;
 import com.piss.android.project.fragments.TeachersListFragment;
-import com.piss.android.project.tasks.GetCoursesTask;
 
 public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
@@ -68,8 +68,6 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
-		mDrawerList.setSelection(0);
-
 	}
 
 	@Override
@@ -77,6 +75,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		mDrawerToggle.syncState();
+		mDrawerList.setSelection(0);
 	}
 
 	@Override
@@ -130,9 +129,10 @@ public class MainActivity extends ActionBarActivity {
 		// Create a new fragment and specify the planet to show based on
 		// position
 		Fragment fragment = null;
+		Log.e("POSITION", position + "");
 		switch (position) {
 		case 0:
-			 fragment = new CoursesListFragment();
+			fragment = new CoursesListFragment();
 
 			break;
 
@@ -140,19 +140,11 @@ public class MainActivity extends ActionBarActivity {
 			fragment = new TeachersListFragment();
 			break;
 
-		case 2:
-
-			break;
-
-		case 3:
-
-			break;
-
 		default:
-			 fragment = new CoursesListFragment();
+			fragment = new CoursesListFragment();
 			break;
 		}
-		
+
 		addFragment(fragment);
 
 		// Highlight the selected item, update the title, and close the drawer
@@ -169,6 +161,13 @@ public class MainActivity extends ActionBarActivity {
 
 	private void addFragment(Fragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
+		//Remove all fragments before adding new 
+		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
+		if (fragmentManager.getBackStackEntryCount() > 0) {
+			fragmentManager.popBackStack();
+		}
+		Log.d("ADD FRagment", "");
+		
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.content_frame, fragment, fragment.getClass()
 				.getSimpleName());
@@ -187,6 +186,18 @@ public class MainActivity extends ActionBarActivity {
 		}
 
 		// backPressed = true;
+	}
+
+	@Override
+	public void onBackPressed() {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
+		if (fragmentManager.getBackStackEntryCount() > 0) {
+			fragmentManager.popBackStack();
+		}else{
+			finish();
+		}
+
 	}
 
 }

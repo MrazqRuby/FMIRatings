@@ -38,6 +38,8 @@ public class Course {
 					}
 					course.setTeachers(teachersArray);
 				}
+				
+				courses.add(course);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
