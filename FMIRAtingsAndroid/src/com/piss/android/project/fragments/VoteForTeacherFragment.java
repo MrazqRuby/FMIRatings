@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.piss.android.project.tasks.*;
 
 import com.piss.android.project.fmiratings.R;
@@ -24,10 +26,10 @@ public class VoteForTeacherFragment extends Fragment {
 	private TextView comment;
 	private ImageView sendComment;
 
-	public static VoteForTeacherFragment instance(Integer id) {
+	public static VoteForTeacherFragment instance(Long id) {
 		VoteForTeacherFragment fragment = new VoteForTeacherFragment();
 		Bundle args = new Bundle();
-		args.putInt(TEACHER_ID, id);
+		args.putLong(TEACHER_ID, id);
 		fragment.setArguments(args);
 		return fragment;
 
@@ -53,7 +55,7 @@ public class VoteForTeacherFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
-				int teacherID = getArguments().getInt(TEACHER_ID);
+				long teacherID = getArguments().getLong(TEACHER_ID);
 				int userID = 0;
 				int ratingClarity = (int) ratingBarClarity.getRating();
 				int ratingEnthusiasum = (int) ratingBarEnthusiasum.getRating();
@@ -62,9 +64,16 @@ public class VoteForTeacherFragment extends Fragment {
 				int ratingScope = (int) ratingBarScope.getRating();
 				String text = comment.getText().toString();
 
-				PostVoteForTeacherTask postVote = new PostVoteForTeacherTask(teacherID,
-						userID, ratingClarity, ratingEnthusiasum,
-						ratingEvaluation, ratingSpeed, ratingScope, text);
+				PostVoteForTeacherTask postVote = new PostVoteForTeacherTask(
+						teacherID, userID, ratingClarity, ratingEnthusiasum,
+						ratingEvaluation, ratingSpeed, ratingScope, text) {
+
+					@Override
+					protected void onPostExecute(Boolean result) {
+						Toast.makeText(getActivity(), "Result" + result, Toast.LENGTH_LONG).show();
+					}
+
+				};
 
 				postVote.execute();
 
