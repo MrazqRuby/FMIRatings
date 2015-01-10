@@ -6,6 +6,7 @@
 
 //page names constant
 var START_PAGE = "start-page";
+var EXIT = "nonregistered-user-homepage";
 var DISCIPLINES_LIST = "disciplines-list-page";
 
 $(document).ready(function () {
@@ -39,6 +40,9 @@ $(document).ready(function () {
         $("#body-wrapper").load(page, function () {
             if (actualHrefText === START_PAGE) {
                 loadStartPage();
+            }
+            if (actualHrefText === EXIT){
+                localStorage.clear();
             }
         });
     });

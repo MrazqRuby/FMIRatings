@@ -40,6 +40,8 @@ $(document).ready(function () {
             $scope.loginFormInfo = {};
             
 $scope.login = function () {
+    localStorage.setItem("authentication","dXNlcjp1c2Vy");
+    
                 var parameters = {"name" : "siyana" ,"password" : $scope.loginFormInfo.Password};
                  console.log(JSON.stringify(parameters));
 //                fmiRatingsApp.factory(function(){
@@ -54,6 +56,7 @@ $scope.login = function () {
                     headers: headers
                 }).success(function (data, status, headers, config) {
                     $scope.data = data;
+                    
                 }).error(function (data, status, headers, config) {
                     $scope.status = status;
                 });
