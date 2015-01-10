@@ -1,4 +1,4 @@
-namespace FMIRatingsAPI.Migrations
+﻿namespace FMIRatingsAPI.Migrations
 {
 	using System;
 	using System.Collections.Generic;
@@ -23,17 +23,17 @@ namespace FMIRatingsAPI.Migrations
 		        new CourseCategory()
 		        {
 			        CategoryId = 1,
-			        Name = "���� �� ���������� �����"
+			        Name = "Ядро на компютърни науки"
 		        },
 		        new CourseCategory()
 		        {
 			        CategoryId = 2,
-			        Name = "������ �� ���������� �����"
+			        Name = "Основи на компютърни науки"
 		        },
 				new CourseCategory()
 		        {
 			        CategoryId = 3,
-			        Name = "����������"
+			        Name = "Математика"
 		        },
 	        };
 
@@ -45,15 +45,15 @@ namespace FMIRatingsAPI.Migrations
 				new Course() 
 				{
 					Id = 1,
-					Name = "�������-����������� ������������",
-					Description = "���� �� �������-����������� ������������",
+					Name = "Увод в програмирането",
+					Description = "Курс по Увод в програмирането",
 					CategoryId = courseCategories[0].CategoryId
 				},
 				new Course() 
 				{
 					Id = 2,
-					Name = "���� � ��������������",
-					Description = "���� �� ��������� � ��������������",
+					Name = "Обектно-ориентирано програмиране",
+					Description = "Курс по Обектно-ориентирано програмиране",
 					CategoryId = courseCategories[1].CategoryId
 				}
 			};
@@ -66,17 +66,17 @@ namespace FMIRatingsAPI.Migrations
 		        new TeacherDepartment()
 		        {
 			        DepartmentId = 1,
-			        Name = "����������� � ����������"
+			        Name = "Вероятности и статистика"
 		        },
 		        new TeacherDepartment()
 		        {
 			        DepartmentId = 2,
-			        Name = "������"
+			        Name = "Анализ"
 		        },
 				new TeacherDepartment()
 		        {
 			        DepartmentId = 3,
-			        Name = "��������� ����������"
+			        Name = "Софтуерни технологии"
 		        },
 	        };
 
@@ -88,14 +88,14 @@ namespace FMIRatingsAPI.Migrations
 				new Teacher()
 				{
 					Id = 1,
-					Name = "����� �������",
-					Department = teacherDepartments[0]
+					Name = "Тодор Стоянов",
+					DepartmentId = teacherDepartments[0].DepartmentId
 				},
 				new Teacher()
 				{
 					Id = 2,
-					Name = "�������� �������",
-					Department = teacherDepartments[2]
+					Name = "Владимир Николов",
+					DepartmentId = teacherDepartments[2].DepartmentId
 				}
 			};
 			teachers.ForEach(t => dbContext.Teachers.AddOrUpdate(teacher => teacher.Id, t));
@@ -165,21 +165,21 @@ namespace FMIRatingsAPI.Migrations
 			{
 				new CommentForTeacher()
 				{
-					Text = "����� ����� ������������.",
+					Text = "Много добър преподавател",
 					TeacherId = teachers[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Text = "��������� ����� �����.",
+					Text = "Истински професионалист",
 					TeacherId = teachers[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForTeacher()
 				{
-					Text = "�������� ��������������.",
+					Text = "Специалист в областта",
 					TeacherId = teachers[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
@@ -193,21 +193,21 @@ namespace FMIRatingsAPI.Migrations
 			{
 				new CommentForCourse()
 				{
-					Text = "������ � ����� ���������.",
+					Text = "Много добър курс",
 					CourseId = courses[0].Id,
                     UserId = users[0].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
-					Text = "����� ����� ����.",
+					Text = "Курсът е много полезен",
 					CourseId = courses[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
 				},
 				new CommentForCourse()
 				{
-					Text = "������ � ����� �������",
+					Text = "",
 					CourseId = courses[1].Id,
                     UserId = users[1].Id,
 					DateCreated = DateTime.Now,
@@ -222,32 +222,32 @@ namespace FMIRatingsAPI.Migrations
                 new CriterionForCourse()
                 {
                     Id = 1,
-                    Name = "Usefulness",
-                    Description = "How useful is for practice"
+                    Name = "Полезност",
+                    Description = "Колко е полезен практически"
                 },
                 new CriterionForCourse()
                 {
                     Id = 2,
-                    Name = "Simplicity",
-                    Description = "How simple is for learning"
+                    Name = "Леснота",
+                    Description = "Колко лесен е курсът"
                 },
                 new CriterionForCourse()
                 {
                     Id = 3,
-                    Name = "Interest",
-                    Description = "How interesting is for the students"
+                    Name = "Интерес",
+                    Description = "Колко интересен е курсът"
                 },
                 new CriterionForCourse()
                 {
                     Id = 4,
-                    Name = "Workload",
-                    Description = "How many hours must separate for it"
+                    Name = "Натовареност",
+                    Description = "Колко натоварващ е курсът"
                 },
                 new CriterionForCourse()
                 {
                     Id = 5,
-                    Name = "Clarity",
-                    Description = "How clearness is for understanding"
+                    Name = "Яснота",
+                    Description = "Колко е ясен курсът за доброто разбиране"
                 }
             };
 
@@ -261,32 +261,32 @@ namespace FMIRatingsAPI.Migrations
                 new CriterionForTeacher()
                 {
                     Id = 1,
-                    Name = "Clarity",
-                    Description = "How clearness the teacher is teaching"
+                    Name = "Яснота",
+                    Description = "Колко ясно се преподава"
                 },
                 new CriterionForTeacher()
                 {
                     Id = 2,
-                    Name = "Enthusiasm",
-                    Description = "What level is the enthusiasm of the teacher for teaching"
+                    Name = "Ентусиазъм",
+                    Description = "Колко ентусиезиран е преподавателят в работата си"
                 },
                 new CriterionForTeacher()
                 {
                     Id = 3,
-                    Name = "Criteria of evaluation",
-                    Description = "Is it bad or good teacher's evalution"
+                    Name = "Критерии на оценяване",
+                    Description = "Колко добре оценява преподавателят"
                 },
                 new CriterionForTeacher()
                 {
                     Id = 4,
-                    Name = "Speed of teaching",
-                    Description = "How fast"
+                    Name = "Скорост на преподаване",
+                    Description = "Колко бързо преподава"
                 },
                 new CriterionForTeacher()
                 {
                     Id = 5,
-                    Name = "Scope of teaching material",
-                    Description = "How much stuff the teacher is teaching"
+                    Name = "Обхват на преподавания материал",
+                    Description = "Колко количество материал се преподава"
                 }
             };
 
