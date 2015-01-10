@@ -1,0 +1,15 @@
+<html ng-app="fmiApp">
+<head>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="CoursesCtrl">
+  <ul>
+    <li ng-repeat="course in courses">
+      <span>{{course.name}}</span>
+      <p>{{course.description}}</p>
+    </li>
+  </ul>
+
+</body>
+</html>
