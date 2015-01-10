@@ -17,27 +17,28 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.piss.android.project.models.Course;
+import com.piss.android.project.models.Teacher;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetSearchCourseTask extends AsyncTask<Void, Void, ArrayList<Course>> {
+public class GetSearchTeacherTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
 
 	public String name;
 	
-	public GetSearchCourseTask(String name){
+	public GetSearchTeacherTask(String name){
 		this.name = name;
 	}
 
 	@Override
-	protected ArrayList<Course> doInBackground(Void... params) {
+	protected ArrayList<Teacher> doInBackground(Void... params) {
 		String request = APIConnectionConstants.API + 
-				APIConnectionConstants.API_COURSES +"/"+ APIConnectionConstants.API_SEARCH+"/" + Uri.encode(name);
+				APIConnectionConstants.API_TEACHERS +"/"+ APIConnectionConstants.API_SEARCH + "/" + Uri.encode(name);
 		
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
 		
 		HttpResponse response;
-		ArrayList<Course> mList;
+		ArrayList<Teacher> mList;
 		try {
 			response = client.execute(get);
 
@@ -49,10 +50,9 @@ public class GetSearchCourseTask extends AsyncTask<Void, Void, ArrayList<Course>
 			// Get response string
 			String jsonResponse = EntityUtils.toString(response.getEntity());
 			JSONArray json = new JSONArray(jsonResponse);
-			Log.e("json", jsonResponse);
 
 			// Parse json response
-			mList = Course.parseFromJSON(json);
+			mList = Teacher.parseFromJSON(json);
 
 		} catch (ClientProtocolException e) {
 

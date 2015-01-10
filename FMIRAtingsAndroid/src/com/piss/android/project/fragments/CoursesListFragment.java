@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
 import com.piss.android.project.tasks.GetCoursesTask;
+import com.piss.android.project.tasks.GetSearchCourseTask;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -23,6 +29,7 @@ import com.piss.android.project.adapters.TeachersAdapter;
 public class CoursesListFragment extends Fragment {
 
 	RecyclerView recyclerView;
+	ArrayList<Course> coursesList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -40,6 +47,7 @@ public class CoursesListFragment extends Fragment {
 			@Override
 			protected void onPostExecute(ArrayList<Course> result) {
 				if (result != null) {
+					coursesList = result;
 					Log.i("DEBUG", "onPostExecute courses");
 					CoursesAdapter adapter = new CoursesAdapter(result);
 
@@ -54,11 +62,48 @@ public class CoursesListFragment extends Fragment {
 		};
 		getCoursesTask.execute();
 
+		setHasOptionsMenu(true);
 		return rootView;
 	}
 
-	private void setAdapter(ArrayList<Course> result) {
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		getActivity().invalidateOptionsMenu();
+		final MenuItem searchItem = menu.findItem(R.id.action_search);
+		SearchView mSearchView = (SearchView) MenuItemCompat
+				.getActionView(searchItem);
+		mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
+			
+			@Override
+			public boolean onQueryTextSubmit(String arg0) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+			
+			@Override
+			public boolean onQueryTextChange(String text) {
+				GetSearchCourseTask search = new GetSearchCourseTask(text){
+					// if it is empty => return global variable
+					@Override
+					protected void onPostExecute(ArrayList<Course> result) {
+						if (result != null) {
+							Log.i("DEBUG", "onPostExecute courses");
+							CoursesAdapter adapter = new CoursesAdapter(result);
 
+							recyclerView.setAdapter(adapter);
+						} else {
+							CoursesAdapter adapter = new CoursesAdapter(coursesList);
+
+							recyclerView.setAdapter(adapter);
+						}
+					}
+					
+				};
+				
+				search.execute();
+				return true;
+			}
+		});
 	}
-
 }
