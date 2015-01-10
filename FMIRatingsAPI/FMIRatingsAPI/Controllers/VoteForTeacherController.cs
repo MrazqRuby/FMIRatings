@@ -12,9 +12,11 @@ using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models.DTO;
+using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
+    [AuthenticationFilter]
     public class VoteForTeacherController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();
@@ -108,11 +110,12 @@ namespace FMIRatingsAPI.Controllers
             int ScopeID = db.CriteriaForTeachers.First(c => c.Name == "Scope of teaching material").Id;
 
             //Дали потребителя е гласувал за този учител по параметър
-            if (VoteForTeacherExists(voteForTeacher.TeacherId, ClarityID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, EnthusiasmID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, EvaluationID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, SpeedID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, ScopeID, voteForTeacher.UserId))
+            int userId = UserManager.GetCurrentUser().Id;
+            if (VoteForTeacherExists(voteForTeacher.TeacherId, ClarityID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, EnthusiasmID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, EvaluationID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, SpeedID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, ScopeID, userId))
             {
                 return Conflict();
             }

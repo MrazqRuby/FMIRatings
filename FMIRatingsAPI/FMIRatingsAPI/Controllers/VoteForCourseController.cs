@@ -12,9 +12,11 @@ using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models.DTO;
+using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
+    [AuthenticationFilter]
     public class VoteForCourseController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();
@@ -108,11 +110,12 @@ namespace FMIRatingsAPI.Controllers
             int InterestID = db.CriteriaForCourses.First(c => c.Name == "Interest").Id;
 
             //Дали потребителя е гласувал за този курс по параметър
-            if (VoteForCourseExists(voteForCourse.CourseId, ClarityID, voteForCourse.UserId) ||
-                VoteForCourseExists(voteForCourse.CourseId, WorkloadID, voteForCourse.UserId) ||
-                VoteForCourseExists(voteForCourse.CourseId, UsefulnessID, voteForCourse.UserId) ||
-                VoteForCourseExists(voteForCourse.CourseId, SimplicityID, voteForCourse.UserId) ||
-                VoteForCourseExists(voteForCourse.CourseId, InterestID, voteForCourse.UserId))
+            int userId = UserManager.GetCurrentUser().Id;
+            if (VoteForCourseExists(voteForCourse.CourseId, ClarityID, userId) ||
+                VoteForCourseExists(voteForCourse.CourseId, WorkloadID, userId) ||
+                VoteForCourseExists(voteForCourse.CourseId, UsefulnessID, userId) ||
+                VoteForCourseExists(voteForCourse.CourseId, SimplicityID, userId) ||
+                VoteForCourseExists(voteForCourse.CourseId, InterestID, userId))
             {
                 return Conflict();
             }
