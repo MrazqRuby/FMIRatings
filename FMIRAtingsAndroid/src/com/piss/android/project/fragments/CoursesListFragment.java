@@ -2,17 +2,10 @@ package com.piss.android.project.fragments;
 
 import java.util.ArrayList;
 
-import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.models.Course;
-import com.piss.android.project.tasks.GetCoursesTask;
-import com.piss.android.project.tasks.GetSearchCourseTask;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
@@ -21,14 +14,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.piss.android.project.adapters.CoursesAdapter;
-import com.piss.android.project.adapters.TeachersAdapter;
+import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Course;
+import com.piss.android.project.tasks.GetCoursesTask;
+import com.piss.android.project.tasks.GetSearchCourseTask;
 
 public class CoursesListFragment extends Fragment {
 
-	RecyclerView recyclerView;
+	ListView mListView;
 	ArrayList<Course> coursesList;
 
 	@Override
@@ -36,9 +33,9 @@ public class CoursesListFragment extends Fragment {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.teachers_list_fragment, null);
 
-		recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		recyclerView.setAdapter(null);
+		mListView = (ListView) rootView.findViewById(R.id.list_view);
+	
+		mListView.setAdapter(null);
 
 		// TODO: Set authentication token for current user
 
@@ -49,9 +46,9 @@ public class CoursesListFragment extends Fragment {
 				if (result != null) {
 					coursesList = result;
 					Log.i("DEBUG", "onPostExecute courses");
-					CoursesAdapter adapter = new CoursesAdapter(result);
+					CoursesAdapter adapter = new CoursesAdapter(result, getActivity());
 
-					recyclerView.setAdapter(adapter);
+					mListView.setAdapter(adapter);
 				} else {
 					Toast.makeText(getActivity(), "Server Error",
 							Toast.LENGTH_SHORT).show();
@@ -89,13 +86,13 @@ public class CoursesListFragment extends Fragment {
 					protected void onPostExecute(ArrayList<Course> result) {
 						if (result != null) {
 							Log.i("DEBUG", "onPostExecute courses");
-							CoursesAdapter adapter = new CoursesAdapter(result);
+							CoursesAdapter adapter = new CoursesAdapter(result, getActivity());
 
-							recyclerView.setAdapter(adapter);
+							mListView.setAdapter(adapter);
 						} else {
-							CoursesAdapter adapter = new CoursesAdapter(coursesList);
+							CoursesAdapter adapter = new CoursesAdapter(coursesList, getActivity());
 
-							recyclerView.setAdapter(adapter);
+							mListView.setAdapter(adapter);
 						}
 					}
 					

@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
@@ -16,9 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import com.piss.android.project.adapters.TeachersAdapter;
+import com.piss.android.project.adapters.*;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.tasks.GetSearchTeacherTask;
@@ -26,16 +25,16 @@ import com.piss.android.project.tasks.GetTeachersTask;
 
 public class TeachersListFragment extends Fragment {
 	
-	RecyclerView recyclerView;
+	private ListView mListView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.teachers_list_fragment, null);
 
-		recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		recyclerView.setAdapter(null);
+		mListView = (ListView) rootView.findViewById(R.id.list_view);
+	
+		mListView.setAdapter(null);
 
 		// TODO: Set authentication token for current user
 
@@ -44,9 +43,9 @@ public class TeachersListFragment extends Fragment {
 			@Override
 			protected void onPostExecute(ArrayList<Teacher> result) {
 				if (result != null) {
-					TeachersAdapter adapter = new TeachersAdapter(result);
+					TeachersAdapter adapter = new TeachersAdapter(result, getActivity());
 
-					recyclerView.setAdapter(adapter);
+					mListView.setAdapter(adapter);
 				} else {
 					Toast.makeText(getActivity(), "Server Error",
 							Toast.LENGTH_SHORT).show();
@@ -84,9 +83,9 @@ public class TeachersListFragment extends Fragment {
 					protected void onPostExecute(ArrayList<Teacher> result) {
 						if (result != null) {
 							Log.i("DEBUG", "onPostExecute teachers");
-							TeachersAdapter adapter = new TeachersAdapter(result);
+							TeachersAdapter adapter = new TeachersAdapter(result, getActivity());
 
-							recyclerView.setAdapter(adapter);
+							mListView.setAdapter(adapter);
 						} else {
 							Toast.makeText(getActivity(), "Server Error",
 									Toast.LENGTH_SHORT).show();
