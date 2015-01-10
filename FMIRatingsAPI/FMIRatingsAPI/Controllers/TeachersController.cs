@@ -20,6 +20,7 @@ namespace FMIRatingsAPI.Controllers
     {
         private FMIRatingsContext db = new FMIRatingsContext();
 
+		[HttpGet]
         // GET api/Teachers
 		[ResponseType(typeof(List<TeacherDTO>))]
         public List<TeacherDTO> GetTeachers()
