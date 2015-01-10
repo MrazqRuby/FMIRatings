@@ -58,7 +58,6 @@ public class LoginTask extends AsyncTask<Void, Void, Boolean> {
 			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,
 					APIConnectionConstants.BASIC + " " + auth);
 			
-			
 			StringEntity se = new StringEntity(json.toString());
 
 			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
