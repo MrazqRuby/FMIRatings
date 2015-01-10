@@ -13,12 +13,14 @@ public class Course {
 	private String name;
 	private String description;
 	private ArrayList<String> teachers;
+	private ArrayList<Comment> comments;
 
 	public static ArrayList<Course> parseFromJSON(JSONArray json) {
 		ArrayList<Course> courses = new ArrayList<Course>();
 		Course course = null;
 		JSONObject item = null;
 		JSONArray teachers = null;
+		JSONArray coursesComents = null;
 		ArrayList<String> teachersArray = null;
 
 		for (int i = 0; i < json.length(); i++) {
@@ -30,6 +32,7 @@ public class Course {
 						.getString(APIConnectionConstants.DESCRIPTION));
 				course.setName(item.getString(APIConnectionConstants.NAME));
 				teachers = item.getJSONArray(APIConnectionConstants.TEACHERS);
+				coursesComents = item.getJSONArray(APIConnectionConstants.COMMENTS);
 				
 				if (teachers != null && teachers.length() > 0) {
 					teachersArray = new ArrayList<String>();
@@ -38,7 +41,7 @@ public class Course {
 					}
 					course.setTeachers(teachersArray);
 				}
-				
+				course.setComments(Comment.parseJSON(coursesComents));
 				courses.add(course);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -47,6 +50,14 @@ public class Course {
 			}
 		}
 		return courses;
+	}
+
+	public ArrayList<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(ArrayList<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public long getId() {

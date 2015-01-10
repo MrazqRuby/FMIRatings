@@ -11,34 +11,32 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.piss.android.project.models.Comment;
 import com.piss.android.project.models.Teacher;
-import com.piss.android.project.models.Votes;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Votes>> {
-
+public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Comment>> {
 	private String auth;
-	private String teacherId;
+	private String courseId;
 
-	public GetVoteForTeacherTask(String auth, String teacherId) {
+	public GetCourseCommentsTask(String auth, String courseId) {
 		this.auth = auth;
-		this.teacherId = teacherId;
+		this.courseId = courseId;
 	}
 
 	@Override
-	protected ArrayList<Votes> doInBackground(Void... params) {
+	protected ArrayList<Comment> doInBackground(Void... params) {
 		String request = null;
-		if(teacherId != null ){
+		if(courseId != null ){
 		request = APIConnectionConstants.API
-				+ APIConnectionConstants.API_VOTE_FOR_TEACHER;
+				+ APIConnectionConstants.API_COURSE_COMMENTS;
 		} else {
 			request = APIConnectionConstants.API
-					+ APIConnectionConstants.API_VOTE_FOR_TEACHER + "/" + teacherId;
+					+ APIConnectionConstants.API_COURSE_COMMENTS + "/" + courseId;
 		}
 
 		HttpClient client = new DefaultHttpClient();
@@ -50,7 +48,7 @@ public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Votes
 				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
-		ArrayList<Votes> mList;
+		ArrayList<Comment> mList;
 		try {
 			response = client.execute(get);
 
@@ -61,10 +59,10 @@ public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Votes
 			}
 			// Get response string
 			String jsonResponse = EntityUtils.toString(response.getEntity());
-			JSONObject json = new JSONObject(jsonResponse);
+			JSONArray json = new JSONArray(jsonResponse);
 
 			// Parse json response
-			mList = Votes.parseJSON(json);
+			mList = Comment.parseJSON(json);
 
 		} catch (ClientProtocolException e) {
 
