@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
@@ -59,9 +60,20 @@ namespace FMIRatingsAPI.Authentication
                                 context.ErrorResult = new UnathorizedErrorResult(context.Request, exc.Message);
                                 break;
                             }
-                            if (dbcontext.Users.Any(u => u.Name == user && u.Password == pass))
+                            if (dbcontext.Users.Any(u => u.Name == user && u.Password == pass) != null)
                             {
-                                // Set principal
+                                // Set the principal for the request
+                                var dbuser = dbcontext.Users.FirstOrDefault(u => u.Name == user);
+                                if (dbuser == null)
+                                {
+                                    context.ErrorResult = new UnathorizedErrorResult(context.Request, "An error ocurred on our side, please contact system administrator");
+                                }
+                                else
+                                {
+                                    UserPrincipal principal = new UserPrincipal(user, dbuser.Admin ? new string[] { "Admin" } : new string[] { "User" }, dbuser);
+                                    Thread.CurrentPrincipal = principal;
+                                    HttpContext.Current.User = principal;
+                                }
                             }
                             else
                             {

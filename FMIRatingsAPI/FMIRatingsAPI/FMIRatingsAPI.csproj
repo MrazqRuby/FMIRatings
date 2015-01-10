@@ -161,6 +161,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Authentication\UserPrincipal.cs" />
     <Compile Include="Controllers\CourseCategoriesController.cs" />
     <Compile Include="Controllers\VoteForTeacherController.cs" />
     <Compile Include="Controllers\CourseCommentsController.cs">
@@ -194,7 +195,7 @@
     <Compile Include="Migrations\201501091919578_Test.cs" />
     <Compile Include="Migrations\201501091919578_Test.Designer.cs">
       <DependentUpon>201501091919578_Test.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Migrations\201501091653468_Fix.cs" />
     <Compile Include="Migrations\201501091653468_Fix.Designer.cs">
       <DependentUpon>201501091653468_Fix.cs</DependentUpon>
@@ -363,7 +364,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501092000184_TeacherDepartmentMigration.resx">
       <DependentUpon>201501092000184_TeacherDepartmentMigration.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501091653468_Fix.resx">
       <DependentUpon>201501091653468_Fix.cs</DependentUpon>
     </EmbeddedResource>

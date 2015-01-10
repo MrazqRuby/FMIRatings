@@ -24,6 +24,11 @@ namespace FMIRatingsAPI.Authentication
 
         public static User GetCurrentUser()
         {
+            return (HttpContext.Current.User as UserPrincipal).user;
+        }
+
+        public static User GetCurrentUser()
+        {
             
             throw new NotImplementedException();
         }
