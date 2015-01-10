@@ -77,6 +77,35 @@ namespace FMIRatingsAPI.Controllers
 			return NotFound();
 		}
 
+		// GET api/Courses
+		[HttpGet]
+		[ResponseType(typeof(List<CourseDTO>))]
+		public List<CourseDTO> Search(string name)
+		{
+			var courses = db.Courses
+				.Where(course => course.Name.Contains(name))
+				.Select(course =>
+				new CourseDTO()
+				{
+					Id = course.Id,
+					Name = course.Name,
+					Description = course.Description,
+					Teachers = course.Teachers.Select(teacher =>
+						teacher.Teacher.Name).ToList<string>(),
+					Comments = course.Comments.Select(comment =>
+						new CommentForCourseDTO()
+						{
+							Id = comment.Id,
+							Text = comment.Text,
+							DateCreated = comment.DateCreated,
+							Author = comment.User.Name
+						}).ToList<CommentForCourseDTO>(),
+					Category = course.Category.Name
+				}).ToList();
+
+			return courses;
+		}
+
 		//// PUT api/Courses/5
 		//public async Task<IHttpActionResult> PutCourse(int id, Course course)
 		//{
