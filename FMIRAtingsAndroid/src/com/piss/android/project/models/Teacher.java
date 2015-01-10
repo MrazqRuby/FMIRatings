@@ -1,5 +1,6 @@
 package com.piss.android.project.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -8,8 +9,12 @@ import org.json.JSONObject;
 
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class Teacher {
+public class Teacher implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private String name;
 	private ArrayList<Course> courses;
