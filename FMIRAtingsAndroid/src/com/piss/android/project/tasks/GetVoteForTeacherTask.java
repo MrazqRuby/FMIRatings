@@ -21,16 +21,23 @@ import com.piss.android.project.utils.APIConnectionConstants;
 public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
 
 	private String auth;
+	private String teacherId;
 
-	public GetVoteForTeacherTask(String auth) {
+	public GetVoteForTeacherTask(String auth, String teacherId) {
 		this.auth = auth;
+		this.teacherId = teacherId;
 	}
 
 	@Override
 	protected ArrayList<Teacher> doInBackground(Void... params) {
 		String request = null;
+		if(teacherId != null ){
 		request = APIConnectionConstants.API
 				+ APIConnectionConstants.API_VOTE_FOR_TEACHER;
+		} else {
+			request = APIConnectionConstants.API
+					+ APIConnectionConstants.API_VOTE_FOR_TEACHER + "/" + teacherId;
+		}
 
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
