@@ -84,7 +84,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2015 17:45:20</publishTime>
     </File>
     <File Include="bin/FMIRatingsAPI.dll">
-      <publishTime>01/10/2015 17:54:30</publishTime>
+      <publishTime>01/10/2015 19:42:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>01/04/2015 17:45:20</publishTime>
@@ -95,8 +95,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/04/2015 17:45:20</publishTime>
     </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>01/10/2015 19:35:58</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/04/2015 17:45:20</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>01/10/2015 19:35:58</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>01/04/2015 17:45:20</publishTime>
@@ -276,7 +282,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2015 17:45:19</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/04/2015 17:45:20</publishTime>
+      <publishTime>01/10/2015 19:36:00</publishTime>
     </File>
     <File Include="Scripts/jquery-2.1.1.js">
       <publishTime>01/04/2015 17:45:19</publishTime>
@@ -339,7 +345,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2015 17:45:19</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/10/2015 13:56:23</publishTime>
+      <publishTime>01/10/2015 19:42:59</publishTime>
     </File>
   </ItemGroup>
 </Project>

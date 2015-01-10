@@ -23,19 +23,21 @@ namespace FMIRatingsAPI
 				routeTemplate: "api/{controller}/{action}/{name}",
 				defaults: new { name = RouteParameter.Optional }
 			);
-            config.EnsureInitialized();
-
+            
 			var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
 			jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            var cors = new EnableCorsAttribute("http://localhost:8383", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
+            
 			GlobalConfiguration.Configuration.Formatters.Clear();
 			GlobalConfiguration.Configuration.Formatters.Add(jsonFormatter);
 
 			//config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
 
 			GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            config.EnsureInitialized();
         }
     }
 }
