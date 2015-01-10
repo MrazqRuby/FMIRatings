@@ -13,18 +13,19 @@ public class Votes {
 	String criterionName;
 	long average;
 	
-	public static ArrayList<Votes> parseJSON(JSONArray json) {
+	public static ArrayList<Votes> parseJSON(JSONObject json) {
 		ArrayList<Votes> votes = new ArrayList<Votes>();
 		JSONObject item = null;
 		Votes vote = null;
 		
 		try {
-			for (int i = 0; i < json.length(); i++) {
-				item = json.getJSONObject(i);
+			JSONArray jsonArray = json.getJSONArray(APIConnectionConstants.VOTES);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				item = jsonArray.getJSONObject(i);
 				vote = new Votes();
-				vote.setCriterionId(item.getInt("criterionId"));
-				vote.setCriterionName(item.getString("criterionName"));
-				vote.setAverage(item.getLong("avarage"));
+				vote.setCriterionId(item.getInt(APIConnectionConstants.CRITERION_ID));
+				vote.setCriterionName(item.getString(APIConnectionConstants.CRITERION_NAME));
+				vote.setAverage(item.getLong(APIConnectionConstants.AVARAGE));
 				
 				votes.add(vote);
 			}

@@ -11,14 +11,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.piss.android.project.models.Teacher;
+import com.piss.android.project.models.Votes;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
+public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Votes>> {
 
 	private String auth;
 	private String teacherId;
@@ -29,7 +31,7 @@ public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Teach
 	}
 
 	@Override
-	protected ArrayList<Teacher> doInBackground(Void... params) {
+	protected ArrayList<Votes> doInBackground(Void... params) {
 		String request = null;
 		if(teacherId != null ){
 		request = APIConnectionConstants.API
@@ -48,7 +50,7 @@ public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Teach
 				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
-		ArrayList<Teacher> mList;
+		ArrayList<Votes> mList;
 		try {
 			response = client.execute(get);
 
@@ -59,10 +61,10 @@ public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Teach
 			}
 			// Get response string
 			String jsonResponse = EntityUtils.toString(response.getEntity());
-			JSONArray json = new JSONArray(jsonResponse);
+			JSONObject json = new JSONObject(jsonResponse);
 
 			// Parse json response
-			mList = Teacher.parseFromJSON(json);
+			mList = Votes.parseJSON(json);
 
 		} catch (ClientProtocolException e) {
 

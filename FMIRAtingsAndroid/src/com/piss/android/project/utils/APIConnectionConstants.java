@@ -47,4 +47,9 @@ public class APIConnectionConstants {
 	public final static String SPEED = "speed";
 	public final static String SCOPE = "scope";
 	
+	public final static String VOTES = "votes";
+	public final static String CRITERION_ID = "criterionId";
+	public final static String CRITERION_NAME = "criterionName";
+	public final static String AVARAGE = "avarage";
+	
 }
