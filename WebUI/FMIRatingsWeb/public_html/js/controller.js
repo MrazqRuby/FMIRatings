@@ -4,7 +4,7 @@ var fmiRatingsApp = angular.module('fmiRatingsApp', []);
 fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $http) {
 
     $scope.text = "stamo";
-    debugger;
+  
 //    $http.get('http://95.111.16.46:6420/api/coursecategories').
 //            success(function (data, status, headers, config) {
 //                // this callback will be called asynchronously
