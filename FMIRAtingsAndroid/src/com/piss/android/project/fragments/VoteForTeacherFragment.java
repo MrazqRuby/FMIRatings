@@ -62,7 +62,7 @@ public class VoteForTeacherFragment extends Fragment {
 				int ratingScope = (int) ratingBarScope.getRating();
 				String text = comment.getText().toString();
 
-				PostVoteForTeacher postVote = new PostVoteForTeacher(teacherID,
+				PostVoteForTeacherTask postVote = new PostVoteForTeacherTask(teacherID,
 						userID, ratingClarity, ratingEnthusiasum,
 						ratingEvaluation, ratingSpeed, ratingScope, text);
 
