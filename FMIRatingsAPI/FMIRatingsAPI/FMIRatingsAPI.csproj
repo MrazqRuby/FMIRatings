@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201501101247507_InitialMigration.Designer.cs">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501101648006_Add files to database.cs" />
+    <Compile Include="Migrations\201501101648006_Add files to database.Designer.cs">
+      <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -329,6 +333,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501101247507_InitialMigration.resx">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501101648006_Add files to database.resx">
+      <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

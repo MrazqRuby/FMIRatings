@@ -22,5 +22,6 @@ namespace FMIRatingsAPI.Models
 
 		public virtual ICollection<TeacherInCourse> Teachers { get; set; }
 		public virtual ICollection<CommentForCourse> Comments { get; set; }
+        public virtual ICollection<File> Files { get; set; }
 	}
 }
