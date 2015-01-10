@@ -10,7 +10,7 @@ $(document).ready(function () {
     fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scope, $http) {
             $scope.formInfo = {};
 //            var parameters = $scope.formInfo.Name + $scope.formInfo.Passwod;
-var parameters = {'name':'aaa','password':'aaa'};
+            var parameters = {'name': 'aaa', 'password': 'aaa'};
             console.log(parameters);
             $scope.saveData = function () {
 //                fmiRatingsApp.factory(function(){
@@ -33,12 +33,6 @@ var parameters = {'name':'aaa','password':'aaa'};
             };
 
 
-        }])
-            .controller('MyCtrl2', [function () {
-
-                }]);
-
-
-
+        }]);
 
 });
