@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<form class="form-inline center">
+    <div class="form-group rate-group">
+        <label for="helpfulness">Полезност</label>
+        <input type="number" name="helpfulness" id="helpfulness" class="rating" 
+               data-empty-value="4"
+               data-max="5" data-min="1"
+               data-active-icon="glyphicon glyphicon-star" 
+               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+    </div>
+    <div class="form-group rate-group">
+        <label for="easyness">Леснота</label>
+        <input type="number" name="easyness" id="easyness" class="rating" 
+               data-empty-value="4"
+               data-max="5" data-min="1"
+               data-active-icon="glyphicon glyphicon-star" 
+               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+    </div>
+    <div class="form-group rate-group">
+        <label for="interesting">Интерес</label>
+        <input type="number" name="interesting" id="interesting" class="rating" 
+               data-empty-value="4"
+               data-max="5" data-min="1"
+               data-active-icon="glyphicon glyphicon-star" 
+               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+    </div>
+    <div class="form-group rate-group">
+        <label for="hardness">Натовареност</label>
+        <input type="number" name="hardness" id="hardness" class="rating" 
+               data-empty-value="4"
+               data-max="5" data-min="1"
+               data-active-icon="glyphicon glyphicon-star" 
+               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+    </div>
+    <div class="form-group rate-group">
+        <label for="clearance">Яснота</label>
+        <input type="number" name="clearance" id="clearance" class="rating" 
+               data-empty-value="4" 
+               data-max="5" data-min="1"
+               data-active-icon="glyphicon glyphicon-star" 
+               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+    </div>
+
+    <div class="form-group rate-group">
+        <textarea class="form-control" rows="3" cols="100"></textarea>
+    </div>
+
+    <div class="form-group">
+            <button type="submit" class="btn btn-primary">Оцени</button>
+    </div>
+</form>
+
+<script src="js/bootstrap-rating-input.min.js" type="text/javascript"></script>
+

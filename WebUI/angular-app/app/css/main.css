@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 21, 2014, 6:57:04 PM
+    Author     : Siyana
+*/
+
+
+body {
+    padding-top: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.screen-center {
+    padding-top: 10%;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.navbar {
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+#body-wrapper {
+    margin-top: 0;
+    padding-top: 51px;
+}
+
+.inner-container {
+    margin-top: 0; 
+    padding-top: 0;
+    padding-left: 0.4%;
+    padding-right: 0.4%;
+}
+
+/*START PAGE CUSTOM CSS*/
+#start-page-carousel-div {
+    padding: 5px;
+    margin-top: 0;
+}
+
+#start-page-carousel-div .carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.rating-table{
+    width: 20%;
+}
+
+.rate-group {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+}
+
+.rating-table>tbody>tr>th, .rating-table>tbody>tr>td {
+    border-top: none;
+}
+
+.progress-label-td{
+    width: 30%;
+}
+
+#discipline-ratings-table-container, #teacher-ratings-table-container, #upload-local-material {
+    padding: 2%;
+    background-color: #f9f9f9;
+    color: #204d74;
+}
