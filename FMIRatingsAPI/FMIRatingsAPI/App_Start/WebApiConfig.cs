@@ -29,7 +29,7 @@ namespace FMIRatingsAPI
 
             var cors = new EnableCorsAttribute("http://localhost:8383", "*", "*");
 			{
-				SupportsCredentials = true
+                SupportsCredentials = true;
             };
             config.EnableCors(cors);
 
