@@ -3,6 +3,7 @@ package com.piss.android.project.fragments;
 import java.io.Serializable;
 
 import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Course;
 import com.piss.android.project.models.Teacher;
 
 import android.os.Bundle;
@@ -12,22 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TeacherFragment extends Fragment {
+public class DisplayCoursesFragment extends Fragment {
 
-	private final static String TEACHER = "teacher";
-	public static TeacherFragment getInstance(Teacher teacher){
-		TeacherFragment fragment  = new TeacherFragment();
+	private final static String COURSE = "course";
+	public static DisplayCoursesFragment getInstance(Course course){
+		CourseFragment fragment  = new CourseFragment();
 		Bundle args = new Bundle();
-		args.putSerializable(TEACHER, (Serializable) teacher);
+		args.putSerializable(COURSE, (Serializable) course);
 		fragment.setArguments(args);
 		return fragment;
 	}
-	@Override
+	
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.teacher_fragment_layout, null);
-		
+		View rootView = inflater.inflate(R.layout.teachers_list_fragment, null);
+		//ListView myListView;
 		return rootView;
 	}
-
 }
