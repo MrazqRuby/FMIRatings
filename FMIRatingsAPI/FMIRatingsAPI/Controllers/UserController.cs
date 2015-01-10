@@ -18,9 +18,17 @@ namespace FMIRatingsAPI.Controllers
         [Route("postuser")]
         public IHttpActionResult PostUser([FromBody]UserWithPasswordDTO user)
         {
-            UserDTO createdUser = UserManager.CreateUser(user);
-            if (createdUser == null)
-                return Conflict();
+            UserDTO createdUser;
+            try
+            {
+                createdUser = UserManager.CreateUser(user);
+                if (createdUser == null)
+                    return Conflict();
+            }
+            catch (Exception exc)
+            {
+                return Ok(exc.Message);
+            }
             return Ok(createdUser);
         }
 

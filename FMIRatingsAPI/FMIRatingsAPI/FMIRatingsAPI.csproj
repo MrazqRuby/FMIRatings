@@ -189,6 +189,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
     <Compile Include="Models\CommentForTeacher.cs" />
+    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseCategory.cs" />
     <Compile Include="Models\CriterionForCourse.cs" />
