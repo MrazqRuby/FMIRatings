@@ -27,12 +27,6 @@ namespace FMIRatingsAPI.Authentication
             return (HttpContext.Current.User as UserPrincipal).user;
         }
 
-        public static User GetCurrentUser()
-        {
-            
-            throw new NotImplementedException();
-        }
-
         public static UserDTO CreateUser(UserWithPasswordDTO user)
         {
             User newUser = new User

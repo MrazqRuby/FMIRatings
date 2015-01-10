@@ -60,7 +60,7 @@ namespace FMIRatingsAPI.Authentication
                                 context.ErrorResult = new UnathorizedErrorResult(context.Request, exc.Message);
                                 break;
                             }
-                            if (dbcontext.Users.Any(u => u.Name == user && u.Password == pass) != null)
+                            if (dbcontext.Users.Any(u => u.Name == user && u.Password == pass))
                             {
                                 // Set the principal for the request
                                 var dbuser = dbcontext.Users.FirstOrDefault(u => u.Name == user);

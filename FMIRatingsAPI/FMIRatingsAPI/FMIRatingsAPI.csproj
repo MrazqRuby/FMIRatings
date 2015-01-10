@@ -190,17 +190,9 @@
     <Compile Include="Migrations\201501091919578_Test.Designer.cs">
       <DependentUpon>201501091919578_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.cs" />
-    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.Designer.cs">
-      <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201501091653468_Fix.cs" />
     <Compile Include="Migrations\201501091653468_Fix.Designer.cs">
       <DependentUpon>201501091653468_Fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.cs" />
-    <Compile Include="Migrations\201501091934303_CourseCategoryMigration.Designer.cs">
-      <DependentUpon>201501091934303_CourseCategoryMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.cs" />
     <Compile Include="Migrations\201501092000184_TeacherDepartmentMigration.Designer.cs" />
