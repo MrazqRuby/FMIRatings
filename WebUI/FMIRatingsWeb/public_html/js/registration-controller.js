@@ -38,29 +38,30 @@ $(document).ready(function () {
         }]);
     fmiRatingsApp.controller("LoginCtrl", ["$scope", "$http", function ($scope, $http) {
             $scope.loginFormInfo = {};
-            var parameters = $scope.loginFormInfo.Name + $scope.loginFormInfo.Passwod;
-////            var parameters = {'name': 'aaa', 'password': 'aaa'};
-            console.log("login");
-            $scope.login = function () {
-////                fmiRatingsApp.factory(function(){
-//                var headers = {'Content-Type': 'text/plain',
-//                    'Access-Control-Allow-Origin': '*',
-//                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-//                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
-//                $http({
-//                    url: 'http://95.111.16.46:6420/api/users/postuser',
-//                    method: "POST",
-//                    data: parameters,
-//                    headers: headers
-//                }).success(function (data, status, headers, config) {
-//                    $scope.data = data;
-//                }).error(function (data, status, headers, config) {
-//                    $scope.status = status;
+            
+$scope.login = function () {
+                var parameters = {"name" : "siyana" ,"password" : $scope.loginFormInfo.Password};
+                 console.log(JSON.stringify(parameters));
+//                fmiRatingsApp.factory(function(){
+                var headers = {'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
+                $http({
+                    url: 'http://95.111.16.46:6420/api/users/getauthtoken',
+                    method: "POST",
+                    data: JSON.stringify(parameters),
+                    headers: headers
+                }).success(function (data, status, headers, config) {
+                    $scope.data = data;
+                }).error(function (data, status, headers, config) {
+                    $scope.status = status;
+                });
 //                });
-//                });
-////               
+//               
             };
-//
+
+
 
         }]);
     ;
