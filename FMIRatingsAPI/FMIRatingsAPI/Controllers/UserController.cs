@@ -15,8 +15,15 @@ namespace FMIRatingsAPI.Controllers
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
+        /// <summary>
+        /// This method creates a user with the supplied credentials on the server,
+        /// or returns 409 Conflict if a user with those credentials exists
+        /// </summary>
+        /// <param name="user">The credentials of the user</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("postuser")]
+        [ResponseType(typeof(UserDTO))]
         public IHttpActionResult PostUser([FromBody]UserWithPasswordDTO user)
         {
             User createdUser;
@@ -30,11 +37,12 @@ namespace FMIRatingsAPI.Controllers
             {
                 return Ok(exc.Message);
             }
-            return Ok(createdUser);
+            return Ok(new UserDTO(createdUser));
         }
 
         [HttpPost]
         [Route("getauthtoken")]
+        [ResponseType(typeof(string))]
         public IHttpActionResult GetAuthToken([FromBody] UserWithPasswordDTO user)
         {
             if (UserManager.GetUser(user.Name) == null)

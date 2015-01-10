@@ -35,6 +35,7 @@ namespace FMIRatingsAPI.Controllers
 						new CommentForCourseDTO()
 						{
 							Id = comment.Id,
+                            CourseId = comment.CourseId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = comment.User.Name
