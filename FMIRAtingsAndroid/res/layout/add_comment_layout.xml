@@ -1,28 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    >
+    android:layout_height="match_parent" >
 
-    <TextView android:id="@+id/add_rating_label"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="@dimen/app_margin_big"
-        android:text="@string/add_rating"/>
-    
-    <RatingBar
-        android:id="@+id/addRating"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_below="@id/add_rating_label"
-        android:layout_centerHorizontal="true"
-        android:rating="2"
-        android:numStars="5"
-        android:progressDrawable="@drawable/review_ratings_stars_states" />
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/add_rating_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/add_rating" />
+
+            <TextView
+                android:id="@+id/clarity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/clarity" />
+
+            <RatingBar
+                android:id="@+id/clarity_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states"
+                android:rating="0" />
+
+            <TextView
+                android:id="@+id/enthusiasum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/enthusiasm" />
+
+            <RatingBar
+                android:id="@+id/enthusiasum_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states"
+                android:rating="0" />
+
+            <TextView
+                android:id="@+id/evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/evaluation" />
+
+            <RatingBar
+                android:id="@+id/evaluation_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states"
+                android:rating="0" />
+            
+             <TextView
+                android:id="@+id/speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/speed" />
+
+            <RatingBar
+                android:id="@+id/speed_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states"
+                android:rating="0" />
+            
+            <TextView
+                android:id="@+id/scope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/scope" />
+
+            <RatingBar
+                android:id="@+id/scope_rating"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states"
+                android:rating="0" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/layout_comment"

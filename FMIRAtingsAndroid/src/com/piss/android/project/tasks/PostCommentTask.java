@@ -26,12 +26,20 @@ public class PostCommentTask extends AsyncTask<Void, Void, Boolean> {
 
 	private String what;
 	private String text;
-	private int rating;
+	private int ratingClarity;
+	private int ratingEnthusiasum;
+	private int ratingEvaluation;
+	private int ratingSpeed;
+	private int ratingScope;
 	
-	public PostCommentTask(String what, String text, int rating){
+	public PostCommentTask(String what, String text, int ratingClarity, int ratingEnthusiasum, int ratingEvaluation, int ratingSpeed, int ratingScope){
 		this.what = what;
 		this.text = text;
-		this.rating = rating;
+		this.ratingClarity = ratingClarity;
+		this.ratingEnthusiasum = ratingEnthusiasum;
+		this.ratingEvaluation = ratingEvaluation;
+		this.ratingScope = ratingScope;
+		this.ratingSpeed = ratingSpeed;
 	}
 	@Override
 	protected Boolean doInBackground(Void... params) {
@@ -48,7 +56,7 @@ public class PostCommentTask extends AsyncTask<Void, Void, Boolean> {
 			nameValuePairs.clear();
 
 			nameValuePairs.add(new BasicNameValuePair(
-					APIConnectionConstants.COMMENT_TEXT, text));
+					APIConnectionConstants.COMMENT, text));
 			
 
 			try {
