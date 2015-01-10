@@ -22,7 +22,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row" >
+            <div class="row" ng-app = "registration" >
 
                 <div class="screen-center">      
 
@@ -41,21 +41,22 @@ and open the template in the editor.
                                     <h4 class="modal-title" id="myModalLabel">Вход</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" ng-controller="LoginCtrl" ng-app = "login">
+                                    <form role="form" ng-controller="LoginCtrl" >
                                         <div class="form-group">
                                             <label for="email">Email адрес</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Въведи email" ng-model="formInfo.UserName" required>
+                                            <input type="email" class="form-control" id="email" placeholder="Въведи email" ng-model="loginFormInfo.UserName"  required>
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">Парола</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Въведи парола" ng-model="formInfo.Password" required>
+                                            <input type="password" class="form-control" id="password" placeholder="Въведи парола" ng-model="loginFormInfo.UserName" required>
                                         </div>
                                         <!--                                        <div class="checkbox">
                                                                                     <label>
                                                                                         <input type="checkbox"> Check me out
                                                                                     </label>
                                                                                 </div>-->
-                                        <button type="submit" class="btn btn-primary" ng-click="saveData()">Вход</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="login()">Вход</button>
+                                    <span>{{loginFormInfo}}</span>
                                     </form>
                                 </div>
                             </div>
@@ -72,7 +73,7 @@ and open the template in the editor.
                                     <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" ng-controller="RegistrationCtrl" ng-app = "registration">
+                                    <form role="form" ng-controller="RegistrationCtrl">
                                         <div class="form-group">
                                             <label for="username">Потребителско име</label>
                                             <div class="input-group">
@@ -148,16 +149,18 @@ and open the template in the editor.
 
                                         <button type="submit" class="btn btn-primary" ng-click="saveData()">Регистрация</button>
 
+                                        <span>{{formInfo}}</span>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
         <script src="js/registration-controller.js"></script>
-        <script src="js/login-controller.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
     </body>
 </html>

@@ -9,8 +9,8 @@ $(document).ready(function () {
 
     fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scope, $http) {
             $scope.formInfo = {};
-//            var parameters = $scope.formInfo.Name + $scope.formInfo.Passwod;
-            var parameters = {'name': 'aaa', 'password': 'aaa'};
+            var parameters = $scope.formInfo.Name + $scope.formInfo.Passwod;
+//            var parameters = {'name': 'aaa', 'password': 'aaa'};
             console.log(parameters);
             $scope.saveData = function () {
 //                fmiRatingsApp.factory(function(){
@@ -19,7 +19,7 @@ $(document).ready(function () {
                     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
                     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
                 $http({
-                    url: 'http://95.111.16.46:6420/api/users',
+                    url: 'http://95.111.16.46:6420/api/users/postuser',
                     method: "POST",
                     data: parameters,
                     headers: headers
@@ -34,5 +34,32 @@ $(document).ready(function () {
 
 
         }]);
+    fmiRatingsApp.controller("LoginCtrl", ["$scope", "$http", function ($scope, $http) {
+            $scope.loginFormInfo = {};
+            var parameters = $scope.loginFormInfo.Name + $scope.loginFormInfo.Passwod;
+////            var parameters = {'name': 'aaa', 'password': 'aaa'};
+            console.log("login");
+            $scope.login = function () {
+////                fmiRatingsApp.factory(function(){
+//                var headers = {'Content-Type': 'text/plain',
+//                    'Access-Control-Allow-Origin': '*',
+//                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+//                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
+//                $http({
+//                    url: 'http://95.111.16.46:6420/api/users/postuser',
+//                    method: "POST",
+//                    data: parameters,
+//                    headers: headers
+//                }).success(function (data, status, headers, config) {
+//                    $scope.data = data;
+//                }).error(function (data, status, headers, config) {
+//                    $scope.status = status;
+//                });
+//                });
+////               
+            };
+//
 
+        }]);
+    ;
 });
