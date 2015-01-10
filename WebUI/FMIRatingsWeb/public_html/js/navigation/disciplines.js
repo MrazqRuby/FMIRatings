@@ -10,24 +10,37 @@ var DISCIPLINE_RATING_TAB = "discipline-ratings-tab";
 var DISCIPLINE_COMMENT_TEMPLATE = "discipline-comment-template";
 var DISCIPLINE_RATE_TABLE = "discipline-rate-table";
 
+
+
+//$(document).ready(function () {
+
+    var serviceUrl = 'http://95.111.16.46:6420/api/coursecategories';
+
+    $.ajax({
+        type: "get",
+        url: serviceUrl,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function (data) {
+
+
+        var disciplineHtml = "";
+        debugger;
+//        var app = angular.module("Disciplines", []);
+//        app.controller("DisciplineCtrl", [$scope, function ($scope) {
+////                debugger;
+//                $scope.disciplines = data;
+//                
+//            }]);
+
+
+        // $("#discipline-type-accordion").html(disciplineHtml);
+    }).error(function (jqXHR, textStatus, errorThrown) {
+//                        debugger;
+        $('#value1').text(jqXHR.responseText || textStatus);
+    });
 $(document).ready(function () {
-
-var serviceUrl = 'http://95.111.16.46:6420/api/Courses';
-
-  $.ajax({
-            type: "get",
-            url: serviceUrl,
-            xhrFields: {
-                withCredentials: true
-            }        
-        }).done(function (data) {
-            debugger;
-            $('#value1').text(data);
-        }).error(function (jqXHR, textStatus, errorThrown) {
-                        debugger;
-            $('#value1').text(jqXHR.responseText || textStatus);
-        });
-        
     console.log("show panel");
     $(".discipline-open").click(function () {
         console.log("in funcion");
@@ -60,8 +73,8 @@ var serviceUrl = 'http://95.111.16.46:6420/api/Courses';
             }
         });
     });
-    
-    
+
+
 
 
 });

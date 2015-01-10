@@ -31,7 +31,7 @@ $(document).ready(function () {
         }
     });
     */
-    var serviceUrl = 'http://95.111.16.46:6420/api/Teachers'; 
+    var serviceUrl = 'http://95.111.16.46:6420/api/TeacherDepartments'; 
 
 
         $.ajax({
@@ -41,11 +41,13 @@ $(document).ready(function () {
                 withCredentials: true
             }        
         }).done(function (data) {
-            debugger;
+//            debugger;
+console.log(data);
             $('#value1').text(data);
         }).error(function (jqXHR, textStatus, errorThrown) {
-                        debugger;
-            $('#value1').text(jqXHR.responseText || textStatus);
+//                        debugger;
+//            $('#value1').text(jqXHR.responseText || textStatus);
+console.log(textStatus);
         });
     
 
