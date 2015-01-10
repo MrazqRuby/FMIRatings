@@ -17,6 +17,8 @@ import android.widget.ListView;
 
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.fragments.CoursesListFragment;
+import com.piss.android.project.fragments.TeachersListFragment;
+import com.piss.android.project.tasks.GetCoursesTask;
 
 public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
@@ -26,7 +28,6 @@ public class MainActivity extends ActionBarActivity {
 	private CharSequence mTitle;
 	private String[] mDrawerItems;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +69,7 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 
 		mDrawerList.setSelection(0);
+
 	}
 
 	@Override
@@ -127,10 +129,32 @@ public class MainActivity extends ActionBarActivity {
 	private void selectItem(int position) {
 		// Create a new fragment and specify the planet to show based on
 		// position
-		Fragment fragment = new CoursesListFragment();
+		Fragment fragment = null;
+		switch (position) {
+		case 0:
+			 fragment = new CoursesListFragment();
 
-		addFragment(fragment);
+			break;
+
+		case 1:
+			fragment = new TeachersListFragment();
+			break;
+
+		case 2:
+
+			break;
+
+		case 3:
+
+			break;
+
+		default:
+			 fragment = new CoursesListFragment();
+			break;
+		}
 		
+		addFragment(fragment);
+
 		// Highlight the selected item, update the title, and close the drawer
 		mDrawerList.setItemChecked(position, true);
 		setTitle(mDrawerItems[position]);
@@ -146,21 +170,23 @@ public class MainActivity extends ActionBarActivity {
 	private void addFragment(Fragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.replace(R.id.content_frame, fragment, fragment.getClass().getSimpleName());
+		transaction.replace(R.id.content_frame, fragment, fragment.getClass()
+				.getSimpleName());
 		transaction.addToBackStack(fragment.getClass().getSimpleName());
 		transaction.commit();
 	}
-	
+
 	public void removeFragmentsInclusive(String name) {
 		if (isFinishing()) {
 			return;
 		}
-		getFragmentManager().popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		getFragmentManager().popBackStack(name,
+				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		if (mDrawerToggle != null) {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
 
-		//backPressed = true;
+		// backPressed = true;
 	}
 
 }

@@ -14,7 +14,7 @@ public class TeacherFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.login_layout, null);
+		View rootView = inflater.inflate(R.layout.teacher_fragment_layout, null);
 		
 		return rootView;
 	}

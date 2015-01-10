@@ -1,11 +1,6 @@
 package com.piss.android.project.fragments;
 
-
 import java.util.ArrayList;
-
-import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.models.Course;
-import com.piss.android.project.tasks.GetCoursesTask;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.piss.android.project.adapters.CoursesAdapter;
 
-public class CoursesListFragment extends Fragment{
+import com.piss.android.project.adapters.TeachersAdapter;
+import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Teacher;
+import com.piss.android.project.tasks.GetTeachersTask;
+
+public class TeachersListFragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -30,11 +29,11 @@ public class CoursesListFragment extends Fragment{
 		
 		//TODO:  Set authentication token for current user
 		
-		GetCoursesTask getCoursesTask = new GetCoursesTask(null){
+		GetTeachersTask getCoursesTask = new GetTeachersTask(null, null){
 
 			@Override
-			protected void onPostExecute(ArrayList<Course> result) {
-				CoursesAdapter adapter = new CoursesAdapter(result);
+			protected void onPostExecute(ArrayList<Teacher> result) {
+				TeachersAdapter adapter = new TeachersAdapter(result);
 				
 				recyclerView.setAdapter(adapter);
 			}

@@ -10,20 +10,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Course;
 import com.piss.android.project.models.SimpleItem;
 
-public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CoursesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private static final int TYPE_ITEM = 1;
-	public ArrayList<SimpleItem> mDataset;
+	public ArrayList<Course> mDataset;
 
 	// Provide a suitable constructor (depends on the kind of dataset)
-	public ListAdapter(ArrayList<SimpleItem> myDataset) {
+	public CoursesAdapter(ArrayList<Course> result) {
 
-		this.mDataset = myDataset;
+		this.mDataset = result;
 
 	}
 
-	public ListAdapter() {
+	public CoursesAdapter() {
 		super();
 	}
 
@@ -60,7 +61,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 			// cast holder to ViewItemHolder and set data
 			// mDataset items begin from index 0 and so we decrement position
 			// because we have header on position 0
-			final SimpleItem item = mDataset.get(position - 1);
+			final Course item = mDataset.get(position );
 			if (item != null) {
 
 				/* Populate item information */
@@ -92,7 +93,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	// Return the size of your dataset (invoked by the layout manager)
 	@Override
 	public int getItemCount() {
-		return mDataset.size() + 1;
+		return mDataset.size();
 	}
 
 	@Override

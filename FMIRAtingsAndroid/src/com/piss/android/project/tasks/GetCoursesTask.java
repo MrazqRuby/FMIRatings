@@ -20,6 +20,12 @@ import android.util.Log;
 
 public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 
+	private String auth;
+
+	public GetCoursesTask(String auth) {
+		this.auth = auth;
+	}
+
 	@Override
 	protected ArrayList<Course> doInBackground(Void... params) {
 		String request = APIConnectionConstants.API
@@ -28,6 +34,10 @@ public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
+		
+		/* Set Authentication token in header */
+		get.addHeader(APIConnectionConstants.AUTHENTICATION,
+				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
 		ArrayList<Course> mList;
@@ -39,11 +49,12 @@ public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 			if (code != 200 && code != 201) {
 				return null;
 			}
-			// Get response string 
+			// Get response string
 			String jsonResponse = EntityUtils.toString(response.getEntity());
 			JSONArray json = new JSONArray(jsonResponse);
+			Log.e("json", jsonResponse);
 
-			//Parse json response
+			// Parse json response
 			mList = Course.parseFromJSON(json);
 
 		} catch (ClientProtocolException e) {
