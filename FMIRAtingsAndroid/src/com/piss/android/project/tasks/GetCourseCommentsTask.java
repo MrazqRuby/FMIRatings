@@ -15,10 +15,11 @@ import org.json.JSONException;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.piss.android.project.models.Comment;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Teacher>> {
+public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Comment>> {
 	private String auth;
 	private String courseId;
 
@@ -28,7 +29,7 @@ public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Teach
 	}
 
 	@Override
-	protected ArrayList<Teacher> doInBackground(Void... params) {
+	protected ArrayList<Comment> doInBackground(Void... params) {
 		String request = null;
 		if(courseId != null ){
 		request = APIConnectionConstants.API
@@ -47,7 +48,7 @@ public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Teach
 				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
-		ArrayList<Teacher> mList;
+		ArrayList<Comment> mList;
 		try {
 			response = client.execute(get);
 
@@ -61,7 +62,7 @@ public class GetCourseCommentsTask extends AsyncTask<Void, Void, ArrayList<Teach
 			JSONArray json = new JSONArray(jsonResponse);
 
 			// Parse json response
-			mList = Teacher.parseFromJSON(json);
+			mList = Comment.parseJSON(json);
 
 		} catch (ClientProtocolException e) {
 
