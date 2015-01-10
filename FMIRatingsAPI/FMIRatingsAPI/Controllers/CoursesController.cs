@@ -51,6 +51,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/Courses/5
+        /// <summary>
+        /// Get information about the course
+        /// </summary>
+        /// <param name="id">The unique id of the course</param>
+        /// <returns>Course information</returns>
 		[ResponseType(typeof(CourseDTO))]
 		public IHttpActionResult GetCourse(int id)
 		{
@@ -84,6 +89,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/Courses
+        /// <summary>
+        /// Get information about specific course
+        /// </summary>
+        /// <param name="name">Name of the course</param>
+        /// <returns>Information about the course</returns>
 		[HttpGet]
 		[ResponseType(typeof(List<CourseDTO>))]
 		public List<CourseDTO> Search(string name)
