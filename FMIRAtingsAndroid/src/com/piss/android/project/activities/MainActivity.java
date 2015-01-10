@@ -159,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setTitle(mTitle);
 	}
 
-	private void addFragment(Fragment fragment) {
+	public void addFragment(Fragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		//Remove all fragments before adding new 
 		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
@@ -193,7 +193,7 @@ public class MainActivity extends ActionBarActivity {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
 		if (fragmentManager.getBackStackEntryCount() > 0) {
-			fragmentManager.popBackStack();
+			//fragmentManager.popBackStack();
 		}else{
 			finish();
 		}
