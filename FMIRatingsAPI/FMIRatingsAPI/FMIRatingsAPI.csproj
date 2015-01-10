@@ -195,6 +195,18 @@
     <Compile Include="Migrations\201501101648006_Add files to database.Designer.cs">
       <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501101903569_Update user table with additional columns.cs" />
+    <Compile Include="Migrations\201501101903569_Update user table with additional columns.Designer.cs">
+      <DependentUpon>201501101903569_Update user table with additional columns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501101917232_Add real name to user table.cs" />
+    <Compile Include="Migrations\201501101917232_Add real name to user table.Designer.cs">
+      <DependentUpon>201501101917232_Add real name to user table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501101920482_Add group column to user table.cs" />
+    <Compile Include="Migrations\201501101920482_Add group column to user table.Designer.cs">
+      <DependentUpon>201501101920482_Add group column to user table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -342,6 +354,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501101648006_Add files to database.resx">
       <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501101903569_Update user table with additional columns.resx">
+      <DependentUpon>201501101903569_Update user table with additional columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501101917232_Add real name to user table.resx">
+      <DependentUpon>201501101917232_Add real name to user table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501101920482_Add group column to user table.resx">
+      <DependentUpon>201501101920482_Add group column to user table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

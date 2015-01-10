@@ -1,4 +1,5 @@
 ﻿using FMIRatingsAPI.Authentication;
+using FMIRatingsAPI.Models;
 using FMIRatingsAPI.Models.DTO;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace FMIRatingsAPI.Controllers
         [Route("postuser")]
         public IHttpActionResult PostUser([FromBody]UserWithPasswordDTO user)
         {
-            UserDTO createdUser;
+            User createdUser;
             try
             {
                 createdUser = UserManager.CreateUser(user);

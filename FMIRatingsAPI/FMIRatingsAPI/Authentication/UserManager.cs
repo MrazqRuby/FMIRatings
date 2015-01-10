@@ -27,12 +27,18 @@ namespace FMIRatingsAPI.Authentication
             return (HttpContext.Current.User as UserPrincipal).user;
         }
 
-        public static UserDTO CreateUser(UserWithPasswordDTO user)
+        public static User CreateUser(UserWithPasswordDTO user)
         {
             User newUser = new User
             {
                 Name = user.Name,
-                Password = user.Password
+                Password = user.Password,
+                RealName = user.RealName,
+                Email = user.Email,
+                Admin = false,
+                Course = user.Course,
+                Group = user.Group,
+                Major = user.Major
             };
             if (GetUser(user.Name) != null)
             {
@@ -40,7 +46,7 @@ namespace FMIRatingsAPI.Authentication
             }
             DbContext.Users.Add(newUser);
             DbContext.SaveChanges();
-            return new UserDTO { Id = newUser.Id, Name = user.Name };
+            return newUser;
         }
 
 

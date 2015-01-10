@@ -69,7 +69,7 @@ namespace FMIRatingsAPI.Migrations
 			        Name = "Вероятности и статистика"
 		        },
 		        new TeacherDepartment()
-		        {
+		        {                                      
 			        DepartmentId = 2,
 			        Name = "Анализ"
 		        },
@@ -105,16 +105,32 @@ namespace FMIRatingsAPI.Migrations
 			{
 				new User()
 				{
-					Id = 1,
 					Name = "admin",
                     Password = "admin",
+                    Email = "admin@tsanihome.lek",
+                    Course = 1,
+                    Major = "Математика и информатика",
+                    RealName = "Цани Проданов",
                     Admin = true
 				},
 				new User()
 				{
-					Id = 2,
 					Name = "user",
                     Password = "user",
+                    Email = "user@tsanihome.manqk",
+                    Course = 2,
+                    Major = "Право",
+                    RealName = "Цани Проданов",
+                    Admin = false
+				},
+                new User()
+				{	
+					Name = "siyana1",
+                    Password = "siyana1",
+                    Email = "siyana@yahoo.com",
+                    Course = 4,
+                    Major = "Вебаджийство",
+                    RealName = "Сияна Славова",
                     Admin = false
 				}
 			};
