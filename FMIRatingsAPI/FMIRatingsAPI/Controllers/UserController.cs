@@ -48,7 +48,7 @@ namespace FMIRatingsAPI.Controllers
         [HttpPost]
         [Route("getauthtoken")]
         [ResponseType(typeof(string))]
-        public IHttpActionResult GetAuthToken([FromBody] UserWithPasswordDTO user)
+        public IHttpActionResult GetAuthToken([FromBody] SimpleUserDTO user)
         {
             if (UserManager.GetUser(user.Name) == null)
             {

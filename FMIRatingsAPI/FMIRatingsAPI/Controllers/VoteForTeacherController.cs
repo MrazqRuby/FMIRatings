@@ -16,7 +16,6 @@ using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
-    [AuthenticationFilter]
     public class VoteForTeacherController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();

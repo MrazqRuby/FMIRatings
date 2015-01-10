@@ -16,7 +16,6 @@ using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
-    [AuthenticationFilter]
     public class VoteForCourseController : ApiController
     {
         private FMIRatingsContext db = new FMIRatingsContext();
@@ -117,11 +116,11 @@ namespace FMIRatingsAPI.Controllers
             Course course = db.Courses.Where(c => c.Id == voteForCourse.CourseId).FirstOrDefault();
 
             // Запазваме ID на критериите
-            int ClarityID = db.CriteriaForCourses.First(c => c.Name == "Clarity").Id;
-            int WorkloadID = db.CriteriaForCourses.First(c => c.Name == "Workload").Id;
-            int UsefulnessID = db.CriteriaForCourses.First(c => c.Name == "Usefulness").Id;
-            int SimplicityID = db.CriteriaForCourses.First(c => c.Name == "Simplicity").Id;
-            int InterestID = db.CriteriaForCourses.First(c => c.Name == "Interest").Id;
+            int ClarityID = db.CriteriaForCourses.First(c => c.Name == "Полезност").Id;
+            int WorkloadID = db.CriteriaForCourses.First(c => c.Name == "Яснота").Id;
+            int UsefulnessID = db.CriteriaForCourses.First(c => c.Name == "Интерес").Id;
+            int SimplicityID = db.CriteriaForCourses.First(c => c.Name == "Натовареност").Id;
+            int InterestID = db.CriteriaForCourses.First(c => c.Name == "Леснота").Id;
 
             //Дали потребителя е гласувал за този курс по параметър
             int userId = UserManager.GetCurrentUser().Id;
