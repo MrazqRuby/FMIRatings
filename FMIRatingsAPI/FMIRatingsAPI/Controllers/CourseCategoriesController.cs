@@ -26,13 +26,13 @@ namespace FMIRatingsAPI.Controllers
 			var courseCategories = db.CourseCategories.Select(category =>
 				new CourseCategoryDTO()
 				{
-					Id = category.Id,
+					Id = category.CategoryId,
 					Name = category.Name,
 					Courses = category.Courses.Select(c => new CourseDTO()
 					{
 						Id = c.Id,
 						Name = c.Name,
-						Description = c.Description,
+						Description = c.Description
 					}).ToList()
 				}).ToList<CourseCategoryDTO>();
 

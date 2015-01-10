@@ -22,22 +22,22 @@ namespace FMIRatingsAPI.Migrations
 	        {
 		        new CourseCategory()
 		        {
-			        Id = 1,
+			        CategoryId = 1,
 			        Name = "Ядро на компютърни науки"
 		        },
 		        new CourseCategory()
 		        {
-			        Id = 2,
+			        CategoryId = 2,
 			        Name = "Основи на компютърни науки"
 		        },
 				new CourseCategory()
 		        {
-			        Id = 3,
+			        CategoryId = 3,
 			        Name = "Математика"
 		        },
 	        };
 
-			courseCategories.ForEach(c => dbContext.CourseCategories.AddOrUpdate(category => category.Id, c));
+			courseCategories.ForEach(c => dbContext.CourseCategories.AddOrUpdate(category => category.CategoryId, c));
 			dbContext.SaveChanges();
 
 			var courses = new List<Course>() 
@@ -47,14 +47,14 @@ namespace FMIRatingsAPI.Migrations
 					Id = 1,
 					Name = "Програмиране с .NET и C#",
 					Description = "Курс за Програмиране с .NET и C#",
-					Category = courseCategories[0]
+					CategoryId = courseCategories[0].CategoryId
 				},
 				new Course() 
 				{
-					Id = 2,
+					Id = 1,
 					Name = "Увод в програмирането",
 					Description = "Курс за въведение в програмирането",
-					Category = courseCategories[1]
+					CategoryId = courseCategories[1].CategoryId
 				}
 			};
 
@@ -90,7 +90,6 @@ namespace FMIRatingsAPI.Migrations
 					Id = 1,
 					Name = "Тодор Стоянов",
 					Department = teacherDepartments[0]
-					
 				},
 				new Teacher()
 				{
