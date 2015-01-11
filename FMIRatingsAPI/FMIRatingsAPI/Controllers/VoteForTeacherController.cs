@@ -107,6 +107,7 @@ namespace FMIRatingsAPI.Controllers
         /// </summary>
         /// <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Enthusiasm, Speed, Scope and Evaluation</param>
         /// <returns>Status Code 200 if succeed</returns>
+        [AuthenticationFilter]
         public IHttpActionResult PostVoteForTeacher([FromBody] BrowserVoteForTeacherDTO voteForTeacher)
         {
             if (!ModelState.IsValid)
@@ -119,7 +120,7 @@ namespace FMIRatingsAPI.Controllers
             int ClarityID = db.CriteriaForTeachers.First(c => c.Name == "Яснота").Id;
             int EnthusiasmID = db.CriteriaForTeachers.First(c => c.Name == "Ентусиазъм").Id;
             int EvaluationID = db.CriteriaForTeachers.First(c => c.Name == "Критерии на оценяване").Id;
-            int SpeedID = db.CriteriaForTeachers.First(c => c.Name == "Скорост на преповдаване").Id;
+            int SpeedID = db.CriteriaForTeachers.First(c => c.Name == "Скорост на преподаване").Id;
             int ScopeID = db.CriteriaForTeachers.First(c => c.Name == "Обхват на преподавания материал").Id;
 
             //Дали потребителя е гласувал за този учител по параметър
