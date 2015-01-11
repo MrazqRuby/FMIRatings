@@ -257,7 +257,7 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
 
 });
 
-app.controller('FileUploadController', function($scope) {
+app.controller('FileUploadCtrl', function($scope) {
     $scope.setFiles = function(element) {
         $scope.$apply(function(scope) {
         console.log('files:', element.files);
