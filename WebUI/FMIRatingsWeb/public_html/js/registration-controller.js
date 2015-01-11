@@ -55,9 +55,10 @@ console.log(auth);
             }).success(function (data) {
                 $scope.data = data;
                 localStorage.setItem("authentication",auth);
+                window.location.assign( "/FMIRatingsWeb/home-page.html");
             }).error(function (status) {
                 $scope.status = status;
-                alert("Невалиден мейл или парола.");
+                alert("Невалидно потребителско име или парола.");
             });
 //                });
 //               

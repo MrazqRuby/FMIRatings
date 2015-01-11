@@ -7,18 +7,14 @@
 
 
 //    localStorage.setItem("authentication", "dXNlcjp1c2Vy");
-//    debugger
-//    if(localStorage.getItem("authentication")){
-//        $().load("home-page.html");
-//    } else {
-//        $().load("nonregistered-user-homepage.html");
-//    }
-
-
-var app = angular.module('indexPage', []);
-app.controller('indexController', function ($scope, $location, $window) {
-  debugger
-  $window.location.href("home-page.html");
-//        $location=$location.path("home-page.html");
     
-});
+    if(localStorage.getItem("authentication")){
+        window.location.assign( "/FMIRatingsWeb/home-page.html");
+//        $().load("home-page.html");
+    } else {
+//        $().load("nonregistered-user-homepage.html");
+        window.location.assign("/FMIRatingsWeb/nonregistered-user-homepage.html");
+//        window.location.assign("http://www.w3schools.com")
+    }
+
+
