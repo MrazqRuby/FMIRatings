@@ -9,42 +9,42 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.piss.android.project.models.Teacher;
 import com.piss.android.project.models.Votes;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetVoteForTeacherTask extends
-		AsyncTask<Void, Void, ArrayList<Votes>> {
+public class GetVoteForCourseTask extends AsyncTask<Void, Void, ArrayList<Votes>> {
+	private String auth;
+	private String courseId;
 
-	// private String auth;
-	private Long teacherId;
-
-	public GetVoteForTeacherTask(Long teacherId) {
-		// this.auth = auth;
-		this.teacherId = teacherId;
+	public GetVoteForCourseTask(String auth, String courseId) {
+		this.auth = auth;
+		this.courseId = courseId;
 	}
 
 	@Override
 	protected ArrayList<Votes> doInBackground(Void... params) {
 		String request = null;
-
+		if(courseId != null ){
 		request = APIConnectionConstants.API
-				+ APIConnectionConstants.API_VOTE_FOR_TEACHER + "/" + teacherId;
+				+ APIConnectionConstants.API_VOTE_FOR_COURSE;
+		} else {
+			request = APIConnectionConstants.API
+					+ APIConnectionConstants.API_VOTE_FOR_COURSE + "/" + courseId;
+		}
 
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
 
 		/* Set Authentication token in header */
-		// get.addHeader(APIConnectionConstants.AUTHENTICATION,
-		// APIConnectionConstants.BASIC + " " + auth);
+//		get.addHeader(APIConnectionConstants.AUTHENTICATION,
+//				APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
 		ArrayList<Votes> mList;

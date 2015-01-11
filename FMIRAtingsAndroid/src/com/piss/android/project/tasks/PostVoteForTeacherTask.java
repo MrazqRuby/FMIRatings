@@ -26,9 +26,9 @@ import org.json.JSONObject;
 
 import com.piss.android.project.utils.APIConnectionConstants;
 
-
 public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
-	
+
+	private String auth;
 	private long teacherId;
 	private int userId;
 	private int clarity;
@@ -37,9 +37,11 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 	private int speed;
 	private int scope;
 	private String comment;
-	
-	public PostVoteForTeacherTask(long teacherId, int userId, int clarity, int enthusiasm, int evaluation, int speed, 
-			int scope, String comment){
+
+	public PostVoteForTeacherTask(String auth, long teacherId, int userId,
+			int clarity, int enthusiasm, int evaluation, int speed, int scope,
+			String comment) {
+		this.auth = auth;
 		this.teacherId = teacherId;
 		this.userId = userId;
 		this.clarity = clarity;
@@ -48,53 +50,55 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 		this.evaluation = evaluation;
 		this.scope = scope;
 	}
-	
+
 	@Override
 	protected Boolean doInBackground(Void... params) {
-		
+
 		HttpClient client = new DefaultHttpClient();
-		String url = APIConnectionConstants.API + APIConnectionConstants.API_VOTE_FOR_TEACHER;
+		String url = APIConnectionConstants.API
+				+ APIConnectionConstants.API_VOTE_FOR_TEACHER;
 		JSONObject json = new JSONObject();
 		HttpResponse response = null;
 		HttpPost httpPost;
-		//List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		// List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		try {
 			httpPost = new HttpPost(url);
-			 json.put(APIConnectionConstants.TEACHER_ID,  teacherId);
-             json.put(APIConnectionConstants.USERID_JSON, userId);
-             json.put(APIConnectionConstants.ENTHUSUASM, enthusiasm);
-             json.put(APIConnectionConstants.CLARITY_JSON, clarity);
-             json.put(APIConnectionConstants.EVALUATION, evaluation);
-             json.put(APIConnectionConstants.SCOPE, scope);
-             json.put(APIConnectionConstants.SPEED, speed);
-             json.put(APIConnectionConstants.COMMENT_JSON, comment);
-             
-             Log.i("DEBUG", json.toString());
-             
-             StringEntity se = new StringEntity( json.toString());  
-            
-//			nameValuePairs.clear();
-//			
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.TEACHER_ID, String.valueOf(teacherId)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.USER_ID, String.valueOf(userId)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.ENTHUSUASM, String.valueOf(enthusiasm)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.CLARITY, String.valueOf(clarity)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.EVALUATION, String.valueOf(evaluation)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.SCOPE, String.valueOf(scope)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.SPEED, String.valueOf(speed)));
-//			nameValuePairs.add(new BasicNameValuePair(
-//					APIConnectionConstants.COMMENT, comment));
-			
-			//httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			 se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-			 httpPost.setEntity(se);
+			json.put(APIConnectionConstants.TEACHER_ID, teacherId);
+			json.put(APIConnectionConstants.USERID_JSON, userId);
+			json.put(APIConnectionConstants.ENTHUSUASM, enthusiasm);
+			json.put(APIConnectionConstants.CLARITY_JSON, clarity);
+			json.put(APIConnectionConstants.EVALUATION, evaluation);
+			json.put(APIConnectionConstants.SCOPE, scope);
+			json.put(APIConnectionConstants.SPEED, speed);
+			json.put(APIConnectionConstants.COMMENT_JSON, comment);
+
+			Log.i("DEBUG", json.toString());
+
+			StringEntity se = new StringEntity(json.toString());
+			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,APIConnectionConstants.BASIC + " " + auth);
+			// nameValuePairs.clear();
+			//
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.TEACHER_ID, String.valueOf(teacherId)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.USER_ID, String.valueOf(userId)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.ENTHUSUASM, String.valueOf(enthusiasm)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.CLARITY, String.valueOf(clarity)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.EVALUATION, String.valueOf(evaluation)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.SCOPE, String.valueOf(scope)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.SPEED, String.valueOf(speed)));
+			// nameValuePairs.add(new BasicNameValuePair(
+			// APIConnectionConstants.COMMENT, comment));
+
+			// httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+					"application/json"));
+			httpPost.setEntity(se);
 
 			try {
 				response = client.execute(httpPost);
@@ -112,10 +116,10 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 				jsonResponse = EntityUtils.toString(response.getEntity());
 				JSONObject jsonObj = new JSONObject(jsonResponse);
 
-				int code = (int) jsonObj.getJSONObject(
-						APIConnectionConstants.STATUS).getLong(
-						APIConnectionConstants.CODE);
-
+				
+				int code = response.getStatusLine().getStatusCode();
+				Log.d("DEBUG","code: " +code);
+				Log.d("DEBUG", jsonResponse);
 				if (code != 200 && code != 201) {
 					return false;
 				}
