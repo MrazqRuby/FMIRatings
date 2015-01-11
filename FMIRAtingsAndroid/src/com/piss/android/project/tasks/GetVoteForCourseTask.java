@@ -9,6 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,18 +20,18 @@ import com.piss.android.project.models.Votes;
 import com.piss.android.project.utils.APIConnectionConstants;
 
 public class GetVoteForCourseTask extends AsyncTask<Void, Void, ArrayList<Votes>> {
-	private String auth;
+//	private String auth;
 	private String courseId;
 
-	public GetVoteForCourseTask(String auth, String courseId) {
-		this.auth = auth;
+	public GetVoteForCourseTask(String courseId) {
+		//this.auth = auth;
 		this.courseId = courseId;
 	}
 
 	@Override
 	protected ArrayList<Votes> doInBackground(Void... params) {
 		String request = null;
-		if(courseId != null ){
+		if(courseId == null ){
 		request = APIConnectionConstants.API
 				+ APIConnectionConstants.API_VOTE_FOR_COURSE;
 		} else {
