@@ -4,10 +4,61 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="container-fluid inner-container">
-    <h3>Дай своята оценка</h3>
-</div>
-<div class = "container-fluid inner-container" id="discipline-ratings-table-container">
+
+<div ng-hide="vote" class = "container-fluid inner-container" id="discipline-ratings-table-container">
+    <div class="container-fluid inner-container">
+        <h3>Дай своята оценка</h3>
+    </div>
+    <form class="form-inline center">
+        <div class="form-group rate-group">
+            <label for="helpfulness">Полезност</label>
+            <input type="number" name="helpfulness" id="helpfulness" class="rating" 
+                   data-empty-value="4"
+                   data-max="5" data-min="1"
+                   data-active-icon="glyphicon glyphicon-star" 
+                   data-inactive-icon="glyphicon glyphicon-star-empty"/>
+        </div>
+        <div class="form-group rate-group">
+            <label for="easyness">Леснота</label>
+            <input type="number" name="easyness" id="easyness" class="rating" 
+                   data-empty-value="4"
+                   data-max="5" data-min="1"
+                   data-active-icon="glyphicon glyphicon-star" 
+                   data-inactive-icon="glyphicon glyphicon-star-empty"/>
+        </div>
+        <div class="form-group rate-group">
+            <label for="interesting">Интерес</label>
+            <input type="number" name="interesting" id="interesting" class="rating" 
+                   data-empty-value="4"
+                   data-max="5" data-min="1"
+                   data-active-icon="glyphicon glyphicon-star" 
+                   data-inactive-icon="glyphicon glyphicon-star-empty"/>
+        </div>
+        <div class="form-group rate-group">
+            <label for="hardness">Натовареност</label>
+            <input type="number" name="hardness" id="hardness" class="rating" 
+                   data-empty-value="4"
+                   data-max="5" data-min="1"
+                   data-active-icon="glyphicon glyphicon-star" 
+                   data-inactive-icon="glyphicon glyphicon-star-empty"/>
+        </div>
+        <div class="form-group rate-group">
+            <label for="clearance">Яснота</label>
+            <input type="number" name="clearance" id="clearance" class="rating" 
+                   data-empty-value="4" 
+                   data-max="5" data-min="1"
+                   data-active-icon="glyphicon glyphicon-star" 
+                   data-inactive-icon="glyphicon glyphicon-star-empty"/>
+        </div>
+
+        <div class="form-group rate-group">
+            <textarea class="form-control" rows="3" cols="100"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Оцени</button>
+        </div>
+    </form>
 
 </div>
 
@@ -15,5 +66,10 @@ and open the template in the editor.
     <h3>Коментари</h3>
 </div>
 <div class="container-fluid inner-container" id="discipline-comments-container">
-
+    <div class="panel panel-default">
+        <blockquote>
+            <p>WoW it's absolutely awesome course. Love it <3<3<3 </p>
+            <footer>sladka7a_kifli4ka <cite title="Date">23.05.2014</cite></footer>
+        </blockquote>
+    </div>
 </div>
