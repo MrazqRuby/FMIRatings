@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.adapters.CommentsAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Comment;
@@ -33,6 +34,7 @@ public class ComentsFragment extends Fragment{
 		ListView myListView = (ListView) rootView.findViewById(R.id.list_view);
 		CommentsAdapter myAdapter = new CommentsAdapter(comments, getActivity());
 		myListView.setAdapter(myAdapter);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle("Коментари");
 		return rootView;
 	}
 }
