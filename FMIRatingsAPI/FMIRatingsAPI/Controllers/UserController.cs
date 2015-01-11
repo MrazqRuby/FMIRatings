@@ -92,6 +92,8 @@ namespace FMIRatingsAPI.Controllers
                 {
                     Trace.WriteLine(file.Headers.ContentDisposition.FileName);
                     Trace.WriteLine("Server file path: " + file.LocalFileName);
+                    var realRoot = System.Web.VirtualPathUtility.ToAbsolute(root);
+                    System.IO.File.Copy(file.LocalFileName, realRoot + "/" + file.Headers.ContentDisposition.FileName);
                 }
                 return Ok();
             }
