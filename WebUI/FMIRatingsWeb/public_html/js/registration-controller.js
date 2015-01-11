@@ -55,7 +55,8 @@ fmiRatingsApp.controller("LoginCtrl", ["$scope", "$http", function ($scope, $htt
                 }
             }).success(function (data) {
                 $scope.data = data;
-                localStorage.setItem("authentication", auth);
+                localStorage.setItem("authentication", 'Basic' + ' ' + data);
+                debugger
                 window.location.assign("/FMIRatingsWeb/home-page.html");
             }).error(function (status) {
                 $scope.status = status;

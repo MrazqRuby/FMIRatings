@@ -259,11 +259,11 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             $scope.rating.TeacherId = $scope.dataTeacher.id;
             var rating = $scope.rating;
 
-            var auth = "Basic " + localStorage.getItem("authentication");
+            var auth = + localStorage.getItem("authentication");
             console.log(auth);
             $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
-                url: 'http://95.111.16.46:6420/api/VoteForCourse/PostVoteForCourse',
+                url: 'http://95.111.16.46:6420/api/VoteForTeacher/PostVoteForTeacher',
                 method: "POST",
                 data: rating,
                 xhrFields: {
