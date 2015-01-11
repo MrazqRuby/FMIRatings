@@ -81,8 +81,16 @@ and open the template in the editor.
             <div id="body-wrapper" class = "row" ng-view>
 
             </div>
-            
+
             <div ng-controller="searchController" class="navbar-form navbar-left">
+                <form ng-submit="search(searchText)" class="css-form">
+                    <div class="form-group">
+                        <input type="search" class="form-control" value="text" value="type" placeholder="Търси" ng-model="searchText">
+                    </div>
+                    <input type="submit" value="Search">
+
+
+                </form>
 
                 <div id="search-results-container">
                     <div class="search-results-section">
@@ -115,16 +123,10 @@ and open the template in the editor.
                         <div ng-show="!teachersSearchResults.length">Няма намерени преподаватели</div>
                     </div>
                 </div>
-                <form ng-submit="search(searchText)" class="css-form">
-                    <div class="form-group">
-                        <input type="search" class="form-control" value="text" value="type" placeholder="Търси" ng-model="searchText">
-                    </div>
-                    <input type="submit" value="Search">
 
-
-                </form>
             </div>
         </div>
+
         <!--        <script src="js/navigation/teachers.js"></script>
                 <script src="js/navigation/disciplines.js"></script>-->
     </body>
