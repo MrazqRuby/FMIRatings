@@ -12,18 +12,19 @@ import android.widget.TextView;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Comment;
 
-public class CommentsAdapter extends BaseAdapter{
+public class CommentsAdapter extends BaseAdapter {
 	private ArrayList<Comment> mDataSet;
 	private LayoutInflater inflater;
-	
-	public CommentsAdapter(ArrayList<Comment> mDataSet, Context mContext){
+
+	public CommentsAdapter(ArrayList<Comment> mDataSet, Context mContext) {
 		this.mDataSet = mDataSet;
 		inflater = (LayoutInflater) mContext
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
+
 	@Override
 	public int getCount() {
-		
+
 		return mDataSet.size();
 	}
 
@@ -48,11 +49,15 @@ public class CommentsAdapter extends BaseAdapter{
 
 		if (view == null) {
 
-			view = inflater.inflate(R.layout.recyclerview_item, null);
+			view = inflater.inflate(R.layout.comment_item_layout, null);
 			holder = new ViewHolder();
 
-			// name
-			holder.name = (TextView) view.findViewById(R.id.item_name);
+			// author
+			holder.author = (TextView) view.findViewById(R.id.author);
+			// date
+			holder.date = (TextView) view.findViewById(R.id.date);
+			// comment
+			holder.comment = (TextView) view.findViewById(R.id.comment);
 
 			view.setTag(holder);
 
@@ -61,11 +66,16 @@ public class CommentsAdapter extends BaseAdapter{
 		}
 
 		// populate category data
-		holder.name.setText(comment.getAuthor());
+		holder.author.setText(comment.getAuthor());
+		holder.date.setText(comment.getDate());
+		holder.comment.setText(comment.getText());
+		
 		return view;
 	}
 
-	private static class ViewHolder{
-		TextView name;
+	private static class ViewHolder {
+		TextView author;
+		TextView date;
+		TextView comment;
 	}
 }

@@ -11,9 +11,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.piss.android.project.tasks.*;
-
 import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.tasks.PostVoteForTeacherTask;
 
 public class VoteForTeacherFragment extends Fragment {
 

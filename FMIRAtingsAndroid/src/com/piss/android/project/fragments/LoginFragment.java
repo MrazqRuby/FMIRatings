@@ -1,6 +1,9 @@
 package com.piss.android.project.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,7 @@ import com.piss.android.project.activities.LoginActivity;
 import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.LoginTask;
+import com.piss.android.project.utils.APIConnectionConstants;
 
 public class LoginFragment extends Fragment {
 
@@ -38,7 +42,7 @@ public class LoginFragment extends Fragment {
 
 				// Check if pass and name is empty
 				if (name.getText().equals("")) {
-					name.setError("Въведете имейл!");
+					name.setError("Въведете име!");
 					return;
 				}
 				if (password.getText().equals("")) {
@@ -46,16 +50,28 @@ public class LoginFragment extends Fragment {
 					return;
 				}
 
-				// TODO: execute login task
+				//Execute login task
 				LoginTask login = new LoginTask(name.getText().toString(),
 						password.getText().toString()) {
 
 							@Override
-							protected void onPostExecute(Boolean result) {
-								if(result){
-									Intent i = new Intent( getActivity(),MainActivity.class);
+							protected void onPostExecute(String result) {
+								if(result!=null){
+									//Save user name , password and auth token in app prefs
+									SharedPreferences settings = getActivity().getSharedPreferences(APIConnectionConstants.PREFERENCES, Activity.MODE_PRIVATE);
+									Editor editor = settings.edit();
+									editor.putString(APIConnectionConstants.USER_NAME, name.getText().toString());
+									editor.putString(APIConnectionConstants.PASSWORD, password.getText().toString());
+									editor.putString(APIConnectionConstants.AUTHENTICATION, result);
+									editor.commit();									
+									
+									
+									//Start MainActivity 
+									Intent i = new Intent(getActivity() , MainActivity.class);
 									getActivity().startActivity(i);
+									((LoginActivity) getActivity()).removeFragmentsInclusive(LoginFragment.class.getSimpleName());
 									getActivity().finish();
+									
 								}else{
 									Toast.makeText(getActivity(), "Server error", Toast.LENGTH_SHORT).show();
 								}

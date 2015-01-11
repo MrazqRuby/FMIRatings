@@ -1,6 +1,7 @@
 package com.piss.android.project.activities;
 
 import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.fragments.InitialFragment;
 import com.piss.android.project.fragments.RegistrationFragment;
 
 import android.app.Activity;
@@ -20,7 +21,9 @@ public class LoginActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		Fragment fragment = new RegistrationFragment();
+		
+		
+		Fragment fragment = new InitialFragment();
 		addFragment(fragment);
 		
 	}
@@ -41,15 +44,24 @@ public class LoginActivity extends FragmentActivity {
 		transaction.commit();
 	}
 	
-	
+	public void removeFragmentsInclusive(String name) {
+		if (isFinishing()) {
+			return;
+		}
+		getFragmentManager().popBackStack(name,
+				FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		
+
+		// backPressed = true;
+	}
 	@Override
 	public void onDestroy(){
-		FragmentManager fragmentManager = getSupportFragmentManager();
+		//FragmentManager fragmentManager = getSupportFragmentManager();
 		//Remove all fragments before adding new 
-		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
-		if (fragmentManager.getBackStackEntryCount() > 0) {
-			fragmentManager.popBackStack();
-		}
+	//	Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
+//		if (fragmentManager.getBackStackEntryCount() > 0) {
+//			fragmentManager.popBackStack();
+//		}
 		super.onDestroy();
 	}
 }

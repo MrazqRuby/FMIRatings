@@ -1,5 +1,10 @@
 package com.piss.android.project.fragments;
 
+
+import java.io.Serializable;
+
+import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Teacher;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +25,7 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 	public static TeacherFragment getInstance(Teacher teacher) {
 		TeacherFragment fragment = new TeacherFragment();
 		Bundle args = new Bundle();
-		args.putSerializable(TEACHER, teacher);
+		args.putSerializable(TEACHER, (Serializable) teacher);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -30,14 +35,15 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater
 				.inflate(R.layout.teacher_fragment_layout, null);
-		Button  vote = (Button) rootView.findViewById(R.id.vote_button);
-		Button  comments = (Button) rootView.findViewById(R.id.comments_button);
-		Button  courses = (Button) rootView.findViewById(R.id.courses_button);
-		
+		Button vote = (Button) rootView.findViewById(R.id.vote_button);
+		Button comments = (Button) rootView.findViewById(R.id.comments_button);
+		Button courses = (Button) rootView.findViewById(R.id.courses_button);
+
 		vote.setOnClickListener(this);
 		comments.setOnClickListener(this);
 		courses.setOnClickListener(this);
-		
+
+		((MainActivity) getActivity()).setUpNavigationToolbar();
 		return rootView;
 	}
 
@@ -49,11 +55,15 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 
 			break;
 		case R.id.comments_button:
-
+			Teacher teacher = ((Teacher) getArguments().getSerializable(TEACHER));
+			ComentsFragment comments = ComentsFragment.getInstance(teacher.getComments());
+			((MainActivity) getActivity()).addFragment(comments);
 			break;
 		case R.id.vote_button:
-			long teacherID = ((Teacher)getArguments().getSerializable(TEACHER)).getId();
-			VoteForTeacherFragment fragment = VoteForTeacherFragment.instance(teacherID);
+			long teacherID = ((Teacher) getArguments().getSerializable(TEACHER))
+					.getId();
+			VoteForTeacherFragment fragment = VoteForTeacherFragment
+					.instance(teacherID);
 			((MainActivity) getActivity()).addFragment(fragment);
 			break;
 		default:
