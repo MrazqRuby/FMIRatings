@@ -257,47 +257,60 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
 
 });
 
-app.controller('FileUploadCtrl', function($scope, $http) {
-    $scope.setFiles = function(element) {
-        $scope.$apply(function(scope) {
-        console.log('files:', element.files);
-        // Turn the FileList object into an Array
-        $scope.files = []
-        for (var i = 0; i < element.files.length; i++) {
-          $scope.files.push(element.files[i])
-        }
-        $scope.showUploadButton = true;
-        $scope.progressVisible = false;
-        console.log("file is vissible");
+app.controller('FileUploadCtrl', function ($scope, $http) {
+    $scope.setFiles = function (element) {
+        $scope.$apply(function (scope) {
+            console.log('files:', element.files);
+            // Turn the FileList object into an Array
+            $scope.files = []
+            for (var i = 0; i < element.files.length; i++) {
+                $scope.files.push(element.files[i])
+            }
+            $scope.showUploadButton = true;
+            $scope.progressVisible = false;
+            console.log("file is vissible");
         });
     };
 
-    $scope.uploadFile = function(courseId) {
+    $scope.uploadFile = function (courseId) {
 
         var filesData = {};
         filesData["courseId"] = courseId;
         filesData["fileName"] = $scope.files[0];
         $scope.progressVisible = true
-        $http({
-            url: 'http://95.111.16.46:6420/api/users/upload',
-            method: "POST",
-            data: filesData,
-            xhrFields: {
-                withCredentials: true
-            },
-//                headers: {"Authentication": localStorage.getItem("authentication")}
-        }).success(function (data) {
-            debugger;
-            alert("Файлът е качен.")
-        }).error(function (data) {
+        var fd = new FormData();
+        fd.append('fileName', $scope.files[0]);
+        fd.append('courseId',courseId);
+        $http.post('http://95.111.16.46:6420/api/users/upload', fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(data){
             debugger
-            $scope.status = status;
-            alert("Неуспешно качване на файла.")
+        })
+        .error(function(data){
+            debugger
         });
+//        $http({
+//            url: 'http://95.111.16.46:6420/api/users/upload',
+//            method: "POST",
+//            data: filesData,
+//            xhrFields: {
+//                withCredentials: true
+//            },
+//            headers: {"Content-type": "multipart/form-data; boundary=---------------------------41184676334"}
+//        }).success(function (data) {
+//            debugger;
+//            alert("Файлът е качен.")
+//        }).error(function (data) {
+//            debugger
+//            $scope.status = status;
+//            alert("Неуспешно качване на файла.")
+//        });
     }
 
     function uploadProgress(evt) {
-        $scope.$apply(function(){
+        $scope.$apply(function () {
             if (evt.lengthComputable) {
                 $scope.progress = Math.round(evt.loaded * 100 / evt.total)
             } else {
@@ -316,7 +329,7 @@ app.controller('FileUploadCtrl', function($scope, $http) {
     }
 
     function uploadCanceled(evt) {
-        $scope.$apply(function(){
+        $scope.$apply(function () {
             $scope.progressVisible = false
         })
         alert("The upload has been canceled by the user or the browser dropped the connection.")
