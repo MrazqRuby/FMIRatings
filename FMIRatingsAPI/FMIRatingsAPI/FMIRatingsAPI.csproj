@@ -174,7 +174,11 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authentication\UserPrincipal.cs" />
     <Compile Include="Controllers\CourseCategoriesController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\StatisticController.cs" />
+=======
+    <Compile Include="Controllers\FileController.cs" />
+>>>>>>> 02bbcc42b526a4273f8b04fdfea7ba951cd498a9
     <Compile Include="Controllers\TeacherDepartmentsController.cs" />
     <Compile Include="Controllers\VoteForTeacherController.cs" />
     <Compile Include="Controllers\CourseCommentsController.cs">

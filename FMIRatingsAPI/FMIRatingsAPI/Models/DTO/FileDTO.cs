@@ -10,6 +10,5 @@ namespace FMIRatingsAPI.Models.DTO
     {
         public string Filename { get; set; }
         public int CourseId { get; set; }
-        public byte[] data { get; set; }
     }
 }

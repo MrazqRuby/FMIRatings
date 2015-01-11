@@ -117,11 +117,11 @@ namespace FMIRatingsAPI.Controllers
             Course course = db.Courses.Where(c => c.Id == voteForCourse.CourseId).FirstOrDefault();
 
             // Запазваме ID на критериите
-            int ClarityID = db.CriteriaForCourses.First(c => c.Name == "Полезност").Id;
-            int WorkloadID = db.CriteriaForCourses.First(c => c.Name == "Яснота").Id;
-            int UsefulnessID = db.CriteriaForCourses.First(c => c.Name == "Интерес").Id;
-            int SimplicityID = db.CriteriaForCourses.First(c => c.Name == "Натовареност").Id;
-            int InterestID = db.CriteriaForCourses.First(c => c.Name == "Леснота").Id;
+            int UsefulnessID = db.CriteriaForCourses.First(c => c.Name == "Полезност").Id;
+            int ClarityID = db.CriteriaForCourses.First(c => c.Name == "Яснота").Id;
+            int InterestID = db.CriteriaForCourses.First(c => c.Name == "Интерес").Id;
+            int WorkloadID = db.CriteriaForCourses.First(c => c.Name == "Натовареност").Id;
+            int SimplicityID = db.CriteriaForCourses.First(c => c.Name == "Леснота").Id;
 
             //Дали потребителя е гласувал за този курс по параметър
             int userId = UserManager.GetCurrentUser().Id;
