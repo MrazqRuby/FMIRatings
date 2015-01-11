@@ -37,7 +37,7 @@ and open the template in the editor.
                                 <div id="{{course.id}}course" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{course.name}}">
                                     <div class="panel-body">
                                         <p>{{course.description}}</p>
-                                        <button class="btn btn-primary pull-right discipline-open" type="submit">Виж курса</button>
+                                        <button class="btn btn-primary pull-right discipline-open" type="button" ng-click="showCourse(course.id)">Виж курса</button>
                                     </div>
                                 </div>
                             </div>
@@ -52,6 +52,6 @@ and open the template in the editor.
 
     </div>
 </div>
-<!--<script src="js/navigation/disciplines.js"></script>-->
+<script src="js/navigation/disciplines.js"></script>
 <!--<script src='js/controller.js'></script>-->
 

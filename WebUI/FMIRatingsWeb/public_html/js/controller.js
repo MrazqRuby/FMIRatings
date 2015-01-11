@@ -16,6 +16,25 @@ fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $h
                 }).error(function (data) {
                     $scope.status = status;
                 });
+                
+                $scope.showCourse = function (courseId){
+                    debugger;
+                    $http({
+                    url: 'http://95.111.16.46:6420/api/courses/' + courseId,
+                    method: "GET",
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                    
+                }).success(function (data) {
+                    debugger;
+                    $scope.dataCourse = data;
+
+                }).error(function (data) {
+                    debugger;
+                    $scope.statusCourse = data;
+                });
+                }
 
 }]);
 
