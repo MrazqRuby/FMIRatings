@@ -8,6 +8,8 @@
 var START_PAGE = "start-page";
 var EXIT = "nonregistered-user-homepage";
 var DISCIPLINES_LIST = "disciplines-list-page";
+var TEACHERS_LIST = "teachers-list-page";
+
 
 //$(document).ready(function () {
 
@@ -29,13 +31,18 @@ app.config(function ($routeProvider) {
 
             // route for the teacher page
             .when('/teachers-list-page', {
-                templateUrl: 'navbar-html/teachers.html',
+                templateUrl: 'navbar-html/teachers-list-page.html',
                 controller: 'teachersController'
             })
 
             .when('/discipline-details/:id', {
                 templateUrl: 'navbar-html/discipline-details/discipline-details.html',
                 controller: 'disciplineDetailsController'
+            });
+
+            .when('/teacher-details/:id', {
+                templateUrl: 'navbar-html/teacher-details/teacher-details.html',
+                controller: 'teacherDetailsController'
             });
 });
 
@@ -82,8 +89,41 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
 });
 
 app.controller('teachersController', function ($scope) {
-    $scope.message = 'Contact us! JK. This is just a demo.';
+    $ $http({
+        url: 'http://95.111.16.46:6420/api/teacherdepartments',
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+
+    }).success(function (data) {
+        $scope.departments = data;
+
+    }).error(function (data) {
+        $scope.status = status;
+    });
+
+    $scope.message = 'Look! I am an teacher page.';
 });
+
+app.controller('teacherDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
+    //If you want to use URL attributes before the website is loaded
+     $http({
+            url: 'http://95.111.16.46:6420/api/teachers/' + $routeParams.id,
+            method: "GET",
+            xhrFields: {
+                withCredentials: true
+            }        
+        }).success(function (data) {
+            debugger;
+            $scope.dataTeacher = data;
+        }).error(function (data) {
+            debugger;
+            $scope.statusCourse = data;
+        });
+});
+
+
 //
 //app.controller("MainCtrl",["$scope", "$location", function($scope, $location) {
 //  $scope.menuClass = function(page) {
