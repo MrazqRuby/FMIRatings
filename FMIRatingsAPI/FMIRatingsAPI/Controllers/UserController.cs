@@ -12,12 +12,15 @@ using System.Web.Http.Description;
 using System.Net.Http;
 using System.Net;
 using System.Diagnostics;
+using FMIRatingsAPI.DAL;
 
 namespace FMIRatingsAPI.Controllers
 {
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
+        private FMIRatingsContext db = new FMIRatingsContext();
+
         /// <summary>
         /// This method creates a user with the supplied credentials on the server,
         /// or returns 409 Conflict if a user with those credentials exists
@@ -70,31 +73,39 @@ namespace FMIRatingsAPI.Controllers
         /// <returns>The token</returns>
         [HttpPost]
         [Route("upload")]
-        [ResponseType(typeof(string))]
         [AuthenticationFilter]
-        public IHttpActionResult UploadFile()
+        public async Task<IHttpActionResult> UploadFile()
         {
             string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            
             var provider = new MultipartFormDataStreamProvider(root);
-
             try
             {
                 // Read the form data.
-                Request.Content.ReadAsMultipartAsync(provider);
+                await Request.Content.ReadAsMultipartAsync(provider);
 
                 // This illustrates how to get the file names.
+                int courseId = 0;
                 foreach (string key in provider.FormData.AllKeys)
 	            {
-                    Trace.WriteLine(key);      
+                    if (key.Equals("CourseId", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        courseId = int.Parse(provider.FormData[key]);
+                    }
 	            } 
 
                 foreach (MultipartFileData file in provider.FileData)
                 {
-                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
-                    Trace.WriteLine("Server file path: " + file.LocalFileName);
-                    var realRoot = System.Web.VirtualPathUtility.ToAbsolute(root);
-                    System.IO.File.Copy(file.LocalFileName, realRoot + "/" + file.Headers.ContentDisposition.FileName);
+                    File newUpload = new File
+                    {
+                        CourseId = courseId,
+                        Path = file.LocalFileName,
+                        Filename = file.Headers.ContentDisposition.FileName,
+                        UserId = UserManager.GetCurrentUser().Id
+                    };
+                    db.Files.Add(newUpload);
                 }
+                db.SaveChanges();
                 return Ok();
             }
             catch (System.Exception e)

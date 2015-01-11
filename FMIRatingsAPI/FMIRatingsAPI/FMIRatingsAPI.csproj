@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201501101920482_Add group column to user table.Designer.cs">
       <DependentUpon>201501101920482_Add group column to user table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501111620417_Add filename to Files table.cs" />
+    <Compile Include="Migrations\201501111620417_Add filename to Files table.Designer.cs">
+      <DependentUpon>201501111620417_Add filename to Files table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -366,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501101920482_Add group column to user table.resx">
       <DependentUpon>201501101920482_Add group column to user table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111620417_Add filename to Files table.resx">
+      <DependentUpon>201501111620417_Add filename to Files table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

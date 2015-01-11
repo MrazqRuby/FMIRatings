@@ -11,6 +11,7 @@ namespace FMIRatingsAPI.Models
     {
         public int Id { get; set; }
         public string Path { get; set; }
+        public string Filename { get; set; }
         public int UserId { get; set; }
         public int CourseId { get; set; }
 
