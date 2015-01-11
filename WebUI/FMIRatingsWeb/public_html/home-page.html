@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html data-ng-app="fmiRatingsApp">
+<html >
     <head>
         <title>FMI Ratings</title>
         <meta charset="utf-8">
@@ -17,16 +17,21 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+        <!--        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+                <script src="https://code.angularjs.org/1.2.1/angular-route.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
         <script src="js/vendor/jquery/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        
+
         <script src="js/navigation/navbar.js"></script>
-        <!--<script src="bower_components/angular/angular.js"></script>-->
-        <script src="js/controller.js"></script>
-    </head>
-    <body ng-app="fmiRatingsApp">
         
+        
+        <!--<script src="bower_components/angular/angular.js"></script>-->
+        <!--<script src="js/controller.js"></script>-->
+    </head>
+    <body ng-app="fmiRatingsApp"  ng-controller="mainController">
+
         <div class="container-fluid">
 
             <!--Menu-->
@@ -48,9 +53,9 @@ and open the template in the editor.
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#start-page">Начало <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#disciplines-list-page">Курсове</a></li>
-                            <li><a href="#teachers-list-page">Преподаватели</a></li>
+                            <li ng-class="menuClass('start-page')" class="active"><a href="#start-page">Начало <span class="sr-only">(current)</span></a></li>
+                            <li ng-class="menuClass('disciplines')"><a href="#disciplines-list-page">Курсове</a></li>
+                            <li ng-class="menuClass('teachers')"><a href="#teachers-list-page">Преподаватели</a></li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
@@ -64,15 +69,16 @@ and open the template in the editor.
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
-            
+
             <!--Body wrapper-->
-            
-            
-            <div id="body-wrapper" class = "row">
-                
+
+
+            <div id="body-wrapper" class = "row" ng-view>
+               <p> {{message}} </p>
+
             </div>
         </div>
-<!--        <script src="js/navigation/teachers.js"></script>
-        <script src="js/navigation/disciplines.js"></script>-->
+        <!--        <script src="js/navigation/teachers.js"></script>
+                <script src="js/navigation/disciplines.js"></script>-->
     </body>
 </html>

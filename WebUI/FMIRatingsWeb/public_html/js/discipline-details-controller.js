@@ -1,35 +1,6 @@
 
-var bootstrap = angular.module("Discipline-list", ['ui.bootstrap']);
-debugger;
-bootstrap.controller('AccordionCtrl', function ($scope) {
-  $scope.oneAtATime = true;
-
-  $scope.groups = [
-    {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1'
-    },
-    {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2'
-    }
-  ];
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-});
-
-//var fmiRatingsApp = angular.module('fmiRatingsApp', []);
-//
+var fmiRatingsApp = angular.module('app', []);
+//app2.controller();
 //fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $http) {
 //
 //    $scope.text = "stamo";
@@ -78,4 +49,4 @@ bootstrap.controller('AccordionCtrl', function ($scope) {
 //                }
 //
 //}]);
-//
+
