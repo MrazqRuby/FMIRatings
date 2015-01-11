@@ -205,6 +205,51 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
     }).error(function (data) {
         $scope.statusTeacherVotes = data;
     });
+<<<<<<< HEAD
+    var voteSum = 0;
+    for (var vote in $scope.votes) {
+        voteSum += vote.avarage;
+    }
+
+    $scope.showDetails = true;
+    $scope.showVote = false;
+    $scope.info = function (id) {
+        $scope.showDetails = !$scope.hideDetails;
+        $scope.showVote = false;
+    };
+    $scope.vote = function (id) {
+        $scope.showVote = !$scope.showVote;
+        $scope.showDetails = false;
+    };
+    $scope.rate = function () {
+        if (typeof $scope.rating !== 'undefined') {
+            $scope.rating.TeacherId = $scope.dataTeacher.id;
+            var rating = $scope.rating;
+
+    var auth = "Basic " + localStorage.getItem("authentication");
+    console.log(auth);
+    $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
+            $http({
+                url: 'http://95.111.16.46:6420/api/VoteForTeacher',
+                method: "POST",
+                data: rating,
+                xhrFields: {
+                    withCredentials: true
+                },
+//                headers: {"Authentication": localStorage.getItem("authentication")}
+            }).success(function (data) {
+                debugger
+                $scope.departments = data;
+                alert("Вашият глас е запазен.")
+            }).error(function (data) {
+                debugger
+                $scope.status = status;
+                alert("Вашият глас не е запазен. Вече сте гласували")
+            });
+        }
+    }
+=======
+>>>>>>> e8a1d7e6f79386dd5674484fa74991a91ffa8ab0
 
 //    if ($scope.votes.length > 0) {
 //        $scope.avarage = voteSum / $scope.votes.length;

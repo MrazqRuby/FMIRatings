@@ -85,12 +85,119 @@ and open the template in the editor.
 
     <!--teacher details-->
     <ul class="nav nav-tabs" id="teacher-tabs-nav">
-        <li role="presentation" class="active"><a href="#teacher-details-tab">Подробна информация</a></li>
-        <li role="presentation"><a href="#teacher-rating-tab">Оценка</a></li>
+        <button type="button" class="btn btn-default" ng-click="info(dataTeacher.id)">Подробна информация</button>
+        <button type="button" class="btn btn-default" ng-click="vote(dataTeacher.id)">Оценка</button>
     </ul>
 
-    <div class = "container-fluid inner-container" id="teacher-choosen-tab-container">
+    <div class = "container-fluid inner-container" id="teacher-choosen-tab-container">>
+        <div ng-show="showDetails" class="container-fluid inner-container">
+            <h3>Курсове:</h3>
+            <ul class="list-group">
+                <li ng-repeat="course in dataTeacher.courses" class="list-group-item">
+                    <a >{{course.name}}</a>
+                </li>
+            </ul>
+        </div>
 
+
+        <div ng-show="showVote" class="container-fluid inner-container">
+            <h3>Дай своята оценка</h3>
+
+            <div  class = "container-fluid inner-container" id="teacher-ratings-table-container">
+
+                <form class="form-inline center" ng-submit="rate()">
+                    <div class="form-group rate-group">
+                        <label for="Enthusiasm">Ентусиазъм</label>
+                        <div class="input-group">
+                           
+                            <select class="form-control" ng-model="rating.enthusiasm" id="enthusiasm"  >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>4</option>
+                            </select>        
+                        </div>
+
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="clarity">Яснота</label>
+                        <div class="input-group">
+                            
+                            <select class="form-control" ng-model="rating.clarity" id="clarity"  >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>4</option>
+                            </select>        
+                        </div>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="evaluation">Критерии на оценяване</label>
+                        <div class="input-group">
+                           
+                            <select class="form-control" ng-model="rating.evaluation" id="evaluation"  >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>4</option>
+                            </select>        
+                        </div>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="speed">Скорост на преподаване</label>
+                         <div class="input-group">
+                            
+                            <select class="form-control" ng-model="rating.speed" id="speed" >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>4</option>
+                            </select>        
+                        </div>
+                       
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="scope">Обхват на преподавания материал</label>
+                        <div class="input-group">
+                            
+                            <select class="form-control" ng-model="rating.scope" id="scope" >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>4</option>
+                            </select>        
+                        </div>
+
+                    </div>
+
+                    <div class="form-group rate-group">
+                        <textarea class="form-control" rows="3" cols="100" ng-model="rating.comment"></textarea>
+                    </div>
+
+                    <div class="form-group rate-group">
+                        <button type="submit" class="btn btn-primary" >Оцени</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="container-fluid inner-container">
+                <h3>Коментари</h3>
+            </div>
+            <div ng-repeat="comment in dataTeacher.comments" class="container-fluid inner-container" id="teacher-comments-container">
+                <div class="panel panel-default">
+                    <blockquote>
+                        <p>{{comment.text}}</p>
+                        <footer>{{comment.author}} <cite title="Date">{{comment.dateCreated}}</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
