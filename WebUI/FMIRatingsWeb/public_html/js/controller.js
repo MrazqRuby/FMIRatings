@@ -17,6 +17,7 @@ bootstrap.controller('AccordionCtrl', function ($scope) {
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
+
   $scope.addItem = function() {
     var newItemNo = $scope.items.length + 1;
     $scope.items.push('Item ' + newItemNo);
@@ -27,6 +28,39 @@ bootstrap.controller('AccordionCtrl', function ($scope) {
     isFirstDisabled: false
   };
 });
+
+// fmiRatingsApp.controller('TeachersCtrl', ["$scope", "$http", function ($scope, $http) {            
+//             $http({
+//                     url: 'http://95.111.16.46:6420/api/teacherdepartments',
+//                     method: "GET",
+//                     xhrFields: {
+//                         withCredentials: true
+//                     }
+                    
+//                 }).success(function (data) {
+//                     $scope.departments = data;
+
+//                 }).error(function (data) {
+//                     $scope.status = status;
+//                 });
+
+//             $scope.showTeacher = function (teacherId){
+//                 $http({
+//                     url: 'http://95.111.16.46:6420/api/teachers/' + teacherId,
+//                     method: "GET",
+//                     xhrFields: {
+//                         withCredentials: true
+//                     }
+                    
+//                 }).success(function (data) {
+//                     $scope.dataTeacher = data;
+
+//                 }).error(function (data) {
+//                     $scope.statusTeacher = data;
+//                 });
+//             }
+
+// }]);
 
 //var fmiRatingsApp = angular.module('fmiRatingsApp', []);
 //

@@ -22,7 +22,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row" >
+            <div class="row" ng-app = "registration" >
 
                 <div class="screen-center">      
 
@@ -41,21 +41,22 @@ and open the template in the editor.
                                     <h4 class="modal-title" id="myModalLabel">Вход</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form">
+                                    <form role="form" ng-controller="LoginCtrl" >
                                         <div class="form-group">
                                             <label for="email">Email адрес</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Въведи email" required>
+                                            <input type="email" class="form-control" id="email" placeholder="Въведи email" ng-model="loginFormInfo.Name"  required>
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">Парола</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Въведи парола" required>
+                                            <input type="password" class="form-control" id="password" placeholder="Въведи парола" ng-model="loginFormInfo.Password" required>
                                         </div>
                                         <!--                                        <div class="checkbox">
                                                                                     <label>
                                                                                         <input type="checkbox"> Check me out
                                                                                     </label>
                                                                                 </div>-->
-                                        <button type="submit" class="btn btn-primary">Вход</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="login()">Вход</button>
+                                    <span>{{loginFormInfo}}</span>
                                     </form>
                                 </div>
                             </div>
@@ -72,19 +73,19 @@ and open the template in the editor.
                                     <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form">
+                                    <form role="form" ng-controller="RegistrationCtrl" id="register-form">
                                         <div class="form-group">
                                             <label for="username">Потребителско име</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <input type="text" class="form-control" id="username" placeholder="Потребителско име" required>
+                                                <input type="text" class="form-control" id="username" ng-model="formInfo.UserName" placeholder="Потребителско име" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email адрес</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                                <input type="email" class="form-control" id="email" ng-model="formInfo.Name"  placeholder="Email" required>
                                             </div>
                                         </div>
 
@@ -93,15 +94,15 @@ and open the template in the editor.
                                             <label for="pass">Парола</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <input type="password" class="form-control" id="password" placeholder="Парола" required>
+                                                <input type="password" class="form-control" id="password" ng-model="formInfo.Password" placeholder="Парола" required>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">                                            
+                                        <div class="form-group">                                       
+                                            <label for="pass">Повтори парола</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <label for="pass">Повтори парола</label>
-                                                <input type="password" class="form-control" id="password" placeholder="Повтори парола" required>
+                                                <input type="password" class="form-control" id="password" ng-model="formInfo.RepeatPassword" placeholder="Повтори парола" required>
                                             </div>
                                         </div>
 
@@ -109,7 +110,7 @@ and open the template in the editor.
                                             <label for="course">Курс</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <select class="form-control" id="course"required >
+                                                <select class="form-control" ng-model="formInfo.Course" id="course" required >
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -122,7 +123,7 @@ and open the template in the editor.
                                             <label for="specialty">Специалност</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <select class="form-control" id="specialty" required>
+                                                <select class="form-control" id="specialty" ng-model="formInfo.Specialty" required>
                                                     <option>Спец.1</option>
                                                     <option>Спец.1</option>
                                                     <option>Спец.1</option>
@@ -133,20 +134,22 @@ and open the template in the editor.
 
                                         <div class="form-group">
                                             <label for="name">Име</label>
-                                            <input type="text" class="form-control" id="name" placeholder="Име">
+                                            <input type="text" class="form-control" id="name" ng-model="formInfo.RealName" placeholder="Име">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="group">Административна група</label>
-                                            <input type="text" class="form-control" id="group" placeholder="Административна група">
+                                            <input type="text" class="form-control" id="group" ng-model="formInfo.Group" placeholder="Административна група">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="graduation-year">Година на завършване</label>
-                                            <input type="text" class="form-control" id="graduation-year" placeholder="Година на завършване">
+                                            <input type="text" class="form-control" id="graduation-year" ng-model="formInfo.GraduationYear" placeholder="Година на завършване">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Регистрация</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="saveData()" id = "registerButton">Регистрация</button>
+
+                                        <span>{{formInfo}}</span>
                                     </form>
                                 </div>
                             </div>
@@ -157,6 +160,9 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+        <script src="js/registration-controller.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     </body>
 </html>
 

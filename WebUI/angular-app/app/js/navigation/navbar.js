@@ -6,6 +6,7 @@
 
 //page names constant
 var START_PAGE = "start-page";
+var EXIT = "nonregistered-user-homepage";
 var DISCIPLINES_LIST = "disciplines-list-page";
 
 $(document).ready(function () {
@@ -20,7 +21,7 @@ $(document).ready(function () {
         $("#start-page").html(function () {
             console.log("load start page");
             $("#start-page-carousel-div").load("navbar-html/carousel-component.html #carousel-generic");
-            $("#start-page-info-div").html("<b>This is div</b>");
+            $("#start-page-info-div").load("navbar-html/start-page-detailed-statistics.html");
         });
     }
 
@@ -39,6 +40,9 @@ $(document).ready(function () {
         $("#body-wrapper").load(page, function () {
             if (actualHrefText === START_PAGE) {
                 loadStartPage();
+            }
+            if (actualHrefText === EXIT){
+                localStorage.clear();
             }
         });
     });
