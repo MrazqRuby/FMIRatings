@@ -56,7 +56,7 @@ and open the template in the editor.
                                                                                     </label>
                                                                                 </div>-->
                                         <button type="submit" class="btn btn-primary">Вход</button>
-                                    <span>{{loginFormInfo}}</span>
+                         
                                     </form>
                                 </div>
                             </div>
@@ -78,14 +78,14 @@ and open the template in the editor.
                                             <label for="username">Потребителско име</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <input type="text" class="form-control" id="username" ng-model="formInfo.UserName" placeholder="Потребителско име" required>
+                                                <input type="text" class="form-control" id="username" ng-model="formInfo.Name" placeholder="Потребителско име" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email адрес</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <input type="email" class="form-control" id="email" ng-model="formInfo.Name"  placeholder="Email" required>
+                                                <input type="email" class="form-control" id="email" ng-model="formInfo.Email"  placeholder="Email" required>
                                             </div>
                                         </div>
 
@@ -123,12 +123,8 @@ and open the template in the editor.
                                             <label for="specialty">Специалност</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">*</div>
-                                                <select class="form-control" id="specialty" ng-model="formInfo.Specialty" required>
-                                                    <option>Спец.1</option>
-                                                    <option>Спец.1</option>
-                                                    <option>Спец.1</option>
-                                                    <option>Спец.1</option>
-                                                </select>    
+                                                 <input type="text" class="form-control" id="name" ng-model="formInfo.Major" placeholder="Специалност">
+                                                     
                                             </div>
                                         </div>
 

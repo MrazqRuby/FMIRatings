@@ -21,13 +21,11 @@ fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scop
                 debugger;
                 $scope.data = data;
                 $scope.registrationHide = true;
-
                 alert("Успешна регистрация!");
                 window.location.assign("/FMIRatingsWeb/nonregistered-user-homepage.html");
             }).error(function (data) {
-                debugger;
 
-                $scope.status = status;
+               $scope.status = status;
                 alert("Неуспешна регистрация!");
             });//               
         };

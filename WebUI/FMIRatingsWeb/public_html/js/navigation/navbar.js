@@ -148,7 +148,7 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
 //                headers: {"Authentication": localStorage.getItem("authentication")}
             }).success(function (data) {
                 debugger
-                $scope.departments = data;
+                $scope.result = data;
                 alert("Вашият глас е запазен.")
             }).error(function (data) {
                 debugger
