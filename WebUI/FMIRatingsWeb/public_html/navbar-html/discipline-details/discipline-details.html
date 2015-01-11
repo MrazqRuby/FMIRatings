@@ -24,7 +24,7 @@ and open the template in the editor.
                 <tr>
                     <td class="progress-label-td"><strong>Средна оценка:</strong></td>
                     <td>
-                        <strong>0,5</strong>
+                        <strong>{{sum / votes.votes.length}}</strong>
                     </td>
                 </tr>
                 <tr ng-repeat='vote in votes.votes'>
@@ -32,7 +32,7 @@ and open the template in the editor.
                     <td>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="{{vote.avarage}}" aria-valuemin="0" aria-valuemax="5" style="width: {{(vote.avarage / 5) * 100}}%">
-
+                                {{vote.avarage}}
                             </div>
                         </div>
                     </td>
@@ -76,7 +76,7 @@ and open the template in the editor.
                     <div class="form-group rate-group">
                         <label for="Usefulness">Полезност</label>
                         <div class="input-group">
-                           
+
                             <select class="form-control" ng-model="rating.usefulness" id="Usefulness"  >
                                 <option>1</option>
                                 <option>2</option>
@@ -90,7 +90,7 @@ and open the template in the editor.
                     <div class="form-group rate-group">
                         <label for="easyness">Леснота</label>
                         <div class="input-group">
-                            
+
                             <select class="form-control" ng-model="rating.simplicity" id="easyness"  >
                                 <option>1</option>
                                 <option>2</option>
@@ -103,7 +103,7 @@ and open the template in the editor.
                     <div class="form-group rate-group">
                         <label for="interesting">Интерес</label>
                         <div class="input-group">
-                           
+
                             <select class="form-control" ng-model="rating.interest" id="interesting"  >
                                 <option>1</option>
                                 <option>2</option>
@@ -115,8 +115,8 @@ and open the template in the editor.
                     </div>
                     <div class="form-group rate-group">
                         <label for="hardness">Натовареност</label>
-                         <div class="input-group">
-                            
+                        <div class="input-group">
+
                             <select class="form-control" ng-model="rating.workload" id="hardness" >
                                 <option>1</option>
                                 <option>2</option>
@@ -125,12 +125,12 @@ and open the template in the editor.
                                 <option>4</option>
                             </select>        
                         </div>
-                       
+
                     </div>
                     <div class="form-group rate-group">
                         <label for="clearance">Яснота</label>
                         <div class="input-group">
-                            
+
                             <select class="form-control" ng-model="rating.clarity" id="clearance" >
                                 <option>1</option>
                                 <option>2</option>

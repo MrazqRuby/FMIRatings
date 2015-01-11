@@ -4,17 +4,10 @@
  * and open the template in the editor.
  */
 
-
-
-//    localStorage.setItem("authentication", "dXNlcjp1c2Vy");
-    
     if(localStorage.getItem("authentication")){
         window.location.assign( "/FMIRatingsWeb/home-page.html");
-//        $().load("home-page.html");
     } else {
-//        $().load("nonregistered-user-homepage.html");
         window.location.assign("/FMIRatingsWeb/nonregistered-user-homepage.html");
-//        window.location.assign("http://www.w3schools.com")
     }
 
 

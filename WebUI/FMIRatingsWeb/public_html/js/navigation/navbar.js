@@ -14,9 +14,9 @@ var TEACHERS_LIST = "teachers-list-page";
 //$(document).ready(function () {
 
 var app = angular.module("fmiRatingsApp", ['ngRoute']);
-app.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("authentication");
-}]);
+app.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("authentication");
+    }]);
 app.config(function ($routeProvider) {
     $routeProvider
             // route for the home page
@@ -37,6 +37,11 @@ app.config(function ($routeProvider) {
                 controller: 'teachersController'
             })
 
+            .when('/exit', {
+                templateUrl: 'nonregistered-user-homepage.html',
+                controller: 'exitController'
+            })
+
             .when('/discipline-details/:id', {
                 templateUrl: 'navbar-html/discipline-details/discipline-details.html',
                 controller: 'disciplineDetailsController'
@@ -50,6 +55,12 @@ app.config(function ($routeProvider) {
 
 app.controller('mainController', function ($scope) {
     // create a message to display in our view
+    $scope.message = 'Everyone come and see how good I look!';
+});
+
+app.controller('exitController', function ($scope) {
+    // create a message to display in our view
+    localStorage.clear();
     $scope.message = 'Everyone come and see how good I look!';
 });
 
@@ -93,6 +104,11 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
 
     }).success(function (data) {
         $scope.votes = data;
+        debugger
+         $scope.sum = 0;
+        angular.forEach($scope.votes.votes, function (value, key) {
+            $scope.sum += value.avarage;
+        });
     }).error(function (data) {
         $scope.votesStatus = data;
     });
@@ -119,9 +135,9 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
             $scope.rating.CourseId = $scope.dataCourse.id;
             var rating = $scope.rating;
 
-var auth = "Basic " + localStorage.getItem("authentication");
-console.log(auth);
-$http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
+            var auth = "Basic " + localStorage.getItem("authentication");
+            console.log(auth);
+            $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
                 url: 'http://95.111.16.46:6420/api/VoteForCourse',
                 method: "POST",
@@ -183,10 +199,15 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
         }
     }).success(function (data) {
         $scope.votes = data.votes;
-        debugger
+        $scope.sum = 0;
+        angular.forEach($scope.votes, function (value, key) {
+            $scope.sum += value.avarage;
+        });
+
     }).error(function (data) {
         $scope.statusTeacherVotes = data;
     });
+<<<<<<< HEAD
     var voteSum = 0;
     for (var vote in $scope.votes) {
         voteSum += vote.avarage;
@@ -229,6 +250,8 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             });
         }
     }
+=======
+>>>>>>> e8a1d7e6f79386dd5674484fa74991a91ffa8ab0
 
 //    if ($scope.votes.length > 0) {
 //        $scope.avarage = voteSum / $scope.votes.length;
