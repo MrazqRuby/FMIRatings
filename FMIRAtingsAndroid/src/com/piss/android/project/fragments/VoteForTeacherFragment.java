@@ -17,9 +17,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.PostVoteForTeacherTask;
 import com.piss.android.project.utils.APIConnectionConstants;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class VoteForTeacherFragment extends Fragment {
 
@@ -98,7 +100,7 @@ public class VoteForTeacherFragment extends Fragment {
 
 			}
 		});
-
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.VOTE_TEACHER);
 		return rootView;
 	}
 }

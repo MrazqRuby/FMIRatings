@@ -14,6 +14,7 @@ import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.adapters.CommentsAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Comment;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class ComentsFragment extends Fragment{
 
@@ -34,7 +35,7 @@ public class ComentsFragment extends Fragment{
 		ListView myListView = (ListView) rootView.findViewById(R.id.list_view);
 		CommentsAdapter myAdapter = new CommentsAdapter(comments, getActivity());
 		myListView.setAdapter(myAdapter);
-		((MainActivity) getActivity()).getSupportActionBar().setTitle("Коментари");
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COMENTS);
 		return rootView;
 	}
 }

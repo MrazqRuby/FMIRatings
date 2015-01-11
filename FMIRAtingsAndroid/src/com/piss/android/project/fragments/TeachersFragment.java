@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.adapters.TeachersAdapter;
 import com.piss.android.project.adapters.TeachersNameAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Teacher;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class TeachersFragment  extends Fragment{
 
@@ -36,6 +38,7 @@ public class TeachersFragment  extends Fragment{
 		TeachersAdapter myAdapter = new TeachersAdapter(teachers, getActivity());
 		
 		myListView.setAdapter(myAdapter);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.TEACHERS);
 		return rootView;
 	}
 }

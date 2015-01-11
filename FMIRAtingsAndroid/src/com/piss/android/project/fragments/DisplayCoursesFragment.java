@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.adapters.CoursesAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class DisplayCoursesFragment extends Fragment {
 
@@ -32,6 +34,7 @@ public class DisplayCoursesFragment extends Fragment {
 		ListView myListView = (ListView) rootView.findViewById(R.id.list_view);
 		CoursesAdapter myAdapter = new CoursesAdapter(comments, getActivity());
 		myListView.setAdapter(myAdapter);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSES);
 		return rootView;
 	}
 }
