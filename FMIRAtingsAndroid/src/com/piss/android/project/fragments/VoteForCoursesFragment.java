@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.PostVoteForCourseTask;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class VoteForCoursesFragment extends Fragment{
 	private final static String COURSE_ID = "id";
@@ -70,7 +72,7 @@ public class VoteForCoursesFragment extends Fragment{
 
 			}
 		});
-
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.VOTE_COURSE);
 		return rootView;
 	}
 }

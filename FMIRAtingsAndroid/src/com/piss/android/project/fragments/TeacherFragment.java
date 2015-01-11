@@ -19,6 +19,7 @@ import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.models.Votes;
 import com.piss.android.project.tasks.GetVoteForTeacherTask;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class TeacherFragment extends Fragment implements OnClickListener {
 
@@ -73,6 +74,7 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 		ratingBarScope.setEnabled(false);
 		ratingBarSpeed.setEnabled(false);
 		getVotes();
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.TEACHER);
 		return rootView;
 	}
 
