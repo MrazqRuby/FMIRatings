@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
-
-<!--<div class = "container-fluid inner-container">-->
-
-<!--<script src='js/controller.js'></script>-->
 
 <div ng-repeat ='category in data' class="list-group">
     <div class="panel panel-primary">
@@ -20,54 +10,3 @@ and open the template in the editor.
         </div>
     </div>
 </div>
-
-
-
-
-
-<!--    <div class="panel-group" id="discipline-type-accordion" role="tablist" >
-        <p>{{text}}</p>
-        <div ng-repeat ='category in data' class="panel panel-default">
-            <div class="panel-heading" role="tab" id="{{category.name}}">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#discipline-type-accordion" href="#{{category.id}}category" aria-expanded="true" aria-controls="{{category.id}}category">
-                        {{category.name}}
-                    </a>
-                </h4>
-            </div>
-
-            <div id="{{category.id}}category" class="panel-collapse collapse" role="tabpanel" aria-labelledby="typeHeadingOne">
-                <div  class="panel-body">
-                    <div class="panel-group" id="{{category.id}}accordion" role="tablist" >
-
-                        <div ng-repeat="course in category.courses" class="panel-group" role="tablist">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="{{course.name}}">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#{{category.id}}accordion" href="#{{course.id}}course" aria-expanded="true" aria-controls="{{course.id}}course">
-                                            {{course.name}}
-                                        </a>                    
-                                    </h4>
-
-                                </div>
-                                <div id="{{course.id}}course" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{course.name}}">
-                                    <div class="panel-body">
-                                        <p>{{course.description}}</p>
-                                        <button class="btn btn-primary pull-right discipline-open" type="button" ng-click="showCourse(course.id)">Виж курса</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>-->
-<!--</div>-->
-<!--<script src="js/navigation/disciplines.js"></script>-->
-
-
