@@ -66,17 +66,17 @@ app.config(function ($routeProvider) {
 app.controller('mainController', function ($scope, $http) {
     // create a message to display in our view
     $http({
-        url: 'http://95.111.16.46:6420/api/Statistic/Query?objectType=teacher',
+        url: 'http://95.111.16.46:6420/api/Statistic/ExecuteMaxMin?targetType=Course',
         method: "GET",
         xhrFields: {
             withCredentials: true
         }
 
     }).success(function (data) {
-        $scope.data = data;
+        $scope.coursesStatistic = data;
 
     }).error(function (data) {
-        $scope.status = status;
+        $scope.statisticStatus = status;
     });
     
 });

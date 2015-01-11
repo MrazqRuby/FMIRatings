@@ -50,83 +50,19 @@ and open the template in the editor.
         <div class = "col-lg-6">
             <h3 class="text-center text-primary">Курсове</h3>
             <div class="col-lg-12">
-                <div class="panel panel-primary">
+                <div ng-repeat="statistic in coursesStatistic" class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Полезност</h3>
+                        <h3 class="panel-title">{{statistic.criterionName}}</h3>
                     </div>
                     <div class="panel-body">
                         <p class="text-danger">
                             <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Анализ</p>
+                            <span class="badge">{{statistic.max.score}}</span>
+                            {{statistic.max.target}}</p>
                         <p class = "text-muted">
                             <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Дискретни</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Леснота</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Анализ</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Дискретни</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Интерес</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Анализ</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Дискретни</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Натовареност</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Анализ</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Дискретни</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Яснота</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Анализ</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Дискретни</p>
+                            <span class="badge">{{statistic.min.score}}</span>
+                            {{statistic.min.target}}</p>
                     </div>
                 </div>
             </div>
