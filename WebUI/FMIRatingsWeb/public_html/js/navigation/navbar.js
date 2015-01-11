@@ -64,21 +64,35 @@ app.controller('disciplinesController', function ($scope, $http) {
 
 app.controller('disciplineDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
     //If you want to use URL attributes before the website is loaded
-     $http({
-                    url: 'http://95.111.16.46:6420/api/courses/' + $routeParams.id,
-                    method: "GET",
-                    xhrFields: {
-                        withCredentials: true
-                    }
-                    
-                }).success(function (data) {
-                    debugger;
-                    $scope.dataCourse = data;
+    $http({
+        url: 'http://95.111.16.46:6420/api/courses/' + $routeParams.id,
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
 
-                }).error(function (data) {
-                    debugger;
-                    $scope.statusCourse = data;
-                });
+    }).success(function (data) {
+        $scope.dataCourse = data;
+        getVotes;
+
+    }).error(function (data) {
+        $scope.statusCourse = data;
+    });
+
+    var getVotes = $http({
+        url: 'http://95.111.16.46:6420/api/VoteForCourse/' + $routeParams.id,
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+
+    }).success(function (data) {
+        $scope.votes = data;
+
+
+    }).error(function (data) {
+        $scope.votesStatus = data;
+    });
 });
 
 app.controller('teachersController', function ($scope) {
