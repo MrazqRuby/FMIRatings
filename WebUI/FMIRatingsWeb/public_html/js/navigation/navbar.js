@@ -89,7 +89,7 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
 });
 
 app.controller('teachersController', function ($scope) {
-    $ $http({
+    $http({
         url: 'http://95.111.16.46:6420/api/teacherdepartments',
         method: "GET",
         xhrFields: {
