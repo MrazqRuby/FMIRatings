@@ -4,18 +4,6 @@ debugger;
 bootstrap.controller('AccordionCtrl', function ($scope) {
   $scope.oneAtATime = true;
 
-fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $http) {            
-
-            $http({
-                    url: 'http://95.111.16.46:6420/api/coursecategories',
-                    method: "GET",
-                    xhrFields: {
-                        withCredentials: true
-                    }
-                    
-                }).success(function (data) {
-                    $scope.data = data;
-
   $scope.groups = [
     {
       title: 'Dynamic Group Header - 1',
@@ -41,38 +29,38 @@ fmiRatingsApp.controller('CoursesCtrl', ["$scope", "$http", function ($scope, $h
   };
 });
 
-fmiRatingsApp.controller('TeachersCtrl', ["$scope", "$http", function ($scope, $http) {            
-            $http({
-                    url: 'http://95.111.16.46:6420/api/teacherdepartments',
-                    method: "GET",
-                    xhrFields: {
-                        withCredentials: true
-                    }
+// fmiRatingsApp.controller('TeachersCtrl', ["$scope", "$http", function ($scope, $http) {            
+//             $http({
+//                     url: 'http://95.111.16.46:6420/api/teacherdepartments',
+//                     method: "GET",
+//                     xhrFields: {
+//                         withCredentials: true
+//                     }
                     
-                }).success(function (data) {
-                    $scope.departments = data;
+//                 }).success(function (data) {
+//                     $scope.departments = data;
 
-                }).error(function (data) {
-                    $scope.status = status;
-                });
+//                 }).error(function (data) {
+//                     $scope.status = status;
+//                 });
 
-            $scope.showTeacher = function (teacherId){
-                $http({
-                    url: 'http://95.111.16.46:6420/api/teachers/' + teacherId,
-                    method: "GET",
-                    xhrFields: {
-                        withCredentials: true
-                    }
+//             $scope.showTeacher = function (teacherId){
+//                 $http({
+//                     url: 'http://95.111.16.46:6420/api/teachers/' + teacherId,
+//                     method: "GET",
+//                     xhrFields: {
+//                         withCredentials: true
+//                     }
                     
-                }).success(function (data) {
-                    $scope.dataTeacher = data;
+//                 }).success(function (data) {
+//                     $scope.dataTeacher = data;
 
-                }).error(function (data) {
-                    $scope.statusTeacher = data;
-                });
-            }
+//                 }).error(function (data) {
+//                     $scope.statusTeacher = data;
+//                 });
+//             }
 
-}]);
+// }]);
 
 //var fmiRatingsApp = angular.module('fmiRatingsApp', []);
 //
