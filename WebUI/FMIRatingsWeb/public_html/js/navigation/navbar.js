@@ -196,9 +196,6 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
             });
         }
     }
-
-
-
 });
 app.controller('teachersController', function ($scope, $http) {
     $http({
@@ -285,10 +282,6 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
         }
     }
 
-//    if ($scope.votes.length > 0) {
-//        $scope.avarage = voteSum / $scope.votes.length;
-//    }
-
 
 });
 
@@ -326,22 +319,6 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
                 .error(function (data) {
                     debugger
                 });
-//        $http({
-//            url: 'http://95.111.16.46:6420/api/users/upload',
-//            method: "POST",
-//            data: filesData,
-//            xhrFields: {
-//                withCredentials: true
-//            },
-//            headers: {"Content-type": "multipart/form-data; boundary=---------------------------41184676334"}
-//        }).success(function (data) {
-//            debugger;
-//            alert("Файлът е качен.")
-//        }).error(function (data) {
-//            debugger
-//            $scope.status = status;
-//            alert("Неуспешно качване на файла.")
-//        });
     }
 
     function uploadProgress(evt) {
@@ -370,57 +347,6 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
         alert("The upload has been canceled by the user or the browser dropped the connection.")
     }
 });
-
-//
-//app.controller("MainCtrl",["$scope", "$location", function($scope, $location) {
-//  $scope.menuClass = function(page) {
-//    
-//    var current = $location.path(page);
-//    var actualHrefText = current.path().substring(1);
-////
-////        console.log(actualHrefText);
-////        var page = "navbar-html/" + actualHrefText + ".html";
-//
-//    return page === actualHrefText ? "active" : "";
-//  };
-//}]);
-
-//    $("#body-wrapper").load("navbar-html/start-page.html #start-page", function () {
-//        loadStartPage();
-//    });
-//
-////        START PAGE LOADING
-//    function loadStartPage() {
-//        $("#start-page").html(function () {
-//            console.log("load start page");
-//            $("#start-page-carousel-div").load("navbar-html/carousel-component.html #carousel-generic");
-//            $("#start-page-info-div").load("navbar-html/start-page-detailed-statistics.html");
-//        });
-//    }
-
-//        NAVBAR PAGE LOADING
-//    $('.nav a').click(function () {
-//
-//        $(this).parent().parent().find("li").removeClass("active");
-//        $(this).parent().addClass("active");
-//    });
-
-//        var hrefText = $(this).attr('href');
-//        var actualHrefText = hrefText.replace("#", "");
-//
-//        console.log(actualHrefText);
-//        var page = "navbar-html/" + actualHrefText + ".html";
-//
-//        $("#body-wrapper").load(page, function () {
-//            if (actualHrefText === START_PAGE) {
-//                loadStartPage();
-//            }
-//            if (actualHrefText === EXIT){
-//                localStorage.clear();
-//            }
-//        });
-//    });
-//});
 
 app.controller("searchController", function($scope, $http) {
     debugger;
