@@ -133,7 +133,14 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
         }).error(function (data) {
             $scope.statusTeacherVotes = data;
         });
-        
+        var voteSum = 0;
+        for (var vote in votes) {
+            voteSum += vote.avarage;
+        }
+        if (votes.length > 0) {
+            $scope.avarage = voteSum / votes.length;
+        }
+         
 
 });
 
