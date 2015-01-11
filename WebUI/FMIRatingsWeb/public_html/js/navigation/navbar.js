@@ -115,9 +115,27 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
         angular.forEach($scope.votes.votes, function (value, key) {
             $scope.sum += value.avarage;
         });
+
+        getMaterials;
     }).error(function (data) {
         $scope.votesStatus = data;
     });
+
+    var getMaterials = $http({
+        url: 'http://95.111.16.46:6420/api/files/forcourse/' + $routeParams.id,
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+    }).success(function (data) {
+        $scope.courseMaterials = data;
+        debugger
+
+    }).error(function (data) {
+        debugger
+        $scope.votesStatus = data;
+    });
+
     $scope.showDetails = true;
     $scope.showVote = false;
     $scope.showMaterials = false;
@@ -280,17 +298,17 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
         $scope.progressVisible = true
         var fd = new FormData();
         fd.append('fileName', $scope.files[0]);
-        fd.append('courseId',courseId);
+        fd.append('courseId', courseId);
         $http.post('http://95.111.16.46:6420/api/users/upload', fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-        .success(function(data){
-            debugger
-        })
-        .error(function(data){
-            debugger
-        });
+                .success(function (data) {
+                    debugger
+                })
+                .error(function (data) {
+                    debugger
+                });
 //        $http({
 //            url: 'http://95.111.16.46:6420/api/users/upload',
 //            method: "POST",

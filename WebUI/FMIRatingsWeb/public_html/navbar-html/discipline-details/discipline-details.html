@@ -187,10 +187,10 @@ and open the template in the editor.
                 </form>
             </div>
 
-            <div class="container-fluid inner-container">
+            <div class="container-fluid inner-container" ng-controller="disciplineDetailsController">
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        Cras justo odio
+                    <li ng-repeat="courseMaterial in courseMaterials"  class="list-group-item">
+                        {{courseMaterial.filename}}
                         <a href="#">
                             <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                         </a>
