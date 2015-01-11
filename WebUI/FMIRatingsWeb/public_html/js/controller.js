@@ -53,5 +53,21 @@ fmiRatingsApp.controller('TeachersCtrl', ["$scope", "$http", function ($scope, $
                     $scope.status = status;
                 });
 
+            $scope.showTeacher = function (teacherId){
+                $http({
+                    url: 'http://95.111.16.46:6420/api/teachers/' + teacherId,
+                    method: "GET",
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                    
+                }).success(function (data) {
+                    $scope.dataTeacher = data;
+
+                }).error(function (data) {
+                    $scope.statusTeacher = data;
+                });
+            }
+
 }]);
 

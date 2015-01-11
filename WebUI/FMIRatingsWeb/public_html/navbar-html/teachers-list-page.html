@@ -14,7 +14,7 @@ and open the template in the editor.
         <div class="panel panel-default">
             <div ng-repeat ='department in departments' class="panel-heading" role="tab" id="typeHeadingOne">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#teacher-type-accordion" href="#collapseTypeOne" aria-expanded="true" aria-controls="collapseTypeOne">
+                    <a data-toggle="collapse" data-parent="#teacher-type-accordion" href="#{{department.id}}department" aria-expanded="true" aria-controls="{department.id}}department">
                         {{department.name}}
                     </a>
                 </h4>
@@ -22,21 +22,22 @@ and open the template in the editor.
             <div id="collapseTypeOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="typeHeadingOne">
                 <div class="panel-body">
 
-                    <div class="panel-group" id="accordion" role="tablist">
+                    <div class="panel-group" id="{{department.id}}accordion" role="tablist">
                         <div ng-repeat="teacher in department.teachers" class="panel panel-default" id="1">
-                            <div class="panel-heading" role="tab" id="headingOne">
+                            <div class="panel-heading" role="tab" id="{{teacher.name}}">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a data-toggle="collapse" data-parent="#{{teacher.id}}accordion" href="#{{teacher.id}}teacher" aria-expanded="true" aria-controls="{{teacher.id}}teacher">
                                         {{teacher.name}}
                                     </a>                    
                                 </h4>
 
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div id="{{teacher.id}}teacher" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{teacher.name}}">
                                 <div class="panel-body">
                                     <ul>
                                     <li ng-repeat='course in teacher.courses'>{{course.name}}</li>
                                     </ul>
+                                    <button class="btn btn-primary pull-right discipline-open" type="button" ng-click="showTeacher(teacher.id)">Виж учителя</button>
                                 </div>
                             </div>
                         </div>
