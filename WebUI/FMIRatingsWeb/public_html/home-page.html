@@ -55,7 +55,7 @@ and open the template in the editor.
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li ng-class="menuClass('start-page')"><a href="#start-page">Начало <span class="sr-only">(current)</span></a></li>
+                            <li ng-class="menuClass('start-page')" ><a href="#start-page">Начало <span class="sr-only">(current)</span></a></li>
                             <li ng-class="menuClass('disciplines')"><a href="#disciplines-list-page">Курсове</a></li>
                             <li ng-class="menuClass('teachers')"><a href="#teachers-list-page">Преподаватели</a></li>
                         </ul>
@@ -75,10 +75,8 @@ and open the template in the editor.
 
             <!--Body wrapper-->
 
-
             <div id="body-wrapper" class = "row" ng-view>
-                <p> {{message}} </p>
-
+                
             </div>
            
         </div>
