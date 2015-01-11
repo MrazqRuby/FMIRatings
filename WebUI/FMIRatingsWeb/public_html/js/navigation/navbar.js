@@ -15,7 +15,6 @@ var TEACHERS_LIST = "teachers-list-page";
 
 var app = angular.module("fmiRatingsApp", ['ngRoute']);
 app.config(function ($routeProvider) {
-
     $routeProvider
             // route for the home page
             .when('/start-page', {
@@ -68,7 +67,7 @@ app.controller('disciplinesController', function ($scope, $http) {
 });
 
 app.controller('disciplineDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
-    //If you want to use URL attributes before the website is loaded
+//If you want to use URL attributes before the website is loaded
     $http({
         url: 'http://95.111.16.46:6420/api/courses/' + $routeParams.id,
         method: "GET",
@@ -79,11 +78,9 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
     }).success(function (data) {
         $scope.dataCourse = data;
         getVotes;
-
     }).error(function (data) {
         $scope.statusCourse = data;
     });
-
     var getVotes = $http({
         url: 'http://95.111.16.46:6420/api/VoteForCourse/' + $routeParams.id,
         method: "GET",
@@ -93,35 +90,55 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
 
     }).success(function (data) {
         $scope.votes = data;
-
-
     }).error(function (data) {
         $scope.votesStatus = data;
     });
-
     $scope.showDetails = true;
     $scope.showVote = false;
     $scope.showMaterials = false;
-
     $scope.info = function (id) {
         $scope.showDetails = !$scope.hideDetails;
         $scope.showVote = false;
         $scope.showMaterials = false;
     };
-
     $scope.vote = function (id) {
         $scope.showVote = !$scope.showVote;
         $scope.showDetails = false;
         $scope.showMaterials = false;
     };
-
     $scope.materials = function (id) {
         $scope.showMaterials = !$scope.showMaterials;
         $scope.showDetails = false;
         $scope.showVote = false;
     };
-});
+    $scope.rate = function () {
+//        $scope.rating = {};
+       
+        if (typeof $scope.rating !== 'undefined') {
+            $scope.rating.CourseId = $scope.dataCourse.id;
+            var rating = $scope.rating;
 
+            $http({
+                url: 'http://95.111.16.46:6420/api/VoteForCourse/PostVoteForCourse',
+                method: "POST",
+                data: rating,
+                xhrFields: {
+                    withCredentials: true
+                }
+
+            }).success(function (data) {
+                debugger
+                $scope.departments = data;
+            }).error(function (data) {
+                debugger
+                $scope.status = status;
+            });
+        }
+    }
+
+
+
+});
 app.controller('teachersController', function ($scope, $http) {
     $http({
         url: 'http://95.111.16.46:6420/api/teacherdepartments',
@@ -132,53 +149,47 @@ app.controller('teachersController', function ($scope, $http) {
 
     }).success(function (data) {
         $scope.departments = data;
-
     }).error(function (data) {
         $scope.status = status;
     });
-
     $scope.message = 'Look! I am an teacher page.';
 });
-
 app.controller('teacherDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
     //If you want to use URL attributes before the website is loaded
-        $http({
-            url: 'http://95.111.16.46:6420/api/teachers/' + $routeParams.id,
-            method: "GET",
-            xhrFields: {
-                withCredentials: true
-            }        
-        }).success(function (data) {
-            debugger;
-            $scope.dataTeacher = data;
-        }).error(function (data) {
-            debugger;
-            $scope.statusTeacher = data;
-        });
+    $http({
+        url: 'http://95.111.16.46:6420/api/teachers/' + $routeParams.id,
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+    }).success(function (data) {
+        debugger;
+        $scope.dataTeacher = data;
+    }).error(function (data) {
+        debugger;
+        $scope.statusTeacher = data;
+    });
+    $http({
+        url: 'http://95.111.16.46:6420/api/voteforteacher/' + $routeParams.id,
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+    }).success(function (data) {
+        $scope.dateVotes = data.votes;
+    }).error(function (data) {
+        $scope.statusTeacherVotes = data;
+    });
+    var voteSum = 0;
+    for (var vote in votes) {
+        voteSum += vote.avarage;
+    }
+    if (votes.length > 0) {
+        $scope.avarage = voteSum / votes.length;
+    }
 
-        $http({
-            url: 'http://95.111.16.46:6420/api/voteforteacher/' + $routeParams.id,
-            method: "GET",
-            xhrFields: {
-                withCredentials: true
-            }     
-        }).success(function (data) {
-            $scope.dateVotes = data.votes;
-        }).error(function (data) {
-            $scope.statusTeacherVotes = data;
-        });
-        var voteSum = 0;
-        for (var vote in votes) {
-            voteSum += vote.avarage;
-        }
-        if (votes.length > 0) {
-            $scope.avarage = voteSum / votes.length;
-        }
-         
 
 });
-
-
 //
 //app.controller("MainCtrl",["$scope", "$location", function($scope, $location) {
 //  $scope.menuClass = function(page) {
@@ -211,7 +222,8 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
 //
 //        $(this).parent().parent().find("li").removeClass("active");
 //        $(this).parent().addClass("active");
-//
+//    });
+
 //        var hrefText = $(this).attr('href');
 //        var actualHrefText = hrefText.replace("#", "");
 //
