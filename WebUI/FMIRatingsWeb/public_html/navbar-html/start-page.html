@@ -71,83 +71,19 @@ and open the template in the editor.
         <div class="col-lg-6">
             <h3 class="text-center text-primary">Преподаватели</h3>
             <div class="col-lg-12">
-                <div class="panel panel-primary">
+                <div ng-repeat="teacherStat in teacherStatistic" class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Яснота</h3>
+                        <h3 class="panel-title">{{teacherStat.criterionName}}</h3>
                     </div>
                     <div class="panel-body">
                         <p class="text-danger">
                             <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Милен Петров</p>
+                            <span class="badge">{{teacherStat.max.score}}</span>
+                            {{teacherStat.max.target}}</p>
                         <p class = "text-muted">
                             <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Иван Иванов</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Ентусиазъм</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Милен Петров</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Иван Иванов</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Критерий за оценяване</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Милен Петров</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Иван Иванов</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Скорост на преподаване</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Милен Петров</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Иван Иванов</p>
-                    </div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Обхват на преподавания материал</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-danger">
-                            <span class="glyphicon glyphicon-arrow-up"></span>
-                            <span class="badge">5</span>
-                            Милен Петров</p>
-                        <p class = "text-muted">
-                            <span class="glyphicon glyphicon-arrow-down"> </span>
-                            <span class="badge">4</span>
-                            Иван Иванов</p>
+                            <span class="badge">{{teacherStat.min.score}}</span>
+                           {{teacherStat.min.target}}</p>
                     </div>
                 </div>
             </div>

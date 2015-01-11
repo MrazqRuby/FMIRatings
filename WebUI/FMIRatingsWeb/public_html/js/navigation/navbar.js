@@ -74,9 +74,25 @@ app.controller('mainController', function ($scope, $http) {
 
     }).success(function (data) {
         $scope.coursesStatistic = data;
+        getTeacherStatistics;
 
     }).error(function (data) {
         $scope.statisticStatus = status;
+    });
+    
+    
+    var getTeacherStatistics =  $http({
+        url: 'http://95.111.16.46:6420/api/Statistic/ExecuteMaxMin?targetType=Teacher',
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+
+    }).success(function (data) {
+        $scope.teacherStatistic = data;
+
+    }).error(function (data) {
+        $scope.teacherStatisticStatus = status;
     });
     
 });
