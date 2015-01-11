@@ -59,9 +59,22 @@ app.config(function ($routeProvider) {
 
 });
 
-app.controller('mainController', function ($scope) {
+app.controller('mainController', function ($scope, $http) {
     // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
+    $http({
+        url: 'http://95.111.16.46:6420/api/Statistic/Query?objectType=teacher',
+        method: "GET",
+        xhrFields: {
+            withCredentials: true
+        }
+
+    }).success(function (data) {
+        $scope.data = data;
+
+    }).error(function (data) {
+        $scope.status = status;
+    });
+    
 });
 
 app.controller('exitController', function ($scope) {
