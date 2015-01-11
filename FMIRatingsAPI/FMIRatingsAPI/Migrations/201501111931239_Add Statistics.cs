@@ -3,7 +3,7 @@ namespace FMIRatingsAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration1 : DbMigration
+    public partial class AddStatistics : DbMigration
     {
         public override void Up()
         {

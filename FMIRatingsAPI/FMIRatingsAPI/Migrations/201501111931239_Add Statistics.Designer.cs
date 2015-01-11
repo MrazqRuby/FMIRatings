@@ -7,13 +7,13 @@ namespace FMIRatingsAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class InitialMigration1 : IMigrationMetadata
+    public sealed partial class AddStatistics : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddStatistics));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501111539105_InitialMigration1"; }
+            get { return "201501111931239_Add Statistics"; }
         }
         
         string IMigrationMetadata.Source

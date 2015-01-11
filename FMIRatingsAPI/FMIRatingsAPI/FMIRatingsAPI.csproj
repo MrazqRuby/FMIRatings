@@ -174,11 +174,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authentication\UserPrincipal.cs" />
     <Compile Include="Controllers\CourseCategoriesController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\StatisticController.cs" />
-=======
     <Compile Include="Controllers\FileController.cs" />
->>>>>>> 02bbcc42b526a4273f8b04fdfea7ba951cd498a9
     <Compile Include="Controllers\TeacherDepartmentsController.cs" />
     <Compile Include="Controllers\VoteForTeacherController.cs" />
     <Compile Include="Controllers\CourseCommentsController.cs">
@@ -201,15 +198,6 @@
     <Compile Include="Migrations\201501101247507_InitialMigration.Designer.cs">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\201501111539105_InitialMigration1.cs" />
-    <Compile Include="Migrations\201501111539105_InitialMigration1.Designer.cs">
-      <DependentUpon>201501111539105_InitialMigration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501111655478_migr.cs" />
-    <Compile Include="Migrations\201501111655478_migr.Designer.cs">
-      <DependentUpon>201501111655478_migr.cs</DependentUpon>
-=======
     <Compile Include="Migrations\201501101648006_Add files to database.cs" />
     <Compile Include="Migrations\201501101648006_Add files to database.Designer.cs">
       <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
@@ -229,7 +217,10 @@
     <Compile Include="Migrations\201501111620417_Add filename to Files table.cs" />
     <Compile Include="Migrations\201501111620417_Add filename to Files table.Designer.cs">
       <DependentUpon>201501111620417_Add filename to Files table.cs</DependentUpon>
->>>>>>> 37b4ac4b176fcbc5fd843bdf47facd629787c34e
+    </Compile>
+    <Compile Include="Migrations\201501111931239_Add Statistics.cs" />
+    <Compile Include="Migrations\201501111931239_Add Statistics.Designer.cs">
+      <DependentUpon>201501111931239_Add Statistics.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -380,13 +371,6 @@
     <EmbeddedResource Include="Migrations\201501101247507_InitialMigration.resx">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201501111539105_InitialMigration1.resx">
-      <DependentUpon>201501111539105_InitialMigration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501111655478_migr.resx">
-      <DependentUpon>201501111655478_migr.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Migrations\201501101648006_Add files to database.resx">
       <DependentUpon>201501101648006_Add files to database.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,7 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501111620417_Add filename to Files table.resx">
       <DependentUpon>201501111620417_Add filename to Files table.cs</DependentUpon>
->>>>>>> 37b4ac4b176fcbc5fd843bdf47facd629787c34e
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111931239_Add Statistics.resx">
+      <DependentUpon>201501111931239_Add Statistics.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

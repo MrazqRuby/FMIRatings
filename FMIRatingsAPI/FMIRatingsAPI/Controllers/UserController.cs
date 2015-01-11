@@ -76,7 +76,7 @@ namespace FMIRatingsAPI.Controllers
         [AuthenticationFilter]
         public async Task<IHttpActionResult> UploadFile()
         {
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            string root = "E:\\Dev\\Repo\\FMIRatings\\FMIRatingsAPI\\FMIRatingsAPI\\App_Data";
             
             var provider = new MultipartFormDataStreamProvider(root);
             try
