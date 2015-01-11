@@ -352,11 +352,13 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
 app.controller("searchController", function($scope, $http) {
     debugger;
 
-$scope.text = "stamo";
+$scope.someText = "stamo";
     //var searchText = $scope.searchText || "ов";
 
 $scope.search = function(searchText) {
-    $scope.text = "siyana";
+
+    $scope.someText =  $scope.someText == "stamo" ? "gochev" : "stamo";
+
     if (searchText) {
         $http({
             url: "http://95.111.16.46:6420/api/teachers/search/" + searchText,

@@ -32,7 +32,7 @@ and open the template in the editor.
         <!--<script src="bower_components/angular/angular.js"></script>-->
         <!--<script src="js/controller.js"></script>-->
     </head>
-    <body ng-app="fmiRatingsApp"  ng-controller="mainController">
+    <body ng-app="fmiRatingsApp">
 
         <div class="container-fluid">
 
@@ -47,7 +47,7 @@ and open the template in the editor.
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">   
+                        <a class="navbar-brand" href="#">
                             <img src="assets/brand.png" alt="FMI Ratings">
                         </a>
                     </div>
@@ -60,14 +60,55 @@ and open the template in the editor.
                             <li ng-class="menuClass('teachers')"><a href="#teachers-list-page">Преподаватели</a></li>
                         </ul>
                         <!--<div ng-controller="searchController" class="navbar-form navbar-left">-->
-                            <form  role="form" ng-controller="searchController" class="navbar-form navbar-left" >
-                                <div class="form-group">
-                                    <input type="search" class="form-control" required placeholder="Търси" ng-model="searchText">
-                                </div>
-                                <button type="submit" ng-click="search(searchText)">Search</button>
-                            </form>
+                            <!--<div class="form-group">-->
+                                <!--<input type="search" class="form-control" required placeholder="Търси" ng-model="searchText">-->
+                            <!--</div>-->
                             <!--<a href="#search" class="btn btn-default">Търси</a>-->
                         <!--</div>-->
+
+                        <div ng-controller="searchController" class="navbar-form navbar-left">
+
+                            <div id="search-results-container">
+                                <div class="search-results-section">
+                                    Резултати за курсове
+                                    <div ng-repeat ='course in coursesSearchResults' class="list-group">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                {{course.name}}
+                                            </div>
+                                            <div class="panel-body">
+                                                <a ng-repeat="teacher in course.teachers" ng-href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="!coursesSearchResults.length">Няма намерени курсове</div>
+                                </div>
+
+                                <div class="search-results-section">
+                                    Резултати за преподаватели
+                                    <div ng-repeat ='teacher in teachersSearchResults' class="list-group">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                {{teacher.name}}
+                                            </div>
+                                            <div class="panel-body">
+                                                <a ng-repeat="course in teacher.courses" ng-href="#discipline-details/{{course.id}}" class="list-group-item">{{course.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="!teachersSearchResults.length">Няма намерени преподаватели</div>
+                                </div>
+                            </div>
+                            <form ng-submit="search(searchText)" class="css-form">
+                                <div class="form-group">
+                                    <input type="search" class="form-control" value="text" value="type" placeholder="Търси" ng-model="searchText">
+                                </div>
+                                <input type="submit" value="Search">
+
+
+                            </form>
+                        </div>
+
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="nonregistered-user-homepage.html" onclick ="localStorage.clear();">Изход</a></li>
 
@@ -77,22 +118,12 @@ and open the template in the editor.
             </nav>
 
             <!--Body wrapper-->
-            
+
             <div id="body-wrapper" class = "row" ng-view>
 
             </div>
 
         </div>
-        
-        <div ng-controller="searchController" ng-model="text">
-    achsiofhofherigohreio
-    
-    {{text}}
-    
-<!--                <div ng-repeat="course in coursesSearchResults">
-                    <div>{{course.name}}</div>
-                </div>-->
-            </div>
         <!--        <script src="js/navigation/teachers.js"></script>
                 <script src="js/navigation/disciplines.js"></script>-->
     </body>
