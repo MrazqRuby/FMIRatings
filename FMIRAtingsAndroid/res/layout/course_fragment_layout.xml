@@ -50,4 +50,10 @@
         android:layout_height="wrap_content"
         android:text="@string/vote" />
     
+    <Button
+        android:id="@+id/materials_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/materials" />
 </LinearLayout>

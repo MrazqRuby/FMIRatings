@@ -28,6 +28,7 @@ public class Course implements Serializable {
 		JSONArray teachers = null;
 		JSONArray coursesComents = null;
 		ArrayList<String> teachersArray = null;
+		
 
 		for (int i = 0; i < json.length(); i++) {
 			course = new Course();
@@ -36,8 +37,6 @@ public class Course implements Serializable {
 				course.setId(item.getLong(APIConnectionConstants.ID));
 				course.setDescription(item
 						.getString(APIConnectionConstants.DESCRIPTION));
-				course.setDescription(item
-						.getString(APIConnectionConstants.CATEGORY));
 				course.setName(item.getString(APIConnectionConstants.NAME));
 				teachers = item.getJSONArray(APIConnectionConstants.TEACHERS);
 				coursesComents = item
@@ -51,6 +50,7 @@ public class Course implements Serializable {
 				// course.setTeachers(teachersArray);
 				// }
 				course.setComments(Comment.parseJSON(coursesComents));
+				course.setCategory(item.getString(APIConnectionConstants.CATEGORY));
 				courses.add(course);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

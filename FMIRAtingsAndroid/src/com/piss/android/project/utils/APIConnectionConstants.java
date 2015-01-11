@@ -36,6 +36,8 @@ public class APIConnectionConstants {
 	public final static String GROUP = "group";
 	public final static String GRADUATION_YEAR = "graduationYear";
 	public final static String MAJOR = "major";	
+	public final static String FILES = "files";
+	public final static String FORCOURSE = "forcourse";
 
 	public final static String API_VOTE_FOR_TEACHER = "VoteForTeacher";
 	public final static String API_VOTE_FOR_COURSE = "VoteForCourse";
@@ -65,5 +67,7 @@ public class APIConnectionConstants {
 	public final static String CRITERION_ID = "criterionId";
 	public final static String CRITERION_NAME = "criterionName";
 	public final static String AVARAGE = "avarage";
+	public final static String FILENAME ="filename";
+	public final static String COURSEID ="courseId";
 
 }

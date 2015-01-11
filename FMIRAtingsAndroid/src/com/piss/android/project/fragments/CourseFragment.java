@@ -38,6 +38,7 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 		Button vote = (Button) rootView.findViewById(R.id.vote_button);
 		Button teachers = (Button) rootView.findViewById(R.id.teachers_button);
 		Button comments = (Button) rootView.findViewById(R.id.comments_button);
+		Button materials = (Button) rootView.findViewById(R.id.materials_button);
 		TextView course_name = (TextView) rootView.findViewById(R.id.course_name);
 		TextView category = (TextView) rootView.findViewById(R.id.category);
 		
@@ -48,6 +49,7 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 		vote.setOnClickListener(this);
 		teachers.setOnClickListener(this);
 		comments.setOnClickListener(this);
+		materials.setOnClickListener(this);
 		
 		((MainActivity) getActivity()).setUpNavigationToolbar();
 		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSE);
@@ -75,6 +77,10 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 			VoteForCoursesFragment fragment = VoteForCoursesFragment.instance(courseId);
 			((MainActivity) getActivity()).addFragment(fragment);
 			break;
+		case R.id.materials_button:
+			long courseIdForMaterials = ((Course) getArguments().getSerializable(COURSE)).getId();
+			MaterialsListFragment materials = MaterialsListFragment.getInstance(courseIdForMaterials);
+			((MainActivity) getActivity()).addFragment(materials);
 		default:
 			break;
 		}
