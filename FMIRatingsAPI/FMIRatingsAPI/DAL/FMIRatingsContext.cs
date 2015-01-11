@@ -32,6 +32,7 @@ namespace FMIRatingsAPI.DAL
 		
 		public DbSet<TeacherDepartment> TeacherDepartments { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<File> Files { get; set; }
         public DbSet<CriterionForCourse> CriteriaForCourses { get; set; }
         public DbSet<CriterionForTeacher> CriteriaForTeachers { get; set; }
         public DbSet<VoteForCourse> VotesForCourses { get; set; }

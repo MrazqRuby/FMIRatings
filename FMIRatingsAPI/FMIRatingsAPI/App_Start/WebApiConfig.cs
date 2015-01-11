@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 
 namespace FMIRatingsAPI
 {
@@ -22,10 +23,15 @@ namespace FMIRatingsAPI
 				routeTemplate: "api/{controller}/{action}/{name}",
 				defaults: new { name = RouteParameter.Optional }
 			);
-            config.EnsureInitialized();
-
+            
 			var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
 			jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            var cors = new EnableCorsAttribute("http://localhost:8383", "*", "*")
+			{
+				SupportsCredentials = true
+            };
+            config.EnableCors(cors);
 
 			GlobalConfiguration.Configuration.Formatters.Clear();
 			GlobalConfiguration.Configuration.Formatters.Add(jsonFormatter);
@@ -33,6 +39,8 @@ namespace FMIRatingsAPI
 			//config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
 
 			GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            config.EnsureInitialized();
         }
     }
 }

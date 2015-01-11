@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models.DTO;
+using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
@@ -20,6 +21,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/VoteForCourse
+        /// <summary>
+        /// Get all votes and statistics for the avarage assessment per criterion for teachers
+        /// </summary>
+        /// <returns>List of votes for all teachers</returns>
         public List<VoteForTeacherDTO> GetVotesForTeachers()
         {
             var allTeachers = db.Teachers.Select(x => x).Distinct();
@@ -54,6 +59,11 @@ namespace FMIRatingsAPI.Controllers
 
         // GET api/VoteForCourse/5
         //return all votes for current course
+        /// <summary>
+        /// Get all votes and statistics for avarage assessment per criterion for a current teacher
+        /// </summary>
+        /// <param name="id">id of the teacher</param>
+        /// <returns>Vote for current teacher</returns>
         [ResponseType(typeof(VoteForTeacherDTO))]
         public async Task<IHttpActionResult> GetVotesForTeacher(int id)
         {
@@ -92,6 +102,11 @@ namespace FMIRatingsAPI.Controllers
 
 
         // POST api/VoteForCourse
+        /// <summary>
+        /// Post a vote for current teacher
+        /// </summary>
+        /// <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Enthusiasm, Speed, Scope and Evaluation</param>
+        /// <returns>Status Code 200 if succeed</returns>
         public IHttpActionResult PostVoteForTeacher([FromBody] BrowserVoteForTeacherDTO voteForTeacher)
         {
             if (!ModelState.IsValid)
@@ -108,11 +123,12 @@ namespace FMIRatingsAPI.Controllers
             int ScopeID = db.CriteriaForTeachers.First(c => c.Name == "Scope of teaching material").Id;
 
             //Дали потребителя е гласувал за този учител по параметър
-            if (VoteForTeacherExists(voteForTeacher.TeacherId, ClarityID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, EnthusiasmID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, EvaluationID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, SpeedID, voteForTeacher.UserId) ||
-                VoteForTeacherExists(voteForTeacher.TeacherId, ScopeID, voteForTeacher.UserId))
+            int userId = UserManager.GetCurrentUser().Id;
+            if (VoteForTeacherExists(voteForTeacher.TeacherId, ClarityID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, EnthusiasmID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, EvaluationID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, SpeedID, userId) ||
+                VoteForTeacherExists(voteForTeacher.TeacherId, ScopeID, userId))
             {
                 return Conflict();
             }
@@ -122,35 +138,35 @@ namespace FMIRatingsAPI.Controllers
                 db.VotesForTeachers.AddRange(new VoteForTeacher[] {
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = ClarityID,
                         Assessment = (int)voteForTeacher.Clarity,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = EnthusiasmID,
                         Assessment = (int)voteForTeacher.Enthusiasm,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = EvaluationID,
                         Assessment = (int)voteForTeacher.Speed,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = SpeedID,
                         Assessment = (int)voteForTeacher.Scope,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = ScopeID,
                         Assessment = (int)voteForTeacher.Evaluation,
@@ -159,7 +175,7 @@ namespace FMIRatingsAPI.Controllers
                 db.CommentsForTeachers.Add(
                     new CommentForTeacher()
                     {
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         Text = voteForTeacher.Comment,
                         DateCreated = DateTime.Now,

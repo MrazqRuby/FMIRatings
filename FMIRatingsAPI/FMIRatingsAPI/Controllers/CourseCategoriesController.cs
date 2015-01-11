@@ -20,6 +20,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/CourseCategories
+        /// <summary>
+        /// Get the possible course categories
+        /// </summary>
+        /// <returns>Array of course categories</returns>
 		[ResponseType(typeof(List<CourseCategoryDTO>))]
 		public List<CourseCategoryDTO> GetCourseCategories()
 		{

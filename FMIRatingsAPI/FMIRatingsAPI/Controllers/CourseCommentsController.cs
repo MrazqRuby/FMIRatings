@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models.DTO;
+using FMIRatingsAPI.Authentication;
 
 namespace FMIRatingsAPI.Controllers
 {
@@ -20,6 +21,10 @@ namespace FMIRatingsAPI.Controllers
         private FMIRatingsContext db = new FMIRatingsContext();
 
         // GET api/CourseComments
+        /// <summary>
+        /// Get the comments for all courses
+        /// </summary>
+        /// <returns>All comments</returns>             
         public IQueryable<CommentForCourseDTO> GetCommentsForCourses()
         {
 			return db.CommentsForCourses.Select(comment => new CommentForCourseDTO()
@@ -33,6 +38,11 @@ namespace FMIRatingsAPI.Controllers
         }
 
         // GET api/CourseComments/5
+        /// <summary>
+        /// Get the comments for a course
+        /// </summary>
+        /// <param name="id">The unique id of the course</param>
+        /// <returns>All comments for a course</returns>
 		[ResponseType(typeof(List<CommentForCourseDTO>))]
 		public List<CommentForCourseDTO> GetCommentsForCourse(int id)
         {
@@ -52,8 +62,13 @@ namespace FMIRatingsAPI.Controllers
 
 
 		// POST api/CourseComments
+        /// <summary>
+        /// Post a comment for a course
+        /// </summary>
+        /// <param name="commentForCourse">The comment to post</param>
+        /// <returns></returns>
 		[ResponseType(typeof(CommentForCourseDTO))]
-		public async Task<IHttpActionResult> PostCommentForTeacher([FromBody]CommentForCourseDTO commentForCourse)
+		public async Task<IHttpActionResult> PostCommentForCourse([FromBody]CommentForCourseDTO commentForCourse)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -68,6 +83,7 @@ namespace FMIRatingsAPI.Controllers
 			{
 				db.CommentsForCourses.Add(new CommentForCourse()
 				{
+                    UserId = UserManager.GetCurrentUser().Id,
 					CourseId = commentForCourse.CourseId,
 					Text = commentForCourse.Text,
 					DateCreated = DateTime.Now,

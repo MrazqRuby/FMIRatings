@@ -20,6 +20,10 @@ namespace FMIRatingsAPI.Controllers
     {
         private FMIRatingsContext db = new FMIRatingsContext();
 
+        /// <summary>
+        /// Get all teachers
+        /// </summary>
+        /// <returns>List of teachers</returns>
 		[HttpGet]
         // GET api/Teachers
 		[ResponseType(typeof(List<TeacherDTO>))]
@@ -52,6 +56,11 @@ namespace FMIRatingsAPI.Controllers
         }
 
 		// GET api/Teachers/5
+        /// <summary>
+        /// Get a teacher by id
+        /// </summary>
+        /// <param name="id">id of the teacher</param>
+        /// <returns>The teacher</returns>
 		[ResponseType(typeof(TeacherDTO))]
 		public IHttpActionResult GetTeacher(int id)
 		{
@@ -90,6 +99,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/Teachers
+        /// <summary>
+        /// Search a teacher by name
+        /// </summary>
+        /// <param name="name">Name of the teacher</param>
+        /// <returns>List of the teachers with the current name</returns>
 		[HttpGet]
 		[ResponseType(typeof(List<TeacherDTO>))]
 		public List<TeacherDTO> Search(string name)

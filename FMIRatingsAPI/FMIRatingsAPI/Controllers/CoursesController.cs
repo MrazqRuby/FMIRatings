@@ -20,6 +20,10 @@ namespace FMIRatingsAPI.Controllers
 		private FMIRatingsContext db = new FMIRatingsContext();
 
 		// GET api/Courses
+        /// <summary>
+        /// Get all courses
+        /// </summary>
+        /// <returns>All courses</returns>
 		[ResponseType(typeof(List<CourseDTO>))]
 		public List<CourseDTO> GetCourses()
 		{
@@ -29,12 +33,17 @@ namespace FMIRatingsAPI.Controllers
 					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
-					Teachers = course.Teachers.Select(teacher =>
-						teacher.Teacher.Name).ToList<string>(),
+					Teachers = course.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = course.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
 							Id = comment.Id,
+                            CourseId = comment.CourseId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
 							Author = comment.User.Name
@@ -46,6 +55,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/Courses/5
+        /// <summary>
+        /// Get information about the course
+        /// </summary>
+        /// <param name="id">The unique id of the course</param>
+        /// <returns>Course information</returns>
 		[ResponseType(typeof(CourseDTO))]
 		public IHttpActionResult GetCourse(int id)
 		{
@@ -59,7 +73,12 @@ namespace FMIRatingsAPI.Controllers
 					Id = c.Id,
 					Name = c.Name,
 					Description = c.Description,
-					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>(),
+					Teachers = c.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = c.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
@@ -79,6 +98,11 @@ namespace FMIRatingsAPI.Controllers
 		}
 
 		// GET api/Courses
+        /// <summary>
+        /// Get information about specific course
+        /// </summary>
+        /// <param name="name">Name of the course</param>
+        /// <returns>Information about the course</returns>
 		[HttpGet]
 		[ResponseType(typeof(List<CourseDTO>))]
 		public List<CourseDTO> Search(string name)
@@ -91,8 +115,12 @@ namespace FMIRatingsAPI.Controllers
 					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
-					Teachers = course.Teachers.Select(teacher =>
-						teacher.Teacher.Name).ToList<string>(),
+					Teachers = course.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = course.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
