@@ -33,8 +33,12 @@ namespace FMIRatingsAPI.Controllers
 					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
-					Teachers = course.Teachers.Select(teacher =>
-						teacher.Teacher.Name).ToList<string>(),
+					Teachers = course.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = course.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
@@ -69,7 +73,12 @@ namespace FMIRatingsAPI.Controllers
 					Id = c.Id,
 					Name = c.Name,
 					Description = c.Description,
-					Teachers = c.Teachers.Select(t => t.Teacher.Name).ToList<string>(),
+					Teachers = c.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = c.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
@@ -106,8 +115,12 @@ namespace FMIRatingsAPI.Controllers
 					Id = course.Id,
 					Name = course.Name,
 					Description = course.Description,
-					Teachers = course.Teachers.Select(teacher =>
-						teacher.Teacher.Name).ToList<string>(),
+					Teachers = course.Teachers.Select(teacherInCourse => new TeacherDTO()
+					{
+						Id = teacherInCourse.TeacherId,
+						Name = teacherInCourse.Teacher.Name,
+						Department = teacherInCourse.Teacher.Department.Name
+					}).ToList(),
 					Comments = course.Comments.Select(comment =>
 						new CommentForCourseDTO()
 						{
