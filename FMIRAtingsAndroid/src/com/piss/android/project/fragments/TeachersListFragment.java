@@ -14,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.piss.android.project.adapters.*;
+import com.piss.android.project.activities.MainActivity;
+import com.piss.android.project.adapters.TeachersAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.tasks.GetSearchTeacherTask;
@@ -26,6 +29,7 @@ import com.piss.android.project.tasks.GetTeachersTask;
 public class TeachersListFragment extends Fragment {
 	
 	private ListView mListView;
+	private ArrayList<Teacher> teachersList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -35,6 +39,18 @@ public class TeachersListFragment extends Fragment {
 		mListView = (ListView) rootView.findViewById(R.id.list_view);
 	
 		mListView.setAdapter(null);
+		
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Teacher teacher = teachersList.get(position);
+				TeacherFragment fragment = TeacherFragment.getInstance(teacher);
+				((MainActivity)getActivity()).addFragment(fragment);
+				
+			}
+		});
 
 		// TODO: Set authentication token for current user
 
@@ -43,6 +59,7 @@ public class TeachersListFragment extends Fragment {
 			@Override
 			protected void onPostExecute(ArrayList<Teacher> result) {
 				if (result != null) {
+					teachersList = result;
 					TeachersAdapter adapter = new TeachersAdapter(result, getActivity());
 
 					mListView.setAdapter(adapter);
@@ -63,6 +80,9 @@ public class TeachersListFragment extends Fragment {
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
+		if(getActivity().isFinishing()){
+			return;
+		}
 		getActivity().invalidateOptionsMenu();
 		final MenuItem searchItem = menu.findItem(R.id.action_search);
 		SearchView mSearchView = (SearchView) MenuItemCompat
@@ -101,4 +121,5 @@ public class TeachersListFragment extends Fragment {
 		});
 	}
 
+	
 }

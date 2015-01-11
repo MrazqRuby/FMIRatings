@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,9 +28,12 @@ public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private CharSequence mDrawerTitle;
+	private CharSequence mDrawerTitle = "FMIRatings";
 	private CharSequence mTitle;
 	private String[] mDrawerItems;
+	private boolean backPressed = false;
+	private int backCount = 0;
+	private Toolbar toolbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,37 +44,47 @@ public class MainActivity extends ActionBarActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) mDrawerLayout.findViewById(R.id.left_drawer);
 
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
 		// Set the adapter for the list view
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
 				R.layout.drawer_list_item, mDrawerItems));
 		// Set the list's click listener
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
-		mDrawerLayout, /* DrawerLayout object */
-		// R.drawable.ic_drawer, /* nav drawer icon to replace 'Up' caret */
-				R.string.drawer_open, /* "open drawer" description */
-				R.string.drawer_close /* "close drawer" description */
-		) {
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+				R.string.drawer_open, R.string.drawer_close) {
 
 			/** Called when a drawer has settled in a completely closed state. */
 			public void onDrawerClosed(View view) {
 				super.onDrawerClosed(view);
 				getSupportActionBar().setTitle(mTitle);
+				invalidateOptionsMenu();
 			}
 
 			/** Called when a drawer has settled in a completely open state. */
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
 				getSupportActionBar().setTitle(mDrawerTitle);
+				invalidateOptionsMenu();
 			}
 		};
 		// Set the drawer toggle as the DrawerListener
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		mTitle = mDrawerTitle = getTitle();
 
+		//Set ToolBar
+        setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
+		if (savedInstanceState == null) {
+			selectItem(0);
+		}
+	}
+
+	@Override
+	public void onCreateSupportNavigateUpTaskStack(TaskStackBuilder builder) {
+		super.onCreateSupportNavigateUpTaskStack(builder);
 	}
 
 	@Override
@@ -75,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onPostCreate(savedInstanceState);
 		// Sync the toggle state after onRestoreInstanceState has occurred.
 		mDrawerToggle.syncState();
-		mDrawerList.setSelection(0);
+		// mDrawerList.setSelection(0);
 	}
 
 	@Override
@@ -87,13 +104,18 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		// If the nav drawer is open, hide action items related to the content
-		// view
-		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		// menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
-		return super.onPrepareOptionsMenu(menu);
-		// return true;
+		// getMenuInflater().inflate(R.menu.main, menu);
+		// // If the nav drawer is open, hide action items related to the
+		// content
+		// // view
+		// boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+		// // menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+		// return super.onPrepareOptionsMenu(menu);
+		// // return true;
+
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -107,12 +129,32 @@ public class MainActivity extends ActionBarActivity {
 			return true;
 		}
 		// Handle your other action bar items...
+		// Handle action buttons
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			int backStack = getSupportFragmentManager()
+					.getBackStackEntryCount();
+			Log.d("DEBUG", "Main onOptionsItemSelected: We have " + backStack
+					+ " in the backstack");
+			// if (backStack == 1) {
+			//
+			// finish();
+			// return true;
+			// }
+			return false;
 
-		int id = item.getItemId();
-		if (id == R.id.action_search) {
+		case R.id.action_search:
+
 			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+		// int id = item.getItemId();
+		// if (id == R.id.action_search) {
+		// return true;
+		// }
+		// return super.onOptionsItemSelected(item);
 	}
 
 	private class DrawerItemClickListener implements
@@ -126,6 +168,7 @@ public class MainActivity extends ActionBarActivity {
 
 	/** Swaps fragments in the main content view */
 	private void selectItem(int position) {
+
 		// Create a new fragment and specify the planet to show based on
 		// position
 		Fragment fragment = null;
@@ -137,12 +180,25 @@ public class MainActivity extends ActionBarActivity {
 			break;
 
 		case 1:
-			fragment = new TeachersListFragment();
+			fragment = new CoursesListFragment();
 			break;
 
+		case 2:
+			fragment = new TeachersListFragment();
+			break;
+		case 3:
+			//Logout
+			//fragment = new TeachersListFragment();
+			break;
 		default:
 			fragment = new CoursesListFragment();
 			break;
+		}
+
+		// Remove all fragments and return default home icon
+		getSupportFragmentManager().popBackStack();
+		if (mDrawerToggle != null) {
+			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
 
 		addFragment(fragment);
@@ -159,19 +215,18 @@ public class MainActivity extends ActionBarActivity {
 		getSupportActionBar().setTitle(mTitle);
 	}
 
-	private void addFragment(Fragment fragment) {
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		//Remove all fragments before adding new 
-		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
-		if (fragmentManager.getBackStackEntryCount() > 0) {
-			fragmentManager.popBackStack();
+	public void addFragment(Fragment fragment) {
+		if (this.isFinishing()) {
+			return;
 		}
-		Log.d("ADD FRagment", "");
-		
+		String fragmentClassName = ((Object) fragment).getClass()
+				.getSimpleName();
+		FragmentManager fragmentManager = getSupportFragmentManager();
+
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.replace(R.id.content_frame, fragment, fragment.getClass()
-				.getSimpleName());
-		transaction.addToBackStack(fragment.getClass().getSimpleName());
+		transaction.replace(R.id.fragment_container, fragment,
+				fragmentClassName);
+		transaction.addToBackStack(fragmentClassName);
 		transaction.commit();
 	}
 
@@ -179,25 +234,46 @@ public class MainActivity extends ActionBarActivity {
 		if (isFinishing()) {
 			return;
 		}
-		getFragmentManager().popBackStack(name,
+		getSupportFragmentManager().popBackStack(name,
 				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		if (mDrawerToggle != null) {
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 		}
 
-		// backPressed = true;
+		backPressed = true;
 	}
 
 	@Override
 	public void onBackPressed() {
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		Log.i("DEBUG", "fragments: " + fragmentManager.getBackStackEntryCount());
-		if (fragmentManager.getBackStackEntryCount() > 0) {
-			fragmentManager.popBackStack();
-		}else{
-			finish();
+
+		int backStack = getSupportFragmentManager().getBackStackEntryCount();
+		Log.d("MainActivity", "backstack: " + backStack);
+		if (backStack == 0) {
+			super.onBackPressed();
+		} else if (backStack == 1) {
+
+			if (backCount == 1) {
+				finish();
+			}
+			if (!mDrawerLayout.isDrawerOpen(Gravity.START | Gravity.LEFT)) { // <----
+				// Open Drawer
+				mDrawerLayout.openDrawer(Gravity.START);
+				backCount = 1;
+				return;
+			}
+		} else if (backStack > 1) {
+			Fragment fr = getSupportFragmentManager().findFragmentById(
+					R.id.fragment_container);
+			removeFragmentsInclusive(fr.getTag());
 		}
 
 	}
 
+	 public void setUpNavigationToolbar() {
+
+	        mDrawerToggle.setDrawerIndicatorEnabled(false);
+	        mDrawerToggle.setHomeAsUpIndicator(getV7DrawerToggleDelegate().getThemeUpIndicator());
+	        setSupportActionBar(toolbar);
+
+	    }
 }

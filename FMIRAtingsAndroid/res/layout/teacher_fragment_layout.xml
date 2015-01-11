@@ -28,21 +28,24 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/courses_button"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/courses" />
 
     <Button
+        android:id="@+id/comments_button"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/comments" />
 
     <Button
+        android:id="@+id/vote_button"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/comments" />
+        android:text="@string/vote" />
 
 </LinearLayout>

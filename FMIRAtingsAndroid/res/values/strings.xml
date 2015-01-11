@@ -12,9 +12,12 @@
         <item>Начало</item>
         <item>Курсове</item>
         <item>Преподаватели</item>
+        <item>Изход</item>
     </string-array>
 
-    <!-- Comments -->
+    <!-- Comments for teacher-->
+    <string name="author">Автор</string>
+    <string name="date">Дата</string>
     <string name="add_commnet">Добави коментар</string>
     <string name="clarity">Яснота</string>
     <string name="enthusiasm">Ентусиазъм</string>
@@ -24,6 +27,12 @@
 	<string name="comment">Коментар</string>
 	<string name="vote">Гласувай</string>
     <string name="add_rating">Вашият кометар и оценка са много важни за нас. така се следи кой курсове са най-полезни и посещавани.</string>
+    
+    <!-- Comments for courses-->
+    <string name="workload">Натоваренос</string>
+	<string name="interest">Колко е интересен курса</string>
+	<string name="simplicity">Сложност на курса</string>
+	<string name="usefulness">Полезност на материала</string>
     
     <!-- Login/Register -->
     <string name="email">Имейл</string>

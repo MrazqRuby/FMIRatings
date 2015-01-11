@@ -9,7 +9,9 @@ import org.json.JSONObject;
 
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class Teacher implements Serializable{
+
+public class Teacher implements Serializable {
+
 
 	/**
 	 * 

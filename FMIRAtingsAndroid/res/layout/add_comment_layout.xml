@@ -36,6 +36,7 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
                 android:rating="0" />
@@ -54,6 +55,7 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
                 android:rating="0" />
@@ -72,11 +74,12 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
                 android:rating="0" />
-            
-             <TextView
+
+            <TextView
                 android:id="@+id/speed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,10 +93,11 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
                 android:rating="0" />
-            
+
             <TextView
                 android:id="@+id/scope"
                 android:layout_width="match_parent"
@@ -108,6 +112,7 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
                 android:rating="0" />

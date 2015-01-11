@@ -14,7 +14,16 @@ public class Comment {
 	private String author;
 	private String text;
 	private String date;
+	private long courseID;
 	private long teacherID;
+
+	public long getTeacherID() {
+		return teacherID;
+	}
+
+	public void setTeacherID(long teacherID) {
+		this.teacherID = teacherID;
+	}
 
 	public static ArrayList<Comment> parseJSON(JSONArray json) {
 		ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -28,7 +37,8 @@ public class Comment {
 				comment.setAuthor(item.getString(APIConnectionConstants.AUTHOR));
 				comment.setText(item.getString(APIConnectionConstants.TEXT));
 				comment.setDate(item.getString(APIConnectionConstants.DATE_CREATED));
-				comment.setTeacherID(item.getLong(APIConnectionConstants.TEACHER_ID));
+				comment.setCourseID(item.optLong(APIConnectionConstants.COURSE_ID_RESPONSE));
+				comment.setTeacherID(item.optLong(APIConnectionConstants.TEACHER_ID));
 				
 				comments.add(comment);
 			}
@@ -71,12 +81,12 @@ public class Comment {
 		this.date = date;
 	}
 
-	public long getTeacherID() {
-		return teacherID;
+	public long getCourseID() {
+		return courseID;
 	}
 
-	public void setTeacherID(long teacherID) {
-		this.teacherID = teacherID;
+	public void setCourseID(long courseID) {
+		this.courseID = courseID;
 	}
 	
 	
