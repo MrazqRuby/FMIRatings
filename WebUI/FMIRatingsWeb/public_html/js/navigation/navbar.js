@@ -36,6 +36,11 @@ app.config(function ($routeProvider) {
                 templateUrl: 'navbar-html/teachers-list-page.html',
                 controller: 'teachersController'
             })
+            
+            .when('/exit', {
+                templateUrl: 'nonregistered-user-homepage.html',
+                controller: 'exitController'
+            })
 
             .when('/discipline-details/:id', {
                 templateUrl: 'navbar-html/discipline-details/discipline-details.html',
@@ -50,6 +55,12 @@ app.config(function ($routeProvider) {
 
 app.controller('mainController', function ($scope) {
     // create a message to display in our view
+    $scope.message = 'Everyone come and see how good I look!';
+});
+
+app.controller('exitController', function ($scope) {
+    // create a message to display in our view
+    localStorage.clear();
     $scope.message = 'Everyone come and see how good I look!';
 });
 
