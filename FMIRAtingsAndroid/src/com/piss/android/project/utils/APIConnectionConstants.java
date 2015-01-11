@@ -4,6 +4,8 @@ public class APIConnectionConstants {
 
 	public final static String STATUS = "status";
 	public final static String CODE = "code";
+	public final static String PREFERENCES = "App Preferences";
+	public final static String USER_NAME = "user_name";
 
 	/* API URL */
 	public final static String API = "http://95.111.16.46:6420/api/";

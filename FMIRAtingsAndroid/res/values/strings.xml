@@ -12,9 +12,12 @@
         <item>Начало</item>
         <item>Курсове</item>
         <item>Преподаватели</item>
+        <item>Изход</item>
     </string-array>
 
     <!-- Comments for teacher-->
+    <string name="author">Автор</string>
+    <string name="date">Дата</string>
     <string name="add_commnet">Добави коментар</string>
     <string name="clarity">Яснота</string>
     <string name="enthusiasm">Ентусиазъм</string>
