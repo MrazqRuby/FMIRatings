@@ -1,98 +1,70 @@
-        ./* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-$(document).ready(function () {
-    $("#registerButton").click(function () {
-        var headers = {'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'};
-//                    'Access-Control-Allow-Methods': 'POST, GET, PUT',
-//                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
-        var parameters = {'Name': 'aaa', 'Password': 'aaa'};
-        console.log(parameters);
-        console.log(JSON.stringify(parameters));
-        $.ajax({
-            type: "POST",
-            url: "http://95.111.16.46:6420/api/users/postuser",
-            data: JSON.stringify(parameters),
-            dataType: 'json',
-            success: function (xml) {
-                alert($('Result', xml).text());
-            },
-             error:function(msg) { 
-              alert(msg);
-         }
-            
-        });
-    });
-//    $.post("http://95.111.16.46:6420/api/users/postuser", JSON.stringify(parameters), function (  ) {
-//        //$( ".result" ).html( data );
-//    });
-//    var fmiRatingsApp = angular.module('registration', []);
-//
-//    fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scope, $http) {
-//            $scope.formInfo = {};
-//
-////            var parameters = {'name': 'aaa', 'password': 'aaa'};
-//
-//            $scope.saveData = function () {
-//                var parameters = {"name": $scope.formInfo.Name, "password": $scope.formInfo.Password};
-//                console.log(JSON.stringify(parameters));
-////                fmiRatingsApp.factory(function(){
-////                var headers = {'Content-Type': 'application/json',
-////                    'Access-Control-Allow-Origin': '*',
-////                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-////                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
-////                $http({
-////                    url: 'http://95.111.16.46:6420/api/users/postuser',
-////                    method: "POST",
-////                    data: JSON.stringify(parameters),
-////                    headers: headers
-////                }).success(function (data, status, headers, config) {
-////                    $scope.data = data;
-////                }).error(function (data, status, headers, config) {
-////                    $scope.status = status;
-////                });
-////                });
-////                
-//               
-////               
-//            };
-//
-//
-//        }]);
-//    fmiRatingsApp.controller("LoginCtrl", ["$scope", "$http", function ($scope, $http) {
-//            $scope.loginFormInfo = {};
-//
-//            $scope.login = function () {
-//                localStorage.setItem("authentication", "dXNlcjp1c2Vy");
-//
-//                var parameters = {"name": "siyana", "password": $scope.loginFormInfo.Password};
-//                console.log(JSON.stringify(parameters));
-////                fmiRatingsApp.factory(function(){
-//                var headers = {'Content-Type': 'application/json',
-//                    'Access-Control-Allow-Origin': '*',
-//                    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-//                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'};
-//                $http({
-//                    url: 'http://95.111.16.46:6420/api/users/getauthtoken',
-//                    method: "POST",
-//                    data: JSON.stringify(parameters),
+var fmiRatingsApp = angular.module('registration', []);
+
+fmiRatingsApp.controller("RegistrationCtrl", ["$scope", "$http", function ($scope, $http) {
+        $scope.formInfo = {};
+
+//            var parameters = {'name': 'aaa', 'password': 'aaa'};
+debugger
+        $scope.saveData = function () {
+            var parameters =$scope.formInfo;
+            $http({
+                url: 'http://95.111.16.46:6420/api/users/postuser',
+                method: "POST",
+                data: parameters,
+                xhrFields: {
+                    withCredentials: true
+                }
 //                    headers: headers
-//                }).success(function (data, status, headers, config) {
-//                    $scope.data = data;
-//
-//                }).error(function (data, status, headers, config) {
-//                    $scope.status = status;
+            }).success(function (data) {
+                debugger;
+                $scope.data = data;
+                $scope.registrationHide=true;
+                alert("Успешна регистрация!");
+            }).error(function (data) {
+                debugger;
+                
+                $scope.status = status;
+                alert("Неуспешна регистрация!");
+            });//               
+        };
+
+    }]);
+fmiRatingsApp.controller("LoginCtrl", ["$scope", "$http", function ($scope, $http) {
+        $scope.loginFormInfo = {};
+
+        $scope.login = function () {
+            
+
+            var parameters = $scope.loginFormInfo;
+            console.log(JSON.stringify(parameters));
+//                fmiRatingsApp.factory(function(){
+var auth = 'Basic ' +btoa ($scope.loginFormInfo.Name+":"+$scope.loginFormInfo.Password);
+localStorage.setItem("authentication", auth);
+console.log(auth);
+//            var headers = {'Authentication':auth};
+            $http.defaults.headers.common.Authorization = auth;
+            $http({
+                url: 'http://95.111.16.46:6420/api/users/getauthtoken',
+                method: "POST",
+                data:  parameters,
+//                headers: headers,
+                xhrFields: {
+                    withCredentials: true
+                }
+            }).success(function (data) {
+                $scope.data = data;
+                localStorage.setItem("authentication",auth);
+            }).error(function (status) {
+                $scope.status = status;
+                alert("Невалиден мейл или парола.");
+            });
 //                });
-////                });
-////               
-//            };
-//
-//
-//
-//        }]);
-//    ;
-});
+//               
+        };
+
+
+
+    }]);
+;
+//});

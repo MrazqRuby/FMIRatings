@@ -72,12 +72,12 @@ and open the template in the editor.
 
             <div  class = "container-fluid inner-container" id="discipline-ratings-table-container">
 
-                <form class="form-inline center">
+                <form class="form-inline center" ng-submit="rate()">
                     <div class="form-group rate-group">
                         <label for="Usefulness">Полезност</label>
                         <div class="input-group">
                            
-                            <select class="form-control" ng-model="rating.Usefulness" id="Usefulness"  >
+                            <select class="form-control" ng-model="rating.usefulness" id="Usefulness"  >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -91,7 +91,7 @@ and open the template in the editor.
                         <label for="easyness">Леснота</label>
                         <div class="input-group">
                             
-                            <select class="form-control" ng-model="rating.Simplicity" id="easyness"  >
+                            <select class="form-control" ng-model="rating.simplicity" id="easyness"  >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -104,7 +104,7 @@ and open the template in the editor.
                         <label for="interesting">Интерес</label>
                         <div class="input-group">
                            
-                            <select class="form-control" ng-model="rating.Interest" id="interesting"  >
+                            <select class="form-control" ng-model="rating.interest" id="interesting"  >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -117,7 +117,7 @@ and open the template in the editor.
                         <label for="hardness">Натовареност</label>
                          <div class="input-group">
                             
-                            <select class="form-control" ng-model="rating.Workload" id="hardness" >
+                            <select class="form-control" ng-model="rating.workload" id="hardness" >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -131,7 +131,7 @@ and open the template in the editor.
                         <label for="clearance">Яснота</label>
                         <div class="input-group">
                             
-                            <select class="form-control" ng-model="rating.Clarity" id="clearance" >
+                            <select class="form-control" ng-model="rating.clarity" id="clearance" >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -143,11 +143,11 @@ and open the template in the editor.
                     </div>
 
                     <div class="form-group rate-group">
-                        <textarea class="form-control" rows="3" cols="100" ng-model="rating.Comment"></textarea>
+                        <textarea class="form-control" rows="3" cols="100" ng-model="rating.comment"></textarea>
                     </div>
 
                     <div class="form-group rate-group">
-                        <button type="submit" class="btn btn-primary" ng-click="rate()">Оцени</button>
+                        <button type="submit" class="btn btn-primary" >Оцени</button>
                     </div>
                 </form>
 

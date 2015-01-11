@@ -14,6 +14,9 @@ var TEACHERS_LIST = "teachers-list-page";
 //$(document).ready(function () {
 
 var app = angular.module("fmiRatingsApp", ['ngRoute']);
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("authentication");
+}]);
 app.config(function ($routeProvider) {
     $routeProvider
             // route for the home page
@@ -112,26 +115,29 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
         $scope.showVote = false;
     };
     $scope.rate = function () {
-//        $scope.rating = {};
-       
         if (typeof $scope.rating !== 'undefined') {
             $scope.rating.CourseId = $scope.dataCourse.id;
             var rating = $scope.rating;
 
+var auth = "Basic " + localStorage.getItem("authentication");
+console.log(auth);
+$http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
-                url: 'http://95.111.16.46:6420/api/VoteForCourse/PostVoteForCourse',
+                url: 'http://95.111.16.46:6420/api/VoteForCourse',
                 method: "POST",
                 data: rating,
                 xhrFields: {
                     withCredentials: true
-                }
-
+                },
+//                headers: {"Authentication": localStorage.getItem("authentication")}
             }).success(function (data) {
                 debugger
                 $scope.departments = data;
+                alert("Вашият глас е запазен.")
             }).error(function (data) {
                 debugger
                 $scope.status = status;
+                alert("Вашият глас не е запазен. Вече сте гласували")
             });
         }
     }

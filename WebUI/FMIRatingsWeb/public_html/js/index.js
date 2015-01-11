@@ -4,16 +4,21 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function () {
-    
-////    localStorage.setItem("authentication", "dXNlcjp1c2Vy");
-//    
-////    if(localStorage.getItem("authentication")){
-////        $("html").load("home-page.html");
-////    } else {
-////        $("html").load("nonregistered-user-homepage.html");
-////    }
-    
-    });
 
 
+//    localStorage.setItem("authentication", "dXNlcjp1c2Vy");
+//    debugger
+//    if(localStorage.getItem("authentication")){
+//        $().load("home-page.html");
+//    } else {
+//        $().load("nonregistered-user-homepage.html");
+//    }
+
+
+var app = angular.module('indexPage', []);
+app.controller('indexController', function ($scope, $location, $window) {
+  debugger
+  $window.location.href("home-page.html");
+//        $location=$location.path("home-page.html");
+    
+});
