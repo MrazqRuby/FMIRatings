@@ -58,8 +58,6 @@ app.controller('disciplinesController', function ($scope, $http) {
     }).error(function (data) {
         $scope.status = status;
     });
-
-    $scope.message = 'Look! I am an about page.';
 });
 
 app.controller('disciplineDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
@@ -93,6 +91,28 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
     }).error(function (data) {
         $scope.votesStatus = data;
     });
+
+    $scope.showDetails = true;
+    $scope.showVote = false;
+    $scope.showMaterials = false;
+
+    $scope.info = function (id) {
+        $scope.showDetails = !$scope.hideDetails;
+        $scope.showVote = false;
+        $scope.showMaterials = false;
+    };
+
+    $scope.vote = function (id) {
+        $scope.showVote = !$scope.showVote;
+        $scope.showDetails = false;
+        $scope.showMaterials = false;
+    };
+
+    $scope.materials = function (id) {
+        $scope.showMaterials = !$scope.showMaterials;
+        $scope.showDetails = false;
+        $scope.showVote = false;
+    };
 });
 
 app.controller('teachersController', function ($scope) {

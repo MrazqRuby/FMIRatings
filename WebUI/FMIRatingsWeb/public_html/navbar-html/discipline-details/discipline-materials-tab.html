@@ -4,47 +4,25 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="container-fluid inner-container" id="upload-local-material">
-    <form class="form-inline center">
-        <div class="form-group">
-            <label for="uploadMaterial">Качи материал от локалното устройство:</label>
-            <input type="file" id="uploadMaterial">
-            <p class="help-block">Може да изберете материал от вашето устройство, който да качите.</p>
-        </div>
-    </form>
-</div>
+<div ng-hide="materialsHide" class = "container-fluid inner-container">
+    <div class="container-fluid inner-container" id="upload-local-material">
+        <form class="form-inline center">
+            <div class="form-group">
+                <label for="uploadMaterial">Качи материал от локалното устройство:</label>
+                <input type="file" id="uploadMaterial">
+                <p class="help-block">Може да изберете материал от вашето устройство, който да качите.</p>
+            </div>
+        </form>
+    </div>
 
-<div class="container-fluid inner-container">
-    <ul class="list-group">
-        <li class="list-group-item">
-            Cras justo odio
-            <a href="#">
-                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            Dapibus ac facilisis in
-            <a href="#">
-                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            Morbi leo risus
-            <a href="#">
-                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            Porta ac consectetur ac
-            <a href="#">
-                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            Vestibulum at eros
-            <a href="#">
-                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-            </a>
-        </li>
-    </ul>
+    <div class="container-fluid inner-container">
+        <ul class="list-group">
+            <li class="list-group-item">
+                Cras justo odio
+                <a href="#">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>

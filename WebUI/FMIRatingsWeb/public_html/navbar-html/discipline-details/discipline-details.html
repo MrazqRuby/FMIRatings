@@ -7,11 +7,11 @@ and open the template in the editor.
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
 <!--<script src="js/controller.js"></script>-->
 
-<div class = "container-fluid inner-container">
+<div class = "container-fluid inner-container" ng-controller="disciplineDetailsController">
     <!--discipline info-->
     <div class = "jumbotron">
         <div class=" container">
-            <div class="pull-left" ng-controller="disciplineDetailsController">
+            <div class="pull-left" >
                 <h3 id = "discipline-title">{{dataCourse.name}}</h3> 
                 <!--<h3>Lecturer</h3>--> 
 
@@ -23,18 +23,18 @@ and open the template in the editor.
             </div>
 
             <table class="pull-right table rating-table table-condensed">
-               <tr>
-                        <td class="progress-label-td"><strong>Средна оценка:</strong></td>
-                        <td>
-                            <strong>0,5</strong>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="progress-label-td"><strong>Средна оценка:</strong></td>
+                    <td>
+                        <strong>0,5</strong>
+                    </td>
+                </tr>
                 <tr ng-repeat='vote in votes.votes'>
                     <td class="progress-label-td">{{vote.criterionName}}</td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{vote.avarage}}" aria-valuemin="0" aria-valuemax="5" style="width: {{(vote.avarage/5)*100}}%;">
-                                
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{vote.avarage}}" aria-valuemin="0" aria-valuemax="5" style="width: {{(vote.avarage / 5) * 100}}%">
+
                             </div>
                         </div>
                     </td>
@@ -46,17 +46,125 @@ and open the template in the editor.
     </div>
 
     <!--discipline details-->
-    <ul class="nav nav-tabs" id="discipline-tabs-nav">
-        <li role="presentation" class="active"><a href="#discipline-details-tab">Подробна информация</a></li>
-        <li role="presentation"><a href="#discipline-ratings-tab">Оценка</a></li>
-        <li role="presentation"><a href="#discipline-materials-tab">Материали</a></li>
-    </ul>
-    
+    <!--    <ul class="nav nav-tabs" id="discipline-tabs-nav">
+            <li role="presentation" class="active"><a href="#discipline-details-tab">Подробна информация</a></li>
+            <li role="presentation"><a href="#discipline-ratings-tab">Оценка</a></li>
+            <li role="presentation"><a href="#discipline-materials-tab">Материали</a></li>
+        </ul>-->
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" ng-click="info(dataCourse.id)">Подробна информация</button>
+        <button type="button" class="btn btn-default" ng-click="vote(dataCourse.id)">Оценка</button>
+        <button type="button" class="btn btn-default" ng-click="materials(dataCourse.id)">Материали</button>
+    </div>
+
     <div class = "container-fluid inner-container" id="discipline-choosen-tab-container">
-        
+        <div ng-show="showDetails" class="container-fluid inner-container">
+            <h3>Преподаватели:</h3>
+            <ul class="list-group">
+                <li ng-repeat="teacher in dataCourse.teachers" class="list-group-item">
+                    <a >{{teacher}}</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div ng-show="showVote" class="container-fluid inner-container">
+            <h3>Дай своята оценка</h3>
+            <div  class = "container-fluid inner-container" id="discipline-ratings-table-container">
+
+                <form class="form-inline center">
+                    <div class="form-group rate-group">
+                        <label for="helpfulness">Полезност</label>
+                        <input type="number" name="helpfulness" id="helpfulness" class="rating" 
+                               data-empty-value="4"
+                               data-max="5" data-min="1"
+                               data-active-icon="glyphicon glyphicon-star" 
+                               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="easyness">Леснота</label>
+                        <input type="number" name="easyness" id="easyness" class="rating" 
+                               data-empty-value="4"
+                               data-max="5" data-min="1"
+                               data-active-icon="glyphicon glyphicon-star" 
+                               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="interesting">Интерес</label>
+                        <input type="number" name="interesting" id="interesting" class="rating" 
+                               data-empty-value="4"
+                               data-max="5" data-min="1"
+                               data-active-icon="glyphicon glyphicon-star" 
+                               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="hardness">Натовареност</label>
+                        <input type="number" name="hardness" id="hardness" class="rating" 
+                               data-empty-value="4"
+                               data-max="5" data-min="1"
+                               data-active-icon="glyphicon glyphicon-star" 
+                               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+                    </div>
+                    <div class="form-group rate-group">
+                        <label for="clearance">Яснота</label>
+                        <input type="number" name="clearance" id="clearance" class="rating" 
+                               data-empty-value="4" 
+                               data-max="5" data-min="1"
+                               data-active-icon="glyphicon glyphicon-star" 
+                               data-inactive-icon="glyphicon glyphicon-star-empty"/>
+                    </div>
+
+                    <div class="form-group rate-group">
+                        <textarea class="form-control" rows="3" cols="100"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Оцени</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="container-fluid inner-container">
+                <h3>Коментари</h3>
+            </div>
+            <div ng-repeat="comment in dataCourse.comments" class="container-fluid inner-container" id="discipline-comments-container">
+                <div class="panel panel-default">
+                    <blockquote>
+                        <p>{{comment.text}}</p>
+                        <footer>{{comment.author}} <cite title="Date">{{comment.dateCreated}}</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="showMaterials" class = "container-fluid inner-container">
+            <div class="container-fluid inner-container" id="upload-local-material">
+                <form class="form-inline center">
+                    <div class="form-group">
+                        <label for="uploadMaterial">Качи материал от локалното устройство:</label>
+                        <input type="file" id="uploadMaterial">
+                        <p class="help-block">Може да изберете материал от вашето устройство, който да качите.</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="container-fluid inner-container">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Cras justo odio
+                        <a href="#">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </div>
 
-<script src="js/navigation/disciplines.js"></script>
+<!--<script src="js/navigation/disciplines.js"></script>-->
+
 <script src="js/navigation/return-to-list.js"></script>
