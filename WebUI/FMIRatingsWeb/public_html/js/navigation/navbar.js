@@ -198,9 +198,9 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
     }).error(function (data) {
         $scope.statusTeacherVotes = data;
     });
-    var voteSum = 0;
+    $scope.sum = 0;
     for (var vote in $scope.votes) {
-        voteSum += vote.avarage;
+        $scope.sum += vote.avarage;
     }
 //    if ($scope.votes.length > 0) {
 //        $scope.avarage = voteSum / $scope.votes.length;

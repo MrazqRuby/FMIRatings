@@ -8,7 +8,7 @@
 
 //    localStorage.setItem("authentication", "dXNlcjp1c2Vy");
 //    console.log(localStorage.getItem("authentication").length > 0);
-    debugger
+    
     if(localStorage.getItem("authentication")){
         window.location.assign( "/FMIRatingsWeb/home-page.html");
 //        $().load("home-page.html");
