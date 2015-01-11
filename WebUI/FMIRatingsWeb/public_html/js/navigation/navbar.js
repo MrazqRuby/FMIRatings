@@ -182,17 +182,18 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             withCredentials: true
         }
     }).success(function (data) {
-        $scope.dateVotes = data.votes;
+        $scope.votes = data.votes;
+        debugger
     }).error(function (data) {
         $scope.statusTeacherVotes = data;
     });
     var voteSum = 0;
-    for (var vote in votes) {
+    for (var vote in $scope.votes) {
         voteSum += vote.avarage;
     }
-    if (votes.length > 0) {
-        $scope.avarage = voteSum / votes.length;
-    }
+//    if ($scope.votes.length > 0) {
+//        $scope.avarage = voteSum / $scope.votes.length;
+//    }
 
 
 });

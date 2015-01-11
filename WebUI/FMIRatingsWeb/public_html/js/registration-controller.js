@@ -20,7 +20,9 @@ debugger
                 debugger;
                 $scope.data = data;
                 $scope.registrationHide=true;
+                
                 alert("Успешна регистрация!");
+                window.location.assign( "/FMIRatingsWeb/nonregistered-user-homepage.html");
             }).error(function (data) {
                 debugger;
                 

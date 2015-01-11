@@ -32,7 +32,7 @@ and open the template in the editor.
                         <td class="progress-label-td">{{criterion.criterionName}}</td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{criterion.avarage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(criterion.avarage / 5) * 100}}%;">
                                     {{criterion.avarage}}
                                 </div>
                             </div>
