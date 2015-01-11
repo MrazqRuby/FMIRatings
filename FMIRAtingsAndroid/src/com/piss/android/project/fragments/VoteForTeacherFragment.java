@@ -1,18 +1,25 @@
 package com.piss.android.project.fragments;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.PostVoteForTeacherTask;
+import com.piss.android.project.utils.APIConnectionConstants;
 
 public class VoteForTeacherFragment extends Fragment {
 
@@ -39,6 +46,7 @@ public class VoteForTeacherFragment extends Fragment {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.add_comment_layout, null);
 
+		
 		ratingBarClarity = (RatingBar) rootView
 				.findViewById(R.id.clarity_rating);
 		ratingBarEnthusiasum = (RatingBar) rootView
@@ -47,6 +55,16 @@ public class VoteForTeacherFragment extends Fragment {
 				.findViewById(R.id.evaluation_rating);
 		ratingBarSpeed = (RatingBar) rootView.findViewById(R.id.speed_rating);
 		ratingBarScope = (RatingBar) rootView.findViewById(R.id.scope_rating);
+		
+		
+		 ratingBarClarity.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+		        public void onRatingChanged(RatingBar ratingBar, float rating,
+		         boolean fromUser) {
+
+		         Toast.makeText(getActivity(),"Your Selected Ratings  : " + String.valueOf(rating),Toast.LENGTH_LONG).show();
+
+		        }
+		       });
 		comment = (TextView) rootView.findViewById(R.id.editComment);
 		sendComment = (ImageView) rootView.findViewById(R.id.commentArrow);
 		sendComment.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +72,8 @@ public class VoteForTeacherFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
+				SharedPreferences settings = getActivity().getSharedPreferences(APIConnectionConstants.PREFERENCES, Activity.MODE_PRIVATE);
+				String auth = settings.getString(APIConnectionConstants.AUTHENTICATION, "");
 				long teacherID = getArguments().getLong(TEACHER_ID);
 				int userID = 0;
 				int ratingClarity = (int) ratingBarClarity.getRating();
@@ -63,7 +83,7 @@ public class VoteForTeacherFragment extends Fragment {
 				int ratingScope = (int) ratingBarScope.getRating();
 				String text = comment.getText().toString();
 
-				PostVoteForTeacherTask postVote = new PostVoteForTeacherTask(
+				PostVoteForTeacherTask postVote = new PostVoteForTeacherTask(auth,
 						teacherID, userID, ratingClarity, ratingEnthusiasum,
 						ratingEvaluation, ratingSpeed, ratingScope, text) {
 

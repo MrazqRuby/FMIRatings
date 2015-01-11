@@ -1,13 +1,6 @@
 package com.piss.android.project.fragments;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import com.piss.android.project.adapters.CommentsAdapter;
-import com.piss.android.project.adapters.CoursesAdapter;
-import com.piss.android.project.fmiratings.R;
-import com.piss.android.project.models.Comment;
-import com.piss.android.project.models.Course;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.piss.android.project.adapters.CoursesAdapter;
+import com.piss.android.project.fmiratings.R;
+import com.piss.android.project.models.Course;
 
 public class DisplayCoursesFragment extends Fragment {
 

@@ -20,34 +20,31 @@ import com.piss.android.project.models.Teacher;
 import com.piss.android.project.models.Votes;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class GetVoteForTeacherTask extends AsyncTask<Void, Void, ArrayList<Votes>> {
+public class GetVoteForTeacherTask extends
+		AsyncTask<Void, Void, ArrayList<Votes>> {
 
-	private String auth;
-	private String teacherId;
+	// private String auth;
+	private Long teacherId;
 
-	public GetVoteForTeacherTask(String auth, String teacherId) {
-		this.auth = auth;
+	public GetVoteForTeacherTask(Long teacherId) {
+		// this.auth = auth;
 		this.teacherId = teacherId;
 	}
 
 	@Override
 	protected ArrayList<Votes> doInBackground(Void... params) {
 		String request = null;
-		if(teacherId != null ){
+
 		request = APIConnectionConstants.API
-				+ APIConnectionConstants.API_VOTE_FOR_TEACHER;
-		} else {
-			request = APIConnectionConstants.API
-					+ APIConnectionConstants.API_VOTE_FOR_TEACHER + "/" + teacherId;
-		}
+				+ APIConnectionConstants.API_VOTE_FOR_TEACHER + "/" + teacherId;
 
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
 
 		/* Set Authentication token in header */
-//		get.addHeader(APIConnectionConstants.AUTHENTICATION,
-//				APIConnectionConstants.BASIC + " " + auth);
+		// get.addHeader(APIConnectionConstants.AUTHENTICATION,
+		// APIConnectionConstants.BASIC + " " + auth);
 
 		HttpResponse response;
 		ArrayList<Votes> mList;

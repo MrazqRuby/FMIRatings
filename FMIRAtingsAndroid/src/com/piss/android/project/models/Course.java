@@ -14,7 +14,7 @@ public class Course implements Serializable {
 	private long id;
 	private String name;
 	private String description;
-	private ArrayList<String> teachers;
+	private ArrayList<Teacher> teachers;
 	private ArrayList<Comment> comments;
 
 	public static ArrayList<Course> parseFromJSON(JSONArray json) {
@@ -35,14 +35,14 @@ public class Course implements Serializable {
 				course.setName(item.getString(APIConnectionConstants.NAME));
 				teachers = item.getJSONArray(APIConnectionConstants.TEACHERS);
 				coursesComents = item.getJSONArray(APIConnectionConstants.COMMENTS);
-				
-				if (teachers != null && teachers.length() > 0) {
-					teachersArray = new ArrayList<String>();
-					for (int j = 0; j < teachers.length(); j++) {
-						teachersArray.add(teachers.getString(j));
-					}
-					course.setTeachers(teachersArray);
-				}
+				course.setTeachers(Teacher.parseFromJSON(teachers));
+//				if (teachers != null && teachers.length() > 0) {
+//					teachersArray = new ArrayList<String>();
+//					for (int j = 0; j < teachers.length(); j++) {
+//						teachersArray.add(teachers.getString(j));
+//					}
+//					course.setTeachers(teachersArray);
+//				}
 				course.setComments(Comment.parseJSON(coursesComents));
 				courses.add(course);
 			} catch (JSONException e) {
@@ -86,11 +86,11 @@ public class Course implements Serializable {
 		this.description = description;
 	}
 
-	public ArrayList<String> getTeachers() {
+	public ArrayList<Teacher> getTeachers() {
 		return teachers;
 	}
 
-	public void setTeachers(ArrayList<String> teachers) {
+	public void setTeachers(ArrayList<Teacher> teachers) {
 		this.teachers = teachers;
 	}
 

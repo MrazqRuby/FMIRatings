@@ -19,6 +19,15 @@ public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private String name;
+	private String department;
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	private ArrayList<Course> courses;
 	private ArrayList<Comment> comments;
 
@@ -36,6 +45,7 @@ public class Teacher implements Serializable {
 				
 				teacher.setId(item.getLong(APIConnectionConstants.ID));
 				teacher.setName(item.getString(APIConnectionConstants.NAME));
+				teacher.setDepartment(item.getString(APIConnectionConstants.DEPARTMENT));
 				coursesJSON = item.getJSONArray(APIConnectionConstants.COURSES);
 				commentsJSON = item.getJSONArray(APIConnectionConstants.COMMENTS);
 				teacher.setCourses(Course.parseFromJSON(coursesJSON));

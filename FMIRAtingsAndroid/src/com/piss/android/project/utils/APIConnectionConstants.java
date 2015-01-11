@@ -35,10 +35,7 @@ public class APIConnectionConstants {
 	public final static String COURSE = "course";
 	public final static String GROUP = "group";
 	public final static String GRADUATION_YEAR = "graduationYear";
-	public final static String MAJOR = "major";
-	
-	
-	
+	public final static String MAJOR = "major";	
 
 	public final static String API_VOTE_FOR_TEACHER = "VoteForTeacher";
 	public final static String API_COURSE_COMMENTS = "CourseComments";
@@ -61,7 +58,7 @@ public class APIConnectionConstants {
 	public final static String EVALUATION = "evaluation";
 	public final static String SPEED = "speed";
 	public final static String SCOPE = "scope";
-
+	public final static String DEPARTMENT = "department";
 	public final static String VOTES = "votes";
 	public final static String CRITERION_ID = "criterionId";
 	public final static String CRITERION_NAME = "criterionName";

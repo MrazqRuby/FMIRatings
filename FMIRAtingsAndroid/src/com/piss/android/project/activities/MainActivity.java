@@ -140,8 +140,9 @@ public class MainActivity extends ActionBarActivity {
 			//
 			// finish();
 			// return true;
+			onBackPressed();
 			// }
-			return false;
+			return true;
 
 		case R.id.action_search:
 

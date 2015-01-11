@@ -17,7 +17,7 @@
                 android:id="@+id/add_rating_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginBottom="@dimen/app_margin_small"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/add_rating" />
@@ -26,8 +26,8 @@
                 android:id="@+id/clarity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/app_margin_big"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/app_margin_small"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/clarity" />
 
@@ -44,7 +44,7 @@
                 android:id="@+id/workload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginBottom="@dimen/app_margin_small"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/workload" />
@@ -62,7 +62,7 @@
                 android:id="@+id/interest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginBottom="@dimen/app_margin_small"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/interest" />
@@ -80,7 +80,7 @@
                 android:id="@+id/simplicity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginBottom="@dimen/app_margin_small"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/simplicity" />

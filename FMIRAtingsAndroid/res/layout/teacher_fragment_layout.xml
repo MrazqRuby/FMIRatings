@@ -1,51 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:padding="@dimen/app_margin_big">
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/teacher_name_label"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/name" />
+        android:orientation="vertical"
+        android:padding="@dimen/app_margin_big" >
 
-    <TextView
-        android:id="@+id/teacher_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/teacher_name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/teacher_department_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/department" />
+        <TextView
+            android:id="@+id/teacher_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/teacher_department"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/teacher_department_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/department"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/courses_button"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/courses" />
+        <TextView
+            android:id="@+id/teacher_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/comments_button"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/comments" />
+        <TextView
+            android:id="@+id/teacher_votes_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/votes"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/vote_button"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/vote" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:isScrollContainer="false"
+            android:orientation="vertical" >
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/clarity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_small"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/clarity" />
+
+            <RatingBar
+                android:id="@+id/clarity_rating"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:clickable="false"
+                
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+            <TextView
+                android:id="@+id/enthusiasum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_small"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/enthusiasm" />
+
+            <RatingBar
+                android:id="@+id/enthusiasum_rating"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:clickable="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+            <TextView
+                android:id="@+id/evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_small"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/evaluation" />
+
+            <RatingBar
+                android:id="@+id/evaluation_rating"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:clickable="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+            <TextView
+                android:id="@+id/speed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_small"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/speed" />
+
+            <RatingBar
+                android:id="@+id/speed_rating"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:clickable="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+            <TextView
+                android:id="@+id/scope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/app_margin_big"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/scope" />
+
+            <RatingBar
+                android:id="@+id/scope_rating"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:clickable="false"
+                android:numStars="5"
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/courses_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/courses" />
+
+        <Button
+            android:id="@+id/comments_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comments" />
+
+        <Button
+            android:id="@+id/vote_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vote" />
+    </LinearLayout>
+
+</ScrollView>

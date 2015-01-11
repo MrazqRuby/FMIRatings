@@ -51,6 +51,7 @@
 	<string name="courses">Курсове</string>
 	<string name="comments">Коментари</string>
 	<string name="category">Категория</string>
+	<string name="votes">Оценки</string>
     
     <!-- Teachers -->
 </resources>
