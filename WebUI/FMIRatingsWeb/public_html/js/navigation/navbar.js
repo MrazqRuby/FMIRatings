@@ -257,7 +257,7 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
 
 });
 
-app.controller('FileUploadCtrl', function($scope) {
+app.controller('FileUploadCtrl', function($scope, $http) {
     $scope.setFiles = function(element) {
         $scope.$apply(function(scope) {
         console.log('files:', element.files);
@@ -266,14 +266,16 @@ app.controller('FileUploadCtrl', function($scope) {
         for (var i = 0; i < element.files.length; i++) {
           $scope.files.push(element.files[i])
         }
-        $scope.progressVisible = false
+        $scope.showUploadButton = true;
+        $scope.progressVisible = false;
+        console.log("file is vissible");
         });
     };
 
     $scope.uploadFile = function(courseId) {
 
         var filesData = {};
-        fiilesData["courseId"] = courseId;
+        filesData["courseId"] = courseId;
         filesData["fileName"] = $scope.files[0];
         $scope.progressVisible = true
         $http({

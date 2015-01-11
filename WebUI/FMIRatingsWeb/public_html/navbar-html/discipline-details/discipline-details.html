@@ -166,10 +166,9 @@ and open the template in the editor.
                         <label for="uploadMaterial">Качи материал от локалното устройство:</label>
                         <input type="file" ng-model-instant id="uploadMaterial" multiple onchange="angular.element(this).scope().setFiles(this)">
                         <p class="help-block">Може да изберете материал от вашето устройство, който да качите.</p>
-                    </div>
-                    <div ng-show="files.length">
-                        <div ng-repeat="file in files.slice(0)">
-                            <span>{{file.webkitRelativePath || file.name}}</span>
+                    <div ng-show="showUploadButton">
+                        <div ng-repeat="file in files">
+                            <span>{{file.name}}</span>
                             (<span ng-switch="file.size > 1024*1024">
                                 <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
                                 <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
@@ -183,6 +182,8 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    </div>
+                    
                 </form>
             </div>
 
