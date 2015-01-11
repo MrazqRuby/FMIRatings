@@ -108,7 +108,7 @@ app.controller('teachersController', function ($scope) {
 
 app.controller('teacherDetailsController', function ($rootScope, $scope, $routeParams, $route, $http) {
     //If you want to use URL attributes before the website is loaded
-     $http({
+        $http({
             url: 'http://95.111.16.46:6420/api/teachers/' + $routeParams.id,
             method: "GET",
             xhrFields: {
@@ -119,8 +119,22 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             $scope.dataTeacher = data;
         }).error(function (data) {
             debugger;
-            $scope.statusCourse = data;
+            $scope.statusTeacher = data;
         });
+
+        $http({
+            url: 'http://95.111.16.46:6420/api/voteforteacher/' + $routeParams.id,
+            method: "GET",
+            xhrFields: {
+                withCredentials: true
+            }     
+        }).success(function (data) {
+            $scope.dateVotes = data.votes;
+        }).error(function (data) {
+            $scope.statusTeacherVotes = data;
+        });
+        
+
 });
 
 
