@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<div class="panel-heading">
+    <h2 class="text-primary">Курсове</h2>
+</div>
+
+        <div id="search-results-container">
+            <div class="search-results-section">
+                Резултати за курсове
+                <div ng-repeat ='course in coursesSearchResults' class="list-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{course.name}}
+                        </div>
+                        <div class="panel-body">
+                            <a ng-repeat="teacher in course.teachers" ng-href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="!coursesSearchResults.length">Няма намерени курсове</div>
+            </div>
+
+            <div class="search-results-section">
+                Резултати за преподаватели
+                <div ng-repeat ='teacher in teachersSearchResults' class="list-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{teacher.name}}
+                        </div>
+                        <div class="panel-body">
+                            <a ng-repeat="course in teacher.courses" ng-href="#discipline-details/{{course.id}}" class="list-group-item">{{course.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="!teachersSearchResults.length">Няма намерени преподаватели</div>
+            </div>
+        </div>
+
