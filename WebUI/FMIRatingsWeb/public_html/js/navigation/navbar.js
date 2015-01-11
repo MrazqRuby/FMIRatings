@@ -14,6 +14,7 @@ var TEACHERS_LIST = "teachers-list-page";
 //$(document).ready(function () {
 
 var app = angular.module("fmiRatingsApp", ['ngRoute']);
+
 app.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.headers.common['Authorization'] = localStorage.getItem("authentication");
     }]);
@@ -50,7 +51,12 @@ app.config(function ($routeProvider) {
             .when('/teacher-details/:id', {
                 templateUrl: 'navbar-html/teacher-details/teacher-details.html',
                 controller: 'teacherDetailsController'
+            })
+            .otherwise({
+                templateUrl: 'navbar-html/start-page.html',
+                controller: 'mainController'
             });
+
 });
 
 app.controller('mainController', function ($scope) {
@@ -105,7 +111,7 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
     }).success(function (data) {
         $scope.votes = data;
         debugger
-         $scope.sum = 0;
+        $scope.sum = 0;
         angular.forEach($scope.votes.votes, function (value, key) {
             $scope.sum += value.avarage;
         });
@@ -135,8 +141,6 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
             $scope.rating.CourseId = $scope.dataCourse.id;
             var rating = $scope.rating;
 
-            var auth = "Basic " + localStorage.getItem("authentication");
-            console.log(auth);
             $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
                 url: 'http://95.111.16.46:6420/api/VoteForCourse',
@@ -223,11 +227,11 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             $scope.rating.TeacherId = $scope.dataTeacher.id;
             var rating = $scope.rating;
 
-    var auth = "Basic " + localStorage.getItem("authentication");
-    console.log(auth);
-    $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
+            var auth = "Basic " + localStorage.getItem("authentication");
+            console.log(auth);
+            $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
-                url: 'http://95.111.16.46:6420/api/VoteForTeacher',
+                url: 'http://95.111.16.46:6420/api/VoteForCourse/PostVoteForCourse',
                 method: "POST",
                 data: rating,
                 xhrFields: {
