@@ -18,7 +18,7 @@ import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.PostVoteForCourseTask;
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class VoteForCoursesFragment extends Fragment{
+public class VoteForCoursesFragment extends Fragment {
 	private final static String COURSE_ID = "id";
 	private RatingBar ratingBarClarity;
 	private RatingBar ratingBarWorkload;
@@ -48,28 +48,38 @@ public class VoteForCoursesFragment extends Fragment{
 				.findViewById(R.id.workload_rating);
 		ratingBarInterest = (RatingBar) rootView
 				.findViewById(R.id.interest_rating);
-		ratingBarSimplicity = (RatingBar) rootView.findViewById(R.id.simplicity_rating);
-		ratingBarUsefulness = (RatingBar) rootView.findViewById(R.id.usefulness_rating);
-		 ratingBarClarity.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-		        public void onRatingChanged(RatingBar ratingBar, float rating,
-		         boolean fromUser) {
+		ratingBarSimplicity = (RatingBar) rootView
+				.findViewById(R.id.simplicity_rating);
+		ratingBarUsefulness = (RatingBar) rootView
+				.findViewById(R.id.usefulness_rating);
+		ratingBarClarity
+				.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+					public void onRatingChanged(RatingBar ratingBar,
+							float rating, boolean fromUser) {
 
-		         Toast.makeText(getActivity(),"Your Selected Ratings  : " + String.valueOf(rating),Toast.LENGTH_LONG).show();
+						Toast.makeText(
+								getActivity(),
+								"Your Selected Ratings  : "
+										+ String.valueOf(rating),
+								Toast.LENGTH_LONG).show();
 
-		        }
-		       });
-		
+					}
+				});
+
 		comment = (TextView) rootView.findViewById(R.id.editComment);
 		sendComment = (ImageView) rootView.findViewById(R.id.commentArrow);
 		sendComment.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				SharedPreferences settings = getActivity().getSharedPreferences(APIConnectionConstants.PREFERENCES, Activity.MODE_PRIVATE);
-				String auth = settings.getString(APIConnectionConstants.AUTHENTICATION, "");
+				SharedPreferences settings = getActivity()
+						.getSharedPreferences(
+								APIConnectionConstants.PREFERENCES,
+								Activity.MODE_PRIVATE);
+				String auth = settings.getString(
+						APIConnectionConstants.AUTHENTICATION, "");
 
-				String what = "VoteForCourse";
-				int courseId = getArguments().getInt(COURSE_ID);
+				int courseId = (int) getArguments().getLong(COURSE_ID);
 				int userId = 0;
 				int ratingClarity = (int) ratingBarClarity.getRating();
 				int ratingWorkload = (int) ratingBarWorkload.getRating();
@@ -78,14 +88,20 @@ public class VoteForCoursesFragment extends Fragment{
 				int ratingUsefulness = (int) ratingBarUsefulness.getRating();
 				String text = comment.getText().toString();
 
-				PostVoteForCourseTask postVote = new PostVoteForCourseTask(what,
-						courseId, userId, ratingClarity, ratingWorkload,
-						ratingInterest, ratingSimplicity, ratingUsefulness, text){
-				
-				@Override
-				protected void onPostExecute(Boolean result) {
-					Toast.makeText(getActivity(), "Result" + result, Toast.LENGTH_LONG).show();
-				}};
+				PostVoteForCourseTask postVote = new PostVoteForCourseTask(
+						auth, courseId, userId, ratingClarity, ratingWorkload,
+						ratingInterest, ratingSimplicity, ratingUsefulness,
+						text) {
+
+					@Override
+					protected void onPostExecute(Boolean result) {
+						if (!result) {
+							Toast.makeText(getActivity(),
+									"Вие вече сте гласували", Toast.LENGTH_LONG)
+									.show();
+						}
+					}
+				};
 
 				postVote.execute();
 

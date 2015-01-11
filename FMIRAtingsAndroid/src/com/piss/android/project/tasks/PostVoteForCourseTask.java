@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import android.net.ParseException;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import com.piss.android.project.utils.APIConnectionConstants;
@@ -69,7 +70,7 @@ public class PostVoteForCourseTask extends AsyncTask<Void, Void, Boolean>{
 		try {
 			httpPost = new HttpPost(url);
 			json.put(APIConnectionConstants.COURSE_ID, courseId);
-			json.put(APIConnectionConstants.USER_ID, userId);
+			//json.put(APIConnectionConstants.USER_ID, userId);
 			json.put(APIConnectionConstants.CLARITY, clarity);
 			json.put(APIConnectionConstants.WORKLOAD, workload);
 			json.put(APIConnectionConstants.INTEREST, interests);
@@ -80,7 +81,14 @@ public class PostVoteForCourseTask extends AsyncTask<Void, Void, Boolean>{
 			Log.i("DEBUG", json.toString());
 
 			StringEntity se = new StringEntity(json.toString());
-			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,APIConnectionConstants.BASIC + " " + auth);
+			Log.d("DEBUG", "auth:" + auth );
+			//httpPost.setHeader(APIConnectionConstants.AUTHENTICATION, APIConnectionConstants.BASIC + " " + auth);
+//			String ecode = "gvas:123";
+//			byte[] bytes = ecode.getBytes();
+//			String auth = Base64.encodeToString(bytes, Base64.URL_SAFE|Base64.NO_WRAP);
+			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION, APIConnectionConstants.BASIC + " " + auth);
+			// nameValuePairs.clear();
+			//Log.d("DEBUG",httpPost.getHeaders(APIConnectionConstants.AUTHENTICATION ).toString()+ "");
 //			nameValuePairs.clear();
 //
 //			nameValuePairs.add(new BasicNameValuePair(
@@ -117,7 +125,7 @@ public class PostVoteForCourseTask extends AsyncTask<Void, Void, Boolean>{
 			String jsonResponse;
 			try {
 				jsonResponse = EntityUtils.toString(response.getEntity());
-				JSONObject jsonObj = new JSONObject(jsonResponse);
+				//JSONObject jsonObj = new JSONObject(jsonResponse);
 
 				int code = response.getStatusLine().getStatusCode();
 				Log.d("DEBUG","code: " +code);
@@ -130,9 +138,6 @@ public class PostVoteForCourseTask extends AsyncTask<Void, Void, Boolean>{
 				e.printStackTrace();
 				return false;
 			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			} catch (JSONException e) {
 				e.printStackTrace();
 				return false;
 			}
