@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class CourseFragment  extends Fragment implements OnClickListener{
 
@@ -49,7 +50,7 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 		comments.setOnClickListener(this);
 		
 		((MainActivity) getActivity()).setUpNavigationToolbar();
-		((MainActivity) getActivity()).getSupportActionBar().setTitle("Курс");
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSE);
 		
 		return rootView;
 	}
