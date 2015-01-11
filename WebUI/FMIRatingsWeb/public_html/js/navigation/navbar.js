@@ -270,19 +270,28 @@ app.controller('FileUploadCtrl', function($scope) {
         });
     };
 
-    $scope.uploadFile = function() {
-        var fd = new FormData()
-        for (var i in $scope.files) {
-            fd.append("uploadedFile", $scope.files[i])
-        }
-        var xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener("progress", uploadProgress, false)
-        xhr.addEventListener("load", uploadComplete, false)
-        xhr.addEventListener("error", uploadFailed, false)
-        xhr.addEventListener("abort", uploadCanceled, false)
-        xhr.open("POST", "/fileupload")
+    $scope.uploadFile = function(courseId) {
+
+        var filesData = {};
+        fiilesData["courseId"] = courseId;
+        filesData["files"] = $scope.files;
         $scope.progressVisible = true
-        xhr.send(fd)
+        $http({
+            url: 'http://95.111.16.46:6420/api/users/upload',
+            method: "POST",
+            data: filesData,
+            xhrFields: {
+                withCredentials: true
+            },
+//                headers: {"Authentication": localStorage.getItem("authentication")}
+        }).success(function (data) {
+            debugger;
+            alert("Файлът е качен.")
+        }).error(function (data) {
+            debugger
+            $scope.status = status;
+            alert("Неуспешно качване на файла.")
+        });
     }
 
     function uploadProgress(evt) {

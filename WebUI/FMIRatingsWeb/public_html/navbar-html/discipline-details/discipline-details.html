@@ -175,7 +175,7 @@ and open the template in the editor.
                                 <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
                             </span>)
                         </div>
-                        <input type="button" ng-click="uploadFile()" value="Upload" />
+                        <input type="button" ng-click="uploadFile(dataCourse.id)" value="Upload" />
                         <div ng-show="progressVisible">
                             <div class="percent">{{progress}}%</div>
                             <div class="progress-bar">
