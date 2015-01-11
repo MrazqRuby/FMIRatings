@@ -139,35 +139,35 @@ namespace FMIRatingsAPI.Controllers
                 db.VotesForCourses.AddRange(new VoteForCourse[] {
                     new VoteForCourse() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = ClarityID,
                         Assessment = (int)voteForCourse.Clarity,
                     },
                     new VoteForCourse() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = WorkloadID,
                         Assessment = (int)voteForCourse.Workload,
                     },
                     new VoteForCourse() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = UsefulnessID,
                         Assessment = (int)voteForCourse.Usefulness,
                     },
                     new VoteForCourse() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = SimplicityID,
                         Assessment = (int)voteForCourse.Simplicity,
                     },
                     new VoteForCourse() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         CriterionId = InterestID,
                         Assessment = (int)voteForCourse.Interest,
@@ -176,7 +176,7 @@ namespace FMIRatingsAPI.Controllers
                 db.CommentsForCourses.Add(
                     new CommentForCourse()
                     {
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         CourseId = voteForCourse.CourseId,
                         Text = voteForCourse.Comment,
                         DateCreated = DateTime.Now,

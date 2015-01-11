@@ -138,35 +138,35 @@ namespace FMIRatingsAPI.Controllers
                 db.VotesForTeachers.AddRange(new VoteForTeacher[] {
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = ClarityID,
                         Assessment = (int)voteForTeacher.Clarity,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = EnthusiasmID,
                         Assessment = (int)voteForTeacher.Enthusiasm,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = EvaluationID,
                         Assessment = (int)voteForTeacher.Speed,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = SpeedID,
                         Assessment = (int)voteForTeacher.Scope,
                     },
                     new VoteForTeacher() 
                     { 
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         CriterionId = ScopeID,
                         Assessment = (int)voteForTeacher.Evaluation,
@@ -175,7 +175,7 @@ namespace FMIRatingsAPI.Controllers
                 db.CommentsForTeachers.Add(
                     new CommentForTeacher()
                     {
-                        UserId = 1,
+                        UserId = UserManager.GetCurrentUser().Id,
                         TeacherId = voteForTeacher.TeacherId,
                         Text = voteForTeacher.Comment,
                         DateCreated = DateTime.Now,
