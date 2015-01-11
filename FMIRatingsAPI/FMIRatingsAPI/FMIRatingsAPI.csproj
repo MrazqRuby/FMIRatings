@@ -171,6 +171,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authentication\UserPrincipal.cs" />
     <Compile Include="Controllers\CourseCategoriesController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\TeacherDepartmentsController.cs" />
     <Compile Include="Controllers\VoteForTeacherController.cs" />
     <Compile Include="Controllers\CourseCommentsController.cs">

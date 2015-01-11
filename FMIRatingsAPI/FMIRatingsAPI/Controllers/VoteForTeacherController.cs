@@ -116,11 +116,11 @@ namespace FMIRatingsAPI.Controllers
             Teacher teacher = db.Teachers.Where(c => c.Id == voteForTeacher.TeacherId).FirstOrDefault();
 
             // Запазваме ID на критериите
-            int ClarityID = db.CriteriaForTeachers.First(c => c.Name == "Clarity").Id;
-            int EnthusiasmID = db.CriteriaForTeachers.First(c => c.Name == "Enthusiasm").Id;
-            int EvaluationID = db.CriteriaForTeachers.First(c => c.Name == "Criteria of evaluation").Id;
-            int SpeedID = db.CriteriaForTeachers.First(c => c.Name == "Speed of teaching").Id;
-            int ScopeID = db.CriteriaForTeachers.First(c => c.Name == "Scope of teaching material").Id;
+            int ClarityID = db.CriteriaForTeachers.First(c => c.Name == "Яснота").Id;
+            int EnthusiasmID = db.CriteriaForTeachers.First(c => c.Name == "Ентусиазъм").Id;
+            int EvaluationID = db.CriteriaForTeachers.First(c => c.Name == "Критерии на оценяване").Id;
+            int SpeedID = db.CriteriaForTeachers.First(c => c.Name == "Скорост на преповдаване").Id;
+            int ScopeID = db.CriteriaForTeachers.First(c => c.Name == "Обхват на преподавания материал").Id;
 
             //Дали потребителя е гласувал за този учител по параметър
             int userId = UserManager.GetCurrentUser().Id;

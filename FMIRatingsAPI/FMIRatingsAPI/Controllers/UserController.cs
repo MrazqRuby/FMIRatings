@@ -41,7 +41,7 @@ namespace FMIRatingsAPI.Controllers
             }
             catch (Exception exc)
             {
-                return Ok(exc.Message);
+                return InternalServerError(exc);
             }
             return Ok(new UserDTO(createdUser));
         }
@@ -110,8 +110,10 @@ namespace FMIRatingsAPI.Controllers
             }
             catch (System.Exception e)
             {
-                return InternalServerError(e);
+                return Ok(e.Message);
             }
+
+
         }
 
         [AuthenticationFilter]
