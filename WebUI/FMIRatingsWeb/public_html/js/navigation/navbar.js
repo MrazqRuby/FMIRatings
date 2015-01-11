@@ -52,6 +52,10 @@ app.config(function ($routeProvider) {
                 templateUrl: 'navbar-html/teacher-details/teacher-details.html',
                 controller: 'teacherDetailsController'
             })
+            .when("/search", {
+                templateUrl: "navbar-html/search-results.html",
+                controller: "searchController"
+            })
             .otherwise({
                 templateUrl: 'navbar-html/start-page.html',
                 controller: 'mainController'
@@ -386,3 +390,45 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
 //        });
 //    });
 //});
+
+app.controller("searchController", function($scope, $http) {
+    debugger;
+
+    var searchText = $scope.searchText || "ов";
+
+    if (searchText) {
+        $http({
+            url: "http://95.111.16.46:6420/api/teachers/search/" + searchText,
+            method: "GET",
+            xhrFields: {
+                withCredentials: true
+            }
+
+        }).success(function(data) {
+                debugger;
+                $scope.teachersSearchResults = data;
+            }).error(function(data) {
+                $scope.message = "В момента има проблем с търсенето в системата. Опитайте отново.";
+            });
+
+        $http({
+            url: "http://95.111.16.46:6420/api/courses/search/" + searchText,
+            method: "GET",
+            xhrFields: {
+                withCredentials: true
+            }
+
+        }).success(function(data) {
+                debugger;
+                $scope.coursesSearchResults = data;
+            }).error(function(data) {
+                $scope.message = "В момента има проблем с търсенето в системата. Опитайте отново.";
+            });
+
+
+    }
+    else {
+        $scope.message = "Не сте въвели информация за търсене. Опитайте отново.";
+    }
+
+});
