@@ -255,9 +255,10 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
         $scope.showDetails = false;
     };
     $scope.rate = function () {
-        if (typeof $scope.rating !== 'undefined') {
-            $scope.rating.TeacherId = $scope.dataTeacher.id;
-            var rating = $scope.rating;
+        if (typeof $scope.teachersRting !== 'undefined') {
+            $scope.teachersRting.TeacherId = $scope.dataTeacher.id;
+            debugger
+            var teachersRting = $scope.teachersRting;
 
             var auth = + localStorage.getItem("authentication");
             console.log(auth);
@@ -265,7 +266,7 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             $http({
                 url: 'http://95.111.16.46:6420/api/VoteForTeacher/PostVoteForTeacher',
                 method: "POST",
-                data: rating,
+                data: teachersRting,
                 xhrFields: {
                     withCredentials: true
                 },
