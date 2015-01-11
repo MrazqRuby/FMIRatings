@@ -26,7 +26,7 @@ import android.util.Log;
 
 import com.piss.android.project.utils.APIConnectionConstants;
 
-public class LoginTask extends AsyncTask<Void, Void, Boolean> {
+public class LoginTask extends AsyncTask<Void, Void, String> {
 
 	private String name;
 	private String password;
@@ -37,11 +37,11 @@ public class LoginTask extends AsyncTask<Void, Void, Boolean> {
 	}
 
 	@Override
-	protected Boolean doInBackground(Void... params) {
+	protected String doInBackground(Void... params) {
 		HttpClient client = new DefaultHttpClient();
 		String url = APIConnectionConstants.API
 				+ APIConnectionConstants.API_LOGIN;
-
+		String jsonResponse = null;
 		HttpResponse response = null;
 		JSONObject json = new JSONObject();
 		HttpPost httpPost;
@@ -55,11 +55,11 @@ public class LoginTask extends AsyncTask<Void, Void, Boolean> {
 			String ecode = name + ":" + password;
 			byte[] bytes = ecode.getBytes();
 			String auth = Base64.encodeToString(bytes, Base64.DEFAULT);
-			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,
-					APIConnectionConstants.BASIC + " " + auth);
+//			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,
+//					APIConnectionConstants.BASIC + " " + auth);
 			
 			StringEntity se = new StringEntity(json.toString());
-
+			Log.e("DEBUG", "login json: " + json.toString());
 			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 					"application/json"));
 			httpPost.setEntity(se);
@@ -69,48 +69,45 @@ public class LoginTask extends AsyncTask<Void, Void, Boolean> {
 
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			} catch (IOException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 
-			String jsonResponse;
+			
 			try {
 				int code = response.getStatusLine().getStatusCode();
 				Log.e("STATUS CODE", "code: " + code);
 				jsonResponse = EntityUtils.toString(response.getEntity());
 				Log.e("DEBUG", "login response: " + jsonResponse);
-				JSONObject jsonObj = new JSONObject(jsonResponse);
+				//JSONObject jsonObj = new JSONObject(jsonResponse);
 
 				if (code != 200 && code != 201) {
-					return false;
+					return null;
 				}
 
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			} catch (IOException e) {
 				e.printStackTrace();
-				return false;
-			} catch (JSONException e) {
-				e.printStackTrace();
-				return false;
+				return null;
 			}
 
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			return false;
+			return null;
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+		return jsonResponse;
 
 	}
 }
