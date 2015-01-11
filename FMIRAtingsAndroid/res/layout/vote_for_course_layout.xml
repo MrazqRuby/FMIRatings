@@ -56,7 +56,7 @@
                 android:layout_height="21dp"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:rating="0" />
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/interest"
@@ -74,7 +74,7 @@
                 android:layout_height="21dp"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:rating="0" />
+                android:clickable="true" />
             
              <TextView
                 android:id="@+id/simplicity"
@@ -92,7 +92,7 @@
                 android:layout_height="21dp"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:rating="0" />
+                android:clickable="true" />
             
             <TextView
                 android:id="@+id/usefulness"
@@ -110,7 +110,7 @@
                 android:layout_height="21dp"
                 android:numStars="5"
                 android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:rating="0" />
+                android:clickable="true" />
         </LinearLayout>
     </ScrollView>
 

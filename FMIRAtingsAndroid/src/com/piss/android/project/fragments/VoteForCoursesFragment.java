@@ -1,5 +1,7 @@
 package com.piss.android.project.fragments;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.tasks.PostVoteForCourseTask;
+import com.piss.android.project.utils.APIConnectionConstants;
 
 public class VoteForCoursesFragment extends Fragment{
 	private final static String COURSE_ID = "id";
@@ -45,12 +50,23 @@ public class VoteForCoursesFragment extends Fragment{
 				.findViewById(R.id.interest_rating);
 		ratingBarSimplicity = (RatingBar) rootView.findViewById(R.id.simplicity_rating);
 		ratingBarUsefulness = (RatingBar) rootView.findViewById(R.id.usefulness_rating);
+		 ratingBarClarity.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+		        public void onRatingChanged(RatingBar ratingBar, float rating,
+		         boolean fromUser) {
+
+		         Toast.makeText(getActivity(),"Your Selected Ratings  : " + String.valueOf(rating),Toast.LENGTH_LONG).show();
+
+		        }
+		       });
+		
 		comment = (TextView) rootView.findViewById(R.id.editComment);
 		sendComment = (ImageView) rootView.findViewById(R.id.commentArrow);
 		sendComment.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				SharedPreferences settings = getActivity().getSharedPreferences(APIConnectionConstants.PREFERENCES, Activity.MODE_PRIVATE);
+				String auth = settings.getString(APIConnectionConstants.AUTHENTICATION, "");
 
 				String what = "VoteForCourse";
 				int courseId = getArguments().getInt(COURSE_ID);
@@ -64,7 +80,12 @@ public class VoteForCoursesFragment extends Fragment{
 
 				PostVoteForCourseTask postVote = new PostVoteForCourseTask(what,
 						courseId, userId, ratingClarity, ratingWorkload,
-						ratingInterest, ratingSimplicity, ratingUsefulness, text);
+						ratingInterest, ratingSimplicity, ratingUsefulness, text){
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					Toast.makeText(getActivity(), "Result" + result, Toast.LENGTH_LONG).show();
+				}};
 
 				postVote.execute();
 
