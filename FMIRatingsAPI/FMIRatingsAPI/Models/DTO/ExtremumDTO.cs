@@ -7,7 +7,7 @@ namespace FMIRatingsAPI.Models.DTO
 {
     public class ObjectScore
     {
-        public int Score { get; set;}
+        public double Score { get; set;}
         public String Target { get; set; }
         public int TargetId { get; set; }
     }

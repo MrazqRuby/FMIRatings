@@ -147,13 +147,31 @@ namespace FMIRatingsAPI.Controllers
                     ObjectScore maxScore;
                     double average;
 
-                    var votes = _db.VotesForCourses.Where(v => v.CriterionId == cfc.Id);
-                    var min = votes.First(v => v.Assessment == votes.Min(x => x.Assessment));
-                    var max = votes.First(v => v.Assessment == votes.Max(x => x.Assessment));
-                    average = votes.Average(v => v.Assessment);
 
-                    minScore = new ObjectScore() { Score = min.Assessment, Target = min.Course.Name, TargetId = min.CourseId};
-                    maxScore = new ObjectScore() { Score = max.Assessment, Target = max.Course.Name, TargetId = max.CourseId };
+                    var voteGroupsAsc = _db.VotesForCourses.
+                        Where(v => v.CriterionId == cfc.Id).
+                        GroupBy(v => v.CourseId).
+                        OrderBy(g => g.Average(h => h.Assessment));
+                    var voteGroupsDesc = _db.VotesForCourses.
+                        Where(v => v.CriterionId == cfc.Id).
+                        GroupBy(v => v.CourseId).
+                        OrderByDescending(g => g.Average(h => h.Assessment));
+                    var min = voteGroupsAsc.First();
+                    var max = voteGroupsDesc.First();
+                    average = voteGroupsAsc.Average(v => v.Average(s => s.Assessment));
+
+                    minScore = new ObjectScore()
+                    {
+                        Score = min.Average(m => m.Assessment),
+                        Target = min.ElementAt(0).Course.Name,
+                        TargetId = min.ElementAt(0).CourseId
+                    };
+                    maxScore = new ObjectScore()
+                    {
+                        Score = max.Average(m => m.Assessment),
+                        Target = max.ElementAt(0).Course.Name,
+                        TargetId = max.ElementAt(0).CourseId
+                    };
 
                     result.Add(new ExtremumDTO() {
                         Avg = average,
@@ -172,13 +190,26 @@ namespace FMIRatingsAPI.Controllers
                     ObjectScore maxScore;
                     double average;
 
-                    var votes = _db.VotesForTeachers.Where(v => v.CriterionId == cft.Id);
-                    var min = votes.First(v => v.Assessment == votes.Min(x => x.Assessment));
-                    var max = votes.First(v => v.Assessment == votes.Max(x => x.Assessment));
-                    average = votes.Average(v => v.Assessment);
+                    var voteGroupsAsc = _db.VotesForTeachers.
+                        Where(v => v.CriterionId == cft.Id).
+                        GroupBy(v => v.TeacherId).
+                        OrderBy(g => g.Average(h => h.Assessment));
+                    var voteGroupsDesc = _db.VotesForTeachers.
+                        Where(v => v.CriterionId == cft.Id).
+                        GroupBy(v => v.TeacherId).
+                        OrderByDescending(g => g.Average(h => h.Assessment));
+                    var min = voteGroupsAsc.First();
+                    var max = voteGroupsDesc.First();
+                    average = voteGroupsAsc.Average(v => v.Average(s => s.Assessment));
 
-                    minScore = new ObjectScore() { Score = min.Assessment, Target = min.Teacher.Name, TargetId = min.TeacherId };
-                    maxScore = new ObjectScore() { Score = max.Assessment, Target = max.Teacher.Name, TargetId = max.TeacherId };
+                    minScore = new ObjectScore() {
+                        Score = min.Average(m => m.Assessment),
+                        Target = min.ElementAt(0).Teacher.Name,
+                        TargetId = min.ElementAt(0).TeacherId };
+                    maxScore = new ObjectScore() {
+                        Score = max.Average(m => m.Assessment),
+                        Target = max.ElementAt(0).Teacher.Name,
+                        TargetId = max.ElementAt(0).TeacherId };
 
                     result.Add(new ExtremumDTO()
                     {
