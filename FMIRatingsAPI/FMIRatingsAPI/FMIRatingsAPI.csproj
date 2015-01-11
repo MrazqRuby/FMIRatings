@@ -59,6 +59,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -163,6 +166,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authentication\UserPrincipal.cs" />
     <Compile Include="Controllers\CourseCategoriesController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\TeacherDepartmentsController.cs" />
     <Compile Include="Controllers\VoteForTeacherController.cs" />
     <Compile Include="Controllers\CourseCommentsController.cs">
@@ -185,6 +189,14 @@
     <Compile Include="Migrations\201501101247507_InitialMigration.Designer.cs">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501111539105_InitialMigration1.cs" />
+    <Compile Include="Migrations\201501111539105_InitialMigration1.Designer.cs">
+      <DependentUpon>201501111539105_InitialMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501111655478_migr.cs" />
+    <Compile Include="Migrations\201501111655478_migr.Designer.cs">
+      <DependentUpon>201501111655478_migr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentForCourse.cs" />
@@ -202,11 +214,13 @@
     <Compile Include="Models\DTO\CommentForTeacherDTO.cs" />
     <Compile Include="Models\DTO\CourseCategoryDTO.cs" />
     <Compile Include="Models\DTO\CourseDTO.cs" />
+    <Compile Include="Models\DTO\StatisticDTO.cs" />
     <Compile Include="Models\DTO\TeacherDepartmentDTO.cs" />
     <Compile Include="Models\DTO\TeacherDTO.cs" />
     <Compile Include="Models\DTO\UserDTO.cs" />
     <Compile Include="Models\DTO\VoteForCourseDTO.cs" />
     <Compile Include="Models\DTO\VoteForTeacherDTO.cs" />
+    <Compile Include="Models\Statistic.cs" />
     <Compile Include="Models\TeacherDepartment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -214,6 +228,7 @@
     <Compile Include="Models\VoteForCourse.cs" />
     <Compile Include="Models\VoteForTeacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics\InputTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -328,6 +343,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501101247507_InitialMigration.resx">
       <DependentUpon>201501101247507_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111539105_InitialMigration1.resx">
+      <DependentUpon>201501111539105_InitialMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501111655478_migr.resx">
+      <DependentUpon>201501111655478_migr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

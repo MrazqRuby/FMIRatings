@@ -215,6 +215,33 @@
 			};
 
 			commentsForCourses.ForEach(c => dbContext.CommentsForCourses.AddOrUpdate(c));
+
+            var statistics = new List<Statistic>()
+            {
+                new Statistic()
+                {
+                    Id = 1,
+                    Name = "Най-голем пич",
+                    FileName = "dude",
+                    InputTransform = "teacherNames: String = Teachers.Select(t => t.Name)",
+                    InputType = "Teacher",
+                    ReturnType = Statistic.ResultType.IMAGE
+                },
+                new Statistic()
+                {
+                    Id = 2,
+                    Name = "Най-голем бастон",
+                    FileName = "staff",
+                    InputTransform = @"teacherNames: System.String = Teachers.Select(Name)
+teacherIds: System.Int32 = Teachers.Select(t => t.Id)
+teacherVote: System.Collections.Generic.List`1[System.Int32] = VotesForTeachers.Where(v => v.Criterion.Name == ""Яснота"").GroupBy(v => v.TeacherId, v => v.Assessment, (key, val) => val.ToList()).ToList();",
+                    InputType = "Teacher",
+                    ReturnType = Statistic.ResultType.IMAGE
+                }
+            };
+
+            statistics.ForEach(s => dbContext.Statistics.AddOrUpdate(s));
+
 			dbContext.SaveChanges();
 
 			#region CriteriaForCourses
@@ -450,20 +477,7 @@
                 },
             };
 
-			foreach (VoteForTeacher voteForTeacher in votesForTeachers)
-			{
-				var voteForTeacherInDb = dbContext.VotesForTeachers
-					.Where(t =>
-						 t.UserId == voteForTeacher.UserId &&
-						 t.Teacher.Id == voteForTeacher.TeacherId &&
-						 t.Criterion.Id == voteForTeacher.CriterionId)
-					.SingleOrDefault();
-
-				if (voteForTeacherInDb == null)
-				{
-					dbContext.VotesForTeachers.Add(voteForTeacher);
-				}
-			}
+            votesForTeachers.ForEach(v => dbContext.VotesForTeachers.AddOrUpdate(v));
 
 			dbContext.SaveChanges();
 			#endregion
