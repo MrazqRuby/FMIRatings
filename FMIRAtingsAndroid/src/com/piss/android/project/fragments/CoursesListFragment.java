@@ -26,6 +26,7 @@ import com.piss.android.project.models.Course;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.tasks.GetCoursesTask;
 import com.piss.android.project.tasks.GetSearchCourseTask;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class CoursesListFragment extends Fragment {
 
@@ -76,6 +77,7 @@ public class CoursesListFragment extends Fragment {
 		getCoursesTask.execute();
 
 		setHasOptionsMenu(true);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSES);
 		return rootView;
 	}
 

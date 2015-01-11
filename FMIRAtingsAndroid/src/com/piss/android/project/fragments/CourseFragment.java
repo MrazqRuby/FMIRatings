@@ -49,6 +49,7 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 		comments.setOnClickListener(this);
 		
 		((MainActivity) getActivity()).setUpNavigationToolbar();
+		((MainActivity) getActivity()).getSupportActionBar().setTitle("Курс");
 		
 		return rootView;
 	}

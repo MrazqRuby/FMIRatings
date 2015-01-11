@@ -25,6 +25,7 @@ import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Teacher;
 import com.piss.android.project.tasks.GetSearchTeacherTask;
 import com.piss.android.project.tasks.GetTeachersTask;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class TeachersListFragment extends Fragment {
 	
@@ -73,7 +74,7 @@ public class TeachersListFragment extends Fragment {
 		};
 		getCoursesTask.execute();
 		setHasOptionsMenu(true);
-
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.TEACHERS);
 		return rootView;
 	}
 	
