@@ -66,7 +66,22 @@ and open the template in the editor.
                             <!--<a href="#search" class="btn btn-default">Търси</a>-->
                         <!--</div>-->
 
-                        <div ng-controller="searchController" class="navbar-form navbar-left">
+                        
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="nonregistered-user-homepage.html" onclick ="localStorage.clear();">Изход</a></li>
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <!--Body wrapper-->
+
+            <div id="body-wrapper" class = "row" ng-view>
+
+            </div>
+<div ng-controller="searchController" class="navbar-form navbar-left">
 
                             <div id="search-results-container">
                                 <div class="search-results-section">
@@ -108,21 +123,6 @@ and open the template in the editor.
 
                             </form>
                         </div>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="nonregistered-user-homepage.html" onclick ="localStorage.clear();">Изход</a></li>
-
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
-
-            <!--Body wrapper-->
-
-            <div id="body-wrapper" class = "row" ng-view>
-
-            </div>
-
         </div>
         <!--        <script src="js/navigation/teachers.js"></script>
                 <script src="js/navigation/disciplines.js"></script>-->
