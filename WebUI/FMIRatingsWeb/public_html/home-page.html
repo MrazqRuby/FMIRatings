@@ -81,49 +81,49 @@ and open the template in the editor.
             <div id="body-wrapper" class = "row" ng-view>
 
             </div>
-<div ng-controller="searchController" class="navbar-form navbar-left">
+            <div ng-controller="searchController" class="navbar-form navbar-left">
+                <form ng-submit="search(searchText)" class="css-form">
+                    <div class="form-group">
+                        <input type="search" class="form-control" value="text" value="type" placeholder="Търси" ng-model="searchText">
+                    </div>
+                    <input type="submit" value="Search">
 
-                            <div id="search-results-container">
-                                <div class="search-results-section">
-                                    Резултати за курсове
-                                    <div ng-repeat ='course in coursesSearchResults' class="list-group">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                {{course.name}}
-                                            </div>
-                                            <div class="panel-body">
-                                                <a ng-repeat="teacher in course.teachers" ng-href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div ng-show="!coursesSearchResults.length">Няма намерени курсове</div>
+
+                </form>
+                <div id="search-results-container">
+                    <div class="search-results-section">
+                        Резултати за курсове
+                        <div ng-repeat ='course in coursesSearchResults' class="list-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    {{course.name}}
                                 </div>
-
-                                <div class="search-results-section">
-                                    Резултати за преподаватели
-                                    <div ng-repeat ='teacher in teachersSearchResults' class="list-group">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                {{teacher.name}}
-                                            </div>
-                                            <div class="panel-body">
-                                                <a ng-repeat="course in teacher.courses" ng-href="#discipline-details/{{course.id}}" class="list-group-item">{{course.name}}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div ng-show="!teachersSearchResults.length">Няма намерени преподаватели</div>
+                                <div class="panel-body">
+                                    <a ng-repeat="teacher in course.teachers" ng-href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
                                 </div>
                             </div>
-                            <form ng-submit="search(searchText)" class="css-form">
-                                <div class="form-group">
-                                    <input type="search" class="form-control" value="text" value="type" placeholder="Търси" ng-model="searchText">
-                                </div>
-                                <input type="submit" value="Search">
-
-
-                            </form>
                         </div>
-        </div>
+                        <div ng-show="!coursesSearchResults.length">Няма намерени курсове</div>
+                    </div>
+
+                    <div class="search-results-section">
+                        Резултати за преподаватели
+                        <div ng-repeat ='teacher in teachersSearchResults' class="list-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    {{teacher.name}}
+                                </div>
+                                <div class="panel-body">
+                                    <a ng-repeat="course in teacher.courses" ng-href="#discipline-details/{{course.id}}" class="list-group-item">{{course.name}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="!teachersSearchResults.length">Няма намерени преподаватели</div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
         <!--        <script src="js/navigation/teachers.js"></script>
                 <script src="js/navigation/disciplines.js"></script>-->
     </body>
