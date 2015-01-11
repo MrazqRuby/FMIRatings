@@ -134,9 +134,7 @@ app.controller('disciplineDetailsController', function ($rootScope, $scope, $rou
         if (typeof $scope.rating !== 'undefined') {
             $scope.rating.CourseId = $scope.dataCourse.id;
             var rating = $scope.rating;
-
-            var auth = "Basic " + localStorage.getItem("authentication");
-            console.log(auth);
+            
             $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
                 url: 'http://95.111.16.46:6420/api/VoteForCourse',

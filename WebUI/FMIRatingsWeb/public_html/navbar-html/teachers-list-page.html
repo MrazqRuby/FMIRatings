@@ -11,7 +11,7 @@ and open the template in the editor.
 
     <div class="panel-group" id="teacher-type-accordion" role="tablist" ng-controller="teachersController">
         <div ng-repeat ='department in departments' class="list-group">
-            <h3 class="list-group-item list-group-item-success">{{department.name}}</h3>
+            <h3 class="list-group-item list-group-item-info">{{department.name}}</h3>
             <a ng-repeat="teacher in department.teachers" href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
         </div>
         <!--        <div class="panel panel-default">
