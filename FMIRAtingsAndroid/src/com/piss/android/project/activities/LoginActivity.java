@@ -3,8 +3,12 @@ package com.piss.android.project.activities;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.fragments.InitialFragment;
 import com.piss.android.project.fragments.RegistrationFragment;
+import com.piss.android.project.utils.APIConnectionConstants;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -22,9 +26,16 @@ public class LoginActivity extends FragmentActivity {
 		setContentView(R.layout.activity_login);
 		
 		
-		
-		Fragment fragment = new InitialFragment();
-		addFragment(fragment);
+		SharedPreferences setttings = getSharedPreferences(APIConnectionConstants.PREFERENCES, MODE_PRIVATE);
+		if(setttings.getString(APIConnectionConstants.AUTHENTICATION, null)!=null){
+			Intent i = new Intent(this , MainActivity.class);
+			startActivity(i);
+			finish();
+		}else{
+			Fragment fragment = new InitialFragment();
+			addFragment(fragment);
+		}
+	
 		
 	}
 	

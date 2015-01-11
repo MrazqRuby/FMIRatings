@@ -1,5 +1,8 @@
 package com.piss.android.project.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +25,9 @@ import android.widget.ListView;
 
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.fragments.CoursesListFragment;
+import com.piss.android.project.fragments.InitialFragment;
 import com.piss.android.project.fragments.TeachersListFragment;
+import com.piss.android.project.utils.APIConnectionConstants;
 
 public class MainActivity extends ActionBarActivity {
 	private DrawerLayout mDrawerLayout;
@@ -72,8 +77,8 @@ public class MainActivity extends ActionBarActivity {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mTitle = mDrawerTitle = getTitle();
 
-		//Set ToolBar
-        setSupportActionBar(toolbar);
+		// Set ToolBar
+		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -188,11 +193,22 @@ public class MainActivity extends ActionBarActivity {
 			fragment = new TeachersListFragment();
 			break;
 		case 3:
-			//Logout
-			//fragment = new TeachersListFragment();
+			SharedPreferences setttings = getSharedPreferences(
+					APIConnectionConstants.PREFERENCES, MODE_PRIVATE);
+			Editor edit = setttings.edit();
+			edit.clear();
+			edit.commit();
+			// Remove all fragments and return default home icon
+			getSupportFragmentManager().popBackStack();
+			if (mDrawerToggle != null) {
+				mDrawerToggle.setDrawerIndicatorEnabled(true);
+			}
+			Intent i = new Intent(this , LoginActivity.class);
+			startActivity(i);
+			finish();
 			break;
 		default:
-			fragment = new CoursesListFragment();
+			// fragment = new CoursesListFragment();
 			break;
 		}
 
@@ -270,11 +286,12 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 
-	 public void setUpNavigationToolbar() {
+	public void setUpNavigationToolbar() {
 
-	        mDrawerToggle.setDrawerIndicatorEnabled(false);
-	        mDrawerToggle.setHomeAsUpIndicator(getV7DrawerToggleDelegate().getThemeUpIndicator());
-	        setSupportActionBar(toolbar);
+		mDrawerToggle.setDrawerIndicatorEnabled(false);
+		mDrawerToggle.setHomeAsUpIndicator(getV7DrawerToggleDelegate()
+				.getThemeUpIndicator());
+		setSupportActionBar(toolbar);
 
-	    }
+	}
 }
