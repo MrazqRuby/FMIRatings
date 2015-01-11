@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.piss.android.project.adapters.MaterialsAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
 import com.piss.android.project.models.Material;
+import com.piss.android.project.tasks.DownloadFileTask;
 import com.piss.android.project.tasks.GetMaterialsTask;
 import com.piss.android.project.utils.HeaderConstants;
 
@@ -50,8 +53,18 @@ public class MaterialsListFragment extends Fragment {
 		
 		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.MATERIALS);
 
-		// TODO: Set authentication token for current user
+		mListView.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				int fileId = materialList.get(position).getId();
+				String filename = materialList.get(position).getFilename();
+				DownloadFileTask download = new DownloadFileTask( fileId, filename, getActivity());
+				download.execute();
+				
+			}
+		});
 		int id = (int)getArguments().getLong(MATERIAL);
 		
 		GetMaterialsTask getMaterialsTask = new GetMaterialsTask(id) {
