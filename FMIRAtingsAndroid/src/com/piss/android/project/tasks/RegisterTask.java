@@ -59,14 +59,14 @@ public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 		try {
 			httpPost = new HttpPost(url);
 			json.put(APIConnectionConstants.ID, 0);
-			json.put(APIConnectionConstants.NAME, name);
-			json.put(APIConnectionConstants.REALNAME, realname);
-			json.put(APIConnectionConstants.PASSWORD, password);
-			json.put(APIConnectionConstants.EMAIL, email);
-			json.put(APIConnectionConstants.COURSE, course);
-			json.put(APIConnectionConstants.GROUP, group);
-			json.put(APIConnectionConstants.GRADUATION_YEAR, year);
-			json.put(APIConnectionConstants.MAJOR, major);
+			json.put("Name", name);
+			json.put("RealName", realname);
+			json.put("Password", password);
+			json.put("Email", email);
+			json.put("Course", course);
+			json.put("Group", group);
+			json.put("GraduationYear", year);
+			json.put("Major", major);
 
 			StringEntity se = new StringEntity(json.toString());
 

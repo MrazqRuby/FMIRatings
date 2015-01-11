@@ -11,7 +11,7 @@ public class APIConnectionConstants {
 	public final static String API = "http://95.111.16.46:6420/api/";
 
 	/* API PARAMETERS */
-	public final static String AUTHENTICATION = "Authentication";
+	public final static String AUTHENTICATION = "Authorization";
 	public final static String BASIC = "Basic";
 	public final static String API_TEACHERS = "Teachers";
 	public final static String API_COURSES = "Courses";

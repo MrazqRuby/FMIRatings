@@ -91,7 +91,11 @@ public class VoteForTeacherFragment extends Fragment {
 
 					@Override
 					protected void onPostExecute(Boolean result) {
-						Toast.makeText(getActivity(), "Result" + result, Toast.LENGTH_LONG).show();
+						if (!result) {
+							Toast.makeText(getActivity(),
+									"Вие вече сте гласували", Toast.LENGTH_LONG)
+									.show();
+						}
 					}
 
 				};

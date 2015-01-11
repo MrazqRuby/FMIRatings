@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.net.ParseException;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -64,7 +65,7 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 		try {
 			httpPost = new HttpPost(url);
 			json.put(APIConnectionConstants.TEACHER_ID, teacherId);
-			json.put(APIConnectionConstants.USERID_JSON, userId);
+			//json.put(APIConnectionConstants.USERID_JSON, userId);
 			json.put(APIConnectionConstants.ENTHUSUASM, enthusiasm);
 			json.put(APIConnectionConstants.CLARITY_JSON, clarity);
 			json.put(APIConnectionConstants.EVALUATION, evaluation);
@@ -75,7 +76,12 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 			Log.i("DEBUG", json.toString());
 
 			StringEntity se = new StringEntity(json.toString());
-			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION,APIConnectionConstants.BASIC + " " + auth);
+			
+//			String ecode = "g:123";
+//			byte[] bytes = ecode.getBytes();
+//			String auth = Base64.encodeToString(bytes, Base64.URL_SAFE|Base64.NO_WRAP);
+			Log.i("DEBUG", "auth: " + auth);
+			httpPost.addHeader(APIConnectionConstants.AUTHENTICATION, APIConnectionConstants.BASIC + " " + auth);
 			// nameValuePairs.clear();
 			//
 			// nameValuePairs.add(new BasicNameValuePair(
@@ -114,7 +120,7 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 			String jsonResponse;
 			try {
 				jsonResponse = EntityUtils.toString(response.getEntity());
-				JSONObject jsonObj = new JSONObject(jsonResponse);
+				//JSONObject jsonObj = new JSONObject(jsonResponse);
 
 				
 				int code = response.getStatusLine().getStatusCode();
@@ -128,9 +134,6 @@ public class PostVoteForTeacherTask extends AsyncTask<Void, Void, Boolean> {
 				e.printStackTrace();
 				return false;
 			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			} catch (JSONException e) {
 				e.printStackTrace();
 				return false;
 			}
