@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
     <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        android:isScrollContainer="true"
+        android:scrollbars="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:isScrollContainer="false"
             android:orientation="vertical" >
 
             <TextView
@@ -33,12 +39,12 @@
 
             <RatingBar
                 android:id="@+id/clarity_rating"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
-                android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:rating="0" />
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
 
             <TextView
                 android:id="@+id/workload"
@@ -51,12 +57,12 @@
 
             <RatingBar
                 android:id="@+id/workload_rating"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
-                android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:clickable="true" />
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
 
             <TextView
                 android:id="@+id/interest"
@@ -69,14 +75,14 @@
 
             <RatingBar
                 android:id="@+id/interest_rating"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
-                android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:clickable="true" />
-            
-             <TextView
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
+            <TextView
                 android:id="@+id/simplicity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,13 +93,13 @@
 
             <RatingBar
                 android:id="@+id/simplicity_rating"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
-                android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:clickable="true" />
-            
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
+
             <TextView
                 android:id="@+id/usefulness"
                 android:layout_width="match_parent"
@@ -105,12 +111,12 @@
 
             <RatingBar
                 android:id="@+id/usefulness_rating"
-                style="?android:attr/ratingBarStyleIndicator"
+                style="?android:attr/ratingBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
+                android:clickable="true"
                 android:numStars="5"
-                android:progressDrawable="@drawable/review_ratings_stars_states"
-                android:clickable="true" />
+                android:progressDrawable="@drawable/review_ratings_stars_states" />
         </LinearLayout>
     </ScrollView>
 
