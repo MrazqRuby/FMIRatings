@@ -4,48 +4,51 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
-<script src="js/controller.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+<script src="js/controller.js"></script>-->
 
 <div class="container-fluid inner-container">
 
-    <div class="panel-group" id="teacher-type-accordion" role="tablist" ng-controller="TeachersCtrl">
-
-        <div class="panel panel-default">
-            <div ng-repeat ='department in departments' class="panel-heading" role="tab" id="typeHeadingOne">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#teacher-type-accordion" href="#{{department.id}}department" aria-expanded="true" aria-controls="{department.id}}department">
-                        {{department.name}}
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTypeOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="typeHeadingOne">
-                <div class="panel-body">
-
-                    <div class="panel-group" id="{{department.id}}accordion" role="tablist">
-                        <div ng-repeat="teacher in department.teachers" class="panel panel-default" id="1">
-                            <div class="panel-heading" role="tab" id="{{teacher.name}}">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#{{teacher.id}}accordion" href="#{{teacher.id}}teacher" aria-expanded="true" aria-controls="{{teacher.id}}teacher">
-                                        {{teacher.name}}
-                                    </a>                    
-                                </h4>
-
-                            </div>
-                            <div id="{{teacher.id}}teacher" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{teacher.name}}">
-                                <div class="panel-body">
-                                    <ul>
-                                    <li ng-repeat='course in teacher.courses'>{{course.name}}</li>
-                                    </ul>
-                                    <button class="btn btn-primary pull-right discipline-open" type="button" ng-click="showTeacher(teacher.id)">Виж учителя</button>
+    <div class="panel-group" id="teacher-type-accordion" role="tablist" ng-controller="teachersController">
+        <div ng-repeat ='department in departments' class="list-group">
+            <h3 class="list-group-item list-group-item-success">{{department.name}}</h3>
+            <a ng-repeat="teacher in department.teachers" href="#teacher-details/{{teacher.id}}" class="list-group-item">{{teacher.name}}</a>
+        </div>
+        <!--        <div class="panel panel-default">
+                    <div ng-repeat ='department in departments' class="panel-heading" role="tab" id="typeHeadingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#teacher-type-accordion" href="#{{department.id}}department" aria-expanded="true" aria-controls="{department.id}}department">
+                                {{department.name}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTypeOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="typeHeadingOne">
+                        <div class="panel-body">
+        
+                            <div class="panel-group" id="{{department.id}}accordion" role="tablist">
+                                <div ng-repeat="teacher in department.teachers" class="panel panel-default" id="1">
+                                    <div class="panel-heading" role="tab" id="{{teacher.name}}">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#{{teacher.id}}accordion" href="#{{teacher.id}}teacher" aria-expanded="true" aria-controls="{{teacher.id}}teacher">
+                                                {{teacher.name}}
+                                            </a>                    
+                                        </h4>
+        
+                                    </div>
+                                    <div id="{{teacher.id}}teacher" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{teacher.name}}">
+                                        <div class="panel-body">
+                                            <ul>
+                                            <li ng-repeat='course in teacher.courses'>{{course.name}}</li>
+                                            </ul>
+                                            <button class="btn btn-primary pull-right discipline-open" type="button" ng-click="showTeacher(teacher.id)">Виж учителя</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div>-->
     </div>
 </div>
-<script src="js/navigation/teachers.js"></script>
+<!--<script src="js/navigation/teachers.js"></script>-->
 
