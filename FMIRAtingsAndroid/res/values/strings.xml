@@ -53,4 +53,8 @@
 	<string name="category">Категория</string>
     
     <!-- Teachers -->
+    <!-- Course -->
+    <string name="teachers">Учители</string>
+   	
+    
 </resources>

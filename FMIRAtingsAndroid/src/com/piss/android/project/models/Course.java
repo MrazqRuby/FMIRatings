@@ -14,6 +14,7 @@ public class Course implements Serializable {
 	private long id;
 	private String name;
 	private String description;
+	private String category;
 	private ArrayList<String> teachers;
 	private ArrayList<Comment> comments;
 
@@ -32,6 +33,8 @@ public class Course implements Serializable {
 				course.setId(item.getLong(APIConnectionConstants.ID));
 				course.setDescription(item
 						.getString(APIConnectionConstants.DESCRIPTION));
+				course.setDescription(item
+						.getString(APIConnectionConstants.CATEGORY));
 				course.setName(item.getString(APIConnectionConstants.NAME));
 				teachers = item.getJSONArray(APIConnectionConstants.TEACHERS);
 				coursesComents = item.getJSONArray(APIConnectionConstants.COMMENTS);
@@ -92,6 +95,14 @@ public class Course implements Serializable {
 
 	public void setTeachers(ArrayList<String> teachers) {
 		this.teachers = teachers;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

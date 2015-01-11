@@ -14,12 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
+import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.adapters.CoursesAdapter;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
+import com.piss.android.project.models.Teacher;
 import com.piss.android.project.tasks.GetCoursesTask;
 import com.piss.android.project.tasks.GetSearchCourseTask;
 
@@ -36,10 +40,22 @@ public class CoursesListFragment extends Fragment {
 		mListView = (ListView) rootView.findViewById(R.id.list_view);
 	
 		mListView.setAdapter(null);
+		
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Course course = coursesList.get(position);
+				CourseFragment fragment = CourseFragment.getInstance(course);
+				((MainActivity)getActivity()).addFragment(fragment);
+				
+			}
+		});
 
 		// TODO: Set authentication token for current user
 
-		GetCoursesTask getCoursesTask = new GetCoursesTask(null) {
+		GetCoursesTask getCoursesTask = new GetCoursesTask(null, null) {
 
 			@Override
 			protected void onPostExecute(ArrayList<Course> result) {

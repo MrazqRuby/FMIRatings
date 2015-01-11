@@ -1,8 +1,8 @@
 package com.piss.android.project.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +23,10 @@ public class VoteForCoursesFragment extends Fragment{
 	private TextView comment;
 	private ImageView sendComment;
 
-	public static VoteForTeacherFragment instance(Integer id) {
-		VoteForTeacherFragment fragment = new VoteForTeacherFragment();
+	public static VoteForCoursesFragment instance(Long id) {
+		VoteForCoursesFragment fragment = new VoteForCoursesFragment();
 		Bundle args = new Bundle();
-		args.putInt(COURSE_ID, id);
+		args.putLong(COURSE_ID, id);
 		fragment.setArguments(args);
 		return fragment;
 

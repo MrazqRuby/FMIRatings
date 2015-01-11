@@ -21,16 +21,25 @@ import android.util.Log;
 public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 
 	private String auth;
+	private String id;
 
-	public GetCoursesTask(String auth) {
+	public GetCoursesTask(String auth, String id) {
 		this.auth = auth;
+		this.id = id;
 	}
 
 	@Override
 	protected ArrayList<Course> doInBackground(Void... params) {
-		String request = APIConnectionConstants.API
+		
+		String  request = null;
+		if (id == null) {
+		request = APIConnectionConstants.API
 				+ APIConnectionConstants.API_COURSES;
-
+		}
+		else{
+			request = APIConnectionConstants.API
+					+ APIConnectionConstants.API_COURSES +"/" + id;
+		}
 		HttpClient client = new DefaultHttpClient();
 		Log.e("url", request);
 		HttpGet get = new HttpGet(request);
