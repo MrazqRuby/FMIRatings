@@ -8,6 +8,7 @@ namespace FMIRatingsAPI.Models.DTO
 {
     public class FileForCourseDTO
     {
+        public int Id { get; set; }
         public string Filename { get; set; }
         public int CourseId { get; set; }
     }

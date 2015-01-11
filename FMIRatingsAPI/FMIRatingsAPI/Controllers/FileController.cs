@@ -17,7 +17,7 @@ namespace FMIRatingsAPI.Controllers
         [Route("forcourse/{courseId}")]
         public IHttpActionResult GetFilesForCourse(int courseId)
         {
-            FileForCourseDTO[] files = db.Files.Where(f => f.CourseId == courseId).Select(f => new FileForCourseDTO {Filename = f.Filename, CourseId = f.CourseId}).ToArray();
+            FileForCourseDTO[] files = db.Files.Where(f => f.CourseId == courseId).Select(f => new FileForCourseDTO {Id = f.Id, Filename = f.Filename, CourseId = f.CourseId}).ToArray();
            
             return Ok(files);
         }

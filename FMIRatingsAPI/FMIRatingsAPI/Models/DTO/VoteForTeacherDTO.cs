@@ -21,7 +21,6 @@ namespace FMIRatingsAPI.Models.DTO
     public class BrowserVoteForTeacherDTO
     {
         public int TeacherId { get; set; }
-        public int UserId { get; set; }
         public Assessment Clarity { get; set; }
         public Assessment Enthusiasm { get; set; }
         public Assessment Evaluation { get; set; }
