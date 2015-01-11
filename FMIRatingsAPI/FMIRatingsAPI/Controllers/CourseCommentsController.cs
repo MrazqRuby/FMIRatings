@@ -30,7 +30,7 @@ namespace FMIRatingsAPI.Controllers
 			return db.CommentsForCourses.Select(comment => new CommentForCourseDTO()
 			{
 				Id = comment.Id,
-				Author = "Stamo",
+				Author = comment.User.Name,
 				CourseId = comment.Id,
 				DateCreated = comment.DateCreated,
 				Text = comment.Text
@@ -51,7 +51,7 @@ namespace FMIRatingsAPI.Controllers
 				.Select(comment => new CommentForCourseDTO()
 				{
 					Id = comment.Id,
-					Author = "Stamo",
+					Author = comment.User.Name,
 					CourseId = comment.Id,
 					DateCreated = comment.DateCreated,
 					Text = comment.Text

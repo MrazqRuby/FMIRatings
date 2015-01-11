@@ -85,7 +85,7 @@ namespace FMIRatingsAPI.Controllers
 							TeacherId = comment.TeacherId,
 							Text = comment.Text,
 							DateCreated = comment.DateCreated,
-							Author = "Stamo"
+							Author = comment.User.Name,
 						}).ToList<CommentForTeacherDTO>(),
 					Department = t.Department.Name
 				}).SingleOrDefault();

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using FMIRatingsAPI.Authentication;
 using FMIRatingsAPI.Models;
 using FMIRatingsAPI.DAL;
 using FMIRatingsAPI.Models.DTO;
@@ -29,7 +30,7 @@ namespace FMIRatingsAPI.Controllers
 			return db.CommentsForTeachers.Select(comment => new CommentForTeacherDTO()
 			{
 				Id = comment.Id,
-				Author = "Stamo",
+				Author = comment.User.Name,
 				TeacherId = comment.TeacherId,
 				DateCreated = comment.DateCreated,
 				Text = comment.Text
@@ -50,7 +51,7 @@ namespace FMIRatingsAPI.Controllers
 				.Select(comment => new CommentForTeacherDTO()
 				{
 					Id = comment.Id,
-					Author = "Stamo",
+					Author = comment.User.Name,
 					TeacherId = comment.Id,
 					DateCreated = comment.DateCreated,
 					Text = comment.Text
