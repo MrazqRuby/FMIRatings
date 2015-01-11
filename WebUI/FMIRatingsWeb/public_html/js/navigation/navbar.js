@@ -205,11 +205,6 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
     }).error(function (data) {
         $scope.statusTeacherVotes = data;
     });
-<<<<<<< HEAD
-    var voteSum = 0;
-    for (var vote in $scope.votes) {
-        voteSum += vote.avarage;
-    }
 
     $scope.showDetails = true;
     $scope.showVote = false;
@@ -248,8 +243,7 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             });
         }
     }
-=======
->>>>>>> e8a1d7e6f79386dd5674484fa74991a91ffa8ab0
+
 
 //    if ($scope.votes.length > 0) {
 //        $scope.avarage = voteSum / $scope.votes.length;
