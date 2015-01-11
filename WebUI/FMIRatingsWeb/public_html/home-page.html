@@ -24,7 +24,7 @@ and open the template in the editor.
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
         <script src="js/vendor/jquery/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        
+
         <script src="js/navigation/navbar.js"></script>
 
 
@@ -59,27 +59,40 @@ and open the template in the editor.
                             <li ng-class="menuClass('disciplines')"><a href="#disciplines-list-page">Курсове</a></li>
                             <li ng-class="menuClass('teachers')"><a href="#teachers-list-page">Преподаватели</a></li>
                         </ul>
-                        <div ng-controller="searchController" class="navbar-form navbar-left">
-                            <div class="form-group">
-                                <input type="search" class="form-control" required placeholder="Търси" ng-model="searchText">
-                            </div>
-                            <a href="#search" class="btn btn-default">Търси</a>
-                        </div>
+                        <!--<div ng-controller="searchController" class="navbar-form navbar-left">-->
+                            <form  role="form" ng-controller="searchController" class="css-form" >
+                                <div class="form-group">
+                                    <input type="search" class="form-control" required placeholder="Търси" ng-model="searchText">
+                                </div>
+                                <button type="submit" ng-click="search(searchText)">Search</button>
+                            </form>
+                            <!--<a href="#search" class="btn btn-default">Търси</a>-->
+                        <!--</div>-->
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="nonregistered-user-homepage.html" onclick ="localStorage.clear();">Изход</a></li>
-                           
+
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
             <!--Body wrapper-->
-
+            
             <div id="body-wrapper" class = "row" ng-view>
-                
+
             </div>
-           
+
         </div>
+        
+        <div ng-controller="searchController" ng-model="text">
+    achsiofhofherigohreio
+    
+    {{text}}
+    
+<!--                <div ng-repeat="course in coursesSearchResults">
+                    <div>{{course.name}}</div>
+                </div>-->
+            </div>
         <!--        <script src="js/navigation/teachers.js"></script>
                 <script src="js/navigation/disciplines.js"></script>-->
     </body>

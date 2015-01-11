@@ -351,8 +351,11 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
 app.controller("searchController", function($scope, $http) {
     debugger;
 
-    var searchText = $scope.searchText || "ов";
+$scope.text = "stamo";
+    //var searchText = $scope.searchText || "ов";
 
+$scope.search = function(searchText) {
+    $scope.text = "siyana";
     if (searchText) {
         $http({
             url: "http://95.111.16.46:6420/api/teachers/search/" + searchText,
@@ -387,5 +390,5 @@ app.controller("searchController", function($scope, $http) {
     else {
         $scope.message = "Не сте въвели информация за търсене. Опитайте отново.";
     }
-
+}
 });
