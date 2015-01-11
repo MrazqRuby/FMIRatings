@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.piss.android.project.activities.MainActivity;
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.models.Course;
+import com.piss.android.project.utils.HeaderConstants;
 
 public class CourseFragment  extends Fragment implements OnClickListener{
 
@@ -49,7 +50,7 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 		comments.setOnClickListener(this);
 		
 		((MainActivity) getActivity()).setUpNavigationToolbar();
-		((MainActivity) getActivity()).getSupportActionBar().setTitle("Курс");
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSE);
 		
 		return rootView;
 	}
@@ -58,11 +59,11 @@ public class CourseFragment  extends Fragment implements OnClickListener{
 	public void onClick(View v) {
 		int id = v.getId();
 		switch (id) {
-//		case R.id.teachers_button: 
-//			Course courseTeachers = ((Course) getArguments().getSerializable(COURSE));
-//			TeachersFragment teachers = TeachersFragment.getInstance(courseTeachers.getTeachers());
-//			((MainActivity) getActivity()).addFragment(teachers);
-//			break;
+		case R.id.teachers_button: 
+			Course courseTeachers = ((Course) getArguments().getSerializable(COURSE));
+			TeachersFragment teachers = TeachersFragment.getInstance(courseTeachers.getTeachers());
+			((MainActivity) getActivity()).addFragment(teachers);
+			break;
 		case R.id.comments_button:
 			Course course = ((Course) getArguments().getSerializable(COURSE));
 			ComentsFragment comments = ComentsFragment.getInstance(course.getComments());
