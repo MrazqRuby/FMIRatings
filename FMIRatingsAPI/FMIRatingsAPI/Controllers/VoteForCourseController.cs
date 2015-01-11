@@ -107,6 +107,7 @@ namespace FMIRatingsAPI.Controllers
         /// </summary>
         /// <param name="voteForTeacher">object which containt teacherId, Assessments (from 1 to 5) for Clarity, Workload, Interest, Simplicity and Usefulness</param>
         /// <returns>Status Code 200 if succeed</returns>
+        [AuthenticationFilter]
         public IHttpActionResult PostVoteForCourse([FromBody] BrowserVoteForCourseDTO voteForCourse)
         {
             if (!ModelState.IsValid)

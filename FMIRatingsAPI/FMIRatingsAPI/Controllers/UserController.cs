@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Net.Http;
+using System.Net;
+using System.Diagnostics;
 
 namespace FMIRatingsAPI.Controllers
 {
@@ -41,7 +44,7 @@ namespace FMIRatingsAPI.Controllers
         }
 
         /// <summary>
-        /// Method for making authentication token, which authorize the user by Base64Encode
+        /// Method for making authentication token
         /// </summary>
         /// <param name="user">User's data</param>
         /// <returns>The token</returns>
@@ -58,6 +61,50 @@ namespace FMIRatingsAPI.Controllers
             byte[] bytes = Encoding.UTF8.GetBytes(user.Name + ":" + user.Password);
             token = Convert.ToBase64String(bytes);
             return Ok(token);
+        }
+
+        /// <summary>
+        /// Method for making authentication token, which authorize the user by Base64Encode
+        /// </summary>
+        /// <param name="user">User's data</param>
+        /// <returns>The token</returns>
+        [HttpPost]
+        [Route("upload")]
+        [ResponseType(typeof(string))]
+        [AuthenticationFilter]
+        public IHttpActionResult UploadFile()
+        {
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                // Read the form data.
+                Request.Content.ReadAsMultipartAsync(provider);
+
+                // This illustrates how to get the file names.
+                foreach (string key in provider.FormData.AllKeys)
+	            {
+                    Trace.WriteLine(key);      
+	            } 
+
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+                }
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [AuthenticationFilter]
+        public IHttpActionResult GetUser()
+        {
+            return Ok(new UserDTO(UserManager.GetCurrentUser()));
         }
     }
 }
