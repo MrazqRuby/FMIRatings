@@ -274,7 +274,7 @@ app.controller('FileUploadCtrl', function($scope) {
 
         var filesData = {};
         fiilesData["courseId"] = courseId;
-        filesData["files"] = $scope.files;
+        filesData["fileName"] = $scope.files[0];
         $scope.progressVisible = true
         $http({
             url: 'http://95.111.16.46:6420/api/users/upload',
