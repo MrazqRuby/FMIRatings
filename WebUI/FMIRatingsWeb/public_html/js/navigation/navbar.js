@@ -79,9 +79,9 @@ app.controller('mainController', function ($scope, $http) {
     }).error(function (data) {
         $scope.statisticStatus = status;
     });
-    
-    
-    var getTeacherStatistics =  $http({
+
+
+    var getTeacherStatistics = $http({
         url: 'http://95.111.16.46:6420/api/Statistic/ExecuteMaxMin?targetType=Teacher',
         method: "GET",
         xhrFields: {
@@ -94,7 +94,7 @@ app.controller('mainController', function ($scope, $http) {
     }).error(function (data) {
         $scope.teacherStatisticStatus = status;
     });
-    
+
 });
 
 app.controller('exitController', function ($scope) {
@@ -276,7 +276,7 @@ app.controller('teacherDetailsController', function ($rootScope, $scope, $routeP
             debugger
             var teachersRting = $scope.teachersRting;
 
-            var auth = + localStorage.getItem("authentication");
+            var auth = +localStorage.getItem("authentication");
             console.log(auth);
             $http.defaults.headers.common.Authorization = localStorage.getItem("authentication");
             $http({
@@ -322,7 +322,7 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
         var filesData = {};
         filesData["courseId"] = courseId;
         filesData["fileName"] = $scope.files[0];
-        $scope.progressVisible = true
+        $scope.progressVisible = true;
         var fd = new FormData();
         fd.append('fileName', $scope.files[0]);
         fd.append('courseId', courseId);
@@ -332,11 +332,13 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
         })
                 .success(function (data) {
                     debugger
+                    alert("Вашият файл е успешно качен.");
                 })
                 .error(function (data) {
                     debugger
+                    alert("Не успяяхме да качим файла, опитайте пак.");
                 });
-    }
+    };
 
     function uploadProgress(evt) {
         $scope.$apply(function () {
@@ -365,49 +367,49 @@ app.controller('FileUploadCtrl', function ($scope, $http) {
     }
 });
 
-app.controller("searchController", function($scope, $http) {
+app.controller("searchController", function ($scope, $http) {
     debugger;
 
-$scope.someText = "stamo";
+    $scope.someText = "stamo";
     //var searchText = $scope.searchText || "ов";
 
-$scope.search = function(searchText) {
+    $scope.search = function (searchText) {
 
-    $scope.someText =  $scope.someText == "stamo" ? "gochev" : "stamo";
+        $scope.someText = $scope.someText == "stamo" ? "gochev" : "stamo";
 
-    if (searchText) {
-        $http({
-            url: "http://95.111.16.46:6420/api/teachers/search/" + searchText,
-            method: "GET",
-            xhrFields: {
-                withCredentials: true
-            }
+        if (searchText) {
+            $http({
+                url: "http://95.111.16.46:6420/api/teachers/search/" + searchText,
+                method: "GET",
+                xhrFields: {
+                    withCredentials: true
+                }
 
-        }).success(function(data) {
+            }).success(function (data) {
                 debugger;
                 $scope.teachersSearchResults = data;
-            }).error(function(data) {
+            }).error(function (data) {
                 $scope.message = "В момента има проблем с търсенето в системата. Опитайте отново.";
             });
 
-        $http({
-            url: "http://95.111.16.46:6420/api/courses/search/" + searchText,
-            method: "GET",
-            xhrFields: {
-                withCredentials: true
-            }
+            $http({
+                url: "http://95.111.16.46:6420/api/courses/search/" + searchText,
+                method: "GET",
+                xhrFields: {
+                    withCredentials: true
+                }
 
-        }).success(function(data) {
+            }).success(function (data) {
                 debugger;
                 $scope.coursesSearchResults = data;
-            }).error(function(data) {
+            }).error(function (data) {
                 $scope.message = "В момента има проблем с търсенето в системата. Опитайте отново.";
             });
 
 
+        }
+        else {
+            $scope.message = "Не сте въвели информация за търсене. Опитайте отново.";
+        }
     }
-    else {
-        $scope.message = "Не сте въвели информация за търсене. Опитайте отново.";
-    }
-}
 });
