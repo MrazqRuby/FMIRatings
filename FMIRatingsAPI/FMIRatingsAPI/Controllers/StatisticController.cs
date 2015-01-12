@@ -230,6 +230,33 @@ namespace FMIRatingsAPI.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage TeachersByCriterion(String criterionId)
+        {
+            int criterion = int.Parse(criterionId);
+            var teacherScores = _db.VotesForTeachers.
+                        Where(v => v.CriterionId == criterion).
+                        OrderBy(v => v.TeacherId).
+                        GroupBy(v => v.TeacherId).
+                        Select(v => v.Average(c => c.Assessment));
+
+            var teacherNames = _db.Teachers.OrderBy(t => t.Id).Select(t => t.Name);
+
+            String names = JsonConvert.SerializeObject(teacherNames);
+            String scores = JsonConvert.SerializeObject(teacherScores);
+
+            Dictionary<String, Object> dict = new Dictionary<string,object>();
+            dict["teacherNames"] = NormalizeToLatin(names);
+            dict["scores"] = scores;
+
+            Uri execUrl = BuildExecutionUrl("teachersByCriterion", dict);
+
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.Redirect);
+            result.Headers.Location = execUrl;
+
+            return result;
+        }
+
+        [HttpGet]
         public HttpResponseMessage ExecuteImg(String targetType, String criterionId, String scriptName)
         {
             return ExecuteImg(targetType, null, criterionId, scriptName);
@@ -249,5 +276,86 @@ namespace FMIRatingsAPI.Controllers
 
             return result;
         }
+
+        private static String NormalizeToLatin(String str)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (char c in str)
+            {
+                if (CHAR_MAPPING.ContainsKey(c))
+                {
+                    result.Append(CHAR_MAPPING[c]);
+                }
+                else
+                {
+                    result.Append(c);
+                }
+            }
+
+            return result.ToString();
+        }
+
+        private static readonly Dictionary<Char, String> CHAR_MAPPING = new Dictionary<char, String>()
+        {
+            {'А', "A"},
+            {'Б', "B"},
+            {'В', "V"},
+            {'Г', "G"},
+            {'Д', "D"},
+            {'Е', "E"},
+            {'Ж', "Zh"},
+            {'З', "Z"},
+            {'И', "I"},
+            {'Й', "J"},
+            {'К', "K"},
+            {'Л', "L"},
+            {'М', "M"},
+            {'Н', "N"},
+            {'О', "O"},
+            {'П', "P"},
+            {'Р', "R"},
+            {'С', "S"},
+            {'Т', "T"},
+            {'У', "U"},
+            {'Ф', "F"},
+            {'Х', "H"},
+            {'Ц', "Ts"},
+            {'Ч', "Tc"},
+            {'Ш', "Sh"},
+            {'Щ', "Sht"},
+            {'Ъ', "A"},
+            {'Ю', "Yu"},
+            {'Я', "Ya"},
+            {'а', "a"},
+            {'б', "b"},
+            {'в', "v"},
+            {'г', "g"},
+            {'д', "d"},
+            {'е', "e"},
+            {'ж', "zh"},
+            {'з', "z"},
+            {'и', "i"},
+            {'й', "j"},
+            {'к', "k"},
+            {'л', "l"},
+            {'м', "m"},
+            {'н', "n"},
+            {'о', "o"},
+            {'п', "p"},
+            {'р', "r"},
+            {'с', "s"},
+            {'т', "t"},
+            {'у', "u"},
+            {'ф', "f"},
+            {'х', "h"},
+            {'ц', "ts"},
+            {'ч', "tc"},
+            {'ш', "sh"},
+            {'щ', "sht"},
+            {'ъ', "a"},
+            {'ь', "u"},
+            {'ю', "yu"},
+            {'я', "ya"},
+        };
     }
 }
