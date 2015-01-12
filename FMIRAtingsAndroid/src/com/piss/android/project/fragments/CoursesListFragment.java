@@ -2,6 +2,7 @@ package com.piss.android.project.fragments;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,8 +31,9 @@ import com.piss.android.project.utils.HeaderConstants;
 
 public class CoursesListFragment extends Fragment {
 
-	ListView mListView;
-	ArrayList<Course> coursesList;
+	private ListView mListView;
+	private ArrayList<Course> coursesList;
+	private ProgressDialog progress;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -39,9 +41,9 @@ public class CoursesListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.teachers_list_fragment, null);
 
 		mListView = (ListView) rootView.findViewById(R.id.list_view);
-	
+
 		mListView.setAdapter(null);
-		
+
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -49,8 +51,8 @@ public class CoursesListFragment extends Fragment {
 					int position, long id) {
 				Course course = coursesList.get(position);
 				CourseFragment fragment = CourseFragment.getInstance(course);
-				((MainActivity)getActivity()).addFragment(fragment);
-				
+				((MainActivity) getActivity()).addFragment(fragment);
+
 			}
 		});
 
@@ -59,11 +61,24 @@ public class CoursesListFragment extends Fragment {
 		GetCoursesTask getCoursesTask = new GetCoursesTask(null, null) {
 
 			@Override
+			protected void onPreExecute() {
+				if (progress == null) {
+					progress = new ProgressDialog(getActivity());
+					progress.setTitle("Зареждане...");
+					progress.show();
+				}
+			}
+
+			@Override
 			protected void onPostExecute(ArrayList<Course> result) {
+				if(progress!=null && progress.isShowing()){
+					progress.dismiss();
+				}
 				if (result != null) {
 					coursesList = result;
 					Log.i("DEBUG", "onPostExecute courses");
-					CoursesAdapter adapter = new CoursesAdapter(result, getActivity());
+					CoursesAdapter adapter = new CoursesAdapter(result,
+							getActivity());
 
 					mListView.setAdapter(adapter);
 				} else {
@@ -77,48 +92,51 @@ public class CoursesListFragment extends Fragment {
 		getCoursesTask.execute();
 
 		setHasOptionsMenu(true);
-		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.COURSES);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(
+				HeaderConstants.COURSES);
 		return rootView;
 	}
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		if(getActivity().isFinishing()){
+		if (getActivity().isFinishing()) {
 			return;
 		}
-		getActivity().invalidateOptionsMenu();
+		// getActivity().invalidateOptionsMenu();
 		final MenuItem searchItem = menu.findItem(R.id.action_search);
 		SearchView mSearchView = (SearchView) MenuItemCompat
 				.getActionView(searchItem);
 		mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
-			
+
 			@Override
 			public boolean onQueryTextSubmit(String arg0) {
 				// TODO Auto-generated method stub
 				return false;
 			}
-			
+
 			@Override
 			public boolean onQueryTextChange(String text) {
-				GetSearchCourseTask search = new GetSearchCourseTask(text){
+				GetSearchCourseTask search = new GetSearchCourseTask(text) {
 					// if it is empty => return global variable
 					@Override
 					protected void onPostExecute(ArrayList<Course> result) {
 						if (result != null) {
 							Log.i("DEBUG", "onPostExecute courses");
-							CoursesAdapter adapter = new CoursesAdapter(result, getActivity());
+							CoursesAdapter adapter = new CoursesAdapter(result,
+									getActivity());
 
 							mListView.setAdapter(adapter);
 						} else {
-							CoursesAdapter adapter = new CoursesAdapter(coursesList, getActivity());
+							CoursesAdapter adapter = new CoursesAdapter(
+									coursesList, getActivity());
 
 							mListView.setAdapter(adapter);
 						}
 					}
-					
+
 				};
-				
+
 				search.execute();
 				return true;
 			}

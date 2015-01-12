@@ -95,11 +95,13 @@ public class MaterialsListFragment extends Fragment {
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		if(getActivity().isFinishing()){
+		if (getActivity().isFinishing()) {
 			return;
 		}
-		getActivity().invalidateOptionsMenu();
-		//final MenuItem searchItem = menu.findItem(R.id.action_search);
-		
+		// getActivity().invalidateOptionsMenu();
+		final MenuItem searchItem = menu.findItem(R.id.action_search);
+		SearchView mSearchView = (SearchView) MenuItemCompat
+				.getActionView(searchItem);
+		searchItem.setVisible(false);
 	}
 }

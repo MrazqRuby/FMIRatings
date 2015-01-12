@@ -25,6 +25,7 @@ import android.widget.ListView;
 
 import com.piss.android.project.fmiratings.R;
 import com.piss.android.project.fragments.CoursesListFragment;
+import com.piss.android.project.fragments.HomFragment;
 import com.piss.android.project.fragments.InitialFragment;
 import com.piss.android.project.fragments.TeachersListFragment;
 import com.piss.android.project.utils.APIConnectionConstants;
@@ -181,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
 		Log.e("POSITION", position + "");
 		switch (position) {
 		case 0:
-			fragment = new CoursesListFragment();
+			fragment = new HomFragment();
 
 			break;
 

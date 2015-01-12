@@ -38,7 +38,7 @@ public class DownloadFileTask extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected void onPreExecute() {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-				context).setSmallIcon(R.drawable.app_icon)
+				context).setSmallIcon(R.drawable.brand)
 				.setContentTitle("FMIRatings")
 				.setContentText("Downloading file " + filename);
 
@@ -64,9 +64,9 @@ public class DownloadFileTask extends AsyncTask<Void, Void, Boolean> {
 
 	@Override
 	protected void onPostExecute(Boolean result) {
-		NotificationManager mNotifyMgr = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.cancel(fileId);
+//		NotificationManager mNotifyMgr = (NotificationManager) context
+//				.getSystemService(Context.NOTIFICATION_SERVICE);
+//		mNotifyMgr.cancel(fileId);
 	}
 
 	public Boolean DownloadFile(String DownloadUrl, String fileName) {

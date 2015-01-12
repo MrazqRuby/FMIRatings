@@ -2,6 +2,7 @@ package com.piss.android.project.fragments;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ import com.piss.android.project.tasks.GetTeachersTask;
 import com.piss.android.project.utils.HeaderConstants;
 
 public class TeachersListFragment extends Fragment {
-	
+
 	private ListView mListView;
 	private ArrayList<Teacher> teachersList;
 
@@ -38,9 +39,9 @@ public class TeachersListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.teachers_list_fragment, null);
 
 		mListView = (ListView) rootView.findViewById(R.id.list_view);
-	
+
 		mListView.setAdapter(null);
-		
+
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -48,63 +49,86 @@ public class TeachersListFragment extends Fragment {
 					int position, long id) {
 				Teacher teacher = teachersList.get(position);
 				TeacherFragment fragment = TeacherFragment.getInstance(teacher);
-				((MainActivity)getActivity()).addFragment(fragment);
-				
+				((MainActivity) getActivity()).addFragment(fragment);
+
 			}
 		});
 
 		// TODO: Set authentication token for current user
+		if (teachersList != null) {
+			TeachersAdapter adapter = new TeachersAdapter(teachersList,
+					getActivity());
 
-		GetTeachersTask getCoursesTask = new GetTeachersTask(null, null) {
+			mListView.setAdapter(adapter);
+		} else {
+			GetTeachersTask getCoursesTask = new GetTeachersTask(null, null) {
 
-			@Override
-			protected void onPostExecute(ArrayList<Teacher> result) {
-				if (result != null) {
-					teachersList = result;
-					TeachersAdapter adapter = new TeachersAdapter(result, getActivity());
+				private ProgressDialog progress;
 
-					mListView.setAdapter(adapter);
-				} else {
-					Toast.makeText(getActivity(), "Server Error",
-							Toast.LENGTH_SHORT).show();
+				@Override
+				protected void onPreExecute() {
+					if (progress == null) {
+						progress = new ProgressDialog(getActivity());
+						progress.setTitle("Зареждане...");
+						progress.show();
+					}
 				}
 
-			}
+				@Override
+				protected void onPostExecute(ArrayList<Teacher> result) {
+					if (progress != null && progress.isShowing()) {
+						progress.dismiss();
+					}
+					if (result != null) {
+						teachersList = result;
+						TeachersAdapter adapter = new TeachersAdapter(result,
+								getActivity());
 
-		};
-		getCoursesTask.execute();
+						mListView.setAdapter(adapter);
+					} else {
+						Toast.makeText(getActivity(), "Server Error",
+								Toast.LENGTH_SHORT).show();
+					}
+
+				}
+
+			};
+			getCoursesTask.execute();
+		}
 		setHasOptionsMenu(true);
-		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.TEACHERS);
+		((MainActivity) getActivity()).getSupportActionBar().setTitle(
+				HeaderConstants.TEACHERS);
 		return rootView;
 	}
-	
+
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-		if(getActivity().isFinishing()){
+		if (getActivity().isFinishing()) {
 			return;
 		}
-		getActivity().invalidateOptionsMenu();
+		// getActivity().invalidateOptionsMenu();
 		final MenuItem searchItem = menu.findItem(R.id.action_search);
 		SearchView mSearchView = (SearchView) MenuItemCompat
 				.getActionView(searchItem);
 		mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
-			
+
 			@Override
 			public boolean onQueryTextSubmit(String arg0) {
 				// TODO Auto-generated method stub
 				return false;
 			}
-			
+
 			@Override
 			public boolean onQueryTextChange(String text) {
-				 GetSearchTeacherTask search = new GetSearchTeacherTask(text){
+				GetSearchTeacherTask search = new GetSearchTeacherTask(text) {
 					// if it is empty => return global variable
 					@Override
 					protected void onPostExecute(ArrayList<Teacher> result) {
 						if (result != null) {
 							Log.i("DEBUG", "onPostExecute teachers");
-							TeachersAdapter adapter = new TeachersAdapter(result, getActivity());
+							TeachersAdapter adapter = new TeachersAdapter(
+									result, getActivity());
 
 							mListView.setAdapter(adapter);
 						} else {
@@ -112,15 +136,14 @@ public class TeachersListFragment extends Fragment {
 									Toast.LENGTH_SHORT).show();
 						}
 					}
-					
+
 				};
-				
+
 				search.execute();
-				
+
 				return true;
 			}
 		});
 	}
 
-	
 }

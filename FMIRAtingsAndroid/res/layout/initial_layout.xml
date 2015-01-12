@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="@dimen/app_margin_big"
         android:layout_marginTop="@dimen/app_margin_big"
         android:contentDescription="@drawable/ic_launcher"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/login_button"

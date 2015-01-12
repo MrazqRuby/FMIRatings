@@ -27,6 +27,8 @@ public class GetCoursesTask extends AsyncTask<Void, Void, ArrayList<Course>> {
 		this.auth = auth;
 		this.id = id;
 	}
+	
+	
 
 	@Override
 	protected ArrayList<Course> doInBackground(Void... params) {

@@ -23,6 +23,7 @@ public class RegistrationFragment extends Fragment {
 	private EditText graduationDate;
 
 	private Button register;
+	private EditText group;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -37,7 +38,7 @@ public class RegistrationFragment extends Fragment {
 		course = (EditText) rootView.findViewById(R.id.course);
 		specialty = (EditText) rootView.findViewById(R.id.specialty);
 		graduationDate = (EditText) rootView.findViewById(R.id.graduation_date);
-
+		group = (EditText) rootView.findViewById(R.id.group);
 		register = (Button) rootView.findViewById(R.id.login_button);
 
 		register.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +75,8 @@ public class RegistrationFragment extends Fragment {
 				}
 
 				// Check if confirm password equals password
-				if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
+				if (!password.getText().toString()
+						.equals(confirmPassword.getText().toString())) {
 					confirmPassword.setError("Въведената парола не отговаря!");
 					confirmPassword.setText("");
 					return;
@@ -82,20 +84,24 @@ public class RegistrationFragment extends Fragment {
 
 				// TODO: execute login task
 				RegisterTask registrate = new RegisterTask(userName.getText()
-						.toString(), "", email.getText().toString(), password
-						.getText().toString(), 2, 2, 3, specialty.getText()
-						.toString()){
+						.toString(), userName.getText().toString(), email
+						.getText().toString(), password.getText().toString(),
+						Integer.valueOf(course.getText().toString()), Integer
+								.valueOf(group.getText().toString()), Integer
+								.valueOf(graduationDate.getText().toString()),
+						specialty.getText().toString()) {
 
-							@Override
-							protected void onPostExecute(Boolean result) {
-								if(result){
-									LoginFragment fragment = new LoginFragment();
-									((LoginActivity) getActivity()).addFragment(fragment);
-								}
-							}
-					
+					@Override
+					protected void onPostExecute(Boolean result) {
+						if (result) {
+							LoginFragment fragment = new LoginFragment();
+							((LoginActivity) getActivity())
+									.addFragment(fragment);
+						}
+					}
+
 				};
-				
+
 				registrate.execute();
 			}
 		});

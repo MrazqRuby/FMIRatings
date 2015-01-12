@@ -45,6 +45,7 @@ public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 		this.group = group;
 		this.year = year;
 		this.major = major;
+		this.realname = realName;
 	}
 
 	@Override
@@ -58,18 +59,19 @@ public class RegisterTask extends AsyncTask<Void, Void, Boolean> {
 		//List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		try {
 			httpPost = new HttpPost(url);
-			json.put(APIConnectionConstants.ID, 0);
-			json.put("Name", name);
-			json.put("RealName", realname);
-			json.put("Password", password);
-			json.put("Email", email);
-			json.put("Course", course);
-			json.put("Group", group);
-			json.put("GraduationYear", year);
-			json.put("Major", major);
+			//json.put(APIConnectionConstants.ID, 0);
+			json.put("name", name);
+			json.put("realName", realname);
+			json.put("password", password);
+			json.put("email", email);
+			json.put("course", course);
+			json.put("group", group);
+			json.put("graduationYear", year);
+			json.put("major", major);
 
 			StringEntity se = new StringEntity(json.toString());
 
+			Log.d("DEBUG", "json: " + json.toString());
 			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 					"application/json"));
 			httpPost.setEntity(se);

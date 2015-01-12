@@ -5,7 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -59,14 +63,7 @@ public class VoteForTeacherFragment extends Fragment {
 		ratingBarScope = (RatingBar) rootView.findViewById(R.id.scope_rating);
 		
 		
-		 ratingBarClarity.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-		        public void onRatingChanged(RatingBar ratingBar, float rating,
-		         boolean fromUser) {
-
-		         Toast.makeText(getActivity(),"Your Selected Ratings  : " + String.valueOf(rating),Toast.LENGTH_LONG).show();
-
-		        }
-		       });
+		 
 		comment = (TextView) rootView.findViewById(R.id.editComment);
 		sendComment = (ImageView) rootView.findViewById(R.id.commentArrow);
 		sendComment.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +92,14 @@ public class VoteForTeacherFragment extends Fragment {
 							Toast.makeText(getActivity(),
 									"Вие вече сте гласували", Toast.LENGTH_LONG)
 									.show();
+						}else{
+							Toast.makeText(getActivity(),
+									"Вие гласувахте успешно", Toast.LENGTH_LONG)
+									.show();
+							
 						}
+						
+						((MainActivity) getActivity()).removeFragmentsInclusive(VoteForTeacherFragment.class.getSimpleName());
 					}
 
 				};
@@ -106,5 +110,18 @@ public class VoteForTeacherFragment extends Fragment {
 		});
 		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.VOTE_TEACHER);
 		return rootView;
+	}
+	
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		if (getActivity().isFinishing()) {
+			return;
+		}
+		// getActivity().invalidateOptionsMenu();
+		final MenuItem searchItem = menu.findItem(R.id.action_search);
+		SearchView mSearchView = (SearchView) MenuItemCompat
+				.getActionView(searchItem);
+		searchItem.setVisible(false);
 	}
 }

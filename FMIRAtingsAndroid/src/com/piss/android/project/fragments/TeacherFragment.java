@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -73,6 +77,7 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 		ratingBarEvaluation.setEnabled(false);
 		ratingBarScope.setEnabled(false);
 		ratingBarSpeed.setEnabled(false);
+		setHasOptionsMenu(true);
 		getVotes();
 		((MainActivity) getActivity()).getSupportActionBar().setTitle(HeaderConstants.TEACHER);
 		return rootView;
@@ -141,4 +146,16 @@ public class TeacherFragment extends Fragment implements OnClickListener {
 		}
 	}
 
+	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);
+		if (getActivity().isFinishing()) {
+			return;
+		}
+		// getActivity().invalidateOptionsMenu();
+		final MenuItem searchItem = menu.findItem(R.id.action_search);
+		SearchView mSearchView = (SearchView) MenuItemCompat
+				.getActionView(searchItem);
+		searchItem.setVisible(false);
+	}
 }
