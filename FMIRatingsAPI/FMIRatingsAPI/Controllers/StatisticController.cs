@@ -230,11 +230,10 @@ namespace FMIRatingsAPI.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage TeachersByCriterion(String criterionId)
+        public HttpResponseMessage TeachersByCriterion()
         {
-            int criterion = int.Parse(criterionId);
             var teacherScores = _db.VotesForTeachers.
-                        Where(v => v.CriterionId == criterion).
+                        // Where(v => v.CriterionId == criterion).
                         OrderBy(v => v.TeacherId).
                         GroupBy(v => v.TeacherId).
                         Select(v => v.Average(c => c.Assessment));
@@ -248,7 +247,7 @@ namespace FMIRatingsAPI.Controllers
             dict["teacherNames"] = NormalizeToLatin(names);
             dict["scores"] = scores;
 
-            Uri execUrl = BuildExecutionUrl("teachersByCriterion", dict);
+            Uri execUrl = BuildExecutionUrl("teachersByCriterion.png", dict);
 
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.Redirect);
             result.Headers.Location = execUrl;
